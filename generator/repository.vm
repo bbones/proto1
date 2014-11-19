@@ -1,0 +1,10 @@
+#set($rep="Repository")
+package $defPack;
+
+import org.springframework.data.repository.CrudRepository;
+
+import $canonical;
+
+public interface $name$rep extends CrudRepository<$name, Long> {
+
+}

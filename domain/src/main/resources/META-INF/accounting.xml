@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<import resource="domain.xml" />
+
+	<bean id="main_contract_role" class="org.proto1.domain.accounting.AnaliticRole">
+		<property name="id" value="1" />
+		<property name="analiticRoleName" value="Main contract role" />
+	</bean>
+
+	<bean id="produced_product_role" class="org.proto1.domain.accounting.AnaliticRole">
+		<property name="id" value="1" />
+		<property name="analiticRoleName" value="Main contract role" />
+	</bean>
+
+	<bean id="contract_analitic" class="org.proto1.domain.Analitic">
+		<constructor-arg ref="contract" />
+		<property name="analiticRole" ref="main_contract_role" />
+	</bean>
+
+	<bean id="product_analitic" class="org.proto1.domain.Analitic">
+		<constructor-arg ref="metall_product" />
+		<property name="analiticRole" ref="produced_product_role" />
+	</bean>
+
+	<bean id="debitor_role" class="org.proto1.domain.accounting.AnaliticRole">
+		<property name="id" value="2" />
+		<property name="analiticRoleName" value="Debitor role" />
+	</bean>
+
+	<bean id="creditor_role" class="org.proto1.domain.accounting.AnaliticRole">
+		<property name="id" value="3" />
+		<property name="analiticRoleName" value="Creditor role" />
+	</bean>
+
+	<bean id="main_ledger" class="org.proto1.domain.accounting.Ledger">
+		<property name="id" value="1" />
+	</bean>
+
+	<bean id="assets_account" class="org.proto1.domain.accounting.Account">
+		<property name="id" value="1"/>
+		<property name="name" value="Assets"/>
+		<property name="analitics">
+			<set>
+				<ref bean="debitor_role"/>
+				<ref bean="creditor_role"/>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="liability_account" class="org.proto1.domain.accounting.Account">
+		<property name="id" value="1"/>
+		<property name="name" value="Liability"/>
+	</bean>
+	
+	<bean id="contract_register_1" class="org.proto1.domain.accounting.Register">
+		<property name="ledger" ref="main_ledger" />
+		<property name="period" ref="first_quarter" />
+		<property name="analitics">
+			<set>
+				<ref bean="contract_analitic"/>	
+			</set>
+		</property>
+	</bean>
+
+</beans>

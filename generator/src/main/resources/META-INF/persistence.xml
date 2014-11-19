@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="proto1" transaction-type="RESOURCE_LOCAL">
+		<class>org.proto1.domain.Party</class>
+		<class>org.proto1.domain.Period</class>
+		<class>org.proto1.domain.Person</class>
+		<class>org.proto1.domain.Enterprise</class>
+		<class>org.proto1.domain.Contract</class>
+		<class>org.proto1.domain.ContractSide</class>
+		<class>org.proto1.domain.Document</class>
+		<class>org.proto1.domain.SideRole</class>
+		<class>org.proto1.domain.Analitic</class>
+		<class>org.proto1.domain.accounting.AnaliticRole</class>
+		<class>org.proto1.domain.accounting.Account</class>
+		<class>org.proto1.domain.accounting.GeneralLedger</class>
+		<class>org.proto1.domain.accounting.Ledger</class>
+		<class>org.proto1.domain.accounting.Record</class>
+		<class>org.proto1.domain.accounting.Register</class>
+		<class>org.proto1.domain.accounting.RegisterMap</class>
+
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost/xdb" />
+			<property name="hibernate.connection.username" value="sa" />
+			<property name="hibernate.connection.password" value="" />
+
+		</properties>
+	</persistence-unit>
+
+	<persistence-unit name="prototools" transaction-type="RESOURCE_LOCAL">
+		<class>org.proto1.generator.QueryDescriptor</class>
+		<class>org.proto1.generator.FieldDescriptor</class>
+
+		<properties>
+			<property name="hibernate.archive.autodetection" value="class, hbm" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.connection.driver_class" value="org.hsqldb.jdbcDriver" />
+			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost/xdb" />
+			<property name="hibernate.connection.username" value="sa" />
+			<property name="hibernate.connection.password" value="" />
+
+		</properties>
+	</persistence-unit>
+
+
+</persistence>
