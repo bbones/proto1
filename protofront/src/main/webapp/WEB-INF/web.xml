@@ -12,16 +12,6 @@
 
 	<!-- Servlets -->
 
-	<servlet>
-		<servlet-name>dispatcher</servlet-name>
-		<servlet-class>org.proto1.protofront.WebFrontDispatcher</servlet-class>
-		<load-on-startup>1</load-on-startup>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>dispatcher</servlet-name>
-		<url-pattern>*.act</url-pattern>
-	</servlet-mapping>
 
 	<servlet>
 		<servlet-name>restdispatcher</servlet-name>
@@ -30,6 +20,6 @@
 
 	<servlet-mapping>
 		<servlet-name>restdispatcher</servlet-name>
-		<url-pattern>*.do</url-pattern>
+		<url-pattern>/greeting/*</url-pattern>
 	</servlet-mapping>
 </web-app>
