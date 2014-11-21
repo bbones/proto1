@@ -20,6 +20,6 @@
 
 	<servlet-mapping>
 		<servlet-name>restdispatcher</servlet-name>
-		<url-pattern>/greeting/*</url-pattern>
+		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
 </web-app>
