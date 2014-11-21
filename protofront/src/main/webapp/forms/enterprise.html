@@ -4,8 +4,8 @@
 		<div class="panel-body">
 			<form role="form">
 				<div class="form-group">
-					<label for="enterpriseId">Enterprise #ID:</label> <input type="number"
-						class="form-control" name="enterpriseId">
+					<label for="enterpriseId">Enterprise #ID:</label> <input
+						type="number" class="form-control" name="enterpriseId">
 				</div>
 				<div class="form-group">
 					<label for="enterpriseName">Name:</label> <input type="text"
@@ -14,13 +14,23 @@
 			</form>
 		</div>
 	</div>
+	<div id="result"></div>
+
 </div>
 
 <script>
-	myURL = document.location; 
+	myURL = document.location;
 	document.location = myURL + "?enterprise:id=";
 	document.entityName = "Enterprise";
 	$("#submitBtn").click(function() {
-	       alert(JSON.stringify($('form').serializeObject()));
+		$.ajax({
+			type: 'GET',
+			dataType : 'json',
+			url : '/protofront/service/enterprise/submit',
+			success : function(jsondata) {
+				$('.results').html(jsondata);
+			}
+		});
 	});
+	// alert(JSON.stringify($('form').serializeObject()));
 </script>
