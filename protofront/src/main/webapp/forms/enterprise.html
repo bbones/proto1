@@ -22,15 +22,24 @@
 	myURL = document.location;
 	document.location = myURL + "?enterprise:id=";
 	document.entityName = "Enterprise";
+
 	$("#submitBtn").click(function() {
+		var enterprise = {
+			enterpriseID : 100,
+			enterpriseName : "ISD"
+		};
+
+		jsonDATA = JSON.stringify(enterprise);
 		$.ajax({
-			type: 'GET',
+			type : 'POST',
 			dataType : 'json',
+			contentType : 'application/json',
+			mimeType : 'application/json',
+			data : jsonDATA,
 			url : '/protofront/service/enterprise/submit',
 			success : function(jsondata) {
-				$('.results').html(jsondata);
+				$('#results').html(jsondata);
 			}
 		});
 	});
-	// alert(JSON.stringify($('form').serializeObject()));
 </script>
