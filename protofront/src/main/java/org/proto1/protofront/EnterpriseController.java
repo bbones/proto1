@@ -12,20 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/enterprise")
 public class EnterpriseController {
-	@RequestMapping(value = "submit", method = RequestMethod.POST, consumes="application/json", produces="application/json")
-	public @ResponseBody String submit(@RequestBody final EnterpriseDTO jsonData) {
-		System.out.println("As is->" + jsonData);
-/*
-		org.json.JSONObject obj = new org.json.JSONObject(enterprise);  
-		System.out.println("enterpriseId->" + obj.getLong("enterpriseId"));
-		System.out.println("enterpriseId->" + obj.getString("enterpriseName"));
-*/		
-		return  "Redirect"; // new EnterpriseDTO(12L, "ISD");
+	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json", consumes="application/json" )
+	public @ResponseBody EnterpriseDTO submit(@RequestBody final EnterpriseDTO enterpriseDTO) {
+		System.out.println("As is->" + enterpriseDTO);
+		return enterpriseDTO;
 	}
 
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public String sayHello(@PathVariable String name) {
-		String result = "Hello " + name + " to dineshonjava.com!!!";
-		return result;
+	@RequestMapping(value = "test", method = RequestMethod.GET, produces = "application/json")
+	public EnterpriseDTO sayHello() {
+		return  new EnterpriseDTO(12L, "ISD");
 	}
 }

@@ -5,16 +5,16 @@
 			<form role="form">
 				<div class="form-group">
 					<label for="enterpriseId">Enterprise #ID:</label> <input
-						type="number" class="form-control" name="enterpriseId">
+						type="number" class="form-control" name="enterpriseId" value="12">
 				</div>
 				<div class="form-group">
 					<label for="enterpriseName">Name:</label> <input type="text"
-						class="form-control" name="enterpriseName">
+						class="form-control" name="enterpriseName" value="Proto one">
 				</div>
 			</form>
 		</div>
 	</div>
-	<div id="result"></div>
+	<div id="disp">Text for change</div>
 
 </div>
 
@@ -24,12 +24,7 @@
 	document.entityName = "Enterprise";
 
 	$("#submitBtn").click(function() {
-		var enterprise = {
-			enterpriseID : 100,
-			enterpriseName : "ISD"
-		};
-
-		jsonDATA = JSON.stringify(enterprise);
+		jsonDATA = JSON.stringify($('form').serializeObject());
 		$.ajax({
 			type : 'POST',
 			dataType : 'json',
@@ -37,9 +32,13 @@
 			mimeType : 'application/json',
 			data : jsonDATA,
 			url : '/protofront/service/enterprise/submit',
-			success : function(jsondata) {
-				$('#results').html(jsondata);
-			}
+			success : function(respdata) {
+				$('#disp').html(respdata.enterpriseName);
+			},
+	    	error:function(data,status,er) { 
+	        	alert("error: "+data+" status: "+status+" er:"+er);
+	    	}
+
 		});
 	});
 </script>
