@@ -1,13 +1,10 @@
 package org.proto1.generator;
 
-import static org.junit.Assert.*;
-
 import java.lang.annotation.Annotation;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -29,7 +26,6 @@ import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
 import org.proto1.generator.domain.FieldDescriptor;
 import org.proto1.generator.domain.QueryDescriptor;
-import org.proto1.tools.ContextUtility;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -65,7 +61,7 @@ public class QueryDescriptorGeneratorTest extends AbstractJUnit4SpringContextTes
 		em = emf.createEntityManager();
 		
 		toolsemf = Persistence.createEntityManagerFactory("prototools", properties);	
-		toolsem = emf.createEntityManager();
+		toolsem = toolsemf.createEntityManager();
 
 		String[] deleteQueries = {
 				"delete from ContractSide",
@@ -106,7 +102,7 @@ public class QueryDescriptorGeneratorTest extends AbstractJUnit4SpringContextTes
 
 	@Test
 	public void testQueryList() {
-		Set<Class<?>> classList = ContextUtility.getClassList(applicationContext, "org.proto1.domain");
+		// Set<Class<?>> classList = ContextUtility.getClassList(applicationContext, "org.proto1.domain");
 		
 		// for(Class<?> clazz : classList) {
 		
@@ -121,9 +117,10 @@ public class QueryDescriptorGeneratorTest extends AbstractJUnit4SpringContextTes
 				queryDescriptor.setFieldList(new LinkedList<FieldDescriptor>());
 				logger.debug(clazz.getName() +":" +nq.name());
 				Query query = em.createNamedQuery("partyList");
-				List<Map<String, Object>> result = query.getResultList();
+				@SuppressWarnings("unchecked")
+				List<Map<String, ?>> result = query.getResultList();
 				
-				for (Map<String, Object> row : result) {
+				for (Map<String, ?> row : result) {
 					logger.debug(row);
 					for (String entry : row.keySet()) {
 						logger.debug("->" + entry);

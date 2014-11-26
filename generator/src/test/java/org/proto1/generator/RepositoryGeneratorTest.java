@@ -1,21 +1,11 @@
 package org.proto1.generator;
 
-import static org.junit.Assert.*;
-
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.velocity.exception.MethodInvocationException;
-import org.apache.velocity.exception.ParseErrorException;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
-import org.proto1.domain.Contract;
-import org.proto1.domain.Enterprise;
-import org.proto1.domain.Person;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 

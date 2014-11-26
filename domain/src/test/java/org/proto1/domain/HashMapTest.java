@@ -1,7 +1,5 @@
 package org.proto1.domain;
 
-import static org.junit.Assert.*;
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -10,7 +8,6 @@ import java.util.Set;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Test;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 public class HashMapTest {
 	protected final Log logger = LogFactory.getLog(getClass());

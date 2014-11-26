@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>com.proto1.domain</groupId>
 	<artifactId>domain</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>domain</name>
 	<url>http://maven.apache.org</url>
 	<properties>

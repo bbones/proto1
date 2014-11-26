@@ -20,6 +20,7 @@ public class Analitic {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	public Analitic(Identified obj) {
 		clazz = (Class<Identified>) obj.getClass();
 	}

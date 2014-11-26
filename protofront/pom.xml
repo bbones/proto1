@@ -8,9 +8,8 @@
 		<artifactId>proto1</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<groupId>com.proto1</groupId>
+	<groupId>com.proto1.protofront</groupId>
 	<artifactId>protofront</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>protofront Maven Webapp</name>
 	<url>http://maven.apache.org</url>
@@ -18,6 +17,12 @@
 		<dependency>
 			<groupId>com.proto1.domain</groupId>
 			<artifactId>domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.proto1.services</groupId>
+			<artifactId>services</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -38,6 +43,18 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>4.1.2.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-commons</artifactId>
+			<version>1.9.1.RELEASE</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+			<version>1.7.1.RELEASE</version>
 		</dependency>
 
 		<dependency>
@@ -77,6 +94,19 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.4.3</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb-j5</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>5.5.1</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>protofront</finalName>

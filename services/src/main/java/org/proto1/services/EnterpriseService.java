@@ -1,9 +1,17 @@
 package org.proto1.services;
 
 import org.proto1.domain.Enterprise;
+import org.proto1.repository.EnterpriseRepository;
 
 public interface EnterpriseService {
 
-	Enterprise getEnterpriseById(long id);
+	void setEnterpriseRepository(EnterpriseRepository erep);
+
+	Enterprise getEnterpriseById(Long id);
+	
+	Enterprise save(Enterprise isd);
+
+	void delete(Long id);
+
 
 }

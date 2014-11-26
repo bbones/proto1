@@ -1,8 +1,6 @@
 package org.proto1.domain.accounting;
 
 import java.util.Map;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

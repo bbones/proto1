@@ -1,22 +1,12 @@
 package org.proto1.generator;
 
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.io.Writer;
-import java.util.HashSet;
 import java.util.Properties;
-import java.util.Set;
-
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
-import org.apache.velocity.exception.MethodInvocationException;
-import org.apache.velocity.exception.ParseErrorException;
-import org.apache.velocity.exception.ResourceNotFoundException;
 import org.apache.velocity.runtime.RuntimeConstants;
 import org.proto1.tools.ContextUtility;
 import org.springframework.context.ApplicationContext;

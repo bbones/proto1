@@ -10,6 +10,10 @@
 				<div class="form-group">
 					<label for="enterpriseName">Name:</label> <input type="text"
 						class="form-control" name="enterpriseName" value="Proto one">
+				<div class="form-group">
+					<label for="enterpriseAddress">Name:</label> <input type="text"
+						class="form-control" name="enterpriseName" value="Proto one">
+				</div>
 				</div>
 			</form>
 		</div>
@@ -34,6 +38,8 @@
 			url : '/protofront/service/enterprise/submit',
 			success : function(respdata) {
 				$('#disp').html(respdata.enterpriseName);
+				$('#enterpriseID').value = respdata.enterpriseID;
+				$('#enterpriseName').value = respdata.enterpriseName;
 			},
 	    	error:function(data,status,er) { 
 	        	alert("error: "+data+" status: "+status+" er:"+er);
