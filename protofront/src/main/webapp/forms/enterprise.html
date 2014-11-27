@@ -2,7 +2,7 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">Enterprise</div>
 		<div class="panel-body">
-			<form role="form">
+			<form role="form" id="enterpriseForm">
 				<div class="form-group">
 					<label for="enterpriseId">Enterprise #ID:</label> <input
 						type="number" class="form-control" name="id" id="id">
@@ -10,10 +10,10 @@
 				<div class="form-group">
 					<label for="enterpriseName">Name:</label> <input type="text"
 						class="form-control" name="name" id="name">
-				<div class="form-group">
-					<label for="enterpriseAddress">Name:</label> <input type="text"
-						class="form-control" name="address" id="address">
 				</div>
+				<div class="form-group">
+					<label for="enterpriseAddress">Address:</label> <input type="text"
+						class="form-control" name="address" id="address">
 				</div>
 			</form>
 		</div>
@@ -23,9 +23,27 @@
 </div>
 
 <script>
-	myURL = document.location;
-	document.location = myURL + "#enterprise:";
-	document.entityName = "Enterprise";
+	var pos = (document.location.href).search('#enterprise:');
+	if (pos != -1) {
+		var id = document.location.href.substr(pos + 12);
+		var urlid = '/protofront/service/enterprise/findByID/' + id;
+		$.ajax({
+			type : 'GET',
+			dataType : 'json',
+			contentType : 'application/json',
+			mimeType : 'application/json',
+			url : urlid,
+			success : function(respdata) {
+				$('#id').val(respdata.id);
+				$('#name').val(respdata.name);
+				$('#address').val(respdata.address);
+			},
+			error : function(data, status, er) {
+				alert("error: " + data + " status: " + status + " er:" + er);
+			}
+
+		});
+	}
 
 	$("#submitBtn").click(function() {
 		jsonDATA = JSON.stringify($('form').serializeObject());
@@ -41,15 +59,51 @@
 				$('#name').val(respdata.name);
 				$('#address').val(respdata.address);
 			},
-	    	error:function(data,status,er) { 
-	        	alert("error: "+data+" status: "+status+" er:"+er);
-	    	}
+			error : function(data, status, er) {
+				alert("error: " + data + " status: " + status + " er:" + er);
+			}
 
 		});
 	});
-	
-	$("#deleteBtn").click(function() {
-		$('#id').val(23);	
-	});
 
+	$("#findBEBtn").click(
+			function() {
+				var urlid = '/protofront/service/enterprise/findByID/'
+						+ $('#id').val();
+				$.ajax({
+					type : 'GET',
+					dataType : 'json',
+					contentType : 'application/json',
+					mimeType : 'application/json',
+					url : urlid,
+					success : function(respdata) {
+						$('#id').val(respdata.id);
+						$('#name').val(respdata.name);
+						$('#address').val(respdata.address);
+					},
+					error : function(data, status, er) {
+						alert("error: " + data + " status: " + status + " er:"
+								+ er);
+					}
+
+				});
+			});
+
+	$("#deleteBtn").click(
+			function() {
+				var urlid = '/protofront/service/enterprise/deleteByID/'
+						+ $('#id').val();
+				$.ajax({
+					type : 'POST',
+					url : urlid,
+					success : function(respdata) {
+						$('#enterpriseForm')[0].reset();
+					},
+					error : function(data, status, er) {
+						alert("error: " + data + " status: " + status + " er:"
+								+ er);
+					}
+
+				});
+			});
 </script>

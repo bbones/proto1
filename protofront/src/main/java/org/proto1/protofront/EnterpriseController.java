@@ -31,12 +31,21 @@ public class EnterpriseController {
 		return enterpriseDTO;
 	}
 
+	@RequestMapping(value = "findByID/{id}", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody EnterpriseDTO submit(@PathVariable String id) {
+		Enterprise enterprise = enterpriseService.getEnterpriseById(new Long(id));
+		return mapper.map(enterprise, EnterpriseDTO.class);
+	}
+
+	@RequestMapping(value = "deleteByID/{id}", method = RequestMethod.POST, produces = "application/json")
+	public void delete(@PathVariable String id) {
+		enterpriseService.delete(new Long(id));
+	}
+
+
 	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
 	public RedirectView findByURLID(@PathVariable String id) {
 		
-		// Enterprise enterprise = enterpriseService.getEnterpriseById(id);
-		// EnterpriseDTO enterpriseDTO = new EnterpriseDTO();
-		// mapper.map(enterprise, enterpriseDTO);
 		return new RedirectView("/protofront/index.html#enterprise:"+id);
 	}
 }
