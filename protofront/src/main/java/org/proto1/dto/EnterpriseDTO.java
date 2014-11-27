@@ -9,32 +9,42 @@ public class EnterpriseDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = -9062428108123912200L;
 	
-	private Long enterpriseId;
-	private String enterpriseName;
+	private Long id;
+	private String name;
+	private String address;
 	
 	public EnterpriseDTO() {
 		
 	}
 	
-	public EnterpriseDTO(Long enterpriseId, String enterpriseName) {
-		this.enterpriseId = enterpriseId;
-		this.enterpriseName = enterpriseName;
+	public EnterpriseDTO(Long id, String name, String address) {
+		this.id = id;
+		this.name = name;
+		this.address = address;
 	}
-	public Long getEnterpriseId() {
-		return enterpriseId;
+	public Long getid() {
+		return id;
 	}
-	public void setEnterpriseId(Long enterpriseId) {
-		this.enterpriseId = enterpriseId;
+	public void setid(Long id) {
+		this.id = id;
 	}
-	public String getEnterpriseName() {
-		return enterpriseName;
+	public String getname() {
+		return name;
 	}
-	public void setEnterpriseName(String enterpriseName) {
-		this.enterpriseName = enterpriseName;
+	public void setname(String name) {
+		this.name = name;
 	}
 	
 	public String toString() {
-		return "enterpriseId:" + enterpriseId + ";enterpriseName:" + enterpriseName;
+		return "id:" + id + ";name:" + name+";address" +address;
+	}
+
+	public String getaddress() {
+		return address;
+	}
+
+	public void setaddress(String address) {
+		this.address = address;
 	}
 
 }

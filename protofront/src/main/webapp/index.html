@@ -70,28 +70,37 @@
 		<div class="btn-toolbar" role="toolbar"
 			aria-label="Toolbar with button groups">
 			<div class="btn-group" role="group" aria-label="Record group">
+				<button id="newBtn" type="button" class="btn btn-default">New</button>
 				<button id="submitBtn" type="button" class="btn btn-default">Submit</button>
 				<button id="deleteBtn" type="button" class="btn btn-default">Delete</button>
 			</div>
 			<div class="btn-group" role="group" aria-label="Second group">
 				<button type="button" class="btn btn-default">Clear</button>
-				<button type="button" class="btn btn-default">Find ByExample</button>
+				<button type="button" class="btn btn-default">Find
+					ByExample</button>
 			</div>
 			<div class="btn-group" role="group" aria-label="Help">
 				<button type="button" class="btn btn-default">Help</button>
 			</div>
 		</div>
 	</div>
-	
-	<br/>
 
-	<div id="desktop">
-	</div>
+	<br />
+
+	<div id="desktop"></div>
 
 	<script>
 		$("a").click(function() {
 			menuAction(this.id);
 		})
 	</script>
+
+	<script>
+		var pos = (document.location.href).search('#enterprise:'); 
+		if(pos != -1) {
+			menuAction('enterprise');
+		};
+	</script>
+
 </body>
 </html>

@@ -5,14 +5,14 @@
 			<form role="form">
 				<div class="form-group">
 					<label for="enterpriseId">Enterprise #ID:</label> <input
-						type="number" class="form-control" name="enterpriseId" value="12">
+						type="number" class="form-control" name="id" id="id">
 				</div>
 				<div class="form-group">
 					<label for="enterpriseName">Name:</label> <input type="text"
-						class="form-control" name="enterpriseName" value="Proto one">
+						class="form-control" name="name" id="name">
 				<div class="form-group">
 					<label for="enterpriseAddress">Name:</label> <input type="text"
-						class="form-control" name="enterpriseName" value="Proto one">
+						class="form-control" name="address" id="address">
 				</div>
 				</div>
 			</form>
@@ -24,7 +24,7 @@
 
 <script>
 	myURL = document.location;
-	document.location = myURL + "?enterprise:id=";
+	document.location = myURL + "#enterprise:";
 	document.entityName = "Enterprise";
 
 	$("#submitBtn").click(function() {
@@ -37,9 +37,9 @@
 			data : jsonDATA,
 			url : '/protofront/service/enterprise/submit',
 			success : function(respdata) {
-				$('#disp').html(respdata.enterpriseName);
-				$('#enterpriseID').value = respdata.enterpriseID;
-				$('#enterpriseName').value = respdata.enterpriseName;
+				$('#id').val(respdata.id);
+				$('#name').val(respdata.name);
+				$('#address').val(respdata.address);
 			},
 	    	error:function(data,status,er) { 
 	        	alert("error: "+data+" status: "+status+" er:"+er);
@@ -47,4 +47,9 @@
 
 		});
 	});
+	
+	$("#deleteBtn").click(function() {
+		$('#id').val(23);	
+	});
+
 </script>
