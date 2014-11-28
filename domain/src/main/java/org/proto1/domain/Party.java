@@ -9,6 +9,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -43,5 +44,16 @@ public abstract class  Party implements Identified {
 		this.address = address;
 	}
 
+	@Version
+	@Column(name="VERSION")
+	private Integer version;
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 	
 }

@@ -3,6 +3,9 @@
  */
 
 function jQueryRequest(reqURL) {
+	$.ajaxSetup({
+		cache : false
+	});
 	$.ajax(reqURL).done(function(data) {
 		$("#message")[0].innerHTML = data;
 	})

@@ -5,6 +5,7 @@
 <title>Insert title here</title>
 <title>Ajax demo with HowToDoInJava.com</title>
 <script src="scripts/jquery-2.1.1.js"></script>
+<script src="scripts/i18next-1.7.4.js"></script>
 <script src="scripts/protoscript.js"></script>
 
 
@@ -13,11 +14,27 @@
 	<p>Call server</p>
 
 	<br />
-	<input type="button" value="Show Server Time"
-		onclick='jQueryRequest("service/enterprise/test")' />
+	<input type="button" value="Test"
+		onclick='jQueryRequest("/protofront/service/greeting/test/Vlya")' />
 	<br />
 	<br /> Message from server ::
 	<span id="message"></span>
+
+	<ul class="nav">
+		<li><a href="#" data-i18n="nav.home"></a></li>
+		<li><a href="#" data-i18n="nav.page1"></a></li>
+		<li><a href="#" data-i18n="nav.page2"></a></li>
+	</ul>
+	
+	<script>
+		var options = {
+			lng : "ua",
+			resGetPath : './locales/__lng__/__ns__.json'
+		};
+		i18n.init(options, function(t) {
+			$(".nav").i18n();
+		});
+	</script>
 
 </body>
 </html>

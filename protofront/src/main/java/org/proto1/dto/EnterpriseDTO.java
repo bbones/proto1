@@ -12,6 +12,7 @@ public class EnterpriseDTO implements Serializable {
 	private Long id;
 	private String name;
 	private String address;
+	private Integer version;
 	
 	public EnterpriseDTO() {
 		
@@ -36,7 +37,7 @@ public class EnterpriseDTO implements Serializable {
 	}
 	
 	public String toString() {
-		return "id:" + id + ";name:" + name+";address" +address;
+		return "id:" + id + ";name:" + name+";address:" +address +";VESRION:" + version;
 	}
 
 	public String getaddress() {
@@ -45,6 +46,14 @@ public class EnterpriseDTO implements Serializable {
 
 	public void setaddress(String address) {
 		this.address = address;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 }

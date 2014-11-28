@@ -24,9 +24,8 @@ public class EnterpriseController {
 	
 	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json", consumes="application/json" )
 	public @ResponseBody EnterpriseDTO submit(@RequestBody final EnterpriseDTO enterpriseDTO) {
-		System.out.println("As is->" + enterpriseDTO);
 		Enterprise enterprise = mapper.map(enterpriseDTO, Enterprise.class);
-		enterpriseService.save(enterprise);
+		enterprise = enterpriseService.save(enterprise);
 		mapper.map(enterprise, enterpriseDTO);
 		return enterpriseDTO;
 	}
