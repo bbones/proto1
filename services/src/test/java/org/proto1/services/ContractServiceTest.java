@@ -12,9 +12,10 @@ import org.proto1.repository.ContractRepository;
 import org.proto1.repository.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 @ContextConfiguration(locations={"file:src/main/resources/domain.xml"})
-public class ContractServiceTest {
+public class ContractServiceTest extends AbstractJUnit4SpringContextTests {
 
 	ContractService contractService = new ContractServiceBean();
 
@@ -32,20 +33,20 @@ public class ContractServiceTest {
 	
 	@Test
 	public void testSave() {
-		ContractRepository erep = createMock(ContractRepository.class);
-		expect(erep.save(contract)).andReturn(contract);
-		replay(erep);
-		contractService.setContractRepository(erep);
+		ContractRepository crep = createMock(ContractRepository.class);
+		expect(crep.save(contract)).andReturn(contract);
+		replay(crep);
+		contractService.setContractRepository(crep);
 		assertEquals(contract, contractService.save(contract));
 	}
 	
 	@Test
 	public void testDelete() {
-		EnterpriseRepository erep = createMock(EnterpriseRepository.class);
-		erep.delete(isd.getId());
-		replay(erep);
-		enterpriseService.setEnterpriseRepository(erep);
-		enterpriseService.delete(isd.getId());
+		ContractRepository crep = createMock(ContractRepository.class);
+		crep.delete(contract.getId());
+		replay(crep);
+		contractService.setContractRepository(crep);
+		contractService.delete(contract.getId());
 		
 	}
 

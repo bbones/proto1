@@ -7,8 +7,10 @@ public interface ContractService {
 
 	void setContractRepository(ContractRepository crep);
 
-	Object getContractById(long l);
+	Contract getContractById(Long id);
 
-	Object save(Contract contract);
+	Contract save(Contract contract);
+
+	void delete(Long id);
 
 }
