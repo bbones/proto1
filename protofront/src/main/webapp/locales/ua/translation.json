@@ -4,6 +4,8 @@
     	"enterprise": "Предприятия",
     	"person": "Люди",
     	"period": "Период",
+    	"product":"Продукт",
+    	"siderole": "Стороны контракта",
     	"documents": "Документы",
     	"contract": "Контракты"
 	},

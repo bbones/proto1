@@ -4,6 +4,8 @@
     	"enterprise": "Enterprises",
     	"person": "Persons",
     	"period": "Periods",
+    	"product":"Products",
+    	"siderole": "Contract side roles",
     	"documents": "Documents",
     	"contract": "Contracts"
 	},
