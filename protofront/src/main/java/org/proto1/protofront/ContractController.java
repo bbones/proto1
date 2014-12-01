@@ -1,7 +1,9 @@
 package org.proto1.protofront;
 
 import org.dozer.Mapper;
+import org.proto1.domain.Contract;
 import org.proto1.domain.Enterprise;
+import org.proto1.dto.ContractDTO;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.services.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-@RequestMapping("/enterprise")
-public class EnterpriseController {
+@RequestMapping("/contract")
+public class ContractController {
 	@Autowired
 	EnterpriseService enterpriseService;
 	
@@ -23,15 +25,15 @@ public class EnterpriseController {
 	Mapper mapper;
 	
 	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json", consumes="application/json" )
-	public @ResponseBody EnterpriseDTO submit(@RequestBody final EnterpriseDTO enterpriseDTO) {
-		Enterprise enterprise = mapper.map(enterpriseDTO, Enterprise.class);
-		enterprise = enterpriseService.save(enterprise);
-		mapper.map(enterprise, enterpriseDTO);
-		return enterpriseDTO;
+	public @ResponseBody ContractDTO submit(@RequestBody final ContractDTO contractDTO) {
+		Contract contract = mapper.map(contractDTO, Contract.class);
+		contract = contractService.save(contract);
+		mapper.map(contract, contractDTO);
+		return contractDTO;
 	}
 
 	@RequestMapping(value = "findByID/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody EnterpriseDTO findByID(@PathVariable String id) {
+	public @ResponseBody EnterpriseDTO submit(@PathVariable String id) {
 		Enterprise enterprise = enterpriseService.getEnterpriseById(new Long(id));
 		return mapper.map(enterprise, EnterpriseDTO.class);
 	}
@@ -47,4 +49,5 @@ public class EnterpriseController {
 		
 		return new RedirectView("/protofront/index.html#enterprise:"+id);
 	}
+
 }
