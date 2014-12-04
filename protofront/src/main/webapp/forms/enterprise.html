@@ -22,7 +22,6 @@
 			</form>
 		</div>
 	</div>
-	<div id="disp">Text for change</div>
 
 </div>
 
@@ -30,87 +29,25 @@
 	var pos = (document.location.href).search('#enterprise:');
 	if (pos != -1) {
 		var id = document.location.href.substr(pos + 12);
-		var urlid = '/protofront/service/enterprise/findByID/' + id;
-		$.ajax({
-			type : 'GET',
-			dataType : 'json',
-			contentType : 'application/json',
-			mimeType : 'application/json',
-			url : urlid,
-			success : function(respdata) {
-				$('#id').val(respdata.id);
-				$('#name').val(respdata.name);
-				$('#address').val(respdata.address);
-				$('#version').val(respdata.version);
-			},
-			error : function(data, status, er) {
-				alert("error: " + data + " status: " + status + " er:" + er);
-			}
-
-		});
+		findBEAction('/protofront/service/enterprise/findByID/', ['id', 'name', 'address', 'version']);
 	}
 
 	$("#submitBtn").click(function() {
-		jsonDATA = JSON.stringify($('form').serializeObject());
-		$.ajax({
-			type : 'POST',
-			dataType : 'json',
-			contentType : 'application/json',
-			mimeType : 'application/json',
-			data : jsonDATA,
-			url : '/protofront/service/enterprise/submit',
-			success : function(respdata) {
-				$('#id').val(respdata.id);
-				$('#name').val(respdata.name);
-				$('#address').val(respdata.address);
-				$('#version').val(respdata.version);
-			},
-			error : function(data, status, er) {
-				alert("error: " + data + " status: " + status + " er:" + er);
-			}
-
-		});
+		submitBtnAction('/protofront/service/enterprise/submit',['id', 'name', 'address', 'version']);
 	});
 
-	$("#findBEBtn").click(
-			function() {
-				var urlid = '/protofront/service/enterprise/findByID/'
-						+ $('#id').val();
-				$.ajax({
-					type : 'GET',
-					dataType : 'json',
-					contentType : 'application/json',
-					mimeType : 'application/json',
-					url : urlid,
-					success : function(respdata) {
-						$('#id').val(respdata.id);
-						$('#name').val(respdata.name);
-						$('#address').val(respdata.address);
-						$('#version').val(respdata.version);
-					},
-					error : function(data, status, er) {
-						alert("error: " + data + " status: " + status + " er:"
-								+ er);
-					}
 
-				});
-			});
+	$("#findBEBtn").click(function() {
+		findBEAction('/protofront/service/enterprise/findByID/', ['id', 'name', 'address', 'version']);
+	});
 
-	$("#deleteBtn").click(
-			function() {
-				var urlid = '/protofront/service/enterprise/deleteByID/'
-						+ $('#id').val();
-				$.ajax({
-					type : 'POST',
-					url : urlid,
-					success : function(respdata) {
-						$('#enterpriseForm')[0].reset();
-					},
-					error : function(data, status, er) {
-						alert("error: " + data + " status: " + status + " er:"
-								+ er);
-					}
-
-				});
-			});
+	$("#deleteBtn").click(function() {
+		var urlid = '/protofront/service/enterprise/deleteByID/';
+		deleteBtnAction(urlid);
+	});
+	
+	$("#newBtn").click(function() {
+		alert('New');
+		clearForm();
+	});
 </script>

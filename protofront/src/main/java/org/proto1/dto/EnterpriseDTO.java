@@ -1,18 +1,12 @@
 package org.proto1.dto;
 
-import java.io.Serializable;
+public class EnterpriseDTO extends DTO  {
 
-public class EnterpriseDTO implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9062428108123912200L;
 	
 	private Long id;
 	private String name;
 	private String address;
-	private Integer version;
 	
 	public EnterpriseDTO() {
 		
@@ -37,7 +31,7 @@ public class EnterpriseDTO implements Serializable {
 	}
 	
 	public String toString() {
-		return "id:" + id + ";name:" + name+";address:" +address +";VESRION:" + version;
+		return "id:" + id + ";name:" + name+";address:" +address +";VERSION:" + version;
 	}
 
 	public String getaddress() {
@@ -46,14 +40,6 @@ public class EnterpriseDTO implements Serializable {
 
 	public void setaddress(String address) {
 		this.address = address;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
 	}
 
 }

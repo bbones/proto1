@@ -1,11 +1,13 @@
 package org.proto1.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 @Entity
 @Inheritance(
@@ -32,5 +34,17 @@ public class Document implements Identified {
 
 	public void setDocumentNo(String documentNo) {
 		this.documentNo = documentNo;
+	}
+	
+	@Version
+	@Column(name="VERSION")
+	private Integer version;
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 }

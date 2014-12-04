@@ -7,9 +7,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 import org.proto1.domain.Contract;
-import org.proto1.domain.Enterprise;
 import org.proto1.repository.ContractRepository;
-import org.proto1.repository.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
