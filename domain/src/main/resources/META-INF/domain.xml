@@ -79,7 +79,7 @@
 		<property name="id" value="1" />
 	</bean>
 	
-	<bean id="metall_product" class="org.proto1.domain.Product">
+	<bean id="metall_product" class="org.proto1.domain.order.Product">
 		<property name="id" value="1"/>
 		<property name="name" value="Metall"/>
 	</bean>
