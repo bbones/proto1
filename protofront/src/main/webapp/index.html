@@ -1,21 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Proto1 Web Frontend</title>
+	<meta charset="UTF-8">
+	<title>Proto1 Web Frontend</title>
 
-<script src="scripts/jquery-2.1.1.js"></script>
-
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-
-<!-- Latest compiled and minified JavaScript -->
-<script src="bootstrap/js/bootstrap.min.js"></script>
-<script src="scripts/protoscript.js"></script>
-<script src="scripts/i18next-1.7.4.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+	
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	
+	<script src="scripts/protoscript.js"></script>
+	<script src="scripts/i18next-1.7.4.js"></script>
 
 </head>
 
@@ -50,7 +48,7 @@
 							<li class="divider"></li>
 							<li><a href="#" data-i18n="navbar.period" ></a></li>
 							<li class="divider"></li>
-							<li><a href="#" data-i18n="navbar.product" ></a></li>
+							<li><a id="product" href="#" data-i18n="navbar.product" ></a></li>
 							<li><a href="#" data-i18n="navbar.siderole" ></a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
@@ -91,7 +89,8 @@
 
 	<br />
 
-	<div id="desktop"></div>
+	<div id="desktop">
+	</div>
 
 	<script>
 		$("a").click(function() {

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/demo.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script src="scripts/protoscript.js"></script>
+<!-- http://www.jeasyui.com/documentation/index.php# -->
+</head>
+
+<body class="easyui-layout">
+	<div data-options="region:'north',title:'North Title',split:true"
+		style="height: 75px;">
+		<div style="background: #fafafa; padding: 5px; width: 500px; border: 1px solid #ccc">
+			<a href="#" class="easyui-menubutton" menu="#mm1" iconCls="icon-man">File</a> 
+			<a href="#"	class="easyui-menubutton" menu="#mm2" iconCls="icon-edit">Edit</a> 
+			<a href="#" class="easyui-menubutton" menu="#mm3" iconCls="icon-help">Help</a>
+		</div>
+		<div id="mm1" style="width: 150px;">
+			<div iconCls="icon-lock">Log In</div>
+			<div iconCls="icon-lock">Log Out</div>
+			<div class="menu-sep"></div>
+			<div iconCls="icon-filesave">Save URL</div>
+		</div>
+		<div id="mm2" style="width: 150px;">
+			<div iconCls="icon-undo">Undo</div>
+			<div iconCls="icon-redo">Redo</div>
+			<div class="menu-sep"></div>
+			<div>Cut</div>
+			<div>Copy</div>
+			<div>Paste</div>
+			<div class="menu-sep"></div>
+			<div iconCls="icon-remove">Delete</div>
+			<div>Select All</div>
+		</div>
+		<div id="mm3" style="width: 100px;">
+			<div>Help</div>
+			<div>Update</div>
+			<div>About</div>
+		</div>
+
+
+	</div>
+	<div data-options="region:'south',title:'South Title',split:true"
+		style="height: 100px;"></div>
+	<!-- 	<div data-options="region:'east',title:'East',split:true" style="width: 100px;"></div> -->
+	<div data-options="region:'west',title:'West',split:true"
+		style="width: 300px;">
+		<div style="margin: 20px 0;"></div>
+		<div class="easyui-panel" style="padding: 5px">
+			<ul id="tt" class="easyui-tree">
+				<li><span>Proto One</span>
+					<ul>
+						<li data-options="state:'closed'"><span>Master data</span>
+							<ul>
+								<li><span>Enterprise</span></li>
+								<li><span>Person</span></li>
+								<li><span>Company</span></li>
+								<li><span>Product</span></li>
+							</ul></li>
+						<li data-options="state:'closed'"><span>Documents</span>
+							<ul>
+								<li>Contracts</li>
+								<li>Orders</li>
+								<li>Bills</li>
+							</ul></li>
+					</ul></li>
+			</ul>
+		</div>
+	</div>
+	<div data-options="region:'center',title:'center title'"
+		style="padding: 5px; background: #eee;"></div>
+</body>
+
+<body>
+	<div id="desktop"></div>
+
+	<script>
+		$('#tt').tree({
+			onClick : function(node) {
+				alert(node.id); // alert node text property when clicked
+			}
+		});
+	</script>
+
+</body>
+</html>
