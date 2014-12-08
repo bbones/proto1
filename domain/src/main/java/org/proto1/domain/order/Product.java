@@ -1,10 +1,12 @@
-package org.proto1.domain;
+package org.proto1.domain.order;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import org.proto1.domain.Identified;
 
 @Entity
 public class Product implements Identified {
