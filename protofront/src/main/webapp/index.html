@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>Proto1 Web Frontend</title>
+<meta charset="UTF-8">
+<title>Proto1 Web Frontend</title>
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
-	
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-	
-	<script src="scripts/protoscript.js"></script>
-	<script src="scripts/i18next-1.7.4.js"></script>
+<script src="scripts/jquery-2.1.1.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="scripts/protoscript.js"></script>
+<script src="scripts/i18next-1.7.4.js"></script>
 
 </head>
 
@@ -38,23 +40,24 @@
 				<ul class="nav navbar-nav">
 					<li class="active"><a data-toggle="modal" href="#ligtboxform">Login</a></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown"
-						data-i18n="navbar.masterdata">Master data<span
-							class="caret"></span></a>
+						data-toggle="dropdown" data-i18n="navbar.masterdata">Master
+							data<span class="caret"></span>
+					</a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a id="enterprise"
-								data-i18n="navbar.enterprise" href="#"></a></li>
+							<li><a id="enterprise" data-i18n="navbar.enterprise"
+								href="#"></a></li>
 							<li><a id="person" data-i18n="navbar.person" href="#"></a></li>
 							<li class="divider"></li>
-							<li><a href="#" data-i18n="navbar.period" ></a></li>
+							<li><a href="#" data-i18n="navbar.period"></a></li>
 							<li class="divider"></li>
-							<li><a id="product" href="#" data-i18n="navbar.product" ></a></li>
-							<li><a href="#" data-i18n="navbar.siderole" ></a></li>
+							<li><a id="product" href="#" data-i18n="navbar.product"></a></li>
+							<li><a href="#" data-i18n="navbar.siderole"></a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
-						data-toggle="dropdown" data-i18n="navbar.documents" ><span class="caret"></span></a>
+						data-toggle="dropdown" data-i18n="navbar.documents"><span
+							class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a id="contract" href="#" data-i18n="navbar.contract" ></a></li>
+							<li><a id="contract" href="#" data-i18n="navbar.contract"></a></li>
 						</ul></li>
 				</ul>
 				<form class="navbar-form navbar-right" role="search">
@@ -73,13 +76,18 @@
 		<div class="btn-toolbar" role="toolbar"
 			aria-label="Toolbar with button groups">
 			<div class="btn-group" role="group" aria-label="Record group">
-				<button id="newBtn" type="button" class="btn btn-default" data-i18n="btn-toolbar.new">New</button>
-				<button id="submitBtn" type="button" class="btn btn-default" data-i18n="btn-toolbar.submit">Submit</button>
-				<button id="deleteBtn" type="button" class="btn btn-default" data-i18n="btn-toolbar.delete">Delete</button>
+				<button id="newBtn" type="button" class="btn btn-default"
+					data-i18n="btn-toolbar.new">New</button>
+				<button id="submitBtn" type="button" class="btn btn-default"
+					data-i18n="btn-toolbar.submit">Submit</button>
+				<button id="deleteBtn" type="button" class="btn btn-default"
+					data-i18n="btn-toolbar.delete">Delete</button>
 			</div>
 			<div class="btn-group" role="group" aria-label="Second group">
-				<button type="button" class="btn btn-default" data-i18n="btn-toolbar.clear"></button>
-				<button id="findBEBtn" type="button" class="btn btn-default" data-i18n="btn-toolbar.find"></button>
+				<button type="button" class="btn btn-default"
+					data-i18n="btn-toolbar.clear"></button>
+				<button id="findBEBtn" type="button" class="btn btn-default"
+					data-i18n="btn-toolbar.find"></button>
 			</div>
 			<div class="btn-group" role="group" aria-label="Help">
 				<button type="button" class="btn btn-default">Help</button>
@@ -89,8 +97,7 @@
 
 	<br />
 
-	<div id="desktop">
-	</div>
+	<div id="desktop"></div>
 
 	<script>
 		$("a").click(function() {
@@ -117,11 +124,10 @@
 		i18n.init(options, function(t) {
 			$(".navbar").i18n();
 		});
-		
+
 		i18n.init(options, function(t) {
 			$(".btn-toolbar").i18n();
 		});
-
 	</script>
 
 

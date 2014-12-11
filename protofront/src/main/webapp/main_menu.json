@@ -1,0 +1,32 @@
+[{
+    "id": "masterData",
+    "text": "Master Data",
+    "state": "closed",
+    "children": [{
+        "id": "enterprise",
+        "text": "Enterprise"
+    },{
+        "id": "person",
+        "text": "Person"
+    },{
+        "id": "period",
+        "text": "Period"
+    },{
+        "id": "product",
+        "text": "Product"
+    }]
+},{
+   "id": "documents",
+    "text": "Documents",
+    "state": "closed",
+    "children": [{
+        "id": "contract",
+        "text": "Contract"
+    },{
+        "id": "order",
+        "text": "Order"
+    },{
+        "id": "bill",
+        "text": "Bill"
+    }]
+}]
