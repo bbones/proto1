@@ -40,7 +40,9 @@
 		        // return false to prevent submit;
 		    },
 		    success:function(data){
-		        alert(data)
+		        for(fname in data) {
+		        	alert(fname);
+		        }
 		    }
 		});
 		$('#productForm').submit();

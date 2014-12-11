@@ -2,10 +2,12 @@ package org.proto1.services;
 
 import org.proto1.domain.product.Product;
 import org.proto1.repository.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ProductServiceBean implements ProductService {
+	@Autowired
 	private ProductRepository productRepository;
 
 	public void setProductRepository(ProductRepository productRepository) {
