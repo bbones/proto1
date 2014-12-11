@@ -5,7 +5,7 @@ import org.proto1.repository.PersonRepository;
 
 public interface PersonService {
 
-	void setPersonRepository(PersonRepository erep);
+	void setPersonRepository(PersonRepository prep);
 
 	Person getById(Long l);
 

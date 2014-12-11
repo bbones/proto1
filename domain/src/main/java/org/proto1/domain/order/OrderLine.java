@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.proto1.domain.Identified;
 import org.proto1.domain.Parameter;
+import org.proto1.domain.product.Product;
 
 public class OrderLine implements Identified {
 	private Long id;

@@ -1,4 +1,4 @@
-package org.proto1.domain.order;
+package org.proto1.domain.product;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,7 +13,7 @@ public class Product implements Identified {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="PARTY_ID")
+	@Column(name="PRODUCT_ID")
 	private Long id;
 	private String name;
 

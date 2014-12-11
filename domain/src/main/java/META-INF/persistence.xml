@@ -12,6 +12,7 @@
 		<class>org.proto1.domain.Document</class>
 		<class>org.proto1.domain.SideRole</class>
 		<class>org.proto1.domain.Analitic</class>
+		
 		<class>org.proto1.domain.accounting.AnaliticRole</class>
 		<class>org.proto1.domain.accounting.Account</class>
 		<class>org.proto1.domain.accounting.GeneralLedger</class>
@@ -19,6 +20,8 @@
 		<class>org.proto1.domain.accounting.Record</class>
 		<class>org.proto1.domain.accounting.Register</class>
 		<class>org.proto1.domain.accounting.RegisterMap</class>
+		
+		<class>org.proto1.domain.product.Product</class>
 		
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class, hbm"/>
@@ -29,7 +32,6 @@
 			<property name="hibernate.connection.url" value="jdbc:hsqldb:hsql://localhost/xdb" />
 			<property name="hibernate.connection.username" value="sa" />
 			<property name="hibernate.connection.password" value="" />
-			
 		</properties>
 	</persistence-unit>
 	
