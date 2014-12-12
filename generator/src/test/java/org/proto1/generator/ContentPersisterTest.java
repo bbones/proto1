@@ -16,6 +16,7 @@ import org.junit.Test;
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
 import org.proto1.domain.Enterprise;
+import org.proto1.domain.Language;
 import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.product.Product;
@@ -48,6 +49,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	Product steelPlate;
+	
+	@Autowired
+	Language english, russian, ukrainian;
 
 	@Before
 	public void startUp () {
@@ -63,7 +67,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 				"delete from Contract",
 				"delete from Person",
 				"delete from Enterprise",
-				"delete from Product"
+				"delete from ProductName",
+				"delete from Product",
+				"delete from Language"
 		};
 
 		em.getTransaction().begin();
@@ -75,6 +81,11 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.getTransaction().commit();
 		
 		em.getTransaction().begin();
+		
+		em.persist(english);
+		em.persist(ukrainian);
+		em.persist(russian);
+		
 		
 		em.persist(pva);
 		em.persist(mark);

@@ -3,6 +3,7 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="proto1" transaction-type="RESOURCE_LOCAL">
+		<class>org.proto1.domain.Language</class>
 		<class>org.proto1.domain.Party</class>
 		<class>org.proto1.domain.Period</class>
 		<class>org.proto1.domain.Person</class>
@@ -22,6 +23,7 @@
 		<class>org.proto1.domain.accounting.RegisterMap</class>
 		
 		<class>org.proto1.domain.product.Product</class>
+		<class>org.proto1.domain.product.ProductName</class>
 		
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class, hbm"/>

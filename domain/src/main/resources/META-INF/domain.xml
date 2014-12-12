@@ -3,6 +3,22 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
 	
+	<bean id="english" class="org.proto1.domain.Language">
+		<property name="name" value="English"/>
+	</bean>
+
+	<bean id="russian" class="org.proto1.domain.Language">
+		<property name="name" value="Russian"/>
+	</bean>
+
+	<bean id="ukrainian" class="org.proto1.domain.Language">
+		<property name="name" value="Ukrainian"/>
+	</bean>
+
+	<bean id="french" class="org.proto1.domain.Language">
+		<property name="name" value="French"/>
+	</bean>
+
 	<bean id="dateFormat" class="java.text.SimpleDateFormat">
 		<constructor-arg value="yyyy-MM-dd" />
 	</bean>
@@ -81,4 +97,10 @@
 		<property name="id" value="1"/>
 		<property name="name" value="Steel plate"/>
 	</bean>
+	
+	<bean id="spEng" class="org.proto1.domain.product.ProductNameKey">
+		<property name="product" ref="steelPlate"/>
+		<property name="language" ref="english"/>
+	</bean>
+	
 </beans>
