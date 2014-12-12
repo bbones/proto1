@@ -5,18 +5,18 @@
 			<table cellpadding="5">
 				<tr>
 					<td>ID:</td>
-					<td><input class="easyui-textbox" type="text" name="id"
+					<td><input class="easyui-textbox" type="text" id="id" name="id"
 						data-options="required:false,validType:'id'"></input></td>
 				</tr>
 				<tr>
 					<td>Name:</td>
-					<td><input class="easyui-textbox" type="text" name="name"
+					<td><input class="easyui-textbox" type="text" id="name" name="name"
 						data-options="required:true"></input></td>
 				</tr>
 				<tr>
 					<td>Version:</td>
-					<td><input class="easyui-textbox" type="text" name="version"
-						data-options="required:false"></input></td>
+					<td><input class="easyui-textbox" type="text" id="version" name="version"
+						data-options="required:false,validType:'id'"></input></td>
 				</tr>
 			</table>
 		</form>
@@ -31,18 +31,14 @@
 	function submitForm() {
 		$('#productForm').form({
 		    url:"/protofront/service/product/submit",
-			dataType : 'json',
-			contentType : 'application/json',
-			mimeType : 'application/json',
-
 		    onSubmit: function(){
 		        // do some check
 		        // return false to prevent submit;
 		    },
 		    success:function(data){
-		        for(fname in data) {
-		        	alert(fname);
-		        }
+		    	var jo = JSON.parse(data);
+		    	alert(jo['version']);
+		    	$('#productForm').form('load',jo);
 		    }
 		});
 		$('#productForm').submit();
@@ -51,6 +47,6 @@
 		$('#productForm').form('clear');
 	}
 	function findByForm() {
-		
+		$('#productForm').form('load','/protofront/service/product/findByID/' + $('#id').val());	
 	}
 </script>

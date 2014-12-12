@@ -21,7 +21,7 @@
 	</bean>
 
 	<bean id="product_analitic" class="org.proto1.domain.Analitic">
-		<constructor-arg ref="metall_product" />
+		<constructor-arg ref="steelPlate" />
 		<property name="analiticRole" ref="produced_product_role" />
 	</bean>
 

@@ -39,18 +39,34 @@ $.fn.serializeObject = function() {
 };
 
 function renderJSON(data, renderList) {
+	var jo = JSON.parse(data);
 	for (i in renderList) {
 		fname = renderList[i];
 		if ($('#' + fname).attr('type')=='date') {
 			var d = new Date;
-			d.setTime(data[fname]);
-			$('#' + fname).val(d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2)
-);
-		} else
-			$('#' + fname).val(data[fname]);
+			d.setTime(jo[fname]);
+			$('#' + fname).val(d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2));
+		} else {
+			$('#' + fname).val(jo[fname]);
+			alert($('#' + fname).val());
+		}
 	}
 
 }
+
+function renderJSONbyNames(data, renderList) {
+	for (i in renderList) {
+		fname = renderList[i];
+		if ($("input[value='" + fname + "']").attr('type')=='date') {
+			var d = new Date;
+			d.setTime(data[fname]);
+			$("input[name='" + fname + "']").val(d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2));
+		} else
+			$("input[name='" + fname + "']").val(data[fname]);
+	}
+
+}
+
 
 function submitBtnAction(reqURL, renderList) {
 	jsonDATA = JSON.stringify($('form').serializeObject());

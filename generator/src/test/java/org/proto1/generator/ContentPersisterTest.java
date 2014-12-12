@@ -18,11 +18,12 @@ import org.proto1.domain.ContractSide;
 import org.proto1.domain.Enterprise;
 import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
+import org.proto1.domain.product.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(locations={"/domain.xml"})
+@ContextConfiguration(locations={"classpath:/META-INF/domain.xml"})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -44,6 +45,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	Contract contract;
+	
+	@Autowired
+	Product steelPlate;
 
 	@Before
 	public void startUp () {
@@ -58,7 +62,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 				"delete from ContractSide",
 				"delete from Contract",
 				"delete from Person",
-				"delete from Enterprise"
+				"delete from Enterprise",
+				"delete from Product"
 		};
 
 		em.getTransaction().begin();
@@ -85,6 +90,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		
 		em.persist(contract);
 
+		em.persist(steelPlate);
 		
 		em.getTransaction().commit();
 

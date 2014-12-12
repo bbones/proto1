@@ -22,7 +22,7 @@ public class ProductController {
 	@Autowired
 	ProductService productService;
 
-	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json" )
+	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "text/plain")
 	public @ResponseBody ProductDTO submit(final ProductDTO productDTO) {
 		Product product = mapper.map(productDTO, Product.class);
 		product = productService.save(product);

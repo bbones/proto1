@@ -19,6 +19,7 @@
 		<class>org.proto1.domain.accounting.Record</class>
 		<class>org.proto1.domain.accounting.Register</class>
 		<class>org.proto1.domain.accounting.RegisterMap</class>
+		<class>org.proto1.domain.product.Product</class>
 
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class, hbm" />

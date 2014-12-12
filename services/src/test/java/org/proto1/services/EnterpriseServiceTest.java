@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import static org.easymock.EasyMock.*;
 
-@ContextConfiguration(locations={"file:src/main/resources/domain.xml"})
+@ContextConfiguration(locations={"classpath:/META-INF/domain.xml"})
 public class EnterpriseServiceTest extends AbstractJUnit4SpringContextTests {
 	
 	EnterpriseService enterpriseService = new EnterpriseServiceBean();
