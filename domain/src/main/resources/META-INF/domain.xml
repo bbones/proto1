@@ -95,12 +95,13 @@
 	
 	<bean id="steelPlate" class="org.proto1.domain.product.Product">
 		<property name="id" value="1"/>
-		<property name="name" value="Steel plate"/>
+		<property name="productNames">
+			<map>
+				<entry key-ref="english" value="Steel plate"/>
+				<entry key-ref="russian" value="Плита стальная"/>
+			</map>
+		</property>
 	</bean>
 	
-	<bean id="spEng" class="org.proto1.domain.product.ProductNameKey">
-		<property name="product" ref="steelPlate"/>
-		<property name="language" ref="english"/>
-	</bean>
 	
 </beans>
