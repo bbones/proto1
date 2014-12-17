@@ -1,45 +1,113 @@
 <div style="margin: 20px 0;"></div>
-<div class="easyui-panel" title="New Topic" style="width: 400px">
+<div class="easyui-panel" title="Product" style="width: 800px">
 	<div style="padding: 10px 60px 20px 60px">
 		<form id="productForm" method="post">
 			<table cellpadding="5">
 				<tr>
 					<td>ID:</td>
-					<td><input class="easyui-textbox" type="text" id="id" name="id"
-						data-options="required:false,validType:'id'"></input></td>
-				</tr>
-				<tr>
-					<td>Name:</td>
-					<td><input class="easyui-textbox" type="text" id="name" name="name"
-						data-options="required:true"></input></td>
+					<td><input class="easyui-textbox" type="text" id="id"
+						name="id" data-options="required:false,validType:'id'"></input></td>
 				</tr>
 				<tr>
 					<td>Version:</td>
-					<td><input class="easyui-textbox" type="text" id="version" name="version"
-						data-options="required:false,validType:'id'"></input></td>
+					<td><input class="easyui-textbox" type="text" id="version"
+						name="version" data-options="required:false,validType:'id'"></input></td>
 				</tr>
 			</table>
+
+			<table id="dg" class="easyui-datagrid"
+				title="Cell Editing in DataGrid" style="width: 700px; height: auto"
+				data-options="
+                iconCls: 'icon-edit',
+                singleSelect: true,
+                url: '/protofront/service/product/names/' + $('#id').val(),
+                method:'get',
+                onClickCell: onClickCell
+            ">
+				<thead>
+					<tr>
+						<th data-options="field:'languageId',width:80">Language Id</th>
+						<th data-options="field:'languageName',width:100,editor:'text'">Language</th>
+						<th data-options="field:'productName',width:250,editor:'text'">ProductName</th>
+					</tr>
+				</thead>
+			</table>
+
+			<script type="text/javascript">
+				$.extend($.fn.datagrid.methods, {
+					editCell : function(jq, param) {
+						return jq.each(function() {
+							var opts = $(this).datagrid('options');
+							var fields = $(this).datagrid('getColumnFields',
+									true).concat(
+									$(this).datagrid('getColumnFields'));
+							for (var i = 0; i < fields.length; i++) {
+								var col = $(this).datagrid('getColumnOption',
+										fields[i]);
+								col.editor1 = col.editor;
+								if (fields[i] != param.field) {
+									col.editor = null;
+								}
+							}
+							$(this).datagrid('beginEdit', param.index);
+							for (var i = 0; i < fields.length; i++) {
+								var col = $(this).datagrid('getColumnOption',
+										fields[i]);
+								col.editor = col.editor1;
+							}
+						});
+					}
+				});
+
+				var editIndex = undefined;
+				function endEditing() {
+					if (editIndex == undefined) {
+						return true
+					}
+					if ($('#dg').datagrid('validateRow', editIndex)) {
+						$('#dg').datagrid('endEdit', editIndex);
+						editIndex = undefined;
+						return true;
+					} else {
+						return false;
+					}
+				}
+				function onClickCell(index, field) {
+					if (endEditing()) {
+						$('#dg').datagrid('selectRow', index).datagrid(
+								'editCell', {
+									index : index,
+									field : field
+								});
+						editIndex = index;
+					}
+				}
+			</script>
 		</form>
+
 		<div style="text-align: center; padding: 5px">
-			<a href="javascript:void(0)" class="easyui-linkbutton"	onclick="submitForm()">Submit</a> 
-			<a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
-			<a href="#" class="easyui-linkbutton" onclick="findByForm()" iconCls="icon-search">Query</a>
+			<a href="javascript:void(0)" class="easyui-linkbutton"
+				onclick="submitForm()">Submit</a> <a href="javascript:void(0)"
+				class="easyui-linkbutton" onclick="clearForm()">Clear</a> <a
+				href="#" class="easyui-linkbutton" onclick="findByForm()"
+				iconCls="icon-search">Query</a>
 		</div>
 	</div>
 </div>
+
 <script>
 	function submitForm() {
 		$('#productForm').form({
-		    url:"/protofront/service/product/submit",
-		    onSubmit: function(){
-		        // do some check
-		        // return false to prevent submit;
-		    },
-		    success:function(data){
-		    	var jo = JSON.parse(data);
-		    	alert(jo['version']);
-		    	$('#productForm').form('load',jo);
-		    }
+			url : "/protofront/service/product/submit",
+			onSubmit : function() {
+				// do some check
+				// return false to prevent submit;
+			},
+			success : function(data) {
+				var jo = JSON.parse(data);
+				alert(jo['version']);
+				$('#productForm').form('load', jo);
+			}
 		});
 		$('#productForm').submit();
 	}
@@ -47,6 +115,8 @@
 		$('#productForm').form('clear');
 	}
 	function findByForm() {
-		$('#productForm').form('load','/protofront/service/product/findByID/' + $('#id').val());	
+		$('#productForm').form('load',
+				'/protofront/service/product/findByID/' + $('#id').val());
+		$('#dg').datagrid('load');
 	}
 </script>

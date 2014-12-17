@@ -1,12 +1,16 @@
 package org.proto1.protofront;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import org.dozer.Mapper;
+import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.dto.ProductDTO;
+import org.proto1.dto.ProductNameDTO;
 import org.proto1.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,4 +53,13 @@ public class ProductController {
 	}
 
 
+	@RequestMapping(value = "names/{id}", method = RequestMethod.GET)
+	public @ResponseBody List<ProductNameDTO> getProductNames(@PathVariable String id) {
+		List<ProductNameDTO> productNamesDTO = new ArrayList<ProductNameDTO>();
+
+		for(Map.Entry<Language, String> entry : productService.getById(new Long(id)).getProductNames().entrySet()) {
+			productNamesDTO.add(new ProductNameDTO(entry.getKey(), entry.getValue()));
+		}
+		return productNamesDTO;
+	}
 }

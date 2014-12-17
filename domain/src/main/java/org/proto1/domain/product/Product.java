@@ -3,9 +3,11 @@ package org.proto1.domain.product;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,6 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.MapKey;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Version;
 
 import org.proto1.domain.Identified;
@@ -27,8 +30,7 @@ public class Product implements Identified {
 	private Long id;
 
 	@ElementCollection
-	@MapKey(name="language")
-	@Column(name="name")
+	@CollectionTable(name="PRODUCT_NAME")
 	private Map<Language, String> productNames = new HashMap<Language, String>();
 	
 	public Long getId() {
