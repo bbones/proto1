@@ -20,47 +20,23 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Identified;
 import org.proto1.domain.Language;
 
 @Entity
-public class Product implements Identified {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="PRODUCT_ID")
-	private Long id;
+public class Product extends AbstractEntity {
 
 	@ElementCollection
 	@CollectionTable(name="PRODUCT_NAME")
 	private Map<Language, String> productNames = new HashMap<Language, String>();
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public String getName(Language language) {
 		return productNames.get(language);
 	}
 
 	public void setName(Language language, String name) {
 		productNames.put(language, name);
-	}
-
-	@Version
-	@Column(name="VERSION")
-	private Integer version;
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
 	}
 
 	public Map<Language, String> getProductNames() {

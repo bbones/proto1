@@ -1,15 +1,10 @@
 package org.proto1.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -19,20 +14,7 @@ import javax.validation.constraints.NotNull;
 @NamedQueries({
 	@NamedQuery(name="partyList", query="select new Map(p.id as id, coalesce(p.name, p.lastName + ' ' + p.firstName) as name) from Party p")
 })
-public abstract class  Party implements Identified {
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="PARTY_ID")
-	private Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
+public abstract class  Party extends AbstractEntity {
 	@NotNull
 	private String address;
 
@@ -44,16 +26,4 @@ public abstract class  Party implements Identified {
 		this.address = address;
 	}
 
-	@Version
-	@Column(name="VERSION")
-	private Integer version;
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-	
 }
