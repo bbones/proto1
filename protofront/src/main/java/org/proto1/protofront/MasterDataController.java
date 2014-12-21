@@ -13,8 +13,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/masterdata")
 public class MasterDataController {
+	
 	@Autowired
 	Mapper mapper;
 	
@@ -24,8 +25,8 @@ public class MasterDataController {
 	@RequestMapping(value = "languagelist", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<LanguageDTO> getLanguageList() {
 		List<LanguageDTO> langlist = new ArrayList<LanguageDTO>();
-		// mapper(
-		return null;
+		mapper(masterDataService.getLanguageList(), langlist);
+		return langlist;
 	}
 
 }
