@@ -25,7 +25,7 @@ public class MasterDataController {
 	@RequestMapping(value = "languagelist", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<LanguageDTO> getLanguageList() {
 		List<LanguageDTO> langlist = new ArrayList<LanguageDTO>();
-		mapper(masterDataService.getLanguageList(), langlist);
+		mapper.map(masterDataService.getLanguageList(), langlist);
 		return langlist;
 	}
 

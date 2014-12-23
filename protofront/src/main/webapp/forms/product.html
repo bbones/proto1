@@ -21,22 +21,23 @@
                 iconCls: 'icon-edit',
                 singleSelect: true,
                 method:'get',
-                onClickCell: onClickCell,
+                onClickRow: onClickRow,
                 toolbar: '#tb'
             ">
 				<thead>
 					<tr>
-					<th data-options="field:'languageId',width:100,
+						<th
+							data-options="field:'languageId',width:100,
                         formatter:function(value,row){
                             return row.languageName;
                         },
                         editor:{
                             type:'combobox',
                             options:{
-                                valueField:'languageId',
-                                textField:'languageName',
+                                valueField:'id',
+                                textField:'name',
                                 method:'get',
-                                url:'/protofront/service/masterdata/langugelist',
+                                url:'/protofront/service/masterdata/languagelist',
                                 required:true
                             }
                         }">Language</th>
@@ -44,58 +45,80 @@
 					</tr>
 				</thead>
 			</table>
-			<div id="tb">
-				<a href="#" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true"></a>
-				<a href="#"	class="easyui-linkbutton" data-options="iconCls:'icon-help',plain:true"></a>
+			<div id="tb" style="height: auto">
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					data-options="iconCls:'icon-remove',plain:true"
+					onclick="removeit()">Remove</a> <a href="javascript:void(0)"
+					class="easyui-linkbutton"
+					data-options="iconCls:'icon-save',plain:true" onclick="accept()">Accept</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					data-options="iconCls:'icon-undo',plain:true" onclick="reject()">Reject</a>
+				<a href="javascript:void(0)" class="easyui-linkbutton"
+					data-options="iconCls:'icon-search',plain:true"
+					onclick="getChanges()">GetChanges</a>
 			</div>
 			<script type="text/javascript">
-				$.extend($.fn.datagrid.methods, {
-					editCell : function(jq, param) {
-						return jq.each(function() {
-							var opts = $(this).datagrid('options');
-							var fields = $(this).datagrid('getColumnFields',
-									true).concat(
-									$(this).datagrid('getColumnFields'));
-							for (var i = 0; i < fields.length; i++) {
-								var col = $(this).datagrid('getColumnOption',
-										fields[i]);
-								col.editor1 = col.editor;
-								if (fields[i] != param.field) {
-									col.editor = null;
-								}
-							}
-							$(this).datagrid('beginEdit', param.index);
-							for (var i = 0; i < fields.length; i++) {
-								var col = $(this).datagrid('getColumnOption',
-										fields[i]);
-								col.editor = col.editor1;
-							}
-						});
-					}
-				});
 
 				var editIndex = undefined;
-				function endEditing() {
-					if (editIndex == undefined) {
-						return true
-					}
-					if ($('#dg').datagrid('validateRow', editIndex)) {
-						$('#dg').datagrid('endEdit', editIndex);
-						editIndex = undefined;
-						return true;
-					} else {
-						return false;
+	        	function endEditing(){
+	            	if (editIndex == undefined){return true}
+	            	if ($('#dg').datagrid('validateRow', editIndex)){
+	                	var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'languageId'});
+		                var languageName = $(ed.target).combobox('getText');
+		                $('#dg').datagrid('getRows')[editIndex]['languageName'] = languageName;
+	    	            $('#dg').datagrid('endEdit', editIndex);
+	        	        editIndex = undefined;
+	            	    return true;
+	            	} else {
+	                	return false;
+	            	}
+	        	}
+	        
+	        	function onClickRow(index){
+	            	if (editIndex != index){
+	                	if (endEditing()){
+		                    $('#dg').datagrid('selectRow', index)
+		                            .datagrid('beginEdit', index);
+	    	                editIndex = index;
+	        	        } else {
+	            	        $('#dg').datagrid('selectRow', editIndex);
+	                	}
+	            	}
+	        	}
+	        
+				function append() {
+					if (endEditing()) {
+						$('#dg').datagrid('appendRow', {});
+						editIndex = $('#dg').datagrid('getRows').length - 1;
+						$('#dg').datagrid('selectRow', editIndex).datagrid(
+								'beginEdit', editIndex);
 					}
 				}
-				function onClickCell(index, field) {
-					if (endEditing()) {
-						$('#dg').datagrid('selectRow', index).datagrid(
-								'editCell', {
-									index : index,
-									field : field
-								});
-						editIndex = index;
+				function removeit() {
+					if (editIndex == undefined) {
+						return
 					}
+					$('#dg').datagrid('cancelEdit', editIndex).datagrid(
+							'deleteRow', editIndex);
+					editIndex = undefined;
+				}
+				function accept() {
+					debugger;
+					if (endEditing()) {
+						var rows = $('#dg').datagrid('getChanges');
+						alert(rows[0]['languageId']);
+						$('#dg').datagrid('acceptChanges');
+					}
+				}
+				function reject() {
+					$('#dg').datagrid('rejectChanges');
+					editIndex = undefined;
+				}
+				function getChanges() {
+					var rows = $('#dg').datagrid('getChanges');
+					alert(rows.length + ' rows are changed!');
 				}
 			</script>
 		</form>

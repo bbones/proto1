@@ -67,7 +67,6 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 				"delete from Contract",
 				"delete from Person",
 				"delete from Enterprise",
-				// "delete from ProductName",
 				"delete from Product",
 				"delete from Language"
 		};
