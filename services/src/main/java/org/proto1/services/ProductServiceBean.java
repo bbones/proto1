@@ -18,10 +18,8 @@ public class ProductServiceBean implements ProductService {
 		this.productRepository = productRepository;
 	}
 
-	@Transactional
 	public Product getById(Long id) {
-		Product product = productRepository.findOne(id);
-		logger.debug("Size->" + product.getProductNames().size());
+		Product product = productRepository.getById(id);
 		return product;
 	}
 
