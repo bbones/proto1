@@ -5,13 +5,13 @@
 			<table cellpadding="5">
 				<tr>
 					<td>ID:</td>
-					<td><input class="easyui-textbox" type="text" id="prodid"
-						name="prodid" data-options="required:false,validType:'id'"></input></td>
+					<td><input class="easyui-textbox" type="text" id="id"
+						name="id" data-options="required:false,validType:'id'"></input></td>
 				</tr>
 				<tr>
 					<td>Version:</td>
 					<td><input class="easyui-textbox" type="text" id="version"
-						name="version" data-options="required:false,validType:'id'"></input></td>
+						name="version" data-options="required:false"></input></td>
 				</tr>
 			</table>
 
@@ -105,10 +105,30 @@
 					editIndex = undefined;
 				}
 				function accept() {
-					debugger;
 					if (endEditing()) {
 						var rows = $('#dg').datagrid('getChanges');
-						alert(rows[0]['languageId']);
+						var namesdata = [];
+						for (index = 0; index < rows.length; ++index) {
+						    rows[index]['productId'] = $('#id').val();
+						    namesdata[index] = rows[index];
+						}
+						jsonDATA = JSON.stringify(namesdata);
+						console.log(jsonDATA);
+						var reqURL = "/protofront/service/product/savenames";
+						$.ajax({
+							type : 'POST',
+							dataType : 'json',
+							contentType : 'application/json',
+							mimeType : 'application/json',
+							data : jsonDATA,
+							url : reqURL,
+							success : function(respdata) {
+								console.log(respdata);
+							},
+							error : function(data, status, er) {
+								alert("error: " + data + " status: " + status + " er:" + er);
+							}
+						});
 						$('#dg').datagrid('acceptChanges');
 					}
 				}
@@ -125,9 +145,10 @@
 
 		<div style="text-align: center; padding: 5px">
 			<a href="javascript:void(0)" class="easyui-linkbutton"
-				onclick="submitForm()">Submit</a> <a href="javascript:void(0)"
-				class="easyui-linkbutton" onclick="clearForm()">Clear</a> <a
-				href="#" class="easyui-linkbutton" onclick="findByForm()"
+				onclick="submitForm()">Submit</a> 
+			<a href="javascript:void(0)"
+				class="easyui-linkbutton" onclick="clearForm()">Clear</a> 
+			<a href="#" class="easyui-linkbutton" onclick="findByForm()"
 				iconCls="icon-search">Query</a>
 		</div>
 	</div>
@@ -135,7 +156,7 @@
 
 <script>
 	function submitForm() {
-		$('#productForm').form({
+		$('#productForm').form('submit', {
 			url : "/protofront/service/product/submit",
 			onSubmit : function() {
 				// do some check
@@ -143,21 +164,20 @@
 			},
 			success : function(data) {
 				var jo = JSON.parse(data);
-				alert(jo['version']);
+				console.log(jo);
 				$('#productForm').form('load', jo);
 			}
 		});
-		$('#productForm').submit();
 	}
 	function clearForm() {
 		$('#productForm').form('clear');
 	}
 	function findByForm() {
 		$('#productForm').form('load',
-				'/protofront/service/product/findByID/' + $('#prodid').val());
+				'/protofront/service/product/findByID/' + $('#id').val());
 
 		$('#dg').datagrid({
-			url : '/protofront/service/product/names/' + $('#prodid').val()
+			url : '/protofront/service/product/names/' + $('#id').val()
 		});
 
 	}

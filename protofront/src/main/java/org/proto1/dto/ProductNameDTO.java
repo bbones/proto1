@@ -6,9 +6,14 @@ public class ProductNameDTO extends DTO {
 
 	private static final long serialVersionUID = -1360674151528992261L;
 
+	private Long productId;
 	private Long languageId;
 	private String languageName;
 	private String productName;
+	
+	public ProductNameDTO() {
+		
+	}
 	
 	public ProductNameDTO(Long languageId, String languageName, String productName) {
 		this.languageId = languageId;
@@ -17,7 +22,8 @@ public class ProductNameDTO extends DTO {
 	}
 
 
-	public ProductNameDTO(Language language, String productName) {
+	public ProductNameDTO(Long productId, Language language, String productName) {
+		this.setProductId(productId);
 		this.languageId = language.getId();
 		this.languageName = language.getName();
 		this.productName = productName;
@@ -47,6 +53,17 @@ public class ProductNameDTO extends DTO {
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}
+
+
+	public Long getProductId() {
+		return productId;
+	}
+
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
 
 	
 }

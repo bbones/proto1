@@ -3,6 +3,8 @@ package org.proto1.protofront;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.apache.log4j.Logger;
 import org.dozer.Mapper;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
@@ -11,6 +13,7 @@ import org.proto1.dto.ProductNameDTO;
 import org.proto1.services.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,13 +23,16 @@ import org.springframework.web.servlet.view.RedirectView;
 @RestController
 @RequestMapping("/product")
 public class ProductController {
+	
+	final static Logger logger = Logger.getLogger(ProductController.class);
+	
 	@Autowired
 	Mapper mapper;
 	
 	@Autowired
 	ProductService productService;
 
-	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "text/plain")
+	@RequestMapping(value = "submit", method = RequestMethod.POST)
 	public @ResponseBody ProductDTO submit(final ProductDTO productDTO) {
 		Product product = mapper.map(productDTO, Product.class);
 		product = productService.save(product);
@@ -34,7 +40,7 @@ public class ProductController {
 		return productDTO;
 	}
 
-	@RequestMapping(value = "findByID/{id}", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(value = "findByID/{id}", method = RequestMethod.GET)
 	public @ResponseBody ProductDTO findByID(@PathVariable String id) {
 		Product product = productService.getById(new Long(id));
 		return mapper.map(product, ProductDTO.class);
@@ -56,10 +62,34 @@ public class ProductController {
 	@RequestMapping(value = "names/{id}", method = RequestMethod.GET)
 	public @ResponseBody List<ProductNameDTO> getProductNames(@PathVariable String id) {
 		List<ProductNameDTO> productNamesDTO = new ArrayList<ProductNameDTO>();
+		
+		Product product = productService.getById(new Long(id));
 
-		for(Map.Entry<Language, String> entry : productService.getById(new Long(id)).getProductNames().entrySet()) {
-			productNamesDTO.add(new ProductNameDTO(entry.getKey(), entry.getValue()));
+		for(Map.Entry<Language, String> entry : product.getProductNames().entrySet() ) {
+			productNamesDTO.add(new ProductNameDTO(product.getId(), entry.getKey(), entry.getValue()));
 		}
 		return productNamesDTO;
 	}
+
+	@RequestMapping(value = "savenames",  method = RequestMethod.POST, consumes="application/json", produces = "application/json")
+	public @ResponseBody List<ProductNameDTO> saveProductNames(@RequestBody ArrayList<ProductNameDTO> productNames) {
+		if (productNames.size() > 0) {
+			List<ProductNameDTO> productNamesDTO = new ArrayList<ProductNameDTO>();
+		
+			Product product = productService.getById(productNames.get(0).getProductId());
+
+			for(Map.Entry<Language, String> entry : product.getProductNames().entrySet() ) {
+				productNamesDTO.add(new ProductNameDTO(product.getId(), entry.getKey(), entry.getValue()));
+			}
+			return productNames;
+		} else 
+			return null;
+	}
+	
+	@RequestMapping(value = "savename",  method = RequestMethod.POST, consumes="application/json", produces = "application/json")
+	public @ResponseBody ProductNameDTO saveProductName(@RequestBody ProductNameDTO productName) {
+		logger.debug(productName.getProductName());
+		return productName;
+	}
+
 }

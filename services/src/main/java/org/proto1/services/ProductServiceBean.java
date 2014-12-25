@@ -1,6 +1,9 @@
 package org.proto1.services;
 
+import java.util.Map;
+
 import org.apache.log4j.Logger;
+import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +33,11 @@ public class ProductServiceBean implements ProductService {
 	public void delete(Long id) {
 		productRepository.delete(id);
 	}
-	
-	
+
+	public void saveProductNames(Long productId, Map<Language, String> productNames) {
+		Product product = getById(productId);
+		product.getProductNames().putAll(productNames);
+		productRepository.save(product);
+	}
+
 }
