@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
+import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,10 +18,18 @@ public class ProductServiceBean implements ProductService {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private LanguageRepository languageRepository;
+
 	public void setProductRepository(ProductRepository productRepository) {
 		this.productRepository = productRepository;
 	}
 
+	public void setLanguageRepository(LanguageRepository languageRepository) {
+		this.languageRepository = languageRepository;
+		
+	}
+	
 	public Product getById(Long id) {
 		Product product = productRepository.getById(id);
 		return product;
@@ -38,6 +47,28 @@ public class ProductServiceBean implements ProductService {
 		Product product = getById(productId);
 		product.getProductNames().putAll(productNames);
 		productRepository.save(product);
+	}
+
+	@Transactional
+	public void saveProductName(Long productId, Language language, String productNames) {
+		Product product = getById(productId);
+		product.getProductNames().put(language, productNames);
+		productRepository.save(product);
+	}
+
+	public void saveProductName(Long productId, Long languageId,
+			String productNames) {
+		Language language = languageRepository.findOne(languageId);
+		saveProductName(productId, language, productNames);
+	}
+
+	public void deleteName(Long productId, Long languageId) {
+		Product product = getById(productId);
+		Language language = languageRepository.findOne(languageId);
+
+		product.getProductNames().remove(language);
+		productRepository.save(product);
+		
 	}
 
 }

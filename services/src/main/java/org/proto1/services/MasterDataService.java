@@ -10,5 +10,5 @@ public interface MasterDataService {
 	void setLanguageRepository(LanguageRepository languageRepository);
 
 	List<Language> getLanguageList();
-
+	
 }

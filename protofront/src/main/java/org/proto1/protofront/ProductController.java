@@ -1,6 +1,7 @@
 package org.proto1.protofront;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +47,7 @@ public class ProductController {
 		return mapper.map(product, ProductDTO.class);
 	}
 
-	@RequestMapping(value = "deleteByID/{id}", method = RequestMethod.POST, produces = "application/json")
+	@RequestMapping(value = "deleteByID/{id}", method = RequestMethod.POST)
 	public void delete(@PathVariable String id) {
 		productService.delete(new Long(id));
 	}
@@ -74,13 +75,9 @@ public class ProductController {
 	@RequestMapping(value = "savenames",  method = RequestMethod.POST, consumes="application/json", produces = "application/json")
 	public @ResponseBody List<ProductNameDTO> saveProductNames(@RequestBody ArrayList<ProductNameDTO> productNames) {
 		if (productNames.size() > 0) {
-			List<ProductNameDTO> productNamesDTO = new ArrayList<ProductNameDTO>();
 		
-			Product product = productService.getById(productNames.get(0).getProductId());
-
-			for(Map.Entry<Language, String> entry : product.getProductNames().entrySet() ) {
-				productNamesDTO.add(new ProductNameDTO(product.getId(), entry.getKey(), entry.getValue()));
-			}
+			for(ProductNameDTO nameDTO : productNames ) 
+				productService.saveProductName(nameDTO.getProductId(), nameDTO.getLanguageId(), nameDTO.getProductName());
 			return productNames;
 		} else 
 			return null;
@@ -90,6 +87,11 @@ public class ProductController {
 	public @ResponseBody ProductNameDTO saveProductName(@RequestBody ProductNameDTO productName) {
 		logger.debug(productName.getProductName());
 		return productName;
+	}
+
+	@RequestMapping(value = "deleteName/{productId},{languageId}", method = RequestMethod.POST)
+	public void deleteName(@PathVariable String productId, @PathVariable String languageId) {
+		productService.deleteName(new Long(productId), new Long(languageId));
 	}
 
 }

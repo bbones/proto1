@@ -103,5 +103,15 @@
 		</property>
 	</bean>
 	
+	<bean id="slab" class="org.proto1.domain.product.Product">
+		<property name="id" value="2"/>
+		<property name="productNames">
+			<map>
+				<entry key-ref="english" value="Slab"/>
+				<entry key-ref="russian" value="Сляб"/>
+			</map>
+		</property>
+	</bean>
+	
 	
 </beans>

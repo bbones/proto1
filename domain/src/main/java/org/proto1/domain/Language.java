@@ -19,4 +19,24 @@ public class Language extends AbstractEntity {
 		this.name = name;
 	}
 	
+	@Override
+    public int hashCode() {
+        return getId().hashCode() + name.hashCode();
+    }
+	
+	@Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Language other = (Language) obj;
+        if (!getId().equals(other.getId()))
+            return false;
+        if (!name.equals(other.getName()))
+            return false;
+        return true;
+    }
 }

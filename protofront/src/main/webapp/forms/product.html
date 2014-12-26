@@ -1,7 +1,22 @@
 <div style="margin: 20px 0;"></div>
-<div class="easyui-panel" title="Product" style="width: 800px">
+<div class="easyui-panel" title="Product" style="width:800px">
+	<div class="easyui-panel" style="padding:5px;">
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-add',plain:true" onclick="newProduct()">New</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-remove',plain:true"
+			onclick="removeProduct()">Remove</a> 
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-save',plain:true" onclick="acceptProduct()">Accept</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-undo',plain:true" onclick="rejectProduct()">Reject</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton"
+			data-options="iconCls:'icon-search',plain:true"
+			onclick="searchProduct()">Search</a>
+	</div>
 	<div style="padding: 10px 60px 20px 60px">
 		<form id="productForm" method="post">
+
 			<table cellpadding="5">
 				<tr>
 					<td>ID:</td>
@@ -100,6 +115,21 @@
 					if (editIndex == undefined) {
 						return
 					}
+					
+					row = $('#dg').datagrid('getRows')[editIndex];
+					console.log(row);
+					$.ajax({
+						type : 'POST',
+						url : "/protofront/service/product/deleteName/" + $('#id').val() + ',' + row['languageId'],
+						success : function() {
+							console.log();
+						},
+						error : function(data, status, er) {
+							alert("error: " + data + " status: " + status + " er:" + er);
+						}
+						
+					});
+					
 					$('#dg').datagrid('cancelEdit', editIndex).datagrid(
 							'deleteRow', editIndex);
 					editIndex = undefined;
@@ -143,19 +173,11 @@
 			</script>
 		</form>
 
-		<div style="text-align: center; padding: 5px">
-			<a href="javascript:void(0)" class="easyui-linkbutton"
-				onclick="submitForm()">Submit</a> 
-			<a href="javascript:void(0)"
-				class="easyui-linkbutton" onclick="clearForm()">Clear</a> 
-			<a href="#" class="easyui-linkbutton" onclick="findByForm()"
-				iconCls="icon-search">Query</a>
-		</div>
 	</div>
 </div>
 
 <script>
-	function submitForm() {
+	function acceptProduct() {
 		$('#productForm').form('submit', {
 			url : "/protofront/service/product/submit",
 			onSubmit : function() {
@@ -169,10 +191,10 @@
 			}
 		});
 	}
-	function clearForm() {
+	function newProduct() {
 		$('#productForm').form('clear');
 	}
-	function findByForm() {
+	function searchProduct() {
 		$('#productForm').form('load',
 				'/protofront/service/product/findByID/' + $('#id').val());
 
