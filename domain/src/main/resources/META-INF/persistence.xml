@@ -23,7 +23,7 @@
 		<class>org.proto1.domain.accounting.RegisterMap</class>
 		
 		<class>org.proto1.domain.product.Product</class>
-		<class>org.proto1.domain.product.ProductName</class>
+		<class>org.proto1.domain.product.Parameter</class>
 		
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class, hbm"/>

@@ -20,11 +20,12 @@ import org.proto1.domain.Language;
 import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(locations={"classpath:/META-INF/domain.xml"})
+@ContextConfiguration(locations={"classpath:/META-INF/product.xml"})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -48,7 +49,10 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Contract contract;
 	
 	@Autowired
-	Product steelPlate;
+	ProductType ironProduct, steelProduct, rolledProduct, castedProduct;
+	
+	@Autowired
+	Product steelPlate, slab, pigIron;
 	
 	@Autowired
 	Language english, russian, ukrainian;
@@ -99,7 +103,14 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(isdSide);
 		
 		em.persist(contract);
+		
+		em.persist(ironProduct); 
+		em.persist(steelProduct); 
+		em.persist(rolledProduct);
+		em.persist(castedProduct);
 
+		em.persist(slab);
+		em.persist(pigIron);
 		em.persist(steelPlate);
 		
 		em.getTransaction().commit();

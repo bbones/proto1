@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="domain.xml" />
+	
+	<bean id="ironProduct" class="org.proto1.domain.product.ProductType">
+		<property name="productTypeNames">
+			<map>
+				<entry key-ref="english" value="Iron product"/>
+				<entry key-ref="russian" value="Продукция черных металлов"/>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="steelProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="ironProduct" />
+		<property name="productTypeNames">
+			<map>
+				<entry key-ref="english" value="Steel product"/>
+				<entry key-ref="russian" value="Стальная продукция"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="rolledProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="steelProduct" />
+		<property name="productTypeNames">
+			<map>
+				<entry key-ref="english" value="Rolled product"/>
+				<entry key-ref="russian" value="Прокат черных металлов"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="castedProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="steelProduct" />
+		<property name="productTypeNames">
+			<map>
+				<entry key-ref="english" value="Casted product"/>
+				<entry key-ref="russian" value="Литые стальные продукты"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="steelPlate" class="org.proto1.domain.product.Product">
+		<property name="id" value="1"/>
+		<property name="productType" ref="rolledProduct"/>
+		<property name="productNames">
+			<map>
+				<entry key-ref="english" value="Steel plate"/>
+				<entry key-ref="russian" value="Плита стальная"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="slab" class="org.proto1.domain.product.Product">
+		<property name="id" value="2"/>
+		<property name="productType" ref="castedProduct"/>
+		<property name="productNames">
+			<map>
+				<entry key-ref="english" value="Slab"/>
+				<entry key-ref="russian" value="Сляб"/>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="pigIron" class="org.proto1.domain.product.Product">
+		<property name="id" value="3"/>
+		<property name="productType" ref="ironProduct"/>
+		<property name="productNames">
+			<map>
+				<entry key-ref="english" value="Pig Iron"/>
+				<entry key-ref="russian" value="Чугун"/>
+			</map>
+		</property>
+	</bean>
+	
+</beans>

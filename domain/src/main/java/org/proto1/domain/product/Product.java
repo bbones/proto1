@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.MapKey;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
@@ -29,7 +30,9 @@ import org.proto1.domain.Language;
 @Entity
 @NamedEntityGraph(name = "Product.productNames", attributeNodes = @NamedAttributeNode("productNames"))
 public class Product extends AbstractEntity {
-
+	@ManyToOne
+	private ProductType productType;
+	
 	@ElementCollection
 	@CollectionTable(name="PRODUCT_NAME")
 	private Map<Language, String> productNames = new HashMap<Language, String>();
@@ -49,5 +52,14 @@ public class Product extends AbstractEntity {
 	public void setProductNames(Map<Language, String> productNames) {
 		this.productNames = productNames;
 	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+	
 	
 }

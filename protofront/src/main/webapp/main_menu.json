@@ -12,6 +12,9 @@
         "id": "period",
         "text": "Period"
     },{
+        "id": "productType",
+        "text": "Product Type"
+    },{
         "id": "product",
         "text": "Product"
     }]

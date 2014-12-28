@@ -3,7 +3,7 @@ package org.proto1.domain.order;
 import java.util.Map;
 
 import org.proto1.domain.Identified;
-import org.proto1.domain.Parameter;
+import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Product;
 
 public class OrderLine implements Identified {
