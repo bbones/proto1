@@ -7,11 +7,14 @@ import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
 
 @Entity
+@NamedEntityGraph(name = "ProductType.productTypeNames", attributeNodes = @NamedAttributeNode("productTypeNames"))
 public class ProductType extends AbstractEntity {
 	@ManyToOne
 	private ProductType parentType;
