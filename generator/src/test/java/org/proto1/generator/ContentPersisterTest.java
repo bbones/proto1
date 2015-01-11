@@ -21,6 +21,7 @@ import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductType;
+import org.proto1.domain.product.ProductTypeName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -50,6 +51,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	ProductType ironProduct, steelProduct, rolledProduct, castedProduct;
+	
+	@Autowired
+	ProductTypeName ironProductNameEnglish, ironProductNameRussian;
 	
 	@Autowired
 	Product steelPlate, slab, pigIron;
@@ -105,6 +109,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(contract);
 		
 		em.persist(ironProduct); 
+		em.persist(ironProductNameEnglish);
+		em.persist(ironProductNameRussian);
 		em.persist(steelProduct); 
 		em.persist(rolledProduct);
 		em.persist(castedProduct);

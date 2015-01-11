@@ -13,6 +13,18 @@
 			</map>
 		</property>
 	</bean>
+	
+	<bean id="ironProductNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="ironProduct" />
+		<property name="language" ref="english" />
+		<property name="name" value="Iron product" />
+	</bean>
+
+	<bean id="ironProductNameRussian" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="ironProduct" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Продукция из черных металлов" />
+	</bean>
 
 	<bean id="steelProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="ironProduct" />

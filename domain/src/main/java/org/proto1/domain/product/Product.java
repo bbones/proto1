@@ -1,5 +1,6 @@
 package org.proto1.domain.product;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,7 @@ import org.proto1.domain.Language;
 
 @Entity
 @NamedEntityGraph(name = "Product.productNames", attributeNodes = @NamedAttributeNode("productNames"))
-public class Product extends AbstractEntity {
+public class Product extends AbstractEntity implements Serializable {
 	@ManyToOne
 	private ProductType productType;
 	

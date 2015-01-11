@@ -1,7 +1,6 @@
 package org.proto1.domain.product;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
@@ -9,9 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
-import org.proto1.domain.Language;
 
 @Entity
 @NamedEntityGraph(name = "ProductType.productTypeNames", attributeNodes = @NamedAttributeNode("productTypeNames"))
@@ -19,9 +18,8 @@ public class ProductType extends AbstractEntity {
 	@ManyToOne
 	private ProductType parentType;
 	
-	@ElementCollection
-	@CollectionTable(name="PRODUCT_TYPE_NAME")
-	private Map<Language, String> productTypeNames = new HashMap<Language, String>();
+	@OneToMany
+	private List<ProductTypeName> productTypeNames;
 
 	public ProductType getParentType() {
 		return parentType;
@@ -31,11 +29,11 @@ public class ProductType extends AbstractEntity {
 		this.parentType = parentType;
 	}
 
-	public Map<Language, String> getProductTypeNames() {
+	public List<ProductTypeName> getProductTypeNames() {
 		return productTypeNames;
 	}
 
-	public void setProductTypeNames(Map<Language, String> productTypeNames) {
+	public void setProductTypeNames(List<ProductTypeName> productTypeNames) {
 		this.productTypeNames = productTypeNames;
 	}
 	
