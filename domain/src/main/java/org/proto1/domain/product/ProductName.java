@@ -4,23 +4,26 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.proto1.domain.Language;
 
 @Entity
-@Table(name="PRODUCT_NAME_OBJ")
+@Table(name="PRODUCT_NAME")
 public class ProductName implements Serializable {
 	
 	private static final long serialVersionUID = 2044881780858323509L;
 
 	@Id
 	@ManyToOne
+	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
 
 	@Id
 	@ManyToOne
+	@JoinColumn(name="LANGUAGE_ID")
 	private Language language;
 	
 	private String name;

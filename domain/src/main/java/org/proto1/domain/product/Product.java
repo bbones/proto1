@@ -2,6 +2,7 @@ package org.proto1.domain.product;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.persistence.CollectionTable;
@@ -31,29 +32,15 @@ import org.proto1.domain.Language;
 @Entity
 @NamedEntityGraph(name = "Product.productNames", attributeNodes = @NamedAttributeNode("productNames"))
 public class Product extends AbstractEntity implements Serializable {
+	private static final long serialVersionUID = 5899772053294304505L;
+
 	@ManyToOne
 	private ProductType productType;
 	
-	@ElementCollection
-	@CollectionTable(name="PRODUCT_NAME")
-	private Map<Language, String> productNames = new HashMap<Language, String>();
+	@OneToMany
+	@JoinColumn(name="PRODUCT_ID")
+	private List<ProductName> productNames;
 	
-	public String getName(Language language) {
-		return productNames.get(language);
-	}
-
-	public void setName(Language language, String name) {
-		productNames.put(language, name);
-	}
-
-	public Map<Language, String> getProductNames() {
-		return productNames;
-	}
-
-	public void setProductNames(Map<Language, String> productNames) {
-		this.productNames = productNames;
-	}
-
 	public ProductType getProductType() {
 		return productType;
 	}
@@ -61,6 +48,13 @@ public class Product extends AbstractEntity implements Serializable {
 	public void setProductType(ProductType productType) {
 		this.productType = productType;
 	}
-	
+
+	public List<ProductName> getProductNames() {
+		return productNames;
+	}
+
+	public void setProductNames(List<ProductName> productNames) {
+		this.productNames = productNames;
+	}
 	
 }

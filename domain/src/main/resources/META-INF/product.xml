@@ -4,89 +4,170 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<import resource="domain.xml" />
-	
+	<!-- Product Types -->
+	<!-- ironProduct -->
 	<bean id="ironProduct" class="org.proto1.domain.product.ProductType">
 		<property name="productTypeNames">
-			<map>
-				<entry key-ref="english" value="Iron product"/>
-				<entry key-ref="russian" value="Продукция черных металлов"/>
-			</map>
+			<list>
+				<ref bean = "ironProductTypeNameEnglish"/>
+				<ref bean = "ironProductTypeNameRussian"/>
+			</list>
 		</property>
 	</bean>
 	
-	<bean id="ironProductNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+	<bean id="ironProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
 		<property name="productType" ref="ironProduct" />
 		<property name="language" ref="english" />
 		<property name="name" value="Iron product" />
 	</bean>
 
-	<bean id="ironProductNameRussian" class="org.proto1.domain.product.ProductTypeName">
+	<bean id="ironProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
 		<property name="productType" ref="ironProduct" />
 		<property name="language" ref="russian" />
 		<property name="name" value="Продукция из черных металлов" />
 	</bean>
 
+	<!-- steelProduct -->
 	<bean id="steelProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="ironProduct" />
 		<property name="productTypeNames">
-			<map>
-				<entry key-ref="english" value="Steel product"/>
-				<entry key-ref="russian" value="Стальная продукция"/>
-			</map>
+			<list>
+				<ref bean = "steelProductTypeNameEnglish"/>
+				<ref bean = "steelProductTypeNameRussian"/>
+			</list>
 		</property>
 	</bean>
 	
+	<bean id="steelProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="steelProduct" />
+		<property name="language" ref="english" />
+		<property name="name" value="Steel product" />
+	</bean>
+
+	<bean id="steelProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="steelProduct" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Продукция из стали" />
+	</bean>
+
+	<!-- rolledProduct -->
 	<bean id="rolledProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="steelProduct" />
 		<property name="productTypeNames">
-			<map>
-				<entry key-ref="english" value="Rolled product"/>
-				<entry key-ref="russian" value="Прокат черных металлов"/>
-			</map>
+			<list>
+				<ref bean = "rolledProductTypeNameEnglish"/>
+				<ref bean = "rolledProductTypeNameRussian"/>
+			</list>
 		</property>
 	</bean>
 	
+	<bean id="rolledProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="rolledProduct" />
+		<property name="language" ref="english" />
+		<property name="name" value="Rolled product" />
+	</bean>
+
+	<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="rolledProduct" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Прокат черных металлов" />
+	</bean>
+
+	<!-- castedProduct -->
 	<bean id="castedProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="steelProduct" />
 		<property name="productTypeNames">
-			<map>
-				<entry key-ref="english" value="Casted product"/>
-				<entry key-ref="russian" value="Литые стальные продукты"/>
-			</map>
+			<list>
+				<ref bean = "castedProductTypeNameEnglish"/>
+				<ref bean = "castedProductTypeNameRussian"/>
+			</list>
 		</property>
 	</bean>
 	
+	<bean id="castedProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="castedProduct" />
+		<property name="language" ref="english" />
+		<property name="name" value="Casted product" />
+	</bean>
+
+	<bean id="castedProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+		<property name="productType" ref="castedProduct" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Литые стальные продукты" />
+	</bean>
+
+	<!-- Products -->
+	<!-- Steel Plate -->
 	<bean id="steelPlate" class="org.proto1.domain.product.Product">
 		<property name="id" value="1"/>
 		<property name="productType" ref="rolledProduct"/>
 		<property name="productNames">
-			<map>
-				<entry key-ref="english" value="Steel plate"/>
-				<entry key-ref="russian" value="Плита стальная"/>
-			</map>
+			<list>
+				<ref bean = "steelPlateProductNameEnglish"/>
+				<ref bean = "steelPlateNameRussian"/>
+			</list>
 		</property>
 	</bean>
 	
+	<bean id="steelPlateProductNameEnglish" class="org.proto1.domain.product.ProductName">
+		<property name="product" ref="steelPlate" />
+		<property name="language" ref="english" />
+		<property name="name" value="Steel plate" />
+	</bean>
+
+	<bean id="steelPlateNameRussian" class="org.proto1.domain.product.ProductName">
+		<property name="product" ref="steelPlate" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Плита стальная" />
+	</bean>
+
+	<!-- Slab -->
 	<bean id="slab" class="org.proto1.domain.product.Product">
 		<property name="id" value="2"/>
 		<property name="productType" ref="castedProduct"/>
 		<property name="productNames">
-			<map>
-				<entry key-ref="english" value="Slab"/>
-				<entry key-ref="russian" value="Сляб"/>
-			</map>
+			<list>
+				<ref bean = "slabProductNameEnglish"/>
+				<ref bean = "slabProductNameRussian"/>
+			</list>
 		</property>
 	</bean>
 	
+	<bean id="slabProductNameEnglish" class="org.proto1.domain.product.ProductName">
+		<property name="product" ref="slab" />
+		<property name="language" ref="english" />
+		<property name="name" value="Slab" />
+	</bean>
+
+	<bean id="slabProductNameRussian" class="org.proto1.domain.product.ProductName">
+		<property name="product" ref="slab" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Сляб" />
+	</bean>
+
+	<!-- Pig Iron -->
 	<bean id="pigIron" class="org.proto1.domain.product.Product">
 		<property name="id" value="3"/>
 		<property name="productType" ref="ironProduct"/>
 		<property name="productNames">
-			<map>
-				<entry key-ref="english" value="Pig Iron"/>
-				<entry key-ref="russian" value="Чугун"/>
-			</map>
+			<list>
+				<ref bean = "pigIronProductNameEnglish"/>
+				<ref bean = "pigIronProductNameRussian"/>
+			</list>
 		</property>
 	</bean>
+
+	<bean id="pigIronProductNameEnglish" class="org.proto1.domain.product.ProductName">
+		<property name="product" ref="pigIron" />
+		<property name="language" ref="english" />
+		<property name="name" value="Pig Iron" />
+	</bean>
+
+	<bean id="pigIronProductNameRussian" class="org.proto1.domain.product.ProductName">
+		<property name="product" ref="pigIron" />
+		<property name="language" ref="russian" />
+		<property name="name" value="Чугун" />
+	</bean>
+
 	
 </beans>

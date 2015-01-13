@@ -1,10 +1,10 @@
 package org.proto1.services;
 
-import java.util.Map;
-
+import java.util.List;
 import org.apache.log4j.Logger;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductName;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,16 +43,20 @@ public class ProductServiceBean implements ProductService {
 		productRepository.delete(id);
 	}
 
-	public void saveProductNames(Long productId, Map<Language, String> productNames) {
+	public void saveProductNames(Long productId, List<ProductName> productNames) {
 		Product product = getById(productId);
-		product.getProductNames().putAll(productNames);
+		product.getProductNames().addAll(productNames);
 		productRepository.save(product);
 	}
 
 	@Transactional
-	public void saveProductName(Long productId, Language language, String productNames) {
+	public void saveProductName(Long productId, Language language, String productName) {
 		Product product = getById(productId);
-		product.getProductNames().put(language, productNames);
+		ProductName pn = new ProductName();
+		pn.setProduct(product);
+		pn.setLanguage(language);
+		pn.setName(productName);
+		product.getProductNames().add(pn);
 		productRepository.save(product);
 	}
 

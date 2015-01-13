@@ -8,7 +8,7 @@ import org.proto1.repository.ProductTypeRepository;
 public interface ProductTypeService {
 
 	ProductType getNodeById(Long id);
-	List<ProductType> getChildByParentId(Long id);
+	List<ProductType> getByParentTypeId(Long id);
 
 	void setProductTypeRepository(ProductTypeRepository productTypeRepository);
 

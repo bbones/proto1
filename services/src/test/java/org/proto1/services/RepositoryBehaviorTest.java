@@ -6,6 +6,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductName;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,11 @@ public class RepositoryBehaviorTest extends AbstractJUnit4SpringContextTests{
 		
 		Product prod = productRepository.getById(steelPlate.getId());
 		
-		prod.getProductNames().put(ukrainian, "Плита сталева");
+		ProductName pn = new ProductName();
+		pn.setProduct(steelPlate);
+		pn.setLanguage(ukrainian);
+		pn.setName("Плита сталева");
+		prod.getProductNames().add(pn);
 		productRepository.save(prod);
 		prod = productRepository.getById(steelPlate.getId());
 		assertEquals(3, prod.getProductNames().size()); 

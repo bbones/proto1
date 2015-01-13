@@ -5,6 +5,8 @@ import java.util.List;
 import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
@@ -18,7 +20,8 @@ public class ProductType extends AbstractEntity {
 	@ManyToOne
 	private ProductType parentType;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
+	@JoinColumn(name="PRODUCT_TYPE_ID",nullable=true)
 	private List<ProductTypeName> productTypeNames;
 
 	public ProductType getParentType() {

@@ -3,6 +3,9 @@ package org.proto1.services;
 import static org.junit.Assert.*;
 import static org.easymock.EasyMock.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.proto1.domain.product.ProductType;
 import org.proto1.repository.ProductTypeRepository;
@@ -28,4 +31,16 @@ public class ProductTypeServiceTest extends AbstractJUnit4SpringContextTests  {
 		assertEquals(pt.getProductTypeNames().size(), 2);
 	}
 
+	@Test
+	public void testGetByParentTypeId() {
+		ProductTypeRepository ptrep = createMock(ProductTypeRepository.class);
+		List<ProductType> ptl = new ArrayList<ProductType>();
+		ptl.add(ironProduct);
+		expect(ptrep.getByParentTypeId(null)).andReturn(ptl);
+		replay(ptrep);
+		
+		List<ProductType> ptl1 = pds.getByParentTypeId(null);
+		assertEquals(1, ptl1.size());
+
+	}
 }

@@ -20,6 +20,7 @@ import org.proto1.domain.Language;
 import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,10 +54,20 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	ProductType ironProduct, steelProduct, rolledProduct, castedProduct;
 	
 	@Autowired
-	ProductTypeName ironProductNameEnglish, ironProductNameRussian;
+	ProductTypeName 
+		ironProductTypeNameEnglish, ironProductTypeNameRussian,
+		steelProductTypeNameEnglish, steelProductTypeNameRussian,
+		rolledProductTypeNameEnglish, rolledProductTypeNameRussian,
+		castedProductTypeNameEnglish, castedProductTypeNameRussian;
 	
 	@Autowired
 	Product steelPlate, slab, pigIron;
+	
+	@Autowired
+	ProductName 
+		steelPlateProductNameEnglish, steelPlateNameRussian,
+		slabProductNameEnglish, slabProductNameRussian,
+		pigIronProductNameEnglish, pigIronProductNameRussian;
 	
 	@Autowired
 	Language english, russian, ukrainian;
@@ -108,17 +119,36 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		
 		em.persist(contract);
 		
+		// Product Types
 		em.persist(ironProduct); 
-		em.persist(ironProductNameEnglish);
-		em.persist(ironProductNameRussian);
-		em.persist(steelProduct); 
-		em.persist(rolledProduct);
-		em.persist(castedProduct);
-
-		em.persist(slab);
-		em.persist(pigIron);
-		em.persist(steelPlate);
+		em.persist(ironProductTypeNameEnglish);
+		em.persist(ironProductTypeNameRussian);
 		
+		em.persist(steelProduct); 
+		em.persist(steelProductTypeNameEnglish);
+		em.persist(steelProductTypeNameRussian);
+				
+		em.persist(rolledProduct);
+		em.persist(rolledProductTypeNameEnglish);
+		em.persist(rolledProductTypeNameRussian);
+		
+		em.persist(castedProduct);
+		em.persist(castedProductTypeNameEnglish);
+		em.persist(castedProductTypeNameRussian);
+		
+		// Products
+		em.persist(steelPlate);
+		em.persist(steelPlateProductNameEnglish);
+		em.persist(steelPlateNameRussian);
+		
+		em.persist(slab);
+		em.persist(slabProductNameEnglish);
+		em.persist(slabProductNameRussian);
+
+		em.persist(pigIron);
+		em.persist(pigIronProductNameEnglish);
+		em.persist(pigIronProductNameRussian);
+
 		em.getTransaction().commit();
 
 	}

@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.dozer.Mapper;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductName;
 import org.proto1.dto.ProductDTO;
 import org.proto1.dto.ProductNameDTO;
 import org.proto1.services.ProductService;
@@ -66,8 +67,8 @@ public class ProductController {
 		
 		Product product = productService.getById(new Long(id));
 
-		for(Map.Entry<Language, String> entry : product.getProductNames().entrySet() ) {
-			productNamesDTO.add(new ProductNameDTO(product.getId(), entry.getKey(), entry.getValue()));
+		for(ProductName entry : product.getProductNames() ) {
+			productNamesDTO.add(new ProductNameDTO(product.getId(), entry.getLanguage(), entry.getName()));
 		}
 		return productNamesDTO;
 	}

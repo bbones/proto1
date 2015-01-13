@@ -64,6 +64,4 @@ public class ProductNameDTO extends DTO {
 		this.productId = productId;
 	}
 
-
-	
 }

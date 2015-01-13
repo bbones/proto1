@@ -1,6 +1,16 @@
 <div>
-Probe
-<ul id="mainMenu" class="easyui-tree" data-options="url:'main_menu.json'"></ul>
+
+<table title="Products" class="easyui-treegrid" style="width:700px;height:300px"
+        url="/protofront/service/productType/getByParentTypeId"
+        rownumbers="true"
+        idField="id" treeField="name">
+    <thead>
+        <tr>
+            <th field="name" width="250">Name</th>
+       </tr>
+    </thead>
+</table>
+
 </div>
 
 <script>

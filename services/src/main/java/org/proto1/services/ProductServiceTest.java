@@ -3,13 +3,16 @@ package org.proto1.services;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductName;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,8 +63,15 @@ public class ProductServiceTest extends AbstractJUnit4SpringContextTests  {
 		expect(prep.getById(1L)).andReturn(steelPlate);
 		expect(prep.save(steelPlate)).andReturn(steelPlate);
 		replay(prep);
-		Map<Language, String> productNames = new HashMap<Language, String>();
-		productNames.put(ukrainian, "Плита горячекатана");
+		
+		List<ProductName> productNames = new ArrayList<ProductName>();
+		ProductName pn = new ProductName();
+		pn.setProduct(steelPlate);
+		pn.setLanguage(ukrainian);
+		pn.setName("Плита сталева");
+
+		productNames.add(pn);
+		
 		productService.setProductRepository(prep);
 		productService.saveProductNames(1L, productNames);
 		assertEquals(3, steelPlate.getProductNames().size());
