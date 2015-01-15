@@ -1,30 +1,29 @@
-<div class="col-xs-2">
-	<div class="panel panel-default">
-		<div class="panel-heading">Person</div>
-		<div class="panel-body">
-			<form role="form" id="personForm">
-				<div class="form-group">
-					<label for="personId">Person #ID:</label> <input type="number"
-						class="form-control" id="id">
-				</div>
-				<div class="form-group">
-					<label for="personLastName">Last name:</label> <input type="text"
-						class="form-control" id="lastName">
-				</div>
-				<div class="form-group">
-					<label for="personFirstName">Last name:</label> <input type="text"
-						class="form-control" id="firstName">
-				</div>
-				<div class="form-group">
-					<label for="personMiddleName">Last name:</label> <input type="text"
-						class="form-control" id="middleName">
-				</div>
-				<div class="form-group">
-					<label for="version">Version:</label> <input type="text"
-						class="form-control" id="version">
-				</div>
-			</form>
-		</div>
+
+<div class="easyui-panel" title="Person" style="width:400px">
+	<div style="padding:10px 60px 20px 60px">
+	<div class="panel-body">
+		<form role="form" id="personForm">
+			<div class="form-group">
+				<label for="personId">Person #ID:</label> <input type="number"
+					class="form-control" id="id">
+			</div>
+			<div class="form-group">
+				<label for="personLastName">Last name:</label> <input type="text"
+					class="form-control" id="lastName">
+			</div>
+			<div class="form-group">
+				<label for="personFirstName">Last name:</label> <input type="text"
+					class="form-control" id="firstName">
+			</div>
+			<div class="form-group">
+				<label for="personMiddleName">Last name:</label> <input type="text"
+					class="form-control" id="middleName">
+			</div>
+			<div class="form-group">
+				<label for="version">Version:</label> <input type="text"
+					class="form-control" id="version">
+			</div>
+		</form>
 	</div>
 </div>
 
@@ -32,21 +31,24 @@
 	var pos = (document.location.href).search('#person:');
 	if (pos != -1) {
 		var id = document.location.href.substr(pos + 8);
-		findBEAction('/protofront/service/person/findByID/', ['id', 'lastName', 'firstName', 'middleName','version']);
+		findBEAction('/protofront/service/person/findByID/', [ 'id',
+				'lastName', 'firstName', 'middleName', 'version' ]);
 	}
 
-	$("#submitBtn").click(function() {
-		submitBtnAction('/protofront/service/person/submit',['id', 'lastName', 'firstName', 'middleName','version']);
-	});
+	$("#submitBtn").click(
+			function() {
+				submitBtnAction('/protofront/service/person/submit', [ 'id',
+						'lastName', 'firstName', 'middleName', 'version' ]);
+			});
 
-
-	$("#findBEBtn").click(function() {
-		findBEAction('/protofront/service/person/findByID/', ['id', 'lastName', 'firstName', 'middleName','version']);
-	});
+	$("#findBEBtn").click(
+			function() {
+				findBEAction('/protofront/service/person/findByID/', [ 'id',
+						'lastName', 'firstName', 'middleName', 'version' ]);
+			});
 
 	$("#deleteBtn").click(function() {
-		var urlid = '/protofront/service/person/deleteByID/'
-						+ $('#id').val();
+		var urlid = '/protofront/service/person/deleteByID/' + $('#id').val();
 		deleteBtnAction(urlid);
 	});
 </script>

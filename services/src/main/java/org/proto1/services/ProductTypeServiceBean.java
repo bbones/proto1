@@ -1,6 +1,7 @@
 package org.proto1.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.proto1.domain.product.ProductType;
 import org.proto1.repository.ProductTypeRepository;
@@ -23,6 +24,14 @@ public class ProductTypeServiceBean implements ProductTypeService {
 
 	public List<ProductType> getByParentTypeId(Long id) {
 		return productTypeRepository.getByParentTypeId(id);
+	}
+
+	public List<Map<String, Object>> getByParentTypeIdByLanguageId(
+			Long parentId, Long languageId) {
+		if (parentId == null)
+			return productTypeRepository.getRootParentTypesLanguageId(languageId);
+		else			
+			return productTypeRepository.getByParentTypeIdLanguageId(parentId, languageId);
 	}
 
 }

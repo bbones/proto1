@@ -2,6 +2,7 @@ package org.proto1.dto;
 
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public abstract class DTO implements Serializable{
 	
 	protected Integer version;

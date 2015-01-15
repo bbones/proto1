@@ -1,13 +1,9 @@
 package org.proto1.protofront;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
 import org.apache.log4j.Logger;
 import org.dozer.Mapper;
-import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.dto.ProductDTO;

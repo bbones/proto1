@@ -3,7 +3,6 @@ package org.proto1.domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
 
 @Entity
 public class Period extends AbstractEntity {

@@ -1,17 +1,16 @@
 <div>
 
-<table title="Products" class="easyui-treegrid" style="width:700px;height:300px"
-        url="/protofront/service/productType/getByParentTypeId"
-        rownumbers="true"
-        idField="id" treeField="name">
-    <thead>
-        <tr>
-            <th field="name" width="250">Name</th>
-       </tr>
-    </thead>
-</table>
+<table id="products" title="Products" class="easyui-treegrid" style="width:700px;height:300px"></table>
 
 </div>
 
 <script>
+	$('#products').treegrid({
+	    url:'/protofront/service/productType/getByParentTypeIdByLanguageId/' + $('#langSelector').combobox('getValue'),
+	    idField:'id',
+	    treeField:'name',
+	    columns:[[
+	        {title:'Product Types',field:'name',width:400}
+	    ]]
+	});
 </script>

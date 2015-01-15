@@ -1,7 +1,9 @@
 package org.proto1.protofront;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.proto1.domain.product.ProductType;
 import org.proto1.dto.ProductTypeDTO;
@@ -36,6 +38,15 @@ public class ProductTypeController {
 			ptDTOlist.add(ptDTO);
 		}
 		return ptDTOlist;
+	}
+
+	@RequestMapping(value = "getByParentTypeIdByLanguageId/{languageId}", method = RequestMethod.POST)
+	public List<Map<String, Object>> getByParentTypeIdByLanguageId(@RequestParam(required=false) Long id, @PathVariable Long languageId) {
+		List<Map<String, Object>> ptList = pds.getByParentTypeIdByLanguageId(id, languageId);
+		for(Map<String, Object> pt : ptList) {
+			pt.put("state", "closed");
+		}
+		return ptList;
 	}
 
 }

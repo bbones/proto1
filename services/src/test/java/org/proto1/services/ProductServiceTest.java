@@ -4,11 +4,7 @@ import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
