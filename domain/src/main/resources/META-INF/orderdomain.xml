@@ -4,6 +4,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<import resource="domain.xml" />
+	<import resource="product.xml"/>
 
 	<bean id="order" class="org.proto1.domain.order.Order">
 	</bean>

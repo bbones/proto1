@@ -172,4 +172,17 @@
 	<bean id="gradeOfSteel" class="org.proto1.domain.product.Parameter">
 		<property name="id" value="1" />
 	</bean>	
+	
+	<bean id="gradeOfSteelEnglish" class="org.proto1.domain.product.ParameterName">
+		<property name="parameter" ref="gradeOfSteel"/>
+		<property name="language" ref="english" />
+		<property name="name" value="Grade of steel" />
+	</bean>
+
+	<bean id="gradeOfSteelRussian" class="org.proto1.domain.product.ParameterName">
+		<property name="parameter" ref="gradeOfSteel"/>
+		<property name="language" ref="russian" />
+		<property name="name" value="Марка стали" />
+	</bean>
+
 </beans>
