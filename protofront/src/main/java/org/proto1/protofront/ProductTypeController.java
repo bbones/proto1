@@ -1,12 +1,12 @@
 package org.proto1.protofront;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.proto1.domain.product.ProductType;
-import org.proto1.dto.ProductTypeDTO;
+import org.dozer.Mapper;
+import org.proto1.domain.product.ProductTypeName;
+import org.proto1.dto.ProductTypeNameDTO;
 import org.proto1.services.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,30 +21,29 @@ public class ProductTypeController {
 	@Autowired
 	ProductTypeService pds;
 
-	@RequestMapping(value = "getByParentTypeId", method = RequestMethod.POST)
-	public List<ProductTypeDTO> getByParentTypeId(@RequestParam(required=false) Long id) {
-		List<ProductTypeDTO> ptDTOlist = new ArrayList<ProductTypeDTO>();
-		
-		for(ProductType pt :  pds.getByParentTypeId(id)) {
-			ProductTypeDTO ptDTO = new ProductTypeDTO();
-			ptDTO.setId(pt.getId());
-			ProductType parent = pt.getParentType();
-			if (parent != null)
-				ptDTO.setParentId(parent.getId());
-			else
-				ptDTO.setParentId(null);
-			ptDTO.setName(pt.getProductTypeNames().get(0).getName());
-			ptDTO.setState("closed");
-			ptDTOlist.add(ptDTO);
+	@Autowired
+	Mapper mapper;
+
+	@RequestMapping(value = "getNames/{id}", method = RequestMethod.GET)
+	public List<ProductTypeNameDTO> getNames(@PathVariable Long id) {
+		List<ProductTypeNameDTO> ptNamesList = new ArrayList<ProductTypeNameDTO>();
+		for(ProductTypeName ptn : pds.getNames(id)) {
+
+			ProductTypeNameDTO ptnDTO = mapper.map(ptn, ProductTypeNameDTO.class);
+			ptNamesList.add(ptnDTO);
+			
 		}
-		return ptDTOlist;
+		return ptNamesList;
 	}
 
 	@RequestMapping(value = "getByParentTypeIdByLanguageId/{languageId}", method = RequestMethod.POST)
 	public List<Map<String, Object>> getByParentTypeIdByLanguageId(@RequestParam(required=false) Long id, @PathVariable Long languageId) {
 		List<Map<String, Object>> ptList = pds.getByParentTypeIdByLanguageId(id, languageId);
 		for(Map<String, Object> pt : ptList) {
-			pt.put("state", "closed");
+			if (pds.countChild((Long)pt.get("id")) > 0)
+				pt.put("state", "closed");
+			else
+				pt.put("state", "open");
 		}
 		return ptList;
 	}

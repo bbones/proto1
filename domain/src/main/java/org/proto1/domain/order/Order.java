@@ -2,20 +2,11 @@ package org.proto1.domain.order;
 
 import java.util.ArrayList;
 
-import org.proto1.domain.Identified;
+import org.proto1.domain.AbstractEntity;
 
-public class Order implements Identified {
-	private Long id;
+public class Order extends AbstractEntity {
 	private ArrayList<OrderLine> lines;
 	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 	public ArrayList<OrderLine> getLines() {
 		return lines;
 	}

@@ -169,5 +169,7 @@
 		<property name="name" value="Чугун" />
 	</bean>
 
-	
+	<bean id="gradeOfSteel" class="org.proto1.domain.product.Parameter">
+		<property name="id" value="1" />
+	</bean>	
 </beans>

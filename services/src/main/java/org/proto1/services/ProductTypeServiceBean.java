@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.product.ProductType;
+import org.proto1.domain.product.ProductTypeName;
 import org.proto1.repository.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,4 +35,11 @@ public class ProductTypeServiceBean implements ProductTypeService {
 			return productTypeRepository.getByParentTypeIdLanguageId(parentId, languageId);
 	}
 
+	public int countChild(Long parentId) {
+		return productTypeRepository.countChild(parentId);
+	}
+
+	public List<ProductTypeName> getNames(Long id) {
+		return productTypeRepository.getById(id).getProductTypeNames();
+	}
 }

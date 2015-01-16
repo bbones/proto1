@@ -17,6 +17,12 @@
 
 	<jpa:repositories base-package="org.proto1.repository" />
 
-	<bean id="mapper" class="org.dozer.DozerBeanMapper"/>
+	<bean id="mapper" class="org.dozer.DozerBeanMapper">
+		<property name="mappingFiles">
+			<list>
+				<value>dozerMapping.xml</value>
+			</list>
+		</property>
+	</bean>
 
 </beans>
