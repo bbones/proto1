@@ -1,5 +1,16 @@
 <div>
 
+	<div id="mm" class="easyui-menu" style="width: 120px;">
+		<div data-options="iconCls:'icon-add'" onclick="newNode()">New
+			Node</div>
+		<div data-options="iconCls:'icon-remove'"
+			onclick="javascript:alert('delete')">Delete Node</div>
+		<div data-options="iconCls:'icon-cut'"
+			onclick="javascript:alert('cut')">Cut</div>
+		<div data-options="iconCls:'icon-back'"
+			onclick="javascript:alert('paste')">Paste</div>
+	</div>
+
 	<table id="productTypes" title="Product Types" class="easyui-treegrid"
 		style="width: 700px; height: 300px"></table>
 	<table id="dg" class="easyui-datagrid" title="Translations"
@@ -31,6 +42,7 @@
 			</tr>
 		</thead>
 	</table>
+	
 
 </div>
 
@@ -52,6 +64,34 @@
 							$('#dg').datagrid({
 								url : '/protofront/service/productType/getNames/' + data['id']
 							});
-						}
+						},
+		                onContextMenu: function(e,row){
+		                    e.preventDefault();
+		                    $(this).treegrid('select',row.id);
+		                    $('#mm').menu('show',{
+		                        left: e.pageX,
+		                        top: e.pageY
+		                    });
+		                }
 					});
+
+	 
+	 function newNode() {
+		 var node = $('#productTypes').treegrid('getSelected');
+		 if (node){
+		     var nodes = [{
+		         "id":13,
+		         "name":"Raspberry"
+		     }];
+		     $('#productTypes').treegrid('append', {
+		         parent:node.target,
+		         data:nodes
+		     });
+		 }
+	 }
+	 
+	 function removeNode() {
+		 alert('Remove node');
+	 }
+
 </script>

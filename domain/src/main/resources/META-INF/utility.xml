@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="domain.xml"/>
+	
+	<bean id="defaultEnglishProductType" class="org.proto1.domain.utility.LocalizedStringConstant">
+		<property name="key" value="productType" />
+		<property name="language" ref="english" />
+		<property name="text" value="New Product Type" />
+	</bean>
+
+	<bean id="defaultRussianProductType" class="org.proto1.domain.utility.LocalizedStringConstant">
+		<property name="key" value="productType" />
+		<property name="language" ref="russian" />
+		<property name="text" value="Новый тип продукции" />
+	</bean>
+	
+	<bean id="defaultUkrainianProductType" class="org.proto1.domain.utility.LocalizedStringConstant">
+		<property name="key" value="productType" />
+		<property name="language" ref="ukrainian" />
+		<property name="text" value="Новий тип продукції" />
+	</bean>
+	
+</beans>

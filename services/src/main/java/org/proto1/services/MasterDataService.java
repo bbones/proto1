@@ -11,4 +11,6 @@ public interface MasterDataService {
 
 	List<Language> getLanguageList();
 	
+	List<Language> getRequiredLanguageList();
+	
 }

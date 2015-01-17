@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
+import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
+import org.proto1.dto.ProductTypeDTO;
 import org.proto1.dto.ProductTypeNameDTO;
 import org.proto1.services.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +48,14 @@ public class ProductTypeController {
 				pt.put("state", "open");
 		}
 		return ptList;
+	}
+	
+	@RequestMapping(value = "getNewProductType", method = RequestMethod.POST)
+	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
+		ProductType pt = new ProductType();
+		
+		
+		return mapper.map(pt, ProductTypeDTO.class);
 	}
 
 }

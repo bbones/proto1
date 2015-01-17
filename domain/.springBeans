@@ -11,6 +11,7 @@
 		<config>src/main/resources/META-INF/domain.xml</config>
 		<config>src/main/resources/META-INF/accounting.xml</config>
 		<config>src/main/resources/META-INF/product.xml</config>
+		<config>src/main/resources/META-INF/utility.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

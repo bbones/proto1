@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 public class Language extends AbstractEntity {
 
 	private String name;
+	
+	private boolean required;
 
 	public String getName() {
 		return name;
@@ -38,6 +40,14 @@ public class Language extends AbstractEntity {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public boolean isRequired() {
+		return required;
+	}
+
+	public void setRequired(boolean required) {
+		this.required = required;
 	}
 	
 }
