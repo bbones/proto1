@@ -1,13 +1,21 @@
 package org.proto1.domain.utility;
 
+import java.io.Serializable;
+
+import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import org.proto1.domain.Language;
 
-public class LocalizedStringConstant {
+@Entity
+public class LocalizedStringConstant implements Serializable {
 	@Id
 	private String key;
 	@Id
+	@ManyToOne
+	@JoinColumn(name="language_id")
 	private Language language;
 	
 	private String text;

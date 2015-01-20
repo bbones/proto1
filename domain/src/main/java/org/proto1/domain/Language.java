@@ -1,12 +1,15 @@
 package org.proto1.domain;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Language extends AbstractEntity {
 
+	@NotNull
 	private String name;
 	
+	@NotNull
 	private boolean required;
 
 	public String getName() {

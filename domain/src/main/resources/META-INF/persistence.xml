@@ -13,6 +13,7 @@
 		<class>org.proto1.domain.Document</class>
 		<class>org.proto1.domain.SideRole</class>
 		<class>org.proto1.domain.Analitic</class>
+		<class>org.proto1.domain.utility.LocalizedStringConstant</class>
 		
 		<class>org.proto1.domain.accounting.AnaliticRole</class>
 		<class>org.proto1.domain.accounting.Account</class>

@@ -1,12 +1,11 @@
 package org.proto1.services;
 
 import org.proto1.domain.Language;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UtilityServiceBean implements UtilityService {
 
-	public String getLocalizedString(String key, Language language) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

@@ -22,4 +22,12 @@ public class MasterDataServiceBean implements MasterDataService {
 		return (List<Language>) languageRepository.findAll();
 	}
 
+	public List<Language> getRequiredLanguageList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public String getLocalizedString(String key, Language language) {
+		return null;
+	}
 }

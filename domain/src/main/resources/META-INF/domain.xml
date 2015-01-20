@@ -5,14 +5,17 @@
 	
 	<bean id="english" class="org.proto1.domain.Language">
 		<property name="name" value="English"/>
+		<property name="required" value="true" />
 	</bean>
 
 	<bean id="russian" class="org.proto1.domain.Language">
 		<property name="name" value="Russian"/>
+		<property name="required" value="true" />
 	</bean>
 
 	<bean id="ukrainian" class="org.proto1.domain.Language">
 		<property name="name" value="Ukrainian"/>
+		<property name="required" value="true" />
 	</bean>
 
 	<bean id="french" class="org.proto1.domain.Language">

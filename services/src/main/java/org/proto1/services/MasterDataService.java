@@ -13,4 +13,5 @@ public interface MasterDataService {
 	
 	List<Language> getRequiredLanguageList();
 	
+	String getLocalizedString(String key, Language language);
 }

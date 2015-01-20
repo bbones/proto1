@@ -23,11 +23,12 @@ import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
+import org.proto1.domain.utility.LocalizedStringConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(locations={"classpath:/META-INF/product.xml"})
+@ContextConfiguration(locations={"classpath:/META-INF/product.xml","classpath:/META-INF/utility.xml"})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -71,6 +72,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	Language english, russian, ukrainian;
+	
+	@Autowired
+	LocalizedStringConstant defaultEnglishProductType, defaultRussianProductType, defaultUkrainianProductType;
 
 	@Before
 	public void startUp () {
@@ -81,6 +85,31 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		emf = Persistence.createEntityManagerFactory("proto1", properties);	
 		em = emf.createEntityManager();
 		
+		// deleteEntities();
+		
+		em.getTransaction().begin();
+		
+		
+		persistLanguage();
+		persistPerson();
+		persistEnterprise();
+		persistSideRole();
+		persistContract();
+		persistProductType();
+		persistProduct();
+		persistLocalizedStringConstant();
+
+		em.getTransaction().commit();
+
+	}
+
+	private void persistLocalizedStringConstant() {
+		em.persist(defaultEnglishProductType);
+		em.persist(defaultRussianProductType);
+		em.persist(defaultUkrainianProductType);
+	}
+
+	private void deleteEntities() {
 		String[] deleteQueries = {
 				"delete from ContractSide",
 				"delete from Contract",
@@ -97,28 +126,25 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 			
 		}
 		em.getTransaction().commit();
-		
-		em.getTransaction().begin();
-		
-		em.persist(english);
-		em.persist(ukrainian);
-		em.persist(russian);
-		
-		
-		em.persist(pva);
-		em.persist(mark);
-		em.persist(gleb);
-		
-		em.persist(isd);
 
-		em.persist(seller);
-		em.persist(buyer);
+	}
 
-		em.persist(pvaSide);
-		em.persist(isdSide);
+	private void persistProduct() {
+		// Products
+		em.persist(steelPlate);
+		em.persist(steelPlateProductNameEnglish);
+		em.persist(steelPlateNameRussian);
 		
-		em.persist(contract);
-		
+		em.persist(slab);
+		em.persist(slabProductNameEnglish);
+		em.persist(slabProductNameRussian);
+
+		em.persist(pigIron);
+		em.persist(pigIronProductNameEnglish);
+		em.persist(pigIronProductNameRussian);
+	}
+
+	private void persistProductType() {
 		// Product Types
 		em.persist(ironProduct); 
 		em.persist(ironProductTypeNameEnglish);
@@ -135,22 +161,34 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(castedProduct);
 		em.persist(castedProductTypeNameEnglish);
 		em.persist(castedProductTypeNameRussian);
+	}
+
+	private void persistContract() {
+		em.persist(pvaSide);
+		em.persist(isdSide);
 		
-		// Products
-		em.persist(steelPlate);
-		em.persist(steelPlateProductNameEnglish);
-		em.persist(steelPlateNameRussian);
-		
-		em.persist(slab);
-		em.persist(slabProductNameEnglish);
-		em.persist(slabProductNameRussian);
+		em.persist(contract);
+	}
 
-		em.persist(pigIron);
-		em.persist(pigIronProductNameEnglish);
-		em.persist(pigIronProductNameRussian);
+	private void persistSideRole() {
+		em.persist(seller);
+		em.persist(buyer);
+	}
 
-		em.getTransaction().commit();
+	private void persistEnterprise() {
+		em.persist(isd);
+	}
 
+	private void persistPerson() {
+		em.persist(pva);
+		em.persist(mark);
+		em.persist(gleb);
+	}
+
+	private void persistLanguage() {
+		em.persist(english);
+		em.persist(ukrainian);
+		em.persist(russian);
 	}
 
 	@Test 
