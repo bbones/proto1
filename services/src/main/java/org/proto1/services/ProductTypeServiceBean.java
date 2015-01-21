@@ -47,4 +47,8 @@ public class ProductTypeServiceBean implements ProductTypeService {
 		return productTypeRepository.getById(id).getProductTypeNames();
 	}
 
+	public ProductType save(ProductType productType) {
+		return productTypeRepository.save(productType);
+	}
+
 }

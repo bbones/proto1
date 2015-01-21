@@ -16,5 +16,7 @@ public interface ProductTypeService {
 	void setProductTypeRepository(ProductTypeRepository productTypeRepository);
 	int countChild(Long parentId);
 	List<ProductTypeName> getNames(Long id);
+	
+	ProductType save(ProductType productType);
 
 }

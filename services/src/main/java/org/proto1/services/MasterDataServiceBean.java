@@ -3,6 +3,7 @@ package org.proto1.services;
 import java.util.List;
 
 import org.proto1.domain.Language;
+import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,11 +24,15 @@ public class MasterDataServiceBean implements MasterDataService {
 	}
 
 	public List<Language> getRequiredLanguageList() {
-		// TODO Auto-generated method stub
-		return null;
+		return languageRepository.getRequiredLanguageList();
 	}
 
-	public String getLocalizedString(String key, Language language) {
-		return null;
+	public LocalizedStringConstant getLocalizedString(String key, Long languageId) {
+		return languageRepository.getLocalizedStringConstant(key, languageId);
 	}
+
+	public List<LocalizedStringConstant> getRequiredLocalizedStringList(String key) {
+		return languageRepository.getRequiredLocalizedStringConstantList(key);
+	}
+
 }

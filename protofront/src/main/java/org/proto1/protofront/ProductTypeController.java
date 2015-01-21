@@ -7,8 +7,10 @@ import java.util.Map;
 import org.dozer.Mapper;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
+import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.dto.ProductTypeDTO;
 import org.proto1.dto.ProductTypeNameDTO;
+import org.proto1.services.MasterDataService;
 import org.proto1.services.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductTypeController {
 	@Autowired
 	ProductTypeService pds;
+	
+	@Autowired
+	MasterDataService mds;
 
 	@Autowired
 	Mapper mapper;
@@ -53,7 +58,17 @@ public class ProductTypeController {
 	@RequestMapping(value = "getNewProductType", method = RequestMethod.POST)
 	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
 		ProductType pt = new ProductType();
-		
+		ProductType parent = pds.getNodeById(parentId);
+		pt.setParentType(parent);
+		pt = pds.save(pt);
+		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {
+			ProductTypeName pdn = new ProductTypeName();
+			pdn.setLanguage(name.getLanguage());
+			pdn.setProductType(pt);
+			pdn.setName(name.getText());
+			pt.getProductTypeNames().add(pdn);
+		}
+		pt = pds.save(pt);
 		
 		return mapper.map(pt, ProductTypeDTO.class);
 	}
