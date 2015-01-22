@@ -147,20 +147,20 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	private void persistProductType() {
 		// Product Types
 		em.persist(ironProduct); 
-		em.persist(ironProductTypeNameEnglish);
-		em.persist(ironProductTypeNameRussian);
+		// em.persist(ironProductTypeNameEnglish);
+//		em.persist(ironProductTypeNameRussian);
 		
 		em.persist(steelProduct); 
-		em.persist(steelProductTypeNameEnglish);
-		em.persist(steelProductTypeNameRussian);
+//		em.persist(steelProductTypeNameEnglish);
+//		em.persist(steelProductTypeNameRussian);
 				
 		em.persist(rolledProduct);
-		em.persist(rolledProductTypeNameEnglish);
-		em.persist(rolledProductTypeNameRussian);
+//		em.persist(rolledProductTypeNameEnglish);
+//		em.persist(rolledProductTypeNameRussian);
 		
 		em.persist(castedProduct);
-		em.persist(castedProductTypeNameEnglish);
-		em.persist(castedProductTypeNameRussian);
+//		em.persist(castedProductTypeNameEnglish);
+//		em.persist(castedProductTypeNameRussian);
 	}
 
 	private void persistContract() {

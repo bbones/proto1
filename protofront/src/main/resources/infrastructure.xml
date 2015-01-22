@@ -15,7 +15,7 @@
 	<bean id="entityManagerFactory" 
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
     	  p:dataSource-ref="dataSource"
-    	  p:persistenceXmlLocation="./WEB-INF/META-INF/persistence.xml"
+    	  p:persistenceXmlLocation="classpath:persistence.xml"
           p:persistenceUnitName="proto2">
         <property name="packagesToScan">
         	<list>

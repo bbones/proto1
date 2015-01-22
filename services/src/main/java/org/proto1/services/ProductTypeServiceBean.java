@@ -9,6 +9,8 @@ import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class ProductTypeServiceBean implements ProductTypeService {
@@ -47,6 +49,7 @@ public class ProductTypeServiceBean implements ProductTypeService {
 		return productTypeRepository.getById(id).getProductTypeNames();
 	}
 
+	@Transactional
 	public ProductType save(ProductType productType) {
 		return productTypeRepository.save(productType);
 	}
