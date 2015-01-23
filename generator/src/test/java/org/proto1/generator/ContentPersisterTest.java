@@ -55,20 +55,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	ProductType ironProduct, steelProduct, rolledProduct, castedProduct;
 	
 	@Autowired
-	ProductTypeName 
-		ironProductTypeNameEnglish, ironProductTypeNameRussian,
-		steelProductTypeNameEnglish, steelProductTypeNameRussian,
-		rolledProductTypeNameEnglish, rolledProductTypeNameRussian,
-		castedProductTypeNameEnglish, castedProductTypeNameRussian;
-	
-	@Autowired
 	Product steelPlate, slab, pigIron;
-	
-	@Autowired
-	ProductName 
-		steelPlateProductNameEnglish, steelPlateNameRussian,
-		slabProductNameEnglish, slabProductNameRussian,
-		pigIronProductNameEnglish, pigIronProductNameRussian;
 	
 	@Autowired
 	Language english, russian, ukrainian;
@@ -132,35 +119,21 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	private void persistProduct() {
 		// Products
 		em.persist(steelPlate);
-		em.persist(steelPlateProductNameEnglish);
-		em.persist(steelPlateNameRussian);
 		
 		em.persist(slab);
-		em.persist(slabProductNameEnglish);
-		em.persist(slabProductNameRussian);
 
 		em.persist(pigIron);
-		em.persist(pigIronProductNameEnglish);
-		em.persist(pigIronProductNameRussian);
 	}
 
 	private void persistProductType() {
 		// Product Types
 		em.persist(ironProduct); 
-		// em.persist(ironProductTypeNameEnglish);
-//		em.persist(ironProductTypeNameRussian);
 		
 		em.persist(steelProduct); 
-//		em.persist(steelProductTypeNameEnglish);
-//		em.persist(steelProductTypeNameRussian);
 				
 		em.persist(rolledProduct);
-//		em.persist(rolledProductTypeNameEnglish);
-//		em.persist(rolledProductTypeNameRussian);
 		
 		em.persist(castedProduct);
-//		em.persist(castedProductTypeNameEnglish);
-//		em.persist(castedProductTypeNameRussian);
 	}
 
 	private void persistContract() {

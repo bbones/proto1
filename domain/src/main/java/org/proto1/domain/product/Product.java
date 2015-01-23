@@ -3,7 +3,9 @@ package org.proto1.domain.product;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
@@ -20,8 +22,7 @@ public class Product extends AbstractEntity implements Serializable {
 	@ManyToOne
 	private ProductType productType;
 	
-	@OneToMany
-	@JoinColumn(name="PRODUCT_ID")
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="product")
 	private List<ProductName> productNames;
 	
 	public ProductType getProductType() {

@@ -1,7 +1,5 @@
 package protofront;
 
-import static org.junit.Assert.*;
-
 import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.product.ProductType;
@@ -11,8 +9,8 @@ import org.proto1.services.MasterDataService;
 import org.proto1.services.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.transaction.annotation.Transactional;
 
 @ContextConfiguration(locations = { "classpath:/META-INF/domain.xml", "classpath:/META-INF/product.xml", "classpath:applicationContext.xml" })
 public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringContextTests {
@@ -30,7 +28,8 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 		ironProductTypeNameEnglish, ironProductTypeNameRussian;
 
 	@Test
-	
+	@Ignore
+	@Transactional()
 	public void test() {
 		ProductType pt = new ProductType();
 		ProductType parent = pds.getNodeById(1L);
@@ -47,7 +46,6 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 	}
 
 	@Test
-	@Ignore
 	public void testSave() {
 		pds.save(ironProduct);
 	}
