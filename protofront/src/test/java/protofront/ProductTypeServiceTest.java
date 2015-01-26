@@ -2,9 +2,11 @@ package protofront;
 
 import org.junit.Ignore;
 import org.junit.Test;
+import org.proto1.domain.Language;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
 import org.proto1.domain.utility.LocalizedStringConstant;
+import org.proto1.repository.LanguageRepository;
 import org.proto1.services.MasterDataService;
 import org.proto1.services.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,11 +26,15 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 	ProductType ironProduct;
 	
 	@Autowired
+	LanguageRepository lr;
+	
+	@Autowired
+	Language english, russian, ukrainian;
+	@Autowired
 	ProductTypeName 
 		ironProductTypeNameEnglish, ironProductTypeNameRussian;
 
 	@Test
-	@Ignore
 	@Transactional()
 	public void test() {
 		ProductType pt = new ProductType();
@@ -46,7 +52,11 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 	}
 
 	@Test
+	@Transactional
 	public void testSave() {
+		lr.save(english);
+		lr.save(russian);
+		lr.save(ukrainian);
 		pds.save(ironProduct);
 	}
 }
