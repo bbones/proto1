@@ -2,6 +2,7 @@ package org.proto1.domain.product;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -14,7 +15,7 @@ public class ProductTypeName implements Serializable {
 	private static final long serialVersionUID = -2867768676169590444L;
 
 	@Id
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="PRODUCT_TYPE_ID")
 	private ProductType productType;
 

@@ -7,14 +7,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedAttributeNode;
-import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
 
 @Entity
-@NamedEntityGraph(name = "ProductType.productTypeNames", attributeNodes = @NamedAttributeNode("productTypeNames"))
 public class ProductType extends AbstractEntity {
 	@ManyToOne
 	private ProductType parentType;

@@ -35,6 +35,7 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 		ironProductTypeNameEnglish, ironProductTypeNameRussian;
 
 	@Test
+	@Ignore
 	@Transactional()
 	public void test() {
 		ProductType pt = new ProductType();
@@ -52,7 +53,6 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 	}
 
 	@Test
-	@Transactional
 	public void testSave() {
 		lr.save(english);
 		lr.save(russian);
