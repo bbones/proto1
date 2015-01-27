@@ -7,6 +7,7 @@ public class ProductTypeDTO extends DTO {
 
 	private Long id;
 	private Long parentId;
+	private String localizedProductName;
 	private List<ProductTypeNameDTO> productTypeNames;
 
 	public Long getId() {
@@ -31,6 +32,14 @@ public class ProductTypeDTO extends DTO {
 
 	public void setProductTypeNames(List<ProductTypeNameDTO> productTypeNames) {
 		this.productTypeNames = productTypeNames;
+	}
+
+	public String getLocalizedProductName() {
+		return localizedProductName;
+	}
+
+	public void setLocalizedProductName(String localizedProductName) {
+		this.localizedProductName = localizedProductName;
 	}
 
 }

@@ -60,15 +60,19 @@ public class ProductTypeController {
 		ProductType pt = new ProductType();
 		ProductType parent = pds.getNodeById(parentId);
 		pt.setParentType(parent);
+		String nameForSend = "Not in list";
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {
 			ProductTypeName pdn = new ProductTypeName();
 			pdn.setLanguage(name.getLanguage());
+			if(name.getLanguage().getId().equals(languageId))
+				nameForSend = name.getText();
 			pdn.setProductType(pt);
 			pdn.setName(name.getText());
 			pt.getProductTypeNames().add(pdn);
 		}
 		pt = pds.save(pt);
 		ProductTypeDTO ptDTO =  mapper.map(pt, ProductTypeDTO.class);
+		ptDTO.setLocalizedProductName(nameForSend);
 		return ptDTO;
 	}
 

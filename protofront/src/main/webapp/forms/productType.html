@@ -79,14 +79,31 @@
 	 function newNode() {
 		 var node = $('#productTypes').treegrid('getSelected');
 		 if (node){
-		     var nodes = [{
-		         "id":13,
-		         "name":"Raspberry"
-		     }];
-		     $('#productTypes').treegrid('append', {
-		         parent:node.target,
-		         data:nodes
-		     });
+			 $.ajax({
+					type : 'POST',
+					url : '/protofront/service/productType/getNewProductType',
+					data:{
+						parentId : node['id'], 
+						languageId : $('#langSelector').combobox('getValue')
+					},
+					success : function(respdata) {
+						debugger;
+						var nodes = [{
+							id : respdata['id'], 
+							name : respdata['name']
+						}]
+						$('#productTypes').treegrid('append', {
+					         parent:node.target,
+					         data :nodes,
+					     });
+					},
+					error : function(data, status, er) {
+						alert("error: " + data + " status: " + status + " er:" + er);
+					}
+
+				});
+		     
+		     
 		 }
 	 }
 	 
