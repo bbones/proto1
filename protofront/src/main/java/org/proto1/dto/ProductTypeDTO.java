@@ -7,7 +7,7 @@ public class ProductTypeDTO extends DTO {
 
 	private Long id;
 	private Long parentId;
-	private List<ProductTypeNameDTO> namesList;
+	private List<ProductTypeNameDTO> productTypeNames;
 
 	public Long getId() {
 		return id;
@@ -24,4 +24,13 @@ public class ProductTypeDTO extends DTO {
 	public void setParentId(Long parentId) {
 		this.parentId = parentId;
 	}
+
+	public List<ProductTypeNameDTO> getProductTypeNames() {
+		return productTypeNames;
+	}
+
+	public void setProductTypeNames(List<ProductTypeNameDTO> productTypeNames) {
+		this.productTypeNames = productTypeNames;
+	}
+
 }

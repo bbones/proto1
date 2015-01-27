@@ -60,7 +60,6 @@ public class ProductTypeController {
 		ProductType pt = new ProductType();
 		ProductType parent = pds.getNodeById(parentId);
 		pt.setParentType(parent);
-		pt = pds.save(pt);
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {
 			ProductTypeName pdn = new ProductTypeName();
 			pdn.setLanguage(name.getLanguage());
@@ -69,8 +68,8 @@ public class ProductTypeController {
 			pt.getProductTypeNames().add(pdn);
 		}
 		pt = pds.save(pt);
-		
-		return mapper.map(pt, ProductTypeDTO.class);
+		ProductTypeDTO ptDTO =  mapper.map(pt, ProductTypeDTO.class);
+		return ptDTO;
 	}
 
 }

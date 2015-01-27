@@ -23,4 +23,22 @@
 		</field>
 	</mapping>
 
+	<mapping>
+		<class-a>org.proto1.domain.product.ProductType</class-a>
+		<class-b>org.proto1.dto.ProductTypeDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>parentType.id</a>
+			<b>parentId</b>
+		</field>
+		
+		<field>
+			<a>productTypeNames</a>
+			<b>productTypeNames</b>
+		</field>
+	</mapping>
+
 </mappings>
