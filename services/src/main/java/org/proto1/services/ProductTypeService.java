@@ -18,5 +18,7 @@ public interface ProductTypeService {
 	List<ProductTypeName> getNames(Long id);
 	
 	ProductType save(ProductType productType);
+	void deleteProductTypeById(Long id);
+	void saveName(Long productTypeId, Long languageId, String productTypeName);
 
 }

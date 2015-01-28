@@ -4,7 +4,7 @@
 		<div data-options="iconCls:'icon-add'" onclick="newNode()">New
 			Node</div>
 		<div data-options="iconCls:'icon-remove'"
-			onclick="javascript:alert('delete')">Delete Node</div>
+			onclick="removeNode()">Delete Node</div>
 		<div data-options="iconCls:'icon-cut'"
 			onclick="javascript:alert('cut')">Cut</div>
 		<div data-options="iconCls:'icon-back'"
@@ -13,14 +13,7 @@
 
 	<table id="productTypes" title="Product Types" class="easyui-treegrid"
 		style="width: 700px; height: 300px"></table>
-	<table id="dg" class="easyui-datagrid" title="Translations"
-		style="width: 700px; height: auto"
-		data-options="
-                iconCls: 'icon-edit',
-                singleSelect: true,
-                method:'get',
-                toolbar: '#tb'
-            ">
+	<table id="edg" title="Translations" singleSelect="true" style="width: 700px; height: auto">
 		<thead>
 			<tr>
 				<th
@@ -38,11 +31,11 @@
                                 required:true
                             }
                         }">Language</th>
-				<th data-options="field:'productTypeName',width:250,editor:'text'">Product Type Name</th>
+				<th field='productTypeName' width = 250 editor="text">Product Type Name</th>
 			</tr>
 		</thead>
 	</table>
-	
+
 
 </div>
 
@@ -61,8 +54,12 @@
 						} ] ],
 						onSelect :function(data) {
 							console.log(data['id']);
-							$('#dg').datagrid({
-								url : '/protofront/service/productType/getNames/' + data['id']
+							$('#edg').edatagrid({
+								url : '/protofront/service/productType/getNames/' + data['id'],
+				             	saveUrl: 'save_user.php',
+				             	updateUrl: 'update_user.php',
+				             	destroyUrl: 'destroy_user.php'
+				 
 							});
 						},
 		                onContextMenu: function(e,row){
@@ -87,13 +84,12 @@
 						languageId : $('#langSelector').combobox('getValue')
 					},
 					success : function(respdata) {
-						debugger;
 						var nodes = [{
 							id : respdata['id'], 
-							name : respdata['name']
+							name : respdata['localizedProductName']
 						}]
 						$('#productTypes').treegrid('append', {
-					         parent:node.target,
+					         parent:node.id,
 					         data :nodes,
 					     });
 					},
@@ -108,7 +104,24 @@
 	 }
 	 
 	 function removeNode() {
-		 alert('Remove node');
+		 var node = $('#productTypes').treegrid('getSelected');
+		 if(node) {
+			 $.ajax({
+				 type: 'POST',
+				 url: '/protofront/service/productType/delete',
+				 data: {
+					 id : node['id']
+				 },
+				 success : function() {
+					 $('#productTypes').treegrid('remove', node.id);
+					 $('#dg').datagrid('loadData', [{}]);
+				 },
+				 error : function(data, status, er) {
+					alert("error: " + data + " status: " + status + " er:" + er);
+				}
+			 });
+		 }
 	 }
-
+	 
+	 $('#edg').edatagrid();
 </script>

@@ -1,25 +1,24 @@
 package org.proto1.domain.product;
 
-import java.io.Serializable;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
+import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
 
 @Entity
-public class ProductTypeName implements Serializable {
+@Table(uniqueConstraints=@UniqueConstraint(columnNames = {"productType", "language"})) 
+public class ProductTypeName extends AbstractEntity {
 	private static final long serialVersionUID = -2867768676169590444L;
 
-	@Id
 	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="PRODUCT_TYPE_ID")
 	private ProductType productType;
 
-	@Id
 	@ManyToOne
 	@JoinColumn(name="LANGUAGE_ID")
 	private Language language;

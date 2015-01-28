@@ -31,18 +31,6 @@ public class ProductTypeController {
 	@Autowired
 	Mapper mapper;
 
-	@RequestMapping(value = "getNames/{id}", method = RequestMethod.GET)
-	public List<ProductTypeNameDTO> getNames(@PathVariable Long id) {
-		List<ProductTypeNameDTO> ptNamesList = new ArrayList<ProductTypeNameDTO>();
-		for(ProductTypeName ptn : pds.getNames(id)) {
-
-			ProductTypeNameDTO ptnDTO = mapper.map(ptn, ProductTypeNameDTO.class);
-			ptNamesList.add(ptnDTO);
-			
-		}
-		return ptNamesList;
-	}
-
 	@RequestMapping(value = "getByParentTypeIdByLanguageId/{languageId}", method = RequestMethod.POST)
 	public List<Map<String, Object>> getByParentTypeIdByLanguageId(@RequestParam(required=false) Long id, @PathVariable Long languageId) {
 		List<Map<String, Object>> ptList = pds.getByParentTypeIdByLanguageId(id, languageId);
@@ -74,6 +62,29 @@ public class ProductTypeController {
 		ProductTypeDTO ptDTO =  mapper.map(pt, ProductTypeDTO.class);
 		ptDTO.setLocalizedProductName(nameForSend);
 		return ptDTO;
+	}
+
+	@RequestMapping(value = "delete", method = RequestMethod.POST)
+	public void deleteProductType(@RequestParam(required=false) Long id) {
+		pds.deleteProductTypeById(id);
+	}
+
+	@RequestMapping(value = "getNames/{id}", method = RequestMethod.POST)
+	public List<ProductTypeNameDTO> getNames(@PathVariable Long id) {
+		List<ProductTypeNameDTO> ptNamesList = new ArrayList<ProductTypeNameDTO>();
+		for(ProductTypeName ptn : pds.getNames(id)) {
+
+			ProductTypeNameDTO ptnDTO = mapper.map(ptn, ProductTypeNameDTO.class);
+			ptNamesList.add(ptnDTO);
+			
+		}
+		return ptNamesList;
+	}
+
+	@RequestMapping(value = "updateName", method = RequestMethod.POST)
+	public void updateName(@RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId, 
+			@RequestParam(required=false) String productTypeName) {
+		pds.saveName(productTypeId, languageId, productTypeName);
 	}
 
 }

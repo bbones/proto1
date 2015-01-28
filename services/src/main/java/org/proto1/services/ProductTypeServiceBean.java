@@ -54,4 +54,15 @@ public class ProductTypeServiceBean implements ProductTypeService {
 		return productTypeRepository.save(productType);
 	}
 
+	@Transactional
+	public void deleteProductTypeById(Long id) {
+		productTypeRepository.delete(id);
+	}
+
+	public void saveName(Long productTypeId, Long languageId,
+			String productTypeName) {
+		productTypeRepository.updateName()
+		
+	}
+
 }
