@@ -1,6 +1,8 @@
 package org.proto1.services;
 
 import java.util.List;
+import java.util.Map;
+
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.repository.LanguageRepository;
@@ -23,5 +25,8 @@ public interface ProductService {
 	void setLanguageRepository(LanguageRepository languageRepository);
 
 	void deleteName(Long productId, Long languageId);
+
+	List<Map<String, Object>> getListByProdTypeIdByLanguageId(
+			Long productTypeId, Long languageId);
 
 }

@@ -1,10 +1,12 @@
 package org.proto1.dto;
 
 public class ProductTypeNameDTO {
+	private Long nameId;
 	private Long productTypeId;
 	private Long languageId;
 	private String languageName;
 	private String productTypeName;
+	private Long version;
 
 	public Long getProductTypeId() {
 		return productTypeId;
@@ -36,6 +38,22 @@ public class ProductTypeNameDTO {
 
 	public void setLanguageName(String languageName) {
 		this.languageName = languageName;
+	}
+
+	public Long getVersion() {
+		return version;
+	}
+
+	public void setVersion(Long version) {
+		this.version = version;
+	}
+
+	public Long getNameId() {
+		return nameId;
+	}
+
+	public void setNameId(Long nameId) {
+		this.nameId = nameId;
 	}
 
 }

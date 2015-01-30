@@ -11,7 +11,7 @@ import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
 
 @Entity
-@Table(uniqueConstraints=@UniqueConstraint(columnNames = {"productType", "language"})) 
+@Table(uniqueConstraints=@UniqueConstraint(columnNames = {"PRODUCT_TYPE_ID", "LANGUAGE_ID"})) 
 public class ProductTypeName extends AbstractEntity {
 	private static final long serialVersionUID = -2867768676169590444L;
 

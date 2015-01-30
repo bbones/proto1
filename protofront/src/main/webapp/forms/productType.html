@@ -16,6 +16,7 @@
 	<table id="edg" title="Translations" singleSelect="true" style="width: 700px; height: auto">
 		<thead>
 			<tr>
+				<th field='nameId' width = 250 >Product Type Name Id</th>
 				<th
 					data-options="field:'languageId',width:100,
                         	formatter:function(value,row){
@@ -56,9 +57,9 @@
 							console.log(data['id']);
 							$('#edg').edatagrid({
 								url : '/protofront/service/productType/getNames/' + data['id'],
-				             	saveUrl: 'save_user.php',
-				             	updateUrl: 'update_user.php',
-				             	destroyUrl: 'destroy_user.php'
+				             	saveUrl: '/protofront/service/productType/saveName/',
+				             	updateUrl: '/protofront/service/productType/saveName/',
+				             	destroyUrl: '/protofront/service/productType/deleteName/'
 				 
 							});
 						},

@@ -2,6 +2,8 @@ package org.proto1.protofront;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.dozer.Mapper;
 import org.proto1.domain.product.Product;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
@@ -29,6 +32,13 @@ public class ProductController {
 	
 	@Autowired
 	ProductService productService;
+
+
+	@RequestMapping(value = "prodListByProdTypeIdByLanguageId/{productTypeId}&{languageId}", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String, Object>> prodListByProdTypeIdByLanguageId(@PathVariable Long productTypeId, @PathVariable Long languageId) {
+		List<Map<String, Object>> prodList = productService.getListByProdTypeIdByLanguageId(productTypeId, languageId);
+		return prodList;
+	}
 
 	@RequestMapping(value = "submit", method = RequestMethod.POST)
 	public @ResponseBody ProductDTO submit(final ProductDTO productDTO) {

@@ -19,6 +19,6 @@ public interface ProductTypeService {
 	
 	ProductType save(ProductType productType);
 	void deleteProductTypeById(Long id);
-	void saveName(Long productTypeId, Long languageId, String productTypeName);
+	void saveProductTypeName(Long id, Long productTypeId, Long languageId, String productTypeName);
 
 }

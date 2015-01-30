@@ -39,6 +39,7 @@ public class ProductTypeController {
 				pt.put("state", "closed");
 			else
 				pt.put("state", "open");
+			pt.put("text", pt.get("name")); // "text" field for EasyUI tree and combotree
 		}
 		return ptList;
 	}
@@ -81,10 +82,10 @@ public class ProductTypeController {
 		return ptNamesList;
 	}
 
-	@RequestMapping(value = "updateName", method = RequestMethod.POST)
-	public void updateName(@RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId, 
+	@RequestMapping(value = "saveName", method = RequestMethod.POST)
+	public void updateName(@RequestParam(required=false) Long nameId, @RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId, 
 			@RequestParam(required=false) String productTypeName) {
-		pds.saveName(productTypeId, languageId, productTypeName);
+		pds.saveProductTypeName(nameId, productTypeId, languageId, productTypeName);
 	}
 
 }

@@ -1,6 +1,8 @@
 package org.proto1.services;
 
 import java.util.List;
+import java.util.Map;
+
 import org.apache.log4j.Logger;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
@@ -73,6 +75,11 @@ public class ProductServiceBean implements ProductService {
 		product.getProductNames().remove(language);
 		productRepository.save(product);
 		
+	}
+
+	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(
+			Long productTypeId, Long languageId) {
+		return productRepository.getListByProdTypeIdByLanguageId(productTypeId, languageId);
 	}
 
 }

@@ -1,47 +1,76 @@
 <div style="margin: 20px 0;"></div>
-<div class="easyui-panel" title="Product" style="width:800px">
-	<div class="easyui-panel" style="padding:5px;">
+<div class="easyui-panel" title="Product" style="width: 800px">
+	<div class="easyui-panel" style="padding: 5px;">
 		<a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-add',plain:true" onclick="newProduct()">New</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-remove',plain:true"
-			onclick="removeProduct()">Remove</a> 
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-save',plain:true" onclick="acceptProduct()">Accept</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-undo',plain:true" onclick="rejectProduct()">Reject</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
+			onclick="removeProduct()">Remove</a> <a href="javascript:void(0)"
+			class="easyui-linkbutton"
+			data-options="iconCls:'icon-save',plain:true"
+			onclick="acceptProduct()">Accept</a> <a href="javascript:void(0)"
+			class="easyui-linkbutton"
+			data-options="iconCls:'icon-undo',plain:true"
+			onclick="rejectProduct()">Reject</a> <a href="javascript:void(0)"
+			class="easyui-linkbutton"
 			data-options="iconCls:'icon-search',plain:true"
 			onclick="searchProduct()">Search</a>
 	</div>
 	<div style="padding: 10px 60px 20px 60px">
 		<form id="productForm" method="post">
 
-			<table cellpadding="5">
-				<tr>
-					<td>ID:</td>
-					<td><input class="easyui-textbox" type="text" id="id"
-						name="id" data-options="required:false,validType:'id'"></input></td>
-				</tr>
-				<tr>
-					<td>Version:</td>
-					<td><input class="easyui-textbox" type="text" id="version"
-						name="version" data-options="required:false"></input></td>
-				</tr>
-			</table>
+			<h3>Select product type</h3>
+			<input id="productType" class="easyui-combotree"
+				style="width: 600px;"
+				data-options="url:'/protofront/service/productType/getByParentTypeIdByLanguageId/'
+								+ $('#langSelector').combobox('getValue')">
 
-			<table id="dg" class="easyui-datagrid"
-				title="Cell Editing in DataGrid" style="width: 700px; height: auto"
-				data-options="
-                iconCls: 'icon-edit',
-                singleSelect: true,
-                method:'get',
-                onClickRow: onClickRow,
-                toolbar: '#tb'
-            ">
+			<table id="edgProducts" title="Products" singleSelect="true"
+				style="width: 700px; height: auto">
 				<thead>
 					<tr>
-						<th	data-options="field:'languageId',width:100,
+						<th field='id' width=250>Product Id</th>
+						<th field='productTypeId' width=250 editor="text">Product
+							Type Id</th>
+						<th field='name' width=250 editor="text">Product name</th>
+					</tr>
+				</thead>
+			</table>
+
+			<script>
+				$("#productType")
+						.combotree(
+								{
+									onSelect : function(record) {
+										console.log(record);
+										var lId = $('#langSelector').combobox(
+												'getValue');
+										$("#edgProducts")
+												.edatagrid(
+														{
+															url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
+																	+ record.id
+																	+ '&' + lId,
+															saveUrl : '/protofront/service/productType/saveName/',
+															updateUrl : '/protofront/service/productType/saveName/',
+															destroyUrl : '/protofront/service/productType/deleteName/'
+
+														});
+									}
+								});
+			</script>
+			<div id="aa" class="easyui-accordion"
+				style="width: 300px; height: 200px;">
+				<div title="Additional data" data-options="iconCls:'icon-save'"
+					style="overflow: auto; padding: 10px;">
+					<h3 style="color: #0099FF;">Accordion for jQuery</h3>
+					<table id="edgNames" title="Translations" singleSelect="true"
+						style="width: 700px; height: auto">
+						<thead>
+							<tr>
+								<th field='nameId' width=250>Product Type Name Id</th>
+								<th
+									data-options="field:'languageId',width:100,
                         	formatter:function(value,row){
                             return row.languageName;
                         },
@@ -55,121 +84,17 @@
                                 required:true
                             }
                         }">Language</th>
-						<th data-options="field:'productName',width:250,editor:'text'">ProductName</th>
-					</tr>
-				</thead>
-			</table>
-			<div id="tb" style="height: auto">
-				<a href="javascript:void(0)" class="easyui-linkbutton"
-					data-options="iconCls:'icon-add',plain:true" onclick="append()">Append</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton"
-					data-options="iconCls:'icon-remove',plain:true"
-					onclick="removeit()">Remove</a> <a href="javascript:void(0)"
-					class="easyui-linkbutton"
-					data-options="iconCls:'icon-save',plain:true" onclick="accept()">Accept</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton"
-					data-options="iconCls:'icon-undo',plain:true" onclick="reject()">Reject</a>
-				<a href="javascript:void(0)" class="easyui-linkbutton"
-					data-options="iconCls:'icon-search',plain:true"
-					onclick="getChanges()">GetChanges</a>
+								<th field='productName' width=250 editor="text">Product
+									Name</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div title="Title2"
+					data-options="iconCls:'icon-reload',selected:true"
+					style="padding: 10px;">content2</div>
+				<div title="Title3">content3</div>
 			</div>
-			<script type="text/javascript">
-
-				var editIndex = undefined;
-	        	function endEditing(){
-	            	if (editIndex == undefined){return true}
-	            	if ($('#dg').datagrid('validateRow', editIndex)){
-	                	var ed = $('#dg').datagrid('getEditor', {index:editIndex,field:'languageId'});
-		                var languageName = $(ed.target).combobox('getText');
-		                $('#dg').datagrid('getRows')[editIndex]['languageName'] = languageName;
-	    	            $('#dg').datagrid('endEdit', editIndex);
-	        	        editIndex = undefined;
-	            	    return true;
-	            	} else {
-	                	return false;
-	            	}
-	        	}
-	        
-	        	function onClickRow(index){
-	            	if (editIndex != index){
-	                	if (endEditing()){
-		                    $('#dg').datagrid('selectRow', index)
-		                            .datagrid('beginEdit', index);
-	    	                editIndex = index;
-	        	        } else {
-	            	        $('#dg').datagrid('selectRow', editIndex);
-	                	}
-	            	}
-	        	}
-	        
-				function append() {
-					if (endEditing()) {
-						$('#dg').datagrid('appendRow', {});
-						editIndex = $('#dg').datagrid('getRows').length - 1;
-						$('#dg').datagrid('selectRow', editIndex).datagrid(
-								'beginEdit', editIndex);
-					}
-				}
-				function removeit() {
-					if (editIndex == undefined) {
-						return
-					}
-					
-					row = $('#dg').datagrid('getRows')[editIndex];
-					console.log(row);
-					$.ajax({
-						type : 'POST',
-						url : "/protofront/service/product/deleteName/" + $('#id').val() + ',' + row['languageId'],
-						success : function() {
-							console.log();
-						},
-						error : function(data, status, er) {
-							alert("error: " + data + " status: " + status + " er:" + er);
-						}
-						
-					});
-					
-					$('#dg').datagrid('cancelEdit', editIndex).datagrid(
-							'deleteRow', editIndex);
-					editIndex = undefined;
-				}
-				function accept() {
-					if (endEditing()) {
-						var rows = $('#dg').datagrid('getChanges');
-						var namesdata = [];
-						for (index = 0; index < rows.length; ++index) {
-						    rows[index]['productId'] = $('#id').val();
-						    namesdata[index] = rows[index];
-						}
-						jsonDATA = JSON.stringify(namesdata);
-						console.log(jsonDATA);
-						var reqURL = "/protofront/service/product/savenames";
-						$.ajax({
-							type : 'POST',
-							dataType : 'json',
-							contentType : 'application/json',
-							mimeType : 'application/json',
-							data : jsonDATA,
-							url : reqURL,
-							success : function(respdata) {
-								console.log(respdata);
-							},
-							error : function(data, status, er) {
-								alert("error: " + data + " status: " + status + " er:" + er);
-							}
-						});
-						$('#dg').datagrid('acceptChanges');
-					}
-				}
-				function reject() {
-					$('#dg').datagrid('rejectChanges');
-					editIndex = undefined;
-				}
-				function getChanges() {
-					var rows = $('#dg').datagrid('getChanges');
-					alert(rows.length + ' rows are changed!');
-				}
-			</script>
 		</form>
 
 	</div>

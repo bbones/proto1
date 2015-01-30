@@ -3,9 +3,11 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.Language;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
 import org.proto1.repository.LanguageRepository;
+import org.proto1.repository.ProductTypeNameRepository;
 import org.proto1.repository.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,9 @@ public class ProductTypeServiceBean implements ProductTypeService {
 	@Autowired
 	private ProductTypeRepository productTypeRepository;
 	
+	@Autowired
+	private ProductTypeNameRepository productTypeNameRepository;
+
 	@Autowired
 	private LanguageRepository languageRepository;
 
@@ -59,9 +64,35 @@ public class ProductTypeServiceBean implements ProductTypeService {
 		productTypeRepository.delete(id);
 	}
 
-	public void saveName(Long productTypeId, Long languageId,
+	public void saveProductTypeName(Long id, Long productTypeId, Long languageId,
 			String productTypeName) {
-		productTypeRepository.updateName()
+		ProductTypeName ptn;
+		if(id != null) { // Existing name
+			ptn = productTypeNameRepository.findOne(id);
+			if (ptn == null) // Wrong id
+				return;
+			if (!ptn.getProductType().getId().equals(productTypeId)) { //ProductType updated
+				ProductType pt = productTypeRepository.findOne(productTypeId);
+				ptn.setProductType(pt);
+				
+			}
+			if (!ptn.getLanguage().getId().equals(languageId)) { // Language updated
+				Language language = languageRepository.findOne(languageId);
+				ptn.setLanguage(language);
+				
+			}
+			if (!ptn.getName().equals(productTypeName)) { //Name updated
+				ptn.setName(productTypeName);
+			}
+		} else { // New name
+			ptn = new ProductTypeName();
+			ProductType pt = productTypeRepository.findOne(productTypeId);
+			ptn.setProductType(pt);
+			Language language = languageRepository.findOne(languageId);
+			ptn.setLanguage(language);
+			ptn.setName(productTypeName);
+		}
+		productTypeNameRepository.save(ptn);
 		
 	}
 

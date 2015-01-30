@@ -5,6 +5,10 @@
 		<class-a>org.proto1.domain.product.ProductTypeName</class-a>
 		<class-b>org.proto1.dto.ProductTypeNameDTO</class-b>
 		<field>
+			<a>id</a>
+			<b>nameId</b>
+		</field>
+		<field>
 			<a>productType.id</a>
 			<b>productTypeId</b>
 		</field>
