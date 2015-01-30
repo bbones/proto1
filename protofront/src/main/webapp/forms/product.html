@@ -30,40 +30,33 @@
 				<thead>
 					<tr>
 						<th field='id' width=250>Product Id</th>
-						<th field='productTypeId' width=250 editor="text">Product
-							Type Id</th>
 						<th field='name' width=250 editor="text">Product name</th>
 					</tr>
 				</thead>
 			</table>
 
 			<script>
-				$("#productType")
-						.combotree(
-								{
-									onSelect : function(record) {
-										console.log(record);
-										var lId = $('#langSelector').combobox(
-												'getValue');
-										$("#edgProducts")
-												.edatagrid(
-														{
-															url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-																	+ record.id
-																	+ '&' + lId,
-															saveUrl : '/protofront/service/productType/saveName/',
-															updateUrl : '/protofront/service/productType/saveName/',
-															destroyUrl : '/protofront/service/productType/deleteName/'
-
-														});
-									}
+				$("#productType").combotree({
+					onSelect : function(record) {
+						console.log(record);
+						var lId = $('#langSelector').combobox('getValue');
+						$("#edgProducts").edatagrid({
+							url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
+										+ record.id + '&' + lId,
+							onSelect : function(index,row) {
+								console.log(row);
+								$("#edgNames").edatagrid({
+									url : '/protofront/service/product/getNames/' + row.id 
 								});
+							}
+						});
+					}
+				});
 			</script>
 			<div id="aa" class="easyui-accordion"
-				style="width: 300px; height: 200px;">
-				<div title="Additional data" data-options="iconCls:'icon-save'"
+				style="width: 600px; height: 200px;">
+				<div title="Translations" data-options="iconCls:'icon-save',selected:true"
 					style="overflow: auto; padding: 10px;">
-					<h3 style="color: #0099FF;">Accordion for jQuery</h3>
 					<table id="edgNames" title="Translations" singleSelect="true"
 						style="width: 700px; height: auto">
 						<thead>
@@ -71,30 +64,32 @@
 								<th field='nameId' width=250>Product Type Name Id</th>
 								<th
 									data-options="field:'languageId',width:100,
-                        	formatter:function(value,row){
-                            return row.languageName;
-                        },
-                        editor:{
-                            type:'combobox',
-                            options:{
-                                valueField:'id',
-                                textField:'name',
-                                method:'get',
-                                url:'/protofront/service/masterdata/languagelist',
-                                required:true
-                            }
-                        }">Language</th>
+                        			formatter:function(value,row){
+                            			return row.languageName;
+                        			},
+                       				editor:{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/masterdata/languagelist',
+			                                required:true
+			                            }
+                        			}">Language</th>
 								<th field='productName' width=250 editor="text">Product
 									Name</th>
 							</tr>
 						</thead>
 					</table>
+					<script>
+						$("#edgNames").edatagrid();
+					</script>
 				</div>
-				<div title="Title2"
-					data-options="iconCls:'icon-reload',selected:true"
+				<div title="Parameters template"
+					data-options="iconCls:'icon-reload'"
 					style="padding: 10px;">content2</div>
-				<div title="Title3">content3</div>
-			</div>
+				</div>
 		</form>
 
 	</div>
