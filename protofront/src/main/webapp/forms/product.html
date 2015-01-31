@@ -111,24 +111,16 @@
 		});
 	}
 	function newProduct() {
-		 var node = $('#productTypes').treegrid('getSelected');
+		debugger;
+		var ptId = $('#productType').combotree('getValue');
 		 if (node){
 			 $.ajax({
 					type : 'POST',
 					url : '/protofront/service/productType/getNewProductType',
 					data:{
-						parentId : node['id'], 
 						languageId : $('#langSelector').combobox('getValue')
 					},
 					success : function(respdata) {
-						var nodes = [{
-							id : respdata['id'], 
-							name : respdata['localizedProductName']
-						}]
-						$('#productTypes').treegrid('append', {
-					         parent:node.id,
-					         data :nodes,
-					     });
 					},
 					error : function(data, status, er) {
 						alert("error: " + data + " status: " + status + " er:" + er);
@@ -138,7 +130,6 @@
 		     
 		     
 		 }
-		$('#edgProducts').edatagrid('addRow');
 	}
 	
 	function searchProduct() {
