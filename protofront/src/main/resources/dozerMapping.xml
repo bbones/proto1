@@ -44,5 +44,32 @@
 			<b>productTypeNames</b>
 		</field>
 	</mapping>
+	
+	<mapping>
+		<class-a>org.proto1.domain.product.ProductName</class-a>
+		<class-b>org.proto1.dto.ProductNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>nameId</b>
+		</field>
+
+		<field>
+			<a>product.id</a>
+			<b>productId</b>
+		</field>
+		
+		<field>
+			<a>language.id</a>
+			<b>languageId</b>
+		</field>
+		<field>
+			<a>language.name</a>
+			<b>languageName</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>productName</b>
+		</field>
+	</mapping>
 
 </mappings>

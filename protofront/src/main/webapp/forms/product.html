@@ -26,7 +26,7 @@
 								+ $('#langSelector').combobox('getValue')">
 
 			<table id="edgProducts" title="Products" singleSelect="true"
-				style="width: 700px; height: auto">
+				style="width: 600px; height: auto">
 				<thead>
 					<tr>
 						<th field='id' width=250>Product Id</th>
@@ -46,7 +46,7 @@
 							onSelect : function(index,row) {
 								console.log(row);
 								$("#edgNames").edatagrid({
-									url : '/protofront/service/product/getNames/' + row.id 
+									url : '/protofront/service/product/names/' + row.id 
 								});
 							}
 						});
@@ -111,8 +111,36 @@
 		});
 	}
 	function newProduct() {
-		$('#productForm').form('clear');
+		 var node = $('#productTypes').treegrid('getSelected');
+		 if (node){
+			 $.ajax({
+					type : 'POST',
+					url : '/protofront/service/productType/getNewProductType',
+					data:{
+						parentId : node['id'], 
+						languageId : $('#langSelector').combobox('getValue')
+					},
+					success : function(respdata) {
+						var nodes = [{
+							id : respdata['id'], 
+							name : respdata['localizedProductName']
+						}]
+						$('#productTypes').treegrid('append', {
+					         parent:node.id,
+					         data :nodes,
+					     });
+					},
+					error : function(data, status, er) {
+						alert("error: " + data + " status: " + status + " er:" + er);
+					}
+
+				});
+		     
+		     
+		 }
+		$('#edgProducts').edatagrid('addRow');
 	}
+	
 	function searchProduct() {
 		$('#productForm').form('load',
 				'/protofront/service/product/findByID/' + $('#id').val());

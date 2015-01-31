@@ -23,4 +23,22 @@
 		<property name="text" value="Новий тип продукції" />
 	</bean>
 	
+	<bean id="defaultEnglishProductName" class="org.proto1.domain.utility.LocalizedStringConstant">
+		<property name="key" value="productName" />
+		<property name="language" ref="english" />
+		<property name="text" value="New Product" />
+	</bean>
+
+	<bean id="defaultRussianProductName" class="org.proto1.domain.utility.LocalizedStringConstant">
+		<property name="key" value="productName" />
+		<property name="language" ref="russian" />
+		<property name="text" value="Новый продукт" />
+	</bean>
+	
+	<bean id="defaultUkrainianProductName" class="org.proto1.domain.utility.LocalizedStringConstant">
+		<property name="key" value="productName" />
+		<property name="language" ref="ukrainian" />
+		<property name="text" value="Новий продукт" />
+	</bean>
+	
 </beans>

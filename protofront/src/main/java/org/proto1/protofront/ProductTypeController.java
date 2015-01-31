@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/productType")
 public class ProductTypeController {
 	@Autowired
-	ProductTypeService pds;
+	ProductTypeService pts;
 	
 	@Autowired
 	MasterDataService mds;
@@ -33,9 +33,9 @@ public class ProductTypeController {
 
 	@RequestMapping(value = "getByParentTypeIdByLanguageId/{languageId}", method = RequestMethod.POST)
 	public List<Map<String, Object>> getByParentTypeIdByLanguageId(@RequestParam(required=false) Long id, @PathVariable Long languageId) {
-		List<Map<String, Object>> ptList = pds.getByParentTypeIdByLanguageId(id, languageId);
+		List<Map<String, Object>> ptList = pts.getByParentTypeIdByLanguageId(id, languageId);
 		for(Map<String, Object> pt : ptList) {
-			if (pds.countChild((Long)pt.get("id")) > 0)
+			if (pts.countChild((Long)pt.get("id")) > 0)
 				pt.put("state", "closed");
 			else
 				pt.put("state", "open");
@@ -47,7 +47,7 @@ public class ProductTypeController {
 	@RequestMapping(value = "getNewProductType", method = RequestMethod.POST)
 	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
 		ProductType pt = new ProductType();
-		ProductType parent = pds.getNodeById(parentId);
+		ProductType parent = pts.getNodeById(parentId);
 		pt.setParentType(parent);
 		String nameForSend = "Not in list";
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {
@@ -59,7 +59,7 @@ public class ProductTypeController {
 			pdn.setName(name.getText());
 			pt.getProductTypeNames().add(pdn);
 		}
-		pt = pds.save(pt);
+		pt = pts.save(pt);
 		ProductTypeDTO ptDTO =  mapper.map(pt, ProductTypeDTO.class);
 		ptDTO.setLocalizedProductName(nameForSend);
 		return ptDTO;
@@ -67,13 +67,13 @@ public class ProductTypeController {
 
 	@RequestMapping(value = "delete", method = RequestMethod.POST)
 	public void deleteProductType(@RequestParam(required=false) Long id) {
-		pds.deleteProductTypeById(id);
+		pts.deleteProductTypeById(id);
 	}
 
 	@RequestMapping(value = "getNames/{id}", method = RequestMethod.POST)
 	public List<ProductTypeNameDTO> getNames(@PathVariable Long id) {
 		List<ProductTypeNameDTO> ptNamesList = new ArrayList<ProductTypeNameDTO>();
-		for(ProductTypeName ptn : pds.getNames(id)) {
+		for(ProductTypeName ptn : pts.getNames(id)) {
 
 			ProductTypeNameDTO ptnDTO = mapper.map(ptn, ProductTypeNameDTO.class);
 			ptNamesList.add(ptnDTO);
@@ -85,7 +85,7 @@ public class ProductTypeController {
 	@RequestMapping(value = "saveName", method = RequestMethod.POST)
 	public void updateName(@RequestParam(required=false) Long nameId, @RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId, 
 			@RequestParam(required=false) String productTypeName) {
-		pds.saveProductTypeName(nameId, productTypeId, languageId, productTypeName);
+		pts.saveProductTypeName(nameId, productTypeId, languageId, productTypeName);
 	}
 
 }

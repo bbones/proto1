@@ -6,6 +6,7 @@ public class ProductNameDTO extends DTO {
 
 	private static final long serialVersionUID = -1360674151528992261L;
 
+	private Long nameId;
 	private Long productId;
 	private Long languageId;
 	private String languageName;
@@ -62,6 +63,14 @@ public class ProductNameDTO extends DTO {
 
 	public void setProductId(Long productId) {
 		this.productId = productId;
+	}
+
+	public Long getNameId() {
+		return nameId;
+	}
+
+	public void setNameId(Long nameId) {
+		this.nameId = nameId;
 	}
 
 }

@@ -29,4 +29,6 @@ public interface ProductService {
 	List<Map<String, Object>> getListByProdTypeIdByLanguageId(
 			Long productTypeId, Long languageId);
 
+	List<ProductName> getNamesList(Long productId);
+
 }

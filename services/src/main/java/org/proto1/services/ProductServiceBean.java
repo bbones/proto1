@@ -8,6 +8,7 @@ import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.repository.LanguageRepository;
+import org.proto1.repository.ProductNameRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,9 @@ public class ProductServiceBean implements ProductService {
 	
 	@Autowired
 	private ProductRepository productRepository;
+
+	@Autowired
+	private ProductNameRepository productNameRepository;
 
 	@Autowired
 	private LanguageRepository languageRepository;
@@ -80,6 +84,10 @@ public class ProductServiceBean implements ProductService {
 	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(
 			Long productTypeId, Long languageId) {
 		return productRepository.getListByProdTypeIdByLanguageId(productTypeId, languageId);
+	}
+
+	public List<ProductName> getNamesList(Long productId) {
+		return productNameRepository.findByProductId(productId);
 	}
 
 }
