@@ -96,31 +96,25 @@
 </div>
 
 <script>
-	function acceptProduct() {
-		$('#productForm').form('submit', {
-			url : "/protofront/service/product/submit",
-			onSubmit : function() {
-				// do some check
-				// return false to prevent submit;
-			},
-			success : function(data) {
-				var jo = JSON.parse(data);
-				console.log(jo);
-				$('#productForm').form('load', jo);
-			}
-		});
-	}
 	function newProduct() {
 		debugger;
 		var ptId = $('#productType').combotree('getValue');
-		 if (node){
+		if (ptId){
 			 $.ajax({
 					type : 'POST',
-					url : '/protofront/service/productType/getNewProductType',
+					url : '/protofront/service/product/getNewProduct',
 					data:{
+						productTypeId : ptId,
 						languageId : $('#langSelector').combobox('getValue')
 					},
 					success : function(respdata) {
+						$("#edgProducts").edatagrid(
+							'addRow',{
+								row:{
+									id:respdata['id'],
+									name:respdata['localizedProductName']
+								}
+						});
 					},
 					error : function(data, status, er) {
 						alert("error: " + data + " status: " + status + " er:" + er);
@@ -129,16 +123,7 @@
 				});
 		     
 		     
-		 }
+		}
 	}
 	
-	function searchProduct() {
-		$('#productForm').form('load',
-				'/protofront/service/product/findByID/' + $('#id').val());
-
-		$('#dg').datagrid({
-			url : '/protofront/service/product/names/' + $('#id').val()
-		});
-
-	}
 </script>

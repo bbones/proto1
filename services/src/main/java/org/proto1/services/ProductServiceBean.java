@@ -41,6 +41,7 @@ public class ProductServiceBean implements ProductService {
 		return product;
 	}
 
+	@Transactional
 	public Product save(Product product) {
 		return productRepository.save(product);
 	}
