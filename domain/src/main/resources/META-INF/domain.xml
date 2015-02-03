@@ -107,4 +107,16 @@
 		</property>
 	</bean>
 	
+	<bean id="metricTonn" class="org.proto1.domain.DimensionUnit">
+	
+	</bean>
+	
+	<bean id="cubicMeter" class="org.proto1.domain.DimensionUnit">
+	
+	</bean>
+
+	<bean id="kg" class="org.proto1.domain.DimensionUnit">
+	
+	</bean>
+
 </beans>

@@ -5,97 +5,255 @@
 
 	<import resource="domain.xml" />
 	<!-- Product Types -->
-	<!-- ironProduct -->
-	<bean id="ironProduct" class="org.proto1.domain.product.ProductType">
+	<!-- Raw material -->
+	<!-- Coke -->
+	<bean id="cokeProduct" class="org.proto1.domain.product.ProductType">
 		<property name="productTypeNames">
 			<list>
-				<ref bean = "ironProductTypeNameEnglish"/>
-				<ref bean = "ironProductTypeNameRussian"/>
+				<bean id="cokeProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Coke product" />
+				</bean>
+			
+				<bean id="cokeProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Коксохимическая продукция" />
+				</bean>
+			
+				<bean id="cokeProductTypeNameUkrainian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Коксохімічна продукція" />
+				</bean>
+
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="ironProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="ironProduct" />
-		<property name="language" ref="english" />
-		<property name="name" value="Iron product" />
-	</bean>
+	<bean id="cokeMainProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="cokeProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean id="cokeMainProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeMainProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Coke Main Product" />
+				</bean>
+			
+				<bean id="cokeMainProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeMainProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Основная коксохимическая продукция" />
+				</bean>
+				
+				<bean id="cokeMainProductTypeNameUkrainian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeMainProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Основна коксохімічна продукція" />
+				</bean>
 
-	<bean id="ironProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="ironProduct" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Продукция из черных металлов" />
+			</list>
+		</property>
 	</bean>
+	
+
+	<bean id="cokeByProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="cokeProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean id="cokeByProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeByProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Coke by product" />
+				</bean>
+			
+				<bean id="cokeByProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeByProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Побочная коксохимическая продукция" />
+				</bean>
+			
+				<bean id="cokeByProductTypeNameUkrainian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="cokeByProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Побічна коксохімічна продукція" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+
+	<!-- Ore -->
+	<bean id="iormProduct" class="org.proto1.domain.product.ProductType">
+		<property name="productTypeNames">
+			<list>
+				<bean id="iormProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="iormProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Iron Ore Raw Materials" />
+				</bean>
+			
+				<bean id="iormProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="iormProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Железорудная продукция" />
+				</bean>
+			
+				<bean id="iormProductTypeNameUkrainian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="iormProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Залізорудна продукція" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Non Agglomerated Ore -->
+	<bean id="nonAgglomeratedIORM" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="iormProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean id="nonAgglomeratedIORMProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="nonAgglomeratedIORM" />
+					<property name="language" ref="english" />
+					<property name="name" value="Non agglomerated IORM" />
+				</bean>
+			
+				<bean id="nonAgglomeratedIORMProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="nonAgglomeratedIORM" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Неагломерированое ЖРС" />
+				</bean>
+			
+				<bean id="nonAgglomeratedIORMProductTypeNameUkrainian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="nonAgglomeratedIORM" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Неагломерована залізорудна сировина" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- Agglomerated Ore -->
+	<bean id="agglomeratedIORM" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="iormProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean id="agglomeratedOreProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="agglomeratedIORM" />
+					<property name="language" ref="english" />
+					<property name="name" value="Agglomerated IORM" />
+				</bean>
+			
+				<bean id="agglomeratedOreProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="agglomeratedIORM" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Агломерированое ЖРС" />
+				</bean>
+			
+				<bean id="agglomeratedOreProductTypeNameUkrainian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="agglomeratedIORM" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Агломерована залізорудна сировина" />
+				</bean>
+	
+			</list>
+		</property>
+	</bean>
+	
+	
+	
+	<!-- ironProduct -->
+	<bean id="ironProduct" class="org.proto1.domain.product.ProductType">
+		<property name="productTypeNames">
+			<list>
+				<bean id="ironProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="ironProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Iron product" />
+				</bean>
+			
+				<bean id="ironProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="ironProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Продукция из черных металлов" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 
 	<!-- steelProduct -->
 	<bean id="steelProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="ironProduct" />
 		<property name="productTypeNames">
 			<list>
-				<ref bean = "steelProductTypeNameEnglish"/>
-				<ref bean = "steelProductTypeNameRussian"/>
+				<bean id="steelProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="steelProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Steel product" />
+				</bean>
+			
+				<bean id="steelProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="steelProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Продукция из стали" />
+				</bean>
+
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="steelProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="steelProduct" />
-		<property name="language" ref="english" />
-		<property name="name" value="Steel product" />
-	</bean>
-
-	<bean id="steelProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="steelProduct" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Продукция из стали" />
-	</bean>
-
 	<!-- rolledProduct -->
 	<bean id="rolledProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="steelProduct" />
 		<property name="productTypeNames">
 			<list>
-				<ref bean = "rolledProductTypeNameEnglish"/>
-				<ref bean = "rolledProductTypeNameRussian"/>
+				<bean id="rolledProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="rolledProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Rolled product" />
+				</bean>
+			
+				<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="rolledProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Прокат черных металлов" />
+				</bean>
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="rolledProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="rolledProduct" />
-		<property name="language" ref="english" />
-		<property name="name" value="Rolled product" />
-	</bean>
-
-	<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="rolledProduct" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Прокат черных металлов" />
-	</bean>
 
 	<!-- castedProduct -->
 	<bean id="castedProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="steelProduct" />
 		<property name="productTypeNames">
 			<list>
-				<ref bean = "castedProductTypeNameEnglish"/>
-				<ref bean = "castedProductTypeNameRussian"/>
+				<bean id="castedProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="castedProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Casted product" />
+				</bean>
+			
+				<bean id="castedProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="castedProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Литые стальные продукты" />
+				</bean>
+
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="castedProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="castedProduct" />
-		<property name="language" ref="english" />
-		<property name="name" value="Casted product" />
-	</bean>
-
-	<bean id="castedProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
-		<property name="productType" ref="castedProduct" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Литые стальные продукты" />
-	</bean>
-
 	<!-- Products -->
 	<!-- Steel Plate -->
 	<bean id="steelPlate" class="org.proto1.domain.product.Product">
@@ -103,86 +261,335 @@
 		<property name="productType" ref="rolledProduct"/>
 		<property name="productNames">
 			<list>
-				<ref bean = "steelPlateProductNameEnglish"/>
-				<ref bean = "steelPlateNameRussian"/>
+				<bean id="steelPlateProductNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="steelPlate" />
+					<property name="language" ref="english" />
+					<property name="name" value="Steel plate" />
+				</bean>
+			
+				<bean id="steelPlateNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="steelPlate" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Плита стальная" />
+				</bean>
+
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="steelPlateProductNameEnglish" class="org.proto1.domain.product.ProductName">
-		<property name="product" ref="steelPlate" />
-		<property name="language" ref="english" />
-		<property name="name" value="Steel plate" />
-	</bean>
-
-	<bean id="steelPlateNameRussian" class="org.proto1.domain.product.ProductName">
-		<property name="product" ref="steelPlate" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Плита стальная" />
-	</bean>
-
 	<!-- Slab -->
 	<bean id="slab" class="org.proto1.domain.product.Product">
 		<property name="id" value="2"/>
 		<property name="productType" ref="castedProduct"/>
 		<property name="productNames">
 			<list>
-				<ref bean = "slabProductNameEnglish"/>
-				<ref bean = "slabProductNameRussian"/>
+				<bean id="slabProductNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="slab" />
+					<property name="language" ref="english" />
+					<property name="name" value="Slab" />
+				</bean>
+			
+				<bean id="slabProductNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="slab" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Сляб" />
+				</bean>
+
 			</list>
 		</property>
 	</bean>
 	
-	<bean id="slabProductNameEnglish" class="org.proto1.domain.product.ProductName">
-		<property name="product" ref="slab" />
-		<property name="language" ref="english" />
-		<property name="name" value="Slab" />
-	</bean>
-
-	<bean id="slabProductNameRussian" class="org.proto1.domain.product.ProductName">
-		<property name="product" ref="slab" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Сляб" />
-	</bean>
-
 	<!-- Pig Iron -->
 	<bean id="pigIron" class="org.proto1.domain.product.Product">
 		<property name="id" value="3"/>
 		<property name="productType" ref="ironProduct"/>
 		<property name="productNames">
 			<list>
-				<ref bean = "pigIronProductNameEnglish"/>
-				<ref bean = "pigIronProductNameRussian"/>
+				<bean id="pigIronProductNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="pigIron" />
+					<property name="language" ref="english" />
+					<property name="name" value="Pig Iron" />
+				</bean>
+			
+				<bean id="pigIronProductNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="pigIron" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Чугун" />
+				</bean>
 			</list>
 		</property>
 	</bean>
 
-	<bean id="pigIronProductNameEnglish" class="org.proto1.domain.product.ProductName">
-		<property name="product" ref="pigIron" />
-		<property name="language" ref="english" />
-		<property name="name" value="Pig Iron" />
+
+	<!-- Coke Products -->
+	<bean id="coke" class="org.proto1.domain.product.Product">
+		<property name="id" value="4"/>
+		<property name="productType" ref="cokeMainProduct"/>
+		<property name="productNames">
+			<list>
+				<bean id="cokeProductNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="coke" />
+					<property name="language" ref="english" />
+					<property name="name" value="Coke" />
+				</bean>
+			
+				<bean id="cokeProductNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="coke" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Кокс" />
+				</bean>
+			
+				<bean id="cokeProductNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="coke" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Кокс" />
+				</bean>
+			</list>
+		</property>
 	</bean>
 
-	<bean id="pigIronProductNameRussian" class="org.proto1.domain.product.ProductName">
-		<property name="product" ref="pigIron" />
-		<property name="language" ref="russian" />
-		<property name="name" value="Чугун" />
+
+
+	<bean id="cokeBreese" class="org.proto1.domain.product.Product">
+		<property name="id" value="5"/>
+		<property name="productType" ref="cokeMainProduct"/>
+		<property name="productNames">
+			<list>
+				<bean id="cokeBreeseNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="cokeBreese" />
+					<property name="language" ref="english" />
+					<property name="name" value="Coke breese" />
+				</bean>
+			
+				<bean id="cokeBreeseNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="cokeBreese" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Коксовая мелочь" />
+				</bean>
+			
+				<bean id="cokeBreeseNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="cokeBreese" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Коксовий дріб'язок" />
+				</bean>
+			</list>
+		</property>
 	</bean>
 
+
+
+	<bean id="coalTar" class="org.proto1.domain.product.Product">
+		<property name="id" value="6"/>
+		<property name="productType" ref="cokeByProduct"/>
+		<property name="productNames">
+			<list>
+				<bean id="coalTarNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="coalTar" />
+					<property name="language" ref="english" />
+					<property name="name" value="Coal tar" />
+				</bean>
+			
+				<bean id="coalTarNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="coalTar" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Каменноугольная смола" />
+				</bean>
+			
+				<bean id="coalTarNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="coalTar" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Кам'яновугільна смола" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	
+	<!-- IORM Products -->
+	<bean id="ironOreConcentrate" class="org.proto1.domain.product.Product">
+		<property name="id" value="7"/>
+		<property name="productType" ref="nonAgglomeratedIORM"/>
+		<property name="productNames">
+			<list>
+				<bean id="ironOreConcentrateNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOreConcentrate" />
+					<property name="language" ref="english" />
+					<property name="name" value="Iron ore concentrate" />
+				</bean>
+			
+				<bean id="ironOreConcentrateNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOreConcentrate" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Железорудный концентрат" />
+				</bean>
+			
+				<bean id="ironOreConcentrateNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOreConcentrate" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Залізорудний концентрат" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="ironOre" class="org.proto1.domain.product.Product">
+		<property name="id" value="8"/>
+		<property name="productType" ref="nonAgglomeratedIORM"/>
+		<property name="productNames">
+			<list>
+				<bean id="ironOreNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOre" />
+					<property name="language" ref="english" />
+					<property name="name" value="Iron ore" />
+				</bean>
+			
+				<bean id="ironOreNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOre" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Железная руда" />
+				</bean>
+			
+				<bean id="ironOreNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOre" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Залізна руда" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="ironOrePellet" class="org.proto1.domain.product.Product">
+		<property name="id" value="8"/>
+		<property name="productType" ref="agglomeratedIORM"/>
+		<property name="productNames">
+			<list>
+				<bean id="ironOrePelletNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOrePellet" />
+					<property name="language" ref="english" />
+					<property name="name" value="Iron ore pellet" />
+				</bean>
+			
+				<bean id="ironOrePelletNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOrePellet" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Железорудные окатыши" />
+				</bean>
+			
+				<bean id="ironOrePelletNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOrePellet" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Залізорудні окатиші" />
+				</bean>
+	
+			</list>
+		</property>
+	</bean>
+
+	
+	<bean id="ironOreSinter" class="org.proto1.domain.product.Product">
+		<property name="id" value="8"/>
+		<property name="productType" ref="agglomeratedIORM"/>
+		<property name="productNames">
+			<list>
+				<bean id="ironOreSinterNameEnglish" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOreSinter" />
+					<property name="language" ref="english" />
+					<property name="name" value="Iron ore sinter" />
+				</bean>
+				<bean id="ironOreSinterNameRussian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOreSinter" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Агломерат" />
+				</bean>
+				<bean id="ironOreSinterNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="ironOreSinter" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Агломерат" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- Parameters -->
 	<bean id="gradeOfSteel" class="org.proto1.domain.product.Parameter">
 		<property name="id" value="1" />
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean id="gradeOfSteelEnglish" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Grade of steel" />
+				</bean>
+			
+				<bean id="gradeOfSteelRussian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Марка стали" />
+				</bean>
+			</list>
+		</property>
 	</bean>	
 	
-	<bean id="gradeOfSteelEnglish" class="org.proto1.domain.product.ParameterName">
-		<property name="parameter" ref="gradeOfSteel"/>
-		<property name="language" ref="english" />
-		<property name="name" value="Grade of steel" />
-	</bean>
 
-	<bean id="gradeOfSteelRussian" class="org.proto1.domain.product.ParameterName">
-		<property name="parameter" ref="gradeOfSteel"/>
-		<property name="language" ref="russian" />
-		<property name="name" value="Марка стали" />
-	</bean>
-
+	<bean id="gradeOfCoke" class="org.proto1.domain.product.Parameter">
+		<property name="id" value="2" />
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean id="gradeOfCokeEnglish" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Grade of coke" />
+				</bean>
+			
+				<bean id="gradeOfCokeRussian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Марка кокса" />
+				</bean>
+			
+				<bean id="gradeOfCokeUkrainian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Марка коксу" />
+				</bean>
+			</list>
+		</property>
+	</bean>	
+	
+	
+	<bean id="ironContent" class="org.proto1.domain.product.Parameter">
+		<property name="id" value="3" />
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean id="ironContentEnglish" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="ironContent"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Iron content" />
+				</bean>
+			
+				<bean id="ironContentRussian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="ironContent"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Содержание железа" />
+				</bean>
+			
+				<bean id="ironContentUkrainian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="ironContent"/>
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Вміст заліза" />
+				</bean>
+		
+			
+			</list>
+		</property>
+	</bean>	
+	
+	
 </beans>

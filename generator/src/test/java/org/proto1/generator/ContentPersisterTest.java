@@ -11,6 +11,7 @@ import javax.persistence.Query;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.proto1.domain.Contract;
@@ -19,6 +20,7 @@ import org.proto1.domain.Enterprise;
 import org.proto1.domain.Language;
 import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
+import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.utility.LocalizedStringConstant;
@@ -50,10 +52,20 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Contract contract;
 	
 	@Autowired
-	ProductType ironProduct, steelProduct, rolledProduct, castedProduct;
+	ProductType 
+		ironProduct, steelProduct, rolledProduct, castedProduct,
+			cokeProduct, cokeMainProduct, cokeByProduct,
+				iormProduct, nonAgglomeratedIORM, agglomeratedIORM;
 	
 	@Autowired
-	Product steelPlate, slab, pigIron;
+	Product 
+		steelPlate, slab, pigIron,
+		coke, cokeBreese, coalTar,
+		ironOreConcentrate, ironOre, ironOrePellet, ironOreSinter;
+	
+	@Autowired
+	Parameter
+		gradeOfSteel, gradeOfCoke, ironContent;
 	
 	@Autowired
 	Language english, russian, ukrainian;
@@ -70,8 +82,6 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		emf = Persistence.createEntityManagerFactory("proto1", properties);	
 		em = emf.createEntityManager();
 		
-		// deleteEntities();
-		
 		em.getTransaction().begin();
 		
 		
@@ -82,10 +92,24 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistContract();
 		persistProductType();
 		persistProduct();
+		persistParameters();
 		persistLocalizedStringConstant();
 
 		em.getTransaction().commit();
 
+	}
+	
+	@After
+	public void tearDown() {
+		em.close();
+		emf.close();
+	}
+
+	private void persistParameters() {
+		em.persist(gradeOfSteel);
+		em.persist(gradeOfCoke);
+		em.persist(ironContent);
+		
 	}
 
 	private void persistLocalizedStringConstant() {
@@ -94,33 +118,20 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(defaultUkrainianProductType);
 	}
 
-	private void deleteEntities() {
-		String[] deleteQueries = {
-				"delete from ContractSide",
-				"delete from Contract",
-				"delete from Person",
-				"delete from Enterprise",
-				"delete from Product",
-				"delete from Language"
-		};
-
-		em.getTransaction().begin();
-		for (String string : deleteQueries) {
-			Query q1 = em.createQuery(string);
-			q1.executeUpdate();
-			
-		}
-		em.getTransaction().commit();
-
-	}
-
 	private void persistProduct() {
 		// Products
 		em.persist(steelPlate);
-		
 		em.persist(slab);
-
 		em.persist(pigIron);
+		
+		em.persist(coke);
+		em.persist(cokeBreese);
+		em.persist(coalTar);
+		
+		em.persist(ironOreConcentrate);
+		em.persist(ironOre);
+		em.persist(ironOrePellet);
+		em.persist(ironOreSinter);
 	}
 
 	private void persistProductType() {
@@ -132,6 +143,14 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(rolledProduct);
 		
 		em.persist(castedProduct);
+		
+		em.persist(cokeProduct);
+		em.persist(cokeMainProduct);
+		em.persist(cokeByProduct);
+		
+		em.persist(iormProduct);
+		em.persist(nonAgglomeratedIORM);
+		em.persist(agglomeratedIORM);
 	}
 
 	private void persistContract() {
@@ -172,8 +191,6 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		for (Object object : result) {
 			logger.debug(object);
 		}
-		
-		emf.close();
 		
 	}
 }
