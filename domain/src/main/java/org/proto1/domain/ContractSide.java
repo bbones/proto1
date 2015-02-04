@@ -1,20 +1,13 @@
 package org.proto1.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class ContractSide {
+public class ContractSide extends AbstractEntity {
 	
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private Long contractSideId;
-
 	@ManyToOne
 	@JoinColumn(name="contract_id")
 	private Contract contract;

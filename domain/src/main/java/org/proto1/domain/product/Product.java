@@ -24,6 +24,9 @@ public class Product extends AbstractEntity implements Serializable {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="product")
 	private List<ProductName> productNames;
 	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="product")
+	private List<ProductParameter> productParameters;
+
 	public ProductType getProductType() {
 		return productType;
 	}
@@ -38,6 +41,16 @@ public class Product extends AbstractEntity implements Serializable {
 
 	public void setProductNames(List<ProductName> productNames) {
 		this.productNames = productNames;
+	}
+
+	
+	
+	public List<ProductParameter> getProductParameters() {
+		return productParameters;
+	}
+
+	public void setProductParameters(List<ProductParameter> productParameters) {
+		this.productParameters = productParameters;
 	}
 
 	@Override

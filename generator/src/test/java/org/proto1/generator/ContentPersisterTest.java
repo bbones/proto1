@@ -65,7 +65,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	Parameter
-		gradeOfSteel, gradeOfCoke, ironContent;
+		gradeOfSteel, gradeOfCoke, ironContent, thickness, width, length;
 	
 	@Autowired
 	Language english, russian, ukrainian;
@@ -91,8 +91,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistSideRole();
 		persistContract();
 		persistProductType();
-		persistProduct();
 		persistParameters();
+		persistProduct();
 		persistLocalizedStringConstant();
 
 		em.getTransaction().commit();
@@ -106,6 +106,10 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	private void persistParameters() {
+		
+		em.persist(thickness);
+		em.persist(width);
+		em.persist(length);
 		em.persist(gradeOfSteel);
 		em.persist(gradeOfCoke);
 		em.persist(ironContent);

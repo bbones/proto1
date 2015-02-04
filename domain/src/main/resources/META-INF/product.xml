@@ -275,6 +275,30 @@
 
 			</list>
 		</property>
+		<property name="productParameters">
+			<list>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="steelPlate" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="optional" value="false" />
+				</bean>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="steelPlate" />
+					<property name="parameter" ref="thickness" />
+					<property name="optional" value="false" />
+				</bean>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="steelPlate" />
+					<property name="parameter" ref="width" />
+					<property name="optional" value="false" />
+				</bean>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="steelPlate" />
+					<property name="parameter" ref="length" />
+					<property name="optional" value="false" />
+				</bean>
+			</list>
+		</property>
 	</bean>
 	
 	<!-- Slab -->
@@ -515,8 +539,82 @@
 
 
 	<!-- Parameters -->
+	<bean id="thickness" class="org.proto1.domain.product.Parameter">
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="thickness"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Thickness" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="thickness"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Толщина" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="thickness"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Товщина" />
+				</bean>
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="length" class="org.proto1.domain.product.Parameter">
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="length"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Length" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="length"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Длина" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="length"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Довжина" />
+				</bean>
+			</list>
+		</property>
+	</bean>	
+	
+	<bean id="width" class="org.proto1.domain.product.Parameter">
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="width"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Width" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="width"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Ширина" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="width"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Ширина" />
+				</bean>
+			</list>
+		</property>
+	</bean>	
+
 	<bean id="gradeOfSteel" class="org.proto1.domain.product.Parameter">
-		<property name="id" value="1" />
 		<property name="type" value="STRING" />
 		<property name="parameterNames">
 			<list>
@@ -531,13 +629,17 @@
 					<property name="language" ref="russian" />
 					<property name="name" value="Марка стали" />
 				</bean>
+				<bean id="gradeOfSteelRussian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Марка стали" />
+				</bean>
 			</list>
 		</property>
 	</bean>	
 	
 
 	<bean id="gradeOfCoke" class="org.proto1.domain.product.Parameter">
-		<property name="id" value="2" />
 		<property name="type" value="STRING" />
 		<property name="parameterNames">
 			<list>
