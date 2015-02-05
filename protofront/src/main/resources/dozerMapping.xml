@@ -72,4 +72,31 @@
 		</field>
 	</mapping>
 
+	<mapping>
+		<class-a>org.proto1.domain.product.ParameterName</class-a>
+		<class-b>org.proto1.dto.ParameterNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>parameterNameId</b>
+		</field>
+
+		<field>
+			<a>parameter.id</a>
+			<b>parameterId</b>
+		</field>
+		
+		<field>
+			<a>language.id</a>
+			<b>languageId</b>
+		</field>
+		<field>
+			<a>language.name</a>
+			<b>languageName</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>parameterName</b>
+		</field>
+	</mapping>
+
 </mappings>

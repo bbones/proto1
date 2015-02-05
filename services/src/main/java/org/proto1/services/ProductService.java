@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
+import org.proto1.domain.product.ProductParameter;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
 
@@ -30,5 +31,7 @@ public interface ProductService {
 			Long productTypeId, Long languageId);
 
 	List<ProductName> getNamesList(Long productId);
+	
+	List<Map<String, java.lang.Object>> getParameterList(Long productId, Long languageId);
 
 }

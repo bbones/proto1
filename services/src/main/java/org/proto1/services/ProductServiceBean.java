@@ -7,8 +7,10 @@ import org.apache.log4j.Logger;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
+import org.proto1.domain.product.ProductParameter;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductNameRepository;
+import org.proto1.repository.ProductParameterRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,9 @@ public class ProductServiceBean implements ProductService {
 
 	@Autowired
 	private ProductNameRepository productNameRepository;
+	
+	@Autowired
+	private ProductParameterRepository productParameterRepository;
 
 	@Autowired
 	private LanguageRepository languageRepository;
@@ -89,6 +94,10 @@ public class ProductServiceBean implements ProductService {
 
 	public List<ProductName> getNamesList(Long productId) {
 		return productNameRepository.findByProductId(productId);
+	}
+	
+	public List<Map<String, java.lang.Object>> getParameterList(Long productId, Long languageId) {
+		return productParameterRepository.getParametersByProductIdLanguageId(productId, languageId);
 	}
 
 }

@@ -257,7 +257,6 @@
 	<!-- Products -->
 	<!-- Steel Plate -->
 	<bean id="steelPlate" class="org.proto1.domain.product.Product">
-		<property name="id" value="1"/>
 		<property name="productType" ref="rolledProduct"/>
 		<property name="productNames">
 			<list>
@@ -303,7 +302,6 @@
 	
 	<!-- Slab -->
 	<bean id="slab" class="org.proto1.domain.product.Product">
-		<property name="id" value="2"/>
 		<property name="productType" ref="castedProduct"/>
 		<property name="productNames">
 			<list>
@@ -325,7 +323,6 @@
 	
 	<!-- Pig Iron -->
 	<bean id="pigIron" class="org.proto1.domain.product.Product">
-		<property name="id" value="3"/>
 		<property name="productType" ref="ironProduct"/>
 		<property name="productNames">
 			<list>
@@ -557,7 +554,7 @@
 
 				<bean class="org.proto1.domain.product.ParameterName">
 					<property name="parameter" ref="thickness"/>
-					<property name="language" ref="russian" />
+					<property name="language" ref="ukrainian" />
 					<property name="name" value="Товщина" />
 				</bean>
 			</list>
@@ -582,7 +579,7 @@
 
 				<bean class="org.proto1.domain.product.ParameterName">
 					<property name="parameter" ref="length"/>
-					<property name="language" ref="russian" />
+					<property name="language" ref="ukrainian" />
 					<property name="name" value="Довжина" />
 				</bean>
 			</list>
@@ -607,7 +604,7 @@
 
 				<bean class="org.proto1.domain.product.ParameterName">
 					<property name="parameter" ref="width"/>
-					<property name="language" ref="russian" />
+					<property name="language" ref="ukrainian" />
 					<property name="name" value="Ширина" />
 				</bean>
 			</list>
@@ -644,19 +641,19 @@
 		<property name="parameterNames">
 			<list>
 				<bean id="gradeOfCokeEnglish" class="org.proto1.domain.product.ParameterName">
-					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="parameter" ref="gradeOfCoke"/>
 					<property name="language" ref="english" />
 					<property name="name" value="Grade of coke" />
 				</bean>
 			
 				<bean id="gradeOfCokeRussian" class="org.proto1.domain.product.ParameterName">
-					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="parameter" ref="gradeOfCoke"/>
 					<property name="language" ref="russian" />
 					<property name="name" value="Марка кокса" />
 				</bean>
 			
 				<bean id="gradeOfCokeUkrainian" class="org.proto1.domain.product.ParameterName">
-					<property name="parameter" ref="gradeOfSteel"/>
+					<property name="parameter" ref="gradeOfCoke"/>
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="Марка коксу" />
 				</bean>
@@ -666,7 +663,6 @@
 	
 	
 	<bean id="ironContent" class="org.proto1.domain.product.Parameter">
-		<property name="id" value="3" />
 		<property name="type" value="STRING" />
 		<property name="parameterNames">
 			<list>

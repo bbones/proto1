@@ -8,10 +8,12 @@ import org.apache.log4j.Logger;
 import org.dozer.Mapper;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
+import org.proto1.domain.product.ProductParameter;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.dto.ProductDTO;
 import org.proto1.dto.ProductNameDTO;
+import org.proto1.dto.ProductParameterDTO;
 import org.proto1.services.MasterDataService;
 import org.proto1.services.ProductService;
 import org.proto1.services.ProductTypeService;
@@ -126,6 +128,11 @@ public class ProductController {
 	@RequestMapping(value = "deleteName/{productId},{languageId}", method = RequestMethod.POST)
 	public void deleteName(@PathVariable String productId, @PathVariable String languageId) {
 		productService.deleteName(new Long(productId), new Long(languageId));
+	}
+
+	@RequestMapping(value = "parameters/{productId}&{languageId}", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String, java.lang.Object>> getProductParametersList(@PathVariable Long productId, @PathVariable Long languageId) {
+		return productService.getParameterList(productId, languageId);
 	}
 
 }

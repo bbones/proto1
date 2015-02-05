@@ -49,6 +49,11 @@
 								$("#edgNames").edatagrid({
 									url : '/protofront/service/product/names/' + row.id 
 								});
+
+								$("#edgParameters").edatagrid({
+									url : '/protofront/service/product/parameters/' + row.id + '&' + $('#langSelector').combobox('getValue')
+								});
+								
 							}
 						});
 					}
@@ -89,9 +94,39 @@
 				</div>
 				<div title="Parameters template"
 					data-options="iconCls:'icon-reload',selected:true"
-					style="padding: 10px;">content2</div>
-					
+					style="padding: 10px;">
+					<table id="edgParameters" title="Parameters" singleSelect="true"
+						style="width: 700px; height: auto">
+						<thead>
+							<tr>
+								<th field='prodParamId' width=250>Product Parameter Id</th>
+								<th
+									data-options="field:'parameterId',width:100,
+                        			formatter:function(value,row){
+                            			return row.parameterName;
+                        			},
+                       				editor:{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'parameterId',
+			                                textField:'parameterName',
+			                                method:'get',
+			                                url:'/protofront/service/parameter/parameterNamesByLanguageId/' + $('#langSelector').combobox('getValue'),
+			                                required:true
+			                            }
+                        			}">Parameter</th>
+ 								<!-- <th data-options="field: 'optional', width:100, checkbox:true">Optional</th>  -->
+           						<th data-options="field:'optional',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Status</th>
+     							</tr>
+						</thead>
+					</table>
 				</div>
+				<script>
+					$("#edgParameters").edatagrid();
+					
+				</script>
+					
+			</div>
 		</form>
 
 	</div>
