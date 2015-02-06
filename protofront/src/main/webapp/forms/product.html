@@ -1,3 +1,9 @@
+<!-- 
+	Product form
+	TODO:
+	
+-->
+
 <div style="margin: 20px 0;"></div>
 <div class="easyui-panel" title="Product" style="width: 800px">
 	<div class="easyui-panel" style="padding: 5px;">
@@ -16,8 +22,7 @@
 			data-options="iconCls:'icon-search',plain:true"
 			onclick="searchProduct()">Search</a>
 	</div>
-	<div style="padding: 10px 60px 20px 60px">
-		<form id="productForm" method="post">
+	<div style="padding: 10px 30px 20px 30px">
 
 			<h3>Select product type</h3>
 			<input id="productType" class="easyui-combotree"
@@ -26,7 +31,7 @@
 								+ $('#langSelector').combobox('getValue')">
 
 			<table id="edgProducts" title="Products" singleSelect="true"
-				style="width: 600px; height: auto">
+				style="width: 700px; height: auto">
 				<thead>
 					<tr>
 						<th field='id' width=250>Product Id</th>
@@ -37,34 +42,40 @@
 
 			<script>
 				$("#edgProducts").edatagrid({});
+
 				$("#productType").combotree({
 					onSelect : function(record) {
 						console.log(record);
 						var lId = $('#langSelector').combobox('getValue');
 						$("#edgProducts").edatagrid({
 							url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-										+ record.id + '&' + lId,
-							onSelect : function(index,row) {
+											+ record.id
+											+ '&' + lId,
+							onSelect : function(index, row) {
 								console.log(row);
 								$("#edgNames").edatagrid({
-									url : '/protofront/service/product/names/' + row.id 
+									url : '/protofront/service/product/names/'
+												+ row.id
 								});
 
 								$("#edgParameters").edatagrid({
-									url : '/protofront/service/product/parameters/' + row.id + '&' + $('#langSelector').combobox('getValue')
+									url : '/protofront/service/product/parameters/'
+												+ row.id + '&' + $('#langSelector').combobox('getValue')
 								});
-								
-							}
-						});
-					}
-				});
+							} // OnSelect
+						}); // edatagrid
+					} // OnSelect
+				}); // Combotree
 			</script>
+			
 			<div id="aa" class="easyui-accordion"
-				style="width: 600px; height: 200px;">
-				<div title="Translations" data-options="iconCls:'icon-save',selected:false"
-					style="overflow: auto; padding: 10px;">
+				style="width: 700px; height: 400px;">
+				<div title="Translations"
+					data-options="iconCls:'icon-save',selected:false"
+					style="overflow: auto; padding: 10px;" >
 					<table id="edgNames" title="Translations" singleSelect="true"
-						style="width: 700px; height: auto">
+						style="width: 600px; height: auto", 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbn'">
 						<thead>
 							<tr>
 								<th field='nameId' width=250>Product Type Name Id</th>
@@ -96,7 +107,8 @@
 					data-options="iconCls:'icon-reload',selected:true"
 					style="padding: 10px;">
 					<table id="edgParameters" title="Parameters" singleSelect="true"
-						style="width: 700px; height: auto">
+						style="width: 600px; height: auto",
+						data-options="iconCls: 'icon-edit', toolbar: '#tbp'">
 						<thead>
 							<tr>
 								<th field='prodParamId' width=250>Product Parameter Id</th>
@@ -115,52 +127,74 @@
 			                                required:true
 			                            }
                         			}">Parameter</th>
- 								<!-- <th data-options="field: 'optional', width:100, checkbox:true">Optional</th>  -->
-           						<th data-options="field:'optional',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Status</th>
-     							</tr>
+								<th
+									data-options="field:'required',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Status</th>
+							</tr>
 						</thead>
 					</table>
 				</div>
+				<div id="tbn" style="height: auto">
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-add',plain:true" onclick="appendName()">Append</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-remove',plain:true"	onclick="removeName()">Remove</a> 
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-save',plain:true" onclick="saveName()">Accept</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-undo',plain:true" onclick="rejectName()">Reject</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search',plain:true"
+						onclick="getChanges()">GetChanges</a>
+				</div>
+				<div id="tbp" style="height: auto">
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-add',plain:true" onclick="appendParameter()">Append</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-remove',plain:true"	onclick="removeParameter()">Remove</a> 
+					<a href="javascript:void(0)"
+						class="easyui-linkbutton"
+						data-options="iconCls:'icon-save',plain:true" onclick="acceptParameter()">Accept</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-undo',plain:true" onclick="rejectParameter()">Reject</a>
+					<a href="javascript:void(0)" class="easyui-linkbutton"
+						data-options="iconCls:'icon-search',plain:true"
+						onclick="getChanges()">GetChanges</a>
+				</div>
+
 				<script>
 					$("#edgParameters").edatagrid();
-					
 				</script>
-					
-			</div>
-		</form>
 
+			</div>
 	</div>
 </div>
 
 <script>
 	function newProduct() {
-		debugger;
 		var ptId = $('#productType').combotree('getValue');
-		if (ptId){
-			 $.ajax({
-					type : 'POST',
-					url : '/protofront/service/product/getNewProduct',
-					data:{
-						productTypeId : ptId,
-						languageId : $('#langSelector').combobox('getValue')
-					},
-					success : function(respdata) {
-						$("#edgProducts").edatagrid(
-							'addRow',{
-								row:{
-									id:respdata['id'],
-									name:respdata['localizedProductName']
-								}
-						});
-					},
-					error : function(data, status, er) {
-						alert("error: " + data + " status: " + status + " er:" + er);
-					}
-
-				});
-		     
-		     
-		}
+		if (ptId) {
+			$.ajax({
+				type : 'POST',
+				url : '/protofront/service/product/getNewProduct',
+				data : {
+					productTypeId : ptId,
+					languageId : $('#langSelector')
+							.combobox('getValue')
+				},
+				success : function(respdata) {
+					$("#edgProducts").edatagrid('addRow', {
+						row : {
+							id : respdata['id'],
+							name : respdata['localizedProductName']
+						}
+					});
+				},
+				error : function(data, status, er) {
+					alert("error: " + data + " status: " + status
+							+ " er:" + er);
+				}
+		
+			}); 
+		} // if
 	}
-	
 </script>

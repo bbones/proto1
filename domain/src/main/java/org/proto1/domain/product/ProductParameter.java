@@ -24,7 +24,7 @@ public class ProductParameter extends AbstractEntity {
 	@JoinColumn(name="parameter_id")
 	private Parameter parameter;
 	
-	private Boolean optional;
+	private Boolean required;
 
 	public Product getProduct() {
 		return product;
@@ -42,13 +42,12 @@ public class ProductParameter extends AbstractEntity {
 		this.parameter = parameter;
 	}
 
-	public Boolean getOptional() {
-		return optional;
+	public Boolean getRequired() {
+		return required;
 	}
 
-	public void setOptional(Boolean optional) {
-		this.optional = optional;
+	public void setRequired(Boolean required) {
+		this.required = required;
 	}
 
-	
 }

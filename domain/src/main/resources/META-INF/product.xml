@@ -212,7 +212,7 @@
 		</property>
 	</bean>
 	
-	<!-- rolledProduct -->
+	<!-- RolledProduct -->
 	<bean id="rolledProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="steelProduct" />
 		<property name="productTypeNames">
@@ -227,6 +227,65 @@
 					<property name="productType" ref="rolledProduct" />
 					<property name="language" ref="russian" />
 					<property name="name" value="Прокат черных металлов" />
+				</bean>
+
+				<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="rolledProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Прокат чорних металів" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- flatRolledProduct -->
+	<bean id="flatRolledProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="rolledProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean id="rolledProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="flatRolledProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Flat rolled product" />
+				</bean>
+			
+				<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="flatRolledProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Плоский прокат черных металлов" />
+				</bean>
+
+				<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="flatRolledProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Плоский прокат чорних металів" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+
+	<!-- longRolledProduct -->
+	<bean id="longRolledProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="rolledProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="longRolledProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="Long rolled product" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="longRolledProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Сортовой прокат черных металлов" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="longRolledProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Сортовий прокат чорних металів" />
 				</bean>
 			</list>
 		</property>
@@ -272,6 +331,12 @@
 					<property name="name" value="Плита стальная" />
 				</bean>
 
+				<bean id="steelPlateNameUkrainian" class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="steelPlate" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Плита сталева" />
+				</bean>
+
 			</list>
 		</property>
 		<property name="productParameters">
@@ -279,27 +344,110 @@
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="gradeOfSteel" />
-					<property name="optional" value="false" />
+					<property name="required" value="false" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="thickness" />
-					<property name="optional" value="false" />
+					<property name="required" value="false" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="width" />
-					<property name="optional" value="false" />
+					<property name="required" value="false" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="length" />
-					<property name="optional" value="false" />
+					<property name="required" value="false" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 	
+	<!-- Channel -->
+	<bean id="channel" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="longRolledProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="channel" />
+					<property name="language" ref="english" />
+					<property name="name" value="Steel channel" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="channel" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Швеллер стальной" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="channel" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Швеллер сталевий" />
+				</bean>
+
+			</list>
+		</property>
+		<property name="productParameters">
+			<list>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="channel" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="required" value="false" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="channel" />
+					<property name="parameter" ref="length" />
+					<property name="required" value="false" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- I-Beam -->
+	<bean id="iBeam" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="longRolledProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="iBeam" />
+					<property name="language" ref="english" />
+					<property name="name" value="i Beam" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="iBeam" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Балка двутавровая" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="iBeam" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Балка двотаврова" />
+				</bean>
+
+			</list>
+		</property>
+		<property name="productParameters">
+			<list>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="iBeam" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="required" value="false" />
+				</bean>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="iBeam" />
+					<property name="parameter" ref="length" />
+					<property name="required" value="false" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 	<!-- Slab -->
 	<bean id="slab" class="org.proto1.domain.product.Product">
 		<property name="productType" ref="castedProduct"/>
@@ -683,7 +831,6 @@
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="Вміст заліза" />
 				</bean>
-		
 			
 			</list>
 		</property>
