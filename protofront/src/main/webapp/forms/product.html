@@ -111,7 +111,7 @@
 						data-options="iconCls: 'icon-edit', toolbar: '#tbp'">
 						<thead>
 							<tr>
-								<th field='prodParamId' width=250>Product Parameter Id</th>
+								<th field='productParamId' width=250>Product Parameter Id</th>
 								<th
 									data-options="field:'parameterId',width:100,
                         			formatter:function(value,row){
@@ -201,10 +201,12 @@
 	}
 	
 	function appendParameter() {
-		$("#edgParameters").edatagrid('addRow');
+		var pid = $("#edgProducts").edatagrid('getSelected').id;
+		$("#edgParameters").edatagrid('addRow', {row: {productId : pid, required :false}});
 	}
 	
 	function acceptParameter() {
+		console.log($("#edgParameters").edatagrid('getSelected'));
 		$("#edgParameters").edatagrid('saveRow');
 	}
 </script>

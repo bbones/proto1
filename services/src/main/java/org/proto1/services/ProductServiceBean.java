@@ -108,7 +108,8 @@ public class ProductServiceBean implements ProductService {
 		ProductParameter productParameter = new ProductParameter();
 		productParameter.setProduct(productRepository.findOne(productId));
 		productParameter.setParameter(parameterRepository.findOne(parameterId));
-		return null;
+		
+		return productParameterRepository.save(productParameter);
 	}
 
 }
