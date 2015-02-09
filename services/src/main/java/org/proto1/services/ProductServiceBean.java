@@ -9,6 +9,7 @@ import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductParameter;
 import org.proto1.repository.LanguageRepository;
+import org.proto1.repository.ParameterRepository;
 import org.proto1.repository.ProductNameRepository;
 import org.proto1.repository.ProductParameterRepository;
 import org.proto1.repository.ProductRepository;
@@ -25,6 +26,9 @@ public class ProductServiceBean implements ProductService {
 
 	@Autowired
 	private ProductNameRepository productNameRepository;
+	
+	@Autowired
+	private ParameterRepository parameterRepository;
 	
 	@Autowired
 	private ProductParameterRepository productParameterRepository;
@@ -98,6 +102,13 @@ public class ProductServiceBean implements ProductService {
 	
 	public List<Map<String, java.lang.Object>> getParameterList(Long productId, Long languageId) {
 		return productParameterRepository.getParametersByProductIdLanguageId(productId, languageId);
+	}
+
+	public ProductParameter saveProductParameter(Long productId, Long parameterId, Boolean required) {
+		ProductParameter productParameter = new ProductParameter();
+		productParameter.setProduct(productRepository.findOne(productId));
+		productParameter.setParameter(parameterRepository.findOne(parameterId));
+		return null;
 	}
 
 }

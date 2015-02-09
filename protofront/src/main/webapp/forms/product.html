@@ -162,7 +162,9 @@
 				</div>
 
 				<script>
-					$("#edgParameters").edatagrid();
+					$("#edgParameters").edatagrid({
+						saveUrl : '/protofront/service/product/saveParameter'	
+					});
 				</script>
 
 			</div>
@@ -196,5 +198,13 @@
 		
 			}); 
 		} // if
+	}
+	
+	function appendParameter() {
+		$("#edgParameters").edatagrid('addRow');
+	}
+	
+	function acceptParameter() {
+		$("#edgParameters").edatagrid('saveRow');
 	}
 </script>

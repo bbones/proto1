@@ -18,6 +18,7 @@ import org.proto1.services.MasterDataService;
 import org.proto1.services.ProductService;
 import org.proto1.services.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,6 +134,14 @@ public class ProductController {
 	@RequestMapping(value = "parameters/{productId}&{languageId}", method = RequestMethod.POST)
 	public @ResponseBody List<Map<String, java.lang.Object>> getProductParametersList(@PathVariable Long productId, @PathVariable Long languageId) {
 		return productService.getParameterList(productId, languageId);
+	}
+
+	@RequestMapping(value = "saveParameter",  method = RequestMethod.POST)
+	public @ResponseBody ProductParameterDTO saveProductParameter(@ModelAttribute  ProductParameterDTO productParameter) {
+		ProductParameter pp = productService.saveProductParameter(productParameter.getProductId(), 
+				productParameter.getParameterId(), productParameter.isRequired());
+		productParameter = mapper.map(pp, ProductParameterDTO.class);
+		return productParameter;
 	}
 
 }

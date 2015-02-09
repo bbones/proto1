@@ -53,13 +53,15 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	ProductType 
-		ironProduct, steelProduct, rolledProduct, flatRolledProduct, longRolledProduct, castedProduct,
-			cokeProduct, cokeMainProduct, cokeByProduct,
-				iormProduct, nonAgglomeratedIORM, agglomeratedIORM;
+		ironProduct, highCarbonIronProduct,  
+		steelProduct, rolledProduct, flatRolledProduct, longRolledProduct, 
+		castedProduct,
+		cokeProduct, cokeMainProduct, cokeByProduct,
+		iormProduct, nonAgglomeratedIORM, agglomeratedIORM;
 	
 	@Autowired
 	Product 
-		steelPlate, channel, iBeam, slab, pigIron,
+		steelPlate, channel, iBeam, slab, pigIron, hotIron, 
 		coke, cokeBreese, coalTar,
 		ironOreConcentrate, ironOre, ironOrePellet, ironOreSinter;
 	
@@ -124,11 +126,12 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	private void persistProduct() {
 		// Products
+		em.persist(pigIron);
+		em.persist(hotIron);
 		em.persist(steelPlate);
 		em.persist(channel);
 		em.persist(iBeam);
 		em.persist(slab);
-		em.persist(pigIron);
 		
 		em.persist(coke);
 		em.persist(cokeBreese);
@@ -142,7 +145,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	private void persistProductType() {
 		// Product Types
-		em.persist(ironProduct); 
+		em.persist(ironProduct);
+		em.persist(highCarbonIronProduct);
 		em.persist(steelProduct); 
 				
 		em.persist(rolledProduct);

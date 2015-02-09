@@ -175,15 +175,21 @@
 	<bean id="ironProduct" class="org.proto1.domain.product.ProductType">
 		<property name="productTypeNames">
 			<list>
-				<bean id="ironProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="ironProduct" />
 					<property name="language" ref="english" />
 					<property name="name" value="Iron product" />
 				</bean>
 			
-				<bean id="ironProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="ironProduct" />
 					<property name="language" ref="russian" />
+					<property name="name" value="Продукция из черных металлов" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="ironProduct" />
+					<property name="language" ref="ukrainian" />
 					<property name="name" value="Продукция из черных металлов" />
 				</bean>
 			</list>
@@ -191,23 +197,55 @@
 	</bean>
 	
 
+	<!-- Hot Iron Product -->
+	<bean id="highCarbonIronProduct" class="org.proto1.domain.product.ProductType">
+		<property name="parentType" ref="ironProduct" />
+		<property name="productTypeNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="highCarbonIronProduct" />
+					<property name="language" ref="english" />
+					<property name="name" value="High carbon iron product" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="highCarbonIronProduct" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Продукция из чугуна" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="highCarbonIronProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Продукція з чавуну" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
+	
 	<!-- steelProduct -->
 	<bean id="steelProduct" class="org.proto1.domain.product.ProductType">
 		<property name="parentType" ref="ironProduct" />
 		<property name="productTypeNames">
 			<list>
-				<bean id="steelProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="steelProduct" />
 					<property name="language" ref="english" />
 					<property name="name" value="Steel product" />
 				</bean>
 			
-				<bean id="steelProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="steelProduct" />
 					<property name="language" ref="russian" />
 					<property name="name" value="Продукция из стали" />
 				</bean>
 
+				<bean class="org.proto1.domain.product.ProductTypeName">
+					<property name="productType" ref="steelProduct" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Продукція зі сталі" />
+				</bean>
 			</list>
 		</property>
 	</bean>
@@ -243,19 +281,19 @@
 		<property name="parentType" ref="rolledProduct" />
 		<property name="productTypeNames">
 			<list>
-				<bean id="rolledProductTypeNameEnglish" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="flatRolledProduct" />
 					<property name="language" ref="english" />
 					<property name="name" value="Flat rolled product" />
 				</bean>
 			
-				<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="flatRolledProduct" />
 					<property name="language" ref="russian" />
 					<property name="name" value="Плоский прокат черных металлов" />
 				</bean>
 
-				<bean id="rolledProductTypeNameRussian" class="org.proto1.domain.product.ProductTypeName">
+				<bean class="org.proto1.domain.product.ProductTypeName">
 					<property name="productType" ref="flatRolledProduct" />
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="Плоский прокат чорних металів" />
@@ -314,9 +352,72 @@
 	</bean>
 	
 	<!-- Products -->
+	<!-- Hot Iron -->
+	<bean id="hotIron" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="highCarbonIronProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="hotIron" />
+					<property name="language" ref="english" />
+					<property name="name" value="Hot iron" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="hotIron" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Чугун передельный" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="hotIron" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Чавун переробний" />
+				</bean>
+
+			</list>
+		</property>
+		<property name="productParameters">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Pig iron -->
+	<bean id="pigIron" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="highCarbonIronProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="pigIron" />
+					<property name="language" ref="english" />
+					<property name="name" value="Pig iron" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="pigIron" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Чугун в чушках" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="pigIron" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Чавун в чушках" />
+				</bean>
+
+			</list>
+		</property>
+		<property name="productParameters">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	
 	<!-- Steel Plate -->
 	<bean id="steelPlate" class="org.proto1.domain.product.Product">
-		<property name="productType" ref="rolledProduct"/>
+		<property name="productType" ref="flatRolledProduct"/>
 		<property name="productNames">
 			<list>
 				<bean id="steelPlateProductNameEnglish" class="org.proto1.domain.product.ProductName">
@@ -453,15 +554,21 @@
 		<property name="productType" ref="castedProduct"/>
 		<property name="productNames">
 			<list>
-				<bean id="slabProductNameEnglish" class="org.proto1.domain.product.ProductName">
+				<bean class="org.proto1.domain.product.ProductName">
 					<property name="product" ref="slab" />
 					<property name="language" ref="english" />
 					<property name="name" value="Slab" />
 				</bean>
 			
-				<bean id="slabProductNameRussian" class="org.proto1.domain.product.ProductName">
+				<bean class="org.proto1.domain.product.ProductName">
 					<property name="product" ref="slab" />
 					<property name="language" ref="russian" />
+					<property name="name" value="Сляб" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="slab" />
+					<property name="language" ref="ukrainian" />
 					<property name="name" value="Сляб" />
 				</bean>
 
@@ -469,26 +576,6 @@
 		</property>
 	</bean>
 	
-	<!-- Pig Iron -->
-	<bean id="pigIron" class="org.proto1.domain.product.Product">
-		<property name="productType" ref="ironProduct"/>
-		<property name="productNames">
-			<list>
-				<bean id="pigIronProductNameEnglish" class="org.proto1.domain.product.ProductName">
-					<property name="product" ref="pigIron" />
-					<property name="language" ref="english" />
-					<property name="name" value="Pig Iron" />
-				</bean>
-			
-				<bean id="pigIronProductNameRussian" class="org.proto1.domain.product.ProductName">
-					<property name="product" ref="pigIron" />
-					<property name="language" ref="russian" />
-					<property name="name" value="Чугун" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
 
 	<!-- Coke Products -->
 	<bean id="coke" class="org.proto1.domain.product.Product">
