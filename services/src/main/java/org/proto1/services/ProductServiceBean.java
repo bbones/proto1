@@ -104,12 +104,19 @@ public class ProductServiceBean implements ProductService {
 		return productParameterRepository.getParametersByProductIdLanguageId(productId, languageId);
 	}
 
+	@Transactional
 	public ProductParameter saveProductParameter(Long productId, Long parameterId, Boolean required) {
 		ProductParameter productParameter = new ProductParameter();
 		productParameter.setProduct(productRepository.findOne(productId));
 		productParameter.setParameter(parameterRepository.findOne(parameterId));
+		productParameter.setRequired(required);
 		
 		return productParameterRepository.save(productParameter);
+	}
+
+	@Transactional
+	public void deleteProductParameter(Long productParameterId) {
+		productParameterRepository.delete(productParameterId);
 	}
 
 }

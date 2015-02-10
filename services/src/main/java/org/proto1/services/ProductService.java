@@ -36,4 +36,6 @@ public interface ProductService {
 
 	ProductParameter saveProductParameter(Long productId, Long parameterId, Boolean required);
 
+	void deleteProductParameter(Long productId);
+
 }

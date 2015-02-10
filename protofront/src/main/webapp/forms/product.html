@@ -20,12 +20,12 @@
 			onclick="rejectProduct()">Reject</a> <a href="javascript:void(0)"
 			class="easyui-linkbutton"
 			data-options="iconCls:'icon-search',plain:true"
-			onclick="searchProduct()">Search</a>
+			onclick="searchProductType()">Search</a>
 	</div>
 	<div style="padding: 10px 30px 20px 30px">
 
 			<h3>Select product type</h3>
-			<input id="productType" class="easyui-combotree"
+			<input id="productType" class="easyui-combotree" value = "1"
 				style="width: 600px;"
 				data-options="url:'/protofront/service/productType/getByParentTypeIdByLanguageId/'
 								+ $('#langSelector').combobox('getValue')">
@@ -49,8 +49,7 @@
 						var lId = $('#langSelector').combobox('getValue');
 						$("#edgProducts").edatagrid({
 							url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-											+ record.id
-											+ '&' + lId,
+											+ record.id + '&' + lId,
 							onSelect : function(index, row) {
 								console.log(row);
 								$("#edgNames").edatagrid({
@@ -64,7 +63,7 @@
 								});
 							} // OnSelect
 						}); // edatagrid
-					} // OnSelect
+					}// OnSelect
 				}); // Combotree
 			</script>
 			
@@ -108,10 +107,10 @@
 					style="padding: 10px;">
 					<table id="edgParameters" title="Parameters" singleSelect="true"
 						style="width: 600px; height: auto",
-						data-options="iconCls: 'icon-edit', toolbar: '#tbp'">
+						data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'productParameterId'">
 						<thead>
 							<tr>
-								<th field='productParamId' width=250>Product Parameter Id</th>
+								<th field='productParameterId' width=250>Product Parameter Id</th>
 								<th
 									data-options="field:'parameterId',width:100,
                         			formatter:function(value,row){
@@ -163,7 +162,8 @@
 
 				<script>
 					$("#edgParameters").edatagrid({
-						saveUrl : '/protofront/service/product/saveParameter'	
+						saveUrl : '/protofront/service/product/saveParameter',
+						destroyUrl : '/protofront/service/product/deleteParameter'
 					});
 				</script>
 
@@ -172,6 +172,12 @@
 </div>
 
 <script>
+
+	function searchProductType() {
+		var t = $('#productType').combotree('getTree');
+		$('#productType').combotree('setValue', 3);
+	}
+	
 	function newProduct() {
 		var ptId = $('#productType').combotree('getValue');
 		if (ptId) {
@@ -200,6 +206,10 @@
 		} // if
 	}
 	
+	function removeParameter() {
+		$("#edgParameters").edatagrid('destroyRow');
+	}
+
 	function appendParameter() {
 		var pid = $("#edgProducts").edatagrid('getSelected').id;
 		$("#edgParameters").edatagrid('addRow', {row: {productId : pid, required :false}});

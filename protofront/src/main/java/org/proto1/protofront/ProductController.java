@@ -144,4 +144,10 @@ public class ProductController {
 		return productParameter;
 	}
 
+	@RequestMapping(value = "deleteParameter",  method = RequestMethod.POST)
+	public String deleteProductParameter(@RequestParam  Long id) {
+		productService.deleteProductParameter(id);
+		return "success";
+	}
+
 }

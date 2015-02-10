@@ -99,4 +99,29 @@
 		</field>
 	</mapping>
 
+	<mapping>
+		<class-a>org.proto1.domain.product.ProductParameter</class-a>
+		<class-b>org.proto1.dto.ProductParameterDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>productParameterId</b>
+		</field>
+
+		<field>
+			<a>parameter.id</a>
+			<b>parameterId</b>
+		</field>
+		
+		<field>
+			<a>product.id</a>
+			<b>productId</b>
+		</field>
+		
+		<field>
+			<a>required</a>
+			<b>required</b>
+		</field>
+		
+	</mapping>
+
 </mappings>
