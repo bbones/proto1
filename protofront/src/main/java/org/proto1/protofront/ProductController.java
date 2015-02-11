@@ -114,7 +114,7 @@ public class ProductController {
 		if (productNames.size() > 0) {
 		
 			for(ProductNameDTO nameDTO : productNames ) 
-				productService.saveProductName(nameDTO.getProductId(), nameDTO.getLanguageId(), nameDTO.getProductName());
+				productService.saveProductName(nameDTO.getNameId(), nameDTO.getProductId(), nameDTO.getLanguageId(), nameDTO.getProductName());
 			return productNames;
 		} else 
 			return null;
@@ -126,9 +126,10 @@ public class ProductController {
 		return productName;
 	}
 
-	@RequestMapping(value = "deleteName/{productId},{languageId}", method = RequestMethod.POST)
-	public void deleteName(@PathVariable String productId, @PathVariable String languageId) {
-		productService.deleteName(new Long(productId), new Long(languageId));
+	@RequestMapping(value = "deleteName", method = RequestMethod.POST)
+	public String deleteName(@RequestParam Long id) {
+		productService.deleteName(id);
+		return "success";
 	}
 
 	@RequestMapping(value = "parameters/{productId}&{languageId}", method = RequestMethod.POST)

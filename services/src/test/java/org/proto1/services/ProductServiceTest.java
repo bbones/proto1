@@ -54,26 +54,6 @@ public class ProductServiceTest extends AbstractJUnit4SpringContextTests  {
 	}
 	
 	@Test
-	public void testSaveNames() {
-		ProductRepository prep = createMock(ProductRepository.class);
-		expect(prep.getById(1L)).andReturn(steelPlate);
-		expect(prep.save(steelPlate)).andReturn(steelPlate);
-		replay(prep);
-		
-		List<ProductName> productNames = new ArrayList<ProductName>();
-		ProductName pn = new ProductName();
-		pn.setProduct(steelPlate);
-		pn.setLanguage(ukrainian);
-		pn.setName("Плита сталева");
-
-		productNames.add(pn);
-		
-		productService.setProductRepository(prep);
-		productService.saveProductNames(1L, productNames);
-		assertEquals(3, steelPlate.getProductNames().size());
-	}
-
-	@Test
 	public void testSaveName() {
 		ProductRepository prep = createMock(ProductRepository.class);
 		expect(prep.getById(1L)).andReturn(steelPlate).times(2);
@@ -88,7 +68,7 @@ public class ProductServiceTest extends AbstractJUnit4SpringContextTests  {
 		productService.setProductRepository(prep);
 		productService.setLanguageRepository(lrep);
 
-		productService.saveProductName(1L, 3L, "Плита горячекатана");
+		productService.saveProductName(null, 1L, 3L, "Плита горячекатана");
 		Product prod = prep.getById(1L);
 		assertEquals(3, prod.getProductNames().size());
 	}
@@ -108,7 +88,7 @@ public class ProductServiceTest extends AbstractJUnit4SpringContextTests  {
 		productService.setProductRepository(prep);
 		productService.setLanguageRepository(lrep);
 
-		productService.deleteName(2L, 2L);
+		productService.deleteName(2L);
 		
 		assertEquals(1, productService.getById(2L).getProductNames().size());
 	}

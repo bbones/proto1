@@ -74,10 +74,10 @@
 					style="overflow: auto; padding: 10px;" >
 					<table id="edgNames" title="Translations" singleSelect="true"
 						style="width: 600px; height: auto", 
-						data-options="iconCls: 'icon-edit', toolbar: '#tbn'">
+						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'nameId'">
 						<thead>
 							<tr>
-								<th field='nameId' width=250>Product Type Name Id</th>
+								<th field='nameId' width=250>Product Name Id</th>
 								<th
 									data-options="field:'languageId',width:100,
                         			formatter:function(value,row){
@@ -99,7 +99,10 @@
 						</thead>
 					</table>
 					<script>
-						$("#edgNames").edatagrid();
+						$("#edgNames").edatagrid({
+							saveUrl : '/protofront/service/product/saveName',
+							destroyUrl : '/protofront/service/product/deleteName'
+						});
 					</script>
 				</div>
 				<div title="Parameters template"
@@ -131,6 +134,12 @@
 							</tr>
 						</thead>
 					</table>
+					<script>
+						$("#edgParameters").edatagrid({
+							saveUrl : '/protofront/service/product/saveParameter',
+							destroyUrl : '/protofront/service/product/deleteParameter'
+						});
+					</script>
 				</div>
 				<div id="tbn" style="height: auto">
 					<a href="javascript:void(0)" class="easyui-linkbutton"
@@ -160,12 +169,6 @@
 						onclick="getChanges()">GetChanges</a>
 				</div>
 
-				<script>
-					$("#edgParameters").edatagrid({
-						saveUrl : '/protofront/service/product/saveParameter',
-						destroyUrl : '/protofront/service/product/deleteParameter'
-					});
-				</script>
 
 			</div>
 	</div>
@@ -204,6 +207,10 @@
 		
 			}); 
 		} // if
+	}
+	
+	function removeName() {
+		$("#edgNames").edatagrid('destroyRow');
 	}
 	
 	function removeParameter() {

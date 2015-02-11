@@ -4,11 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.product.ProductParameter;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface ProductParameterRepository extends CrudRepository<ProductParameter, Long> {
+public interface ProductParameterRepository extends JpaRepository<ProductParameter, Long> {
 
 	List<ProductParameter> getParameterByProductId(Long productId);
 	@Query("select new Map(pp.id as productParameterId, pp.product.id as productId, pp.parameter.id as parameterId, pp.required as required, ppn.name as parameterName) "

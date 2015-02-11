@@ -12,26 +12,26 @@ import org.proto1.repository.ProductRepository;
 public interface ProductService {
 
 	void setProductRepository(ProductRepository productRepository);
+	void setLanguageRepository(LanguageRepository languageRepository);
 
+	// Product methods
 	Product getById(Long id);
 
 	Product save(Product product);
 
 	void delete(Long id);
 
-	void saveProductNames(Long productId,  List<ProductName> productNames);
-	
-	void saveProductName(Long productId, Long languageId, String productNames);
-
-	void setLanguageRepository(LanguageRepository languageRepository);
-
-	void deleteName(Long productId, Long languageId);
-
 	List<Map<String, Object>> getListByProdTypeIdByLanguageId(
 			Long productTypeId, Long languageId);
 
+	// ProductName methods
+	ProductName saveProductName(Long productNameId, Long productId, Long languageId, String productNames);
+
+	void deleteName(Long productNameId);
+
 	List<ProductName> getNamesList(Long productId);
 	
+	// ProductParameter methods
 	List<Map<String, java.lang.Object>> getParameterList(Long productId, Long languageId);
 
 	ProductParameter saveProductParameter(Long productId, Long parameterId, Boolean required);

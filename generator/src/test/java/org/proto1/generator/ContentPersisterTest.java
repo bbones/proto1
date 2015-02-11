@@ -13,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
@@ -22,6 +23,7 @@ import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Product;
+import org.proto1.domain.product.ProductParameter;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,6 +101,16 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 		em.getTransaction().commit();
 
+	}
+	
+	@Test 
+	public void testDelete() {
+		logger.info("Test delete");
+		em.getTransaction().begin();
+		ProductParameter pp = em.find(ProductParameter.class, 5L);
+		logger.info("Delete pp" + pp.getId());
+		em.remove(pp);
+		em.getTransaction().commit();
 	}
 	
 	@After
@@ -193,6 +205,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	@Test 
+	@Ignore
 	public void testQuery() {
 
 		Query query = em.createNamedQuery("partyList");

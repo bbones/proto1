@@ -59,41 +59,26 @@ public class ProductServiceBean implements ProductService {
 		productRepository.delete(id);
 	}
 
-	public void saveProductNames(Long productId, List<ProductName> productNames) {
-		Product product = getById(productId);
-		product.getProductNames().addAll(productNames);
-		productRepository.save(product);
-	}
-
-	@Transactional
-	public void saveProductName(Long productId, Language language, String productName) {
-		Product product = getById(productId);
-		ProductName pn = new ProductName();
-		pn.setProduct(product);
-		pn.setLanguage(language);
-		pn.setName(productName);
-		product.getProductNames().add(pn);
-		productRepository.save(product);
-	}
-
-	public void saveProductName(Long productId, Long languageId,
-			String productNames) {
-		Language language = languageRepository.findOne(languageId);
-		saveProductName(productId, language, productNames);
-	}
-
-	public void deleteName(Long productId, Long languageId) {
-		Product product = getById(productId);
-		Language language = languageRepository.findOne(languageId);
-
-		product.getProductNames().remove(language);
-		productRepository.save(product);
-		
-	}
-
 	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(
 			Long productTypeId, Long languageId) {
 		return productRepository.getListByProdTypeIdByLanguageId(productTypeId, languageId);
+	}
+
+	public ProductName saveProductName(Long productNameId, Long productId,
+			Long languageId, String productNames) {
+		ProductName productName = new ProductName();
+		productName.setId(productNameId);
+		productName.setProduct(productRepository.findOne(productId));
+		productName.setLanguage(languageRepository.findOne(languageId));
+		productName.setName(productNames);
+		productNameRepository.save(productName);
+		
+		return productName;
+	}
+
+	public void deleteName(Long productNameId) {
+		productNameRepository.delete(productNameId);
+		
 	}
 
 	public List<ProductName> getNamesList(Long productId) {
@@ -118,5 +103,6 @@ public class ProductServiceBean implements ProductService {
 	public void deleteProductParameter(Long productParameterId) {
 		productParameterRepository.delete(productParameterId);
 	}
+
 
 }

@@ -21,10 +21,10 @@ public class Product extends AbstractEntity implements Serializable {
 	@ManyToOne
 	private ProductType productType;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="product")
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product")
 	private List<ProductName> productNames;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="product")
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product")
 	private List<ProductParameter> productParameters;
 
 	public ProductType getProductType() {
