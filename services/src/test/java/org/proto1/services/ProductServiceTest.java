@@ -3,12 +3,9 @@ package org.proto1.services;
 import static org.easymock.EasyMock.*;
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.List;
 import org.junit.Test;
 import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
-import org.proto1.domain.product.ProductName;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;

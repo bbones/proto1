@@ -17,6 +17,9 @@
     },{
         "id": "product",
         "text": "Product"
+    },{
+        "id": "parameter",
+        "text": "Parameter"
     }]
 },{
    "id": "documents",

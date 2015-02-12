@@ -6,7 +6,8 @@
 	<import resource="domain.xml" />
 	<import resource="product.xml"/>
 
-	<bean id="order" class="org.proto1.domain.order.Order">
+	<bean id="salesOrder" class="org.proto1.domain.order.SalesOrder">
+		<property name="contractSupplement" ref="" />
 	</bean>
 
 </beans>

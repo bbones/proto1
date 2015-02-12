@@ -1,0 +1,100 @@
+
+<div title="Parameters"
+	data-options="iconCls:'icon-reload',selected:true" style="padding: 10px;">
+	<table id="edgParameters" title="Parameters" singleSelect="true"
+		style="width: 600px; height: auto"
+		data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'parameterId'">
+		<thead>
+			<tr>
+				<th field='parameterId' width=90>Parameter Id</th>
+				<th field='parameterName' width=250>Parameter Name</th>
+				<th field='parameterType' width=250
+									data-options="
+                      				editor:{
+		                            	type:'combobox',
+	                        			formatter:function(value,row){
+	                            			return row.parameterTypeName;
+	                        			},
+ 		                            	options:{
+			                                valueField:'parameterType',
+			                                textField:'parameterTypeName',
+			                                data: [{
+													parameterType: 'STRING',
+													parameterTypeName: 'String'
+												},{
+													parameterType: 'NUMBER',
+													parameterTypeName: 'Number'
+												},{
+													parameterType: 'DATE',
+													parameterTypeName: 'Date'
+												}],
+			                                required:true
+			                            }
+                        			}">Parameter Type</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+<div title="Translations"
+	data-options="iconCls:'icon-save',selected:false"
+	style="overflow: auto; padding: 10px;" >
+	<table id="edgNames" title="Translations" singleSelect="true"
+		style="width: 600px; height: auto" 
+		data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'nameId'">
+		<thead>
+			<tr>
+				<th field='parameterNameId' width=250>Product Name Id</th>
+				<th
+					data-options="field:'languageId',width:100,
+                    			formatter:function(value,row){
+                        			return row.languageName;
+                    			},
+                   				editor:{
+                          	type:'combobox',
+                          	options:{
+                               valueField:'id',
+                               textField:'name',
+                               method:'get',
+                               url:'/protofront/service/masterdata/languagelist',
+                               required:true
+                           }
+                    			}">Language</th>
+				<th field='parameterName' width=250 editor="text">Parameter Name</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+<div id="tbn" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendName()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeName()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.saveName()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbp" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<script>
+	ParameterLib.init();
+</script>

@@ -8,7 +8,7 @@
 <div class="easyui-panel" title="Product" style="width: 800px">
 	<div class="easyui-panel" style="padding: 5px;">
 		<a href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-add',plain:true" onclick="newProduct()">New</a>
+			data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.newProduct()">New</a>
 		<a href="javascript:void(0)" class="easyui-linkbutton"
 			data-options="iconCls:'icon-remove',plain:true"
 			onclick="removeProduct()">Remove</a> <a href="javascript:void(0)"
@@ -40,40 +40,13 @@
 				</thead>
 			</table>
 
-			<script>
-				$("#edgProducts").edatagrid({});
-
-				$("#productType").combotree({
-					onSelect : function(record) {
-						console.log(record);
-						var lId = $('#langSelector').combobox('getValue');
-						$("#edgProducts").edatagrid({
-							url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-											+ record.id + '&' + lId,
-							onSelect : function(index, row) {
-								console.log(row);
-								$("#edgNames").edatagrid({
-									url : '/protofront/service/product/names/'
-												+ row.id
-								});
-
-								$("#edgParameters").edatagrid({
-									url : '/protofront/service/product/parameters/'
-												+ row.id + '&' + $('#langSelector').combobox('getValue')
-								});
-							} // OnSelect
-						}); // edatagrid
-					}// OnSelect
-				}); // Combotree
-			</script>
-			
 			<div id="aa" class="easyui-accordion"
 				style="width: 700px; height: 400px;">
 				<div title="Translations"
 					data-options="iconCls:'icon-save',selected:false"
 					style="overflow: auto; padding: 10px;" >
 					<table id="edgNames" title="Translations" singleSelect="true"
-						style="width: 600px; height: auto", 
+						style="width: 600px; height: auto" 
 						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'nameId'">
 						<thead>
 							<tr>
@@ -98,18 +71,12 @@
 							</tr>
 						</thead>
 					</table>
-					<script>
-						$("#edgNames").edatagrid({
-							saveUrl : '/protofront/service/product/saveName',
-							destroyUrl : '/protofront/service/product/deleteName'
-						});
-					</script>
 				</div>
 				<div title="Parameters template"
 					data-options="iconCls:'icon-reload',selected:true"
 					style="padding: 10px;">
 					<table id="edgParameters" title="Parameters" singleSelect="true"
-						style="width: 600px; height: auto",
+						style="width: 600px; height: auto"
 						data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'productParameterId'">
 						<thead>
 							<tr>
@@ -134,96 +101,39 @@
 							</tr>
 						</thead>
 					</table>
-					<script>
-						$("#edgParameters").edatagrid({
-							saveUrl : '/protofront/service/product/saveParameter',
-							destroyUrl : '/protofront/service/product/deleteParameter'
-						});
-					</script>
 				</div>
 				<div id="tbn" style="height: auto">
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-add',plain:true" onclick="appendName()">Append</a>
+						data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendName()">Append</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-remove',plain:true"	onclick="removeName()">Remove</a> 
+						data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeName()">Remove</a> 
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-save',plain:true" onclick="saveName()">Accept</a>
+						data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.saveName()">Accept</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-undo',plain:true" onclick="rejectName()">Reject</a>
+						data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectName()">Reject</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"
 						data-options="iconCls:'icon-search',plain:true"
 						onclick="getChanges()">GetChanges</a>
 				</div>
 				<div id="tbp" style="height: auto">
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-add',plain:true" onclick="appendParameter()">Append</a>
+						data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendParameter()">Append</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-remove',plain:true"	onclick="removeParameter()">Remove</a> 
+						data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeParameter()">Remove</a> 
 					<a href="javascript:void(0)"
 						class="easyui-linkbutton"
-						data-options="iconCls:'icon-save',plain:true" onclick="acceptParameter()">Accept</a>
+						data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.acceptParameter()">Accept</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"
-						data-options="iconCls:'icon-undo',plain:true" onclick="rejectParameter()">Reject</a>
+						data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectParameter()">Reject</a>
 					<a href="javascript:void(0)" class="easyui-linkbutton"
 						data-options="iconCls:'icon-search',plain:true"
 						onclick="getChanges()">GetChanges</a>
 				</div>
-
 
 			</div>
 	</div>
 </div>
 
 <script>
-
-	function searchProductType() {
-		var t = $('#productType').combotree('getTree');
-		$('#productType').combotree('setValue', 3);
-	}
-	
-	function newProduct() {
-		var ptId = $('#productType').combotree('getValue');
-		if (ptId) {
-			$.ajax({
-				type : 'POST',
-				url : '/protofront/service/product/getNewProduct',
-				data : {
-					productTypeId : ptId,
-					languageId : $('#langSelector')
-							.combobox('getValue')
-				},
-				success : function(respdata) {
-					$("#edgProducts").edatagrid('addRow', {
-						row : {
-							id : respdata['id'],
-							name : respdata['localizedProductName']
-						}
-					});
-				},
-				error : function(data, status, er) {
-					alert("error: " + data + " status: " + status
-							+ " er:" + er);
-				}
-		
-			}); 
-		} // if
-	}
-	
-	function removeName() {
-		$("#edgNames").edatagrid('destroyRow');
-	}
-	
-	function removeParameter() {
-		$("#edgParameters").edatagrid('destroyRow');
-	}
-
-	function appendParameter() {
-		var pid = $("#edgProducts").edatagrid('getSelected').id;
-		$("#edgParameters").edatagrid('addRow', {row: {productId : pid, required :false}});
-	}
-	
-	function acceptParameter() {
-		console.log($("#edgParameters").edatagrid('getSelected'));
-		$("#edgParameters").edatagrid('saveRow');
-	}
-</script>
+	$(document).ready(ProductLib.init());
+</script> 

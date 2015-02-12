@@ -7,12 +7,13 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>src/main/resources/META-INF/orderdomain.xml</config>
 		<config>src/main/resources/META-INF/domain.xml</config>
 		<config>src/main/resources/META-INF/accounting.xml</config>
 		<config>src/main/resources/META-INF/product.xml</config>
 		<config>src/main/resources/META-INF/utility.xml</config>
 		<config>src/main/resources/META-INF/receipt.xml</config>
+		<config>src/main/resources/META-INF/parameter.xml</config>
+		<config>src/main/resources/META-INF/order.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

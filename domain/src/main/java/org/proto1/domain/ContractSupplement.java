@@ -1,5 +1,8 @@
 package org.proto1.domain;
 
-public class ContractSupplement {
+import javax.persistence.Entity;
+
+@Entity
+public class ContractSupplement extends AbstractEntity {
 
 }

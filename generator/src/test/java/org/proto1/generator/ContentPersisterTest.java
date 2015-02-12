@@ -104,6 +104,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 	
 	@Test 
+	@Ignore
 	public void testDelete() {
 		logger.info("Test delete");
 		em.getTransaction().begin();
@@ -205,7 +206,6 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	@Test 
-	@Ignore
 	public void testQuery() {
 
 		Query query = em.createNamedQuery("partyList");

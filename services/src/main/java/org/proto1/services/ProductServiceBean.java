@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductParameter;

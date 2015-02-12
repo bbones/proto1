@@ -1,8 +1,12 @@
 package org.proto1.domain.order;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.product.Product;
@@ -17,6 +21,10 @@ public class OrderLine extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name="product_id")
 	private Product product;
+	
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="orderLine")
+	private List<OrderLineParameter> orderLineParameterList;
+	
 
 	public Order getOrder() {
 		return order;
@@ -34,4 +42,14 @@ public class OrderLine extends AbstractEntity {
 		this.product = product;
 	}
 
+	public List<OrderLineParameter> getOrderLineParameterList() {
+		return orderLineParameterList;
+	}
+
+	public void setOrderLineParameterList(
+			List<OrderLineParameter> orderLineParameterList) {
+		this.orderLineParameterList = orderLineParameterList;
+	}
+
+	
 }

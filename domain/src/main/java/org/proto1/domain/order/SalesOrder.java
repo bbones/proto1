@@ -1,7 +1,10 @@
 package org.proto1.domain.order;
 
+import javax.persistence.Entity;
+
 import org.proto1.domain.ContractSupplement;
 
+@Entity
 public class SalesOrder extends Order {
 	
 	private ContractSupplement contractSupplement;

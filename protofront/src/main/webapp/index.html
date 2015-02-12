@@ -12,7 +12,10 @@
 <script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
 <script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.edatagrid.js"></script>
 <script src="scripts/protoscript.js"></script>
-<!-- http://www.jeasyui.com/documentation/index.php# -->
+<script src="scripts/index.js"></script>
+<script src="scripts/product.js"></script>
+<script src="scripts/parameter.js"></script>
+
 </head>
 
 <body id="desktop" class="easyui-layout">
@@ -24,15 +27,7 @@
 			<a href="#" class="easyui-menubutton" menu="#mm2" iconCls="icon-edit">Edit</a>
 			<a href="#" class="easyui-menubutton" menu="#mm3" iconCls="icon-help">Help</a>
 			<input id="langSelector" class="easyui-combobox" name="language"
-    				data-options=
-    				"valueField:'id',textField:'name',method:'get',url:'/protofront/service/masterdata/languagelist',  
-    				onSelect: function(rec){
-            			console.log(rec.id);
-            		},
-            		onLoadSuccess:function() {
-						$('#langSelector').combobox('setValue', '1');
-						console.log($('#langSelector').combobox('getValue'));
-					}">
+    			data-options="valueField:'id',textField:'name',method:'get',url:'/protofront/service/masterdata/languagelist'">
 		</div>
 		<div id="mm1" style="width: 150px;">
 			<div iconCls="icon-lock">Log In</div>
@@ -72,15 +67,7 @@
 	</div>
 
 	<script>
-		$('#mainMenu').tree({
-			onClick : function(node) { 
-				if (node.id != "") {
-					
-					$("#test").panel('refresh', '/protofront/forms/' + node.id + '.html');
-				} 
-			}
-		});
-		
+		IndexLib.init();
 	</script>
 
 </body>
