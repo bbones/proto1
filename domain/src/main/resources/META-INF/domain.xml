@@ -35,38 +35,102 @@
 		<property name="name" value="Buyer"/>
 	</bean>
 	
-	<bean id="pva" class="org.proto1.domain.Person">
-		<property name="id" value="1"/>
-		<property name="firstName" value="Valentin"/>
-		<property name="middleName" value="Alexandrovich"/>
-		<property name="lastName" value="Pogrebinsky"/>
+	<bean id="pva" class="org.proto1.domain.party.Person">
+		<property name="personNames">
+			<list>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="pva" />
+					<property name="language" ref="english" />
+					<property name="firstName" value="Valentin"/>
+					<property name="middleName" value="Alexandrovich"/>
+					<property name="lastName" value="Pogrebinsky"/>
+				</bean>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="pva" />
+					<property name="language" ref="russian" />
+					<property name="firstName" value="Валентин"/>
+					<property name="middleName" value="Александрович"/>
+					<property name="lastName" value="Погребинский"/>
+				</bean>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="pva" />
+					<property name="language" ref="ukrainian" />
+					<property name="firstName" value="Валентин"/>
+					<property name="middleName" value="Олександрович"/>
+					<property name="lastName" value="Погребінський"/>
+				</bean>
+			</list>
+		</property>
+		<property name="passportNo" value="123123123" />
 		<property name="address" value="Artema 100" />
 	</bean>
 
-	<bean id="mark" class="org.proto1.domain.Person">
-		<property name="id" value="2"/>
-		<property name="firstName" value="Mark"/>
-		<property name="middleName" value="Valentinovich"/>
-		<property name="lastName" value="Pogrebinsky"/>
+	<bean id="mark" class="org.proto1.domain.party.Person">
+		<property name="personNames">
+			<list>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="mark" />
+					<property name="language" ref="english" />
+					<property name="firstName" value="Mark"/>
+					<property name="middleName" value="Valentinovich"/>
+					<property name="lastName" value="Pogrebinsky"/>
+				</bean>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="mark" />
+					<property name="language" ref="russian" />
+					<property name="firstName" value="Марк"/>
+					<property name="middleName" value="Валентинович"/>
+					<property name="lastName" value="Погребинский"/>
+				</bean>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="mark" />
+					<property name="language" ref="ukrainian" />
+					<property name="firstName" value="Марк"/>
+					<property name="middleName" value="Валентинович"/>
+					<property name="lastName" value="Погребінський"/>
+				</bean>
+			</list>
+		</property>
+		<property name="passportNo" value="322323" />
 		<property name="address" value="Artema 100" />
 	</bean>
 
-	<bean id="gleb" class="org.proto1.domain.Person">
-		<property name="id" value="3"/>		
-		<property name="firstName" value="Gleb"/>
-		<property name="middleName" value="Valentinovich"/>
-		<property name="lastName" value="Pogrebinsky"/>
+	<bean id="gleb" class="org.proto1.domain.party.Person">
+		<property name="personNames">
+			<list>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="gleb" />
+					<property name="language" ref="english" />
+					<property name="firstName" value="Gleb"/>
+					<property name="middleName" value="Valentinovich"/>
+					<property name="lastName" value="Pogrebinsky"/>
+				</bean>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="gleb" />
+					<property name="language" ref="russian" />
+					<property name="firstName" value="Глеб"/>
+					<property name="middleName" value="Валентинович"/>
+					<property name="lastName" value="Погребинский"/>
+				</bean>
+				<bean class="org.proto1.domain.party.PersonName">
+					<property name="person" ref="gleb" />
+					<property name="language" ref="ukrainian" />
+					<property name="firstName" value="Гліб"/>
+					<property name="middleName" value="Валентинович"/>
+					<property name="lastName" value="Погребінський"/>
+				</bean>
+			</list>
+		</property>
+		<property name="passportNo" value="45323423" />
 		<property name="address" value="Artema 100" />
 	</bean>
 	
-	<bean id="isd" class="org.proto1.domain.Enterprise">
-		<property name="id" value="4"/>
+	<bean id="isd" class="org.proto1.domain.party.Enterprise">
 	    <property name="name" value="ISD Corp"/>
 		<property name="address" value="Shorsa 48" />
 	</bean>
 
 	<bean id="contract" class="org.proto1.domain.Contract">
-		<property name="id" value="1"/>
 		<property name="documentNo" value="2013-sell-01" />
 		<property name="issueDate">
 			<bean factory-bean="dateFormat" factory-method="parse">
@@ -77,6 +141,11 @@
 			<list>
 				<ref bean="pvaSide" />
 				<ref bean="isdSide" />
+			</list>
+		</property>
+		<property name="contractSupplements">
+			<list>
+				<ref bean="firstSupplement"/>
 			</list>
 		</property>
 	</bean>
@@ -92,6 +161,16 @@
 		<property name="sideRole" ref="buyer"/>
 		<property name="party" ref="isd"/>
 	</bean>
+	
+	<bean id="firstSupplement" class="org.proto1.domain.ContractSupplement">
+		<property name="contract" ref="contract" />
+		<property name="issueDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2015-02-13" />
+			</bean>
+		</property>
+	</bean>
+	
 	
 	<bean id="first_quarter" class="org.proto1.domain.Period">
 		<property name="id" value="1" />

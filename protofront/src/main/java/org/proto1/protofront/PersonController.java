@@ -1,7 +1,7 @@
 package org.proto1.protofront;
 
 import org.dozer.Mapper;
-import org.proto1.domain.Person;
+import org.proto1.domain.party.Person;
 import org.proto1.dto.PersonDTO;
 import org.proto1.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;

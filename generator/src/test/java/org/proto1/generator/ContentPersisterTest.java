@@ -17,10 +17,12 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
-import org.proto1.domain.Enterprise;
+import org.proto1.domain.DimensionUnit;
 import org.proto1.domain.Language;
-import org.proto1.domain.Person;
 import org.proto1.domain.SideRole;
+import org.proto1.domain.order.SalesOrder;
+import org.proto1.domain.party.Enterprise;
+import org.proto1.domain.party.Person;
 import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductParameter;
@@ -30,7 +32,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(locations={"classpath:/META-INF/product.xml","classpath:/META-INF/utility.xml"})
+@ContextConfiguration(locations={"classpath:/META-INF/product.xml", "classpath:/META-INF/order.xml","classpath:/META-INF/utility.xml"})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -75,7 +77,13 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Language english, russian, ukrainian;
 	
 	@Autowired
+	DimensionUnit metricTonn, cubicMeter, kg;
+	
+	@Autowired
 	LocalizedStringConstant defaultEnglishProductType, defaultRussianProductType, defaultUkrainianProductType;
+	
+	@Autowired
+	SalesOrder salesOrder1;
 
 	@Before
 	public void startUp () {
@@ -88,8 +96,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		
 		em.getTransaction().begin();
 		
-		
 		persistLanguage();
+		persistDimensionUnit();
 		persistPerson();
 		persistEnterprise();
 		persistSideRole();
@@ -98,11 +106,24 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistParameters();
 		persistProduct();
 		persistLocalizedStringConstant();
+		
+		persistOrder();
 
 		em.getTransaction().commit();
 
 	}
 	
+	private void persistDimensionUnit() {
+		em.persist(kg);
+		em.persist(metricTonn);
+		em.persist(cubicMeter);
+	}
+
+	private void persistOrder() {
+		em.persist(salesOrder1);
+		
+	}
+
 	@Test 
 	@Ignore
 	public void testDelete() {
@@ -208,13 +229,12 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	@Test 
 	public void testQuery() {
 
-		Query query = em.createNamedQuery("partyList");
-		// query.setParameter("pattern", "");
-		List<?> result = query.getResultList();
-		
-		for (Object object : result) {
-			logger.debug(object);
-		}
+//		Query query = em.createNamedQuery("partyList");
+//		List<?> result = query.getResultList();
+//		
+//		for (Object object : result) {
+//			logger.debug(object);
+//		}
 		
 	}
 }

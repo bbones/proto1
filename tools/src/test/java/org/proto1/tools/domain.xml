@@ -15,28 +15,28 @@
 		<property name="name" value="Buyer"/>
 	</bean>
 	
-	<bean id="pva" class="org.proto1.domain.Person">
+	<bean id="pva" class="org.proto1.domain.party.Person">
 		<property name="firstName" value="Valentin"/>
 		<property name="middleName" value="Alexandrovich"/>
 		<property name="lastName" value="Pogrebinsky"/>
 		<property name="address" value="Artema 100" />
 	</bean>
 
-	<bean id="mark" class="org.proto1.domain.Person">
+	<bean id="mark" class="org.proto1.domain.party.Person">
 		<property name="firstName" value="Mark"/>
 		<property name="middleName" value="Valentinovich"/>
 		<property name="lastName" value="Pogrebinsky"/>
 		<property name="address" value="Artema 100" />
 	</bean>
 
-	<bean id="gleb" class="org.proto1.domain.Person">
+	<bean id="gleb" class="org.proto1.domain.party.Person">
 		<property name="firstName" value="Gleb"/>
 		<property name="middleName" value="Valentinovich"/>
 		<property name="lastName" value="Pogrebinsky"/>
 		<property name="address" value="Artema 100" />
 	</bean>
 	
-	<bean id="isd" class="org.proto1.domain.Enterprise">
+	<bean id="isd" class="org.proto1.domain.party.Enterprise">
 	    <property name="name" value="ISD Corp"/>
 		<property name="address" value="Shorsa 48" />
 	</bean>

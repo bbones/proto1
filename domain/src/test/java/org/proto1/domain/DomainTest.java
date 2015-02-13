@@ -3,6 +3,8 @@ package org.proto1.domain;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.proto1.domain.party.Enterprise;
+import org.proto1.domain.party.Person;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;

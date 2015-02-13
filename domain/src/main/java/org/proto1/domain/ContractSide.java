@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.proto1.domain.party.Party;
+
 @Entity
 public class ContractSide extends AbstractEntity {
 	

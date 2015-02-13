@@ -9,18 +9,25 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.DimensionUnit;
 import org.proto1.domain.product.Product;
 
 @Entity
 public class OrderLine extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name="order_id")
+	@JoinColumn(name="ORDER_ID")
 	private Order order;
 
 	@ManyToOne
-	@JoinColumn(name="product_id")
+	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
+	
+	@ManyToOne
+	@JoinColumn(name="DIM_UNIT_ID")
+	private DimensionUnit dimensionUnit;
+	
+	private Double qnty;
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="orderLine")
 	private List<OrderLineParameter> orderLineParameterList;
@@ -51,5 +58,20 @@ public class OrderLine extends AbstractEntity {
 		this.orderLineParameterList = orderLineParameterList;
 	}
 
+	public DimensionUnit getDimensionUnit() {
+		return dimensionUnit;
+	}
+
+	public void setDimensionUnit(DimensionUnit dimensionUnit) {
+		this.dimensionUnit = dimensionUnit;
+	}
+
+	public Double getQnty() {
+		return qnty;
+	}
+
+	public void setQnty(Double qnty) {
+		this.qnty = qnty;
+	}
 	
 }

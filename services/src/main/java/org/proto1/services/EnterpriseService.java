@@ -1,6 +1,6 @@
 package org.proto1.services;
 
-import org.proto1.domain.Enterprise;
+import org.proto1.domain.party.Enterprise;
 import org.proto1.repository.EnterpriseRepository;
 
 public interface EnterpriseService {

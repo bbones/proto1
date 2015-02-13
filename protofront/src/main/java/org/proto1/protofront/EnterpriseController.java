@@ -1,7 +1,7 @@
 package org.proto1.protofront;
 
 import org.dozer.Mapper;
-import org.proto1.domain.Enterprise;
+import org.proto1.domain.party.Enterprise;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.services.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;

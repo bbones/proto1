@@ -6,8 +6,54 @@
 	<import resource="domain.xml" />
 	<import resource="product.xml"/>
 
-	<bean id="salesOrder" class="org.proto1.domain.order.SalesOrder">
-		<property name="contractSupplement" ref="" />
+	<bean id="salesOrder1" class="org.proto1.domain.order.SalesOrder">
+		<property name="contractSupplement" ref="firstSupplement" />
+		<property name="lines">
+			<list>
+				<ref bean="orderLine1"/>
+				<ref bean="orderLine2"/>
+			</list>
+		</property>
 	</bean>
 
+	<bean id="orderLine1" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="salesOrder1" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine1" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="St3" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine1" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="8000" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="orderLine2" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="salesOrder1" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine2" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="A36" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine2" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="7000" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 </beans>
