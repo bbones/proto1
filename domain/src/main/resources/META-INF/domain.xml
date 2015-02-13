@@ -45,6 +45,7 @@
 					<property name="middleName" value="Alexandrovich"/>
 					<property name="lastName" value="Pogrebinsky"/>
 				</bean>
+				
 				<bean class="org.proto1.domain.party.PersonName">
 					<property name="person" ref="pva" />
 					<property name="language" ref="russian" />
@@ -52,6 +53,7 @@
 					<property name="middleName" value="Александрович"/>
 					<property name="lastName" value="Погребинский"/>
 				</bean>
+				
 				<bean class="org.proto1.domain.party.PersonName">
 					<property name="person" ref="pva" />
 					<property name="language" ref="ukrainian" />
@@ -126,7 +128,25 @@
 	</bean>
 	
 	<bean id="isd" class="org.proto1.domain.party.Enterprise">
-	    <property name="name" value="ISD Corp"/>
+	    <property name="enterpriseNames">
+	    	<list>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="isd" />
+	    			<property name="language" ref="english" />
+	    			<property name="name" value="ISD Corp" />
+	    		</bean>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="isd" />
+	    			<property name="language" ref="russian" />
+	    			<property name="name" value="Корпорация ИСД" />
+	    		</bean>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="isd" />
+	    			<property name="language" ref="ukrainian" />
+	    			<property name="name" value="Корпорація ІСД" />
+	    		</bean>
+	    	</list>
+	    </property>
 		<property name="address" value="Shorsa 48" />
 	</bean>
 

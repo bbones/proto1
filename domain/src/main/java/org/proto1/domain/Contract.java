@@ -7,8 +7,10 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(name="CONTRACT_ID")
 public class Contract extends Document {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="contract")
 	private Set<ContractSide> contractSides;
