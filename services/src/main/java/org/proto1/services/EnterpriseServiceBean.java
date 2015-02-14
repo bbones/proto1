@@ -1,6 +1,11 @@
 package org.proto1.services;
 
+import java.util.List;
+import java.util.Map;
+
 import org.proto1.domain.party.Enterprise;
+import org.proto1.domain.party.EnterpriseName;
+import org.proto1.repository.EnterpriseNameRepository;
 import org.proto1.repository.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +14,9 @@ import org.springframework.stereotype.Service;
 public class EnterpriseServiceBean implements EnterpriseService {
 	@Autowired
 	EnterpriseRepository enterpriseRepository;
+	
+	@Autowired
+	EnterpriseNameRepository enterpriseNameRepository;
 	
 	public Enterprise getEnterpriseById(Long id) {
 		return enterpriseRepository.findOne(id);
@@ -24,6 +32,14 @@ public class EnterpriseServiceBean implements EnterpriseService {
 
 	public void delete(Long id) {
 		enterpriseRepository.delete(id);
+	}
+
+	public List<Map<String, Object>> getEnterpriseList(Long languageId) {
+		return enterpriseRepository.getListByLanguageId(languageId);
+	}
+
+	public List<EnterpriseName> getNamesList(Long enterpriseId) {
+		return enterpriseNameRepository.getByEnterpriseId(enterpriseId);
 	}
 
 }

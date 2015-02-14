@@ -1,53 +1,85 @@
-<div class="col-xs-2">
-	<div class="panel panel-default">
-		<div class="panel-heading">Enterprise</div>
-		<div class="panel-body">
-			<form role="form" id="enterpriseForm">
-				<div class="form-group">
-					<label for="enterpriseId">Enterprise #ID:</label> <input
-						type="number" class="form-control" name="id" id="id">
-				</div>
-				<div class="form-group">
-					<label for="enterpriseName">Name:</label> <input type="text"
-						class="form-control" name="name" id="name">
-				</div>
-				<div class="form-group">
-					<label for="enterpriseAddress">Address:</label> <input type="text"
-						class="form-control" name="address" id="address">
-				</div>
-				<div class="form-group">
-					<label for="version">Version:</label> <input type="text"
-						class="form-control" name="version" id="version">
-				</div>
-			</form>
-		</div>
-	</div>
+<div class="easyui-panel" title="Enterprise" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
 
+			<table id="edgEnterprise" title="Enterprise" singleSelect="true"
+				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbe', idField : 'enterpriseId'">
+				<thead>
+					<tr>
+						<th field='enterpriseId' width=80>Enterprise Id</th>
+						<th field='enterpriseName' width=250 editor="text">EnterpriseName name</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+				<div title="Translations"
+					data-options="iconCls:'icon-save',selected:true"
+					style="overflow: auto; padding: 10px;" >
+					<table id="edgNames" title="Translations" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'enterpriseNameId'">
+						<thead>
+							<tr>
+								<th field='enterpriseNameId' width=80>Enterprise Name Id</th>
+								<th
+									data-options="field:'languageId',width:100,
+                        			formatter:function(value,row){
+                            			return row.languageName;
+                        			},
+                       				editor:{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/masterdata/languagelist',
+			                                required:true
+			                            }
+                        			}">Language</th>
+								<th field='enterpriseName' width=250 editor="text">Enterprise Name</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div title="Enterprise data"
+					data-options="iconCls:'icon-reload',selected:false"
+					style="padding: 10px;">
+				</div>
+			</div>
+	</div>
+</div>
+
+<div id="tbn" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="EnterpriseLib.appendName()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="EnterpriseLib.removeName()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="EnterpriseLib.saveName()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="EnterpriseLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbe" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="EnterpriseLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="EnterpriseLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="EnterpriseLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="EnterpriseLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
 </div>
 
 <script>
-	var pos = (document.location.href).search('#enterprise:');
-	if (pos != -1) {
-		var id = document.location.href.substr(pos + 12);
-		findBEAction('/protofront/service/enterprise/findByID/', ['id', 'name', 'address', 'version']);
-	}
-
-	$("#submitBtn").click(function() {
-		submitBtnAction('/protofront/service/enterprise/submit',['id', 'name', 'address', 'version']);
+	$.getScript("/protofront/scripts/enterprise.js").done(function() {
+		EnterpriseLib.init();
 	});
-
-
-	$("#findBEBtn").click(function() {
-		findBEAction('/protofront/service/enterprise/findByID/', ['id', 'name', 'address', 'version']);
-	});
-
-	$("#deleteBtn").click(function() {
-		var urlid = '/protofront/service/enterprise/deleteByID/';
-		deleteBtnAction(urlid);
-	});
-	
-	$("#newBtn").click(function() {
-		alert('New');
-		clearForm();
-	});
-</script>
+</script> 

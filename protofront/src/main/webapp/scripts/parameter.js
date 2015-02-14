@@ -6,7 +6,7 @@ var ParameterLib = (function(){
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
-			url : "http://localhost:8080/protofront/service/parameter/parameterListByLanguageId/" +
+			url : "/protofront/service/parameter/parameterListByLanguageId/" +
 				$('#langSelector').combobox('getValue'),
 			onSelect : function(index, row) {
 				console.log(row);

@@ -1,55 +1,85 @@
+<div class="easyui-panel" title="Person" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
 
-<div class="easyui-panel" title="Person" style="width:400px">
-	<div style="padding:10px 60px 20px 60px">
-		<div class="panel-body">
-			<form role="form" id="personForm">
-				<div class="form-group">
-					<label for="personId">Person #ID:</label> <input type="number"
-						class="form-control" id="id">
+			<table id="edgPerson" title="Person" singleSelect="true"
+				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbe', idField : 'personId'">
+				<thead>
+					<tr>
+						<th field='personId' width=80>Person Id</th>
+						<th field='personName' width=250 editor="text">PersonName name</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+				<div title="Translations"
+					data-options="iconCls:'icon-save',selected:true"
+					style="overflow: auto; padding: 10px;" >
+					<table id="edgNames" title="Translations" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'personNameId'">
+						<thead>
+							<tr>
+								<th field='personNameId' width=80>Person Name Id</th>
+								<th
+									data-options="field:'languageId',width:100,
+                        			formatter:function(value,row){
+                            			return row.languageName;
+                        			},
+                       				editor:{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/masterdata/languagelist',
+			                                required:true
+			                            }
+                        			}">Language</th>
+								<th field='personName' width=250 editor="text">Person Name</th>
+							</tr>
+						</thead>
+					</table>
 				</div>
-				<div class="form-group">
-					<label for="personLastName">Last name:</label> <input type="text"
-						class="form-control" id="lastName">
+				<div title="Person data"
+					data-options="iconCls:'icon-reload',selected:false"
+					style="padding: 10px;">
 				</div>
-				<div class="form-group">
-					<label for="personFirstName">Last name:</label> <input type="text"
-						class="form-control" id="firstName">
-				</div>
-				<div class="form-group">
-					<label for="personMiddleName">Last name:</label> <input type="text"
-						class="form-control" id="middleName">
-				</div>
-				<div class="form-group">
-					<label for="version">Version:</label> <input type="text"
-						class="form-control" id="version">
-				</div>
-			</form>
-		</div>
+			</div>
 	</div>
 </div>
 
+<div id="tbn" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="PersonLib.appendName()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="PersonLib.removeName()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="PersonLib.saveName()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="PersonLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbe" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="PersonLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="PersonLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="PersonLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="PersonLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
 <script>
-	var pos = (document.location.href).search('#person:');
-	if (pos != -1) {
-		var id = document.location.href.substr(pos + 8);
-		findBEAction('/protofront/service/person/findByID/', [ 'id',
-				'lastName', 'firstName', 'middleName', 'version' ]);
-	}
-
-	$("#submitBtn").click(
-			function() {
-				submitBtnAction('/protofront/service/person/submit', [ 'id',
-						'lastName', 'firstName', 'middleName', 'version' ]);
-			});
-
-	$("#findBEBtn").click(
-			function() {
-				findBEAction('/protofront/service/person/findByID/', [ 'id',
-						'lastName', 'firstName', 'middleName', 'version' ]);
-			});
-
-	$("#deleteBtn").click(function() {
-		var urlid = '/protofront/service/person/deleteByID/' + $('#id').val();
-		deleteBtnAction(urlid);
+	$.getScript("/protofront/scripts/person.js").done(function() {
+		PersonLib.init();
 	});
-</script>
+</script> 

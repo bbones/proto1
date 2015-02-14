@@ -124,4 +124,31 @@
 		
 	</mapping>
 
+	<mapping>
+		<class-a>org.proto1.domain.party.EnterpriseName</class-a>
+		<class-b>org.proto1.dto.EnterpriseNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>enterpriseNameId</b>
+		</field>
+
+		<field>
+			<a>enterprise.id</a>
+			<b>enterpriseId</b>
+		</field>
+		
+		<field>
+			<a>language.id</a>
+			<b>languageId</b>
+		</field>
+		<field>
+			<a>language.name</a>
+			<b>languageName</b>
+		</field>
+		<field>
+			<a>name</a>
+			<b>enterpriseName</b>
+		</field>
+	</mapping>
+
 </mappings>
