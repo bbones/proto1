@@ -7,11 +7,12 @@ var SalesOrderLib = (function() {
 	function initSOGrid() {
 		$("#edgSalesOrder").edatagrid({
 			url : "/protofront/service/salesOrder/listbylang/" +
-				$('#langSelector').combobox('getValue'),
+				IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/enterprise/names/' + row.enterpriseId
+					url : '/protofront/service/salesOrder/lines/' + row.soId + '&' + 
+						IndexLib.lang()
 				});
 			} // OnSelect
 		});

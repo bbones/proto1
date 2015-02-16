@@ -189,14 +189,14 @@
 	    			<property name="enterprise" ref="duferco" />
 	    			<property name="language" ref="russian" />
 	    			<property name="name">
-	    				<value>ПАО "Дюферко"</value> 
+	    				<value>Дюферко</value> 
 					</property>				
 	    		</bean>
 	    		<bean class="org.proto1.domain.party.EnterpriseName">
 	    			<property name="enterprise" ref="duferco" />
 	    			<property name="language" ref="ukrainian" />
 	    			<property name="name">
-	    				<value>ПАО "Дюферко"</value>
+	    				<value>Дюферко</value>
 					</property>
 	    		</bean>
 	    	</list>
@@ -238,6 +238,7 @@
 	
 	<bean id="firstSupplement" class="org.proto1.domain.ContractSupplement">
 		<property name="contract" ref="contract" />
+		<property name="documentNo" value="Sup 1" />
 		<property name="issueDate">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2015-02-13" />

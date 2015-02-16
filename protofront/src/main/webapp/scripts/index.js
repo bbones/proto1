@@ -35,9 +35,12 @@ var IndexLib = (function(){
 	}
 	
 	return {
-		init:function() {
+		init : function() {
 			initLangSelector();
 			initMenu();
+		},
+		lang : function() {
+			return $('#langSelector').combobox('getValue');
 		}
 	}
 })();

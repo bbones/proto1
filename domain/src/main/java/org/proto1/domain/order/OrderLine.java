@@ -17,7 +17,7 @@ public class OrderLine extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name="ORDER_ID")
-	private Order order;
+	private BaseOrder order;
 
 	@ManyToOne
 	@JoinColumn(name="PRODUCT_ID")
@@ -29,15 +29,35 @@ public class OrderLine extends AbstractEntity {
 	
 	private Double qnty;
 	
+	private Double price;
+	
+	private Double amount;
+	
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
+	}
+
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="orderLine")
 	private List<OrderLineParameter> orderLineParameterList;
 	
 
-	public Order getOrder() {
+	public BaseOrder getOrder() {
 		return order;
 	}
 
-	public void setOrder(Order order) {
+	public void setOrder(BaseOrder order) {
 		this.order = order;
 	}
 

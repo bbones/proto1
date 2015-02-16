@@ -15,8 +15,8 @@ import org.proto1.domain.Document;
 @Inheritance(
 		strategy = InheritanceType.JOINED
 ) 
-@Table(name="ORDER_BASE")
-public class Order extends Document {
+@Table(name="BASE_ORDER")
+public class BaseOrder extends Document {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="order")
 	private List<OrderLine> lines;
 	

@@ -1,5 +1,5 @@
 package org.proto1.domain.order;
 
-public class ProductionOrder extends Order {
+public class ProductionOrder extends BaseOrder {
 
 }

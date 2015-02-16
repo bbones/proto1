@@ -7,7 +7,7 @@ import javax.persistence.ManyToOne;
 import org.proto1.domain.ContractSupplement;
 
 @Entity
-public class SalesOrder extends Order {
+public class SalesOrder extends BaseOrder {
 	
 	@ManyToOne
 	@JoinColumn(name="CONTRACT_SUPPLEMENT_ID")

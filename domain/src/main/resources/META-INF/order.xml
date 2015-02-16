@@ -8,6 +8,7 @@
 
 	<bean id="salesOrder1" class="org.proto1.domain.order.SalesOrder">
 		<property name="contractSupplement" ref="firstSupplement" />
+		<property name="documentNo" value="HRP201500001" />
 		<property name="lines">
 			<list>
 				<ref bean="orderLine1"/>
@@ -20,6 +21,10 @@
 		<property name="order" ref="salesOrder1" />
 		<property name="dimensionUnit" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
+		<property name="price" value="400" />
+		<property name="qnty" value="100" />
+		<property name="amount" value="40000" />
+		
 		<property name="orderLineParameterList">
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
@@ -40,6 +45,9 @@
 		<property name="order" ref="salesOrder1" />
 		<property name="dimensionUnit" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
+		<property name="price" value="400" />
+		<property name="qnty" value="105" />
+		<property name="amount" value="42000" />
 		<property name="orderLineParameterList">
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
