@@ -2,16 +2,16 @@
  * TODO
  */
 
-var EnterpriseLib = (function() {
+var PersonLib = (function() {
 	
-	function initEnterpriseGrid() {
-		$("#edgEnterprise").edatagrid({
-			url : "/protofront/service/enterprise/listbylang/" +
+	function initPersonGrid() {
+		$("#edgPerson").edatagrid({
+			url : "/protofront/service/person/listbylang/" +
 				$('#langSelector').combobox('getValue'),
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgNames").edatagrid({
-					url : '/protofront/service/enterprise/names/' + row.enterpriseId
+					url : '/protofront/service/person/names/' + row.personId
 				});
 			} // OnSelect
 		});
@@ -23,7 +23,7 @@ var EnterpriseLib = (function() {
 
 	return {
 		init : function() {
-			initEnterpriseGrid();
+			initPersonGrid();
 			initNameGrid();
 		}
 	}

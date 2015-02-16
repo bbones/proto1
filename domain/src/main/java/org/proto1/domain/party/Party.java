@@ -5,8 +5,6 @@ package org.proto1.domain.party;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.validation.constraints.NotNull;
 
 import org.proto1.domain.AbstractEntity;

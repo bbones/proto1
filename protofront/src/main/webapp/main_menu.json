@@ -29,8 +29,8 @@
         "id": "contract",
         "text": "Contract"
     },{
-        "id": "order",
-        "text": "Order"
+        "id": "salesOrder",
+        "text": "Sales Order"
     },{
         "id": "bill",
         "text": "Bill"

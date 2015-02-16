@@ -1,14 +1,11 @@
 package org.proto1.generator;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.After;
@@ -44,7 +41,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Person pva, mark, gleb;
 	
 	@Autowired
-	Enterprise isd;
+	Enterprise isd, amk, duferco;
 	
 	@Autowired
 	SideRole seller, buyer;
@@ -212,6 +209,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	private void persistEnterprise() {
 		em.persist(isd);
+		em.persist(amk);
+		em.persist(duferco);
 	}
 
 	private void persistPerson() {

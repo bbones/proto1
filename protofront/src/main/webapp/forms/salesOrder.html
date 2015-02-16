@@ -1,0 +1,75 @@
+<!-- TODO: edgSalesOrder, accordion, orderDeatils, edgOrderLines  -->
+
+<div class="easyui-panel" title="Sales Order" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
+
+			<table id="edgSalesOrder" title="SalesOrder" singleSelect="true"
+				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbso', idField : 'soId'">
+				<thead>
+					<tr>
+						<th field='soId' width=80>SO Id</th>
+						<th field='soNo' width=250 editor="text">SO #</th>
+						<th field='soIssued' width=250 editor="text">Issue Date</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+				<div title="SO Lines"
+					data-options="iconCls:'icon-save',selected:true"
+					style="overflow: auto; padding: 10px;" >
+					<table id="edgLines" title="Lines" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
+						<thead>
+							<tr>
+								<th field='soLineId' width=80>SO Line Id</th>
+								<th field='lotNo' width=250 editor="text">Lot No</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div title="Enterprise data"
+					data-options="iconCls:'icon-reload',selected:false"
+					style="padding: 10px;">
+				</div>
+			</div>
+	</div>
+</div>
+
+<div id="tbso" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="EnterpriseLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="EnterpriseLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="EnterpriseLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="EnterpriseLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbsolines" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="EnterpriseLib.appendName()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="EnterpriseLib.removeName()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="EnterpriseLib.saveName()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="EnterpriseLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+
+
+<script>
+	$.getScript("/protofront/scripts/salesOrder.js").done(function() {
+		SalesOrderLib.init();
+	});
+</script> 

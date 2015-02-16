@@ -1,6 +1,10 @@
 package org.proto1.services;
 
+import java.util.List;
+import java.util.Map;
+
 import org.proto1.domain.party.Person;
+import org.proto1.domain.party.PersonName;
 import org.proto1.repository.PersonRepository;
 
 public interface PersonService {
@@ -12,5 +16,9 @@ public interface PersonService {
 	Person save(Person person);
 
 	void delete(Long id);
+
+	List<Map<String, Object>> getPersonList(Long languageId);
+
+	List<PersonName> getNamesList(Long personIdId);
 
 }

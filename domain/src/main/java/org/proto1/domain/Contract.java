@@ -1,6 +1,5 @@
 package org.proto1.domain;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 

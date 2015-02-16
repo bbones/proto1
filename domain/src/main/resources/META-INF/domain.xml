@@ -150,6 +150,60 @@
 		<property name="address" value="Shorsa 48" />
 	</bean>
 
+	<bean id="amk" class="org.proto1.domain.party.Enterprise">
+	    <property name="enterpriseNames">
+	    	<list>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="amk" />
+	    			<property name="language" ref="english" />
+	    			<property name="name" value="Alchevsk Metallurgical Plant" />
+	    		</bean>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="amk" />
+	    			<property name="language" ref="russian" />
+	    			<property name="name">
+	    				<value>ПАО "Алчевский металлургический комбинат"</value> 
+					</property>				
+	    		</bean>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="amk" />
+	    			<property name="language" ref="ukrainian" />
+	    			<property name="name">
+	    				<value>ПАО "Алчевський металлургійний комбінат"</value>
+					</property>
+	    		</bean>
+	    	</list>
+	    </property>
+		<property name="address" value="Shorsa 48" />
+	</bean>
+
+	<bean id="duferco" class="org.proto1.domain.party.Enterprise">
+	    <property name="enterpriseNames">
+	    	<list>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="duferco" />
+	    			<property name="language" ref="english" />
+	    			<property name="name" value="Duferco" />
+	    		</bean>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="duferco" />
+	    			<property name="language" ref="russian" />
+	    			<property name="name">
+	    				<value>ПАО "Дюферко"</value> 
+					</property>				
+	    		</bean>
+	    		<bean class="org.proto1.domain.party.EnterpriseName">
+	    			<property name="enterprise" ref="duferco" />
+	    			<property name="language" ref="ukrainian" />
+	    			<property name="name">
+	    				<value>ПАО "Дюферко"</value>
+					</property>
+	    		</bean>
+	    	</list>
+	    </property>
+		<property name="address" value="Shorsa 48" />
+	</bean>
+
 	<bean id="contract" class="org.proto1.domain.Contract">
 		<property name="documentNo" value="2013-sell-01" />
 		<property name="issueDate">

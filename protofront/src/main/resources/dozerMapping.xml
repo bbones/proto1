@@ -151,4 +151,39 @@
 		</field>
 	</mapping>
 
+	<mapping>
+		<class-a>org.proto1.domain.party.PersonName</class-a>
+		<class-b>org.proto1.dto.PersonNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>personNameId</b>
+		</field>
+
+		<field>
+			<a>person.id</a>
+			<b>personId</b>
+		</field>
+		
+		<field>
+			<a>language.id</a>
+			<b>languageId</b>
+		</field>
+		<field>
+			<a>language.name</a>
+			<b>languageName</b>
+		</field>
+		<field>
+			<a>lastName</a>
+			<b>lastName</b>
+		</field>
+		<field>
+			<a>firstName</a>
+			<b>firstName</b>
+		</field>
+		<field>
+			<a>middleName</a>
+			<b>middleName</b>
+		</field>
+	</mapping>
+
 </mappings>

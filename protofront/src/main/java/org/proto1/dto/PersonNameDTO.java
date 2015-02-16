@@ -7,6 +7,7 @@ public class PersonNameDTO extends DTO {
 	private static final long serialVersionUID = 331558813224156396L;
 
 	private Long personNameId;
+	private Long personId;
 	private Long languageId;
 	private String languageName;
 	@NotNull
@@ -61,6 +62,14 @@ public class PersonNameDTO extends DTO {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public Long getPersonId() {
+		return personId;
+	}
+
+	public void setPersonId(Long personId) {
+		this.personId = personId;
 	}
 
 }

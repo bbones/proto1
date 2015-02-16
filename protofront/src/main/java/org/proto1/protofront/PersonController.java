@@ -1,7 +1,13 @@
 package org.proto1.protofront;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.dozer.Mapper;
+import org.proto1.domain.party.PersonName;
 import org.proto1.domain.party.Person;
+import org.proto1.dto.PersonNameDTO;
 import org.proto1.dto.PersonDTO;
 import org.proto1.services.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +27,19 @@ public class PersonController {
 	
 	@Autowired
 	Mapper mapper;
+	
+	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  personListByLanguage(@PathVariable Long languageId) {
+		return personService.getPersonList(languageId);
+	}
+	
+	@RequestMapping(value = "names/{id}", method = RequestMethod.POST)
+	public @ResponseBody List<PersonNameDTO> getEntepriseNames(@PathVariable String id) {
+		List<PersonNameDTO> enList = new ArrayList<PersonNameDTO>();
+		for(PersonName en : personService.getNamesList(new Long(id)))
+			enList.add(mapper.map(en, PersonNameDTO.class));
+		return enList;
+	}
 	
 	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json", consumes="application/json" )
 	public @ResponseBody PersonDTO submit(@RequestBody final PersonDTO personDTO) {

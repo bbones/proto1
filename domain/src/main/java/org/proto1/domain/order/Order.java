@@ -9,14 +9,14 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.Document;
 
 @Entity
 @Inheritance(
 		strategy = InheritanceType.JOINED
 ) 
 @Table(name="ORDER_BASE")
-public class Order extends AbstractEntity {
+public class Order extends Document {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="order")
 	private List<OrderLine> lines;
 	

@@ -5,7 +5,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
