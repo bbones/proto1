@@ -28,11 +28,55 @@
 
 
 	<bean id="seller" class="org.proto1.domain.SideRole">
-		<property name="name" value="Seller"/>
+		<property name="sideRoleNames">
+	    	<list>
+	    		<bean class="org.proto1.domain.SideRoleName">
+	    			<property name="sideRole" ref="seller" />
+	    			<property name="language" ref="english" />
+	    			<property name="name" value="Seller" />
+	    		</bean>
+	    		<bean class="org.proto1.domain.SideRoleName">
+	    			<property name="sideRole" ref="seller" />
+	    			<property name="language" ref="russian" />
+	    			<property name="name">
+	    				<value>Продавец</value> 
+					</property>				
+	    		</bean>
+	    		<bean class="org.proto1.domain.SideRoleName">
+	    			<property name="sideRole" ref="seller" />
+	    			<property name="language" ref="ukrainian" />
+	    			<property name="name">
+	    				<value>Продавець</value>
+					</property>
+	    		</bean>
+	    	</list>
+		</property>
 	</bean>
 	
 	<bean id="buyer" class="org.proto1.domain.SideRole">
-		<property name="name" value="Buyer"/>
+		<property name="sideRoleNames">
+	    	<list>
+	    		<bean class="org.proto1.domain.SideRoleName">
+	    			<property name="sideRole" ref="buyer" />
+	    			<property name="language" ref="english" />
+	    			<property name="name" value="Buyer" />
+	    		</bean>
+	    		<bean class="org.proto1.domain.SideRoleName">
+	    			<property name="sideRole" ref="buyer" />
+	    			<property name="language" ref="russian" />
+	    			<property name="name">
+	    				<value>Покупатель</value> 
+					</property>				
+	    		</bean>
+	    		<bean class="org.proto1.domain.SideRoleName">
+	    			<property name="sideRole" ref="buyer" />
+	    			<property name="language" ref="ukrainian" />
+	    			<property name="name">
+	    				<value>Покупець</value>
+					</property>
+	    		</bean>
+	    	</list>
+	    </property>
 	</bean>
 	
 	<bean id="pva" class="org.proto1.domain.party.Person">
@@ -213,8 +257,17 @@
 		</property>
 		<property name="contractSides">
 			<list>
-				<ref bean="pvaSide" />
-				<ref bean="isdSide" />
+				<bean class="org.proto1.domain.ContractSide">
+					<property name="contract" ref="contract" />
+					<property name="sideRole" ref="seller"/>
+					<property name="party" ref="pva"/>
+				</bean>
+			
+				<bean class="org.proto1.domain.ContractSide">
+					<property name="contract" ref="contract" />
+					<property name="sideRole" ref="buyer"/>
+					<property name="party" ref="isd"/>
+				</bean>
 			</list>
 		</property>
 		<property name="contractSupplements">
@@ -222,18 +275,6 @@
 				<ref bean="firstSupplement"/>
 			</list>
 		</property>
-	</bean>
-	
-	<bean id="pvaSide" class="org.proto1.domain.ContractSide">
-		<property name="contract" ref="contract" />
-		<property name="sideRole" ref="seller"/>
-		<property name="party" ref="pva"/>
-	</bean>
-
-	<bean id="isdSide" class="org.proto1.domain.ContractSide">
-		<property name="contract" ref="contract" />
-		<property name="sideRole" ref="buyer"/>
-		<property name="party" ref="isd"/>
 	</bean>
 	
 	<bean id="firstSupplement" class="org.proto1.domain.ContractSupplement">

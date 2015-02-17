@@ -12,16 +12,16 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @PrimaryKeyJoinColumn(name="CONTRACT_ID")
 public class Contract extends Document {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="contract")
-	private Set<ContractSide> contractSides;
+	private List<ContractSide> contractSides;
 
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="contract")
 	private List<ContractSupplement> contractSupplements;
 
-	public Set<ContractSide> getContractSides() {
+	public List<ContractSide> getContractSides() {
 		return contractSides;
 	}
 
-	public void setContractSides(Set<ContractSide> contractSides) {
+	public void setContractSides(List<ContractSide> contractSides) {
 		this.contractSides = contractSides;
 	}
 

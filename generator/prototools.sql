@@ -6,7 +6,12 @@ where pp.product.id = :product_id and ppn.language.id=:language_id
 
 update product_parameter pp set pp.optional=true where pp.id = 2 
 
-SELECT
-  SALESORDER0_.ID AS COL_0_0_ 
- FROM
-  SALESORDER SALESORDER0_ 
+select so.id as soId, csides.party.id as partyId, csides.party.address as address, pn.lastName, en.name
+from SalesOrder so 
+	join so.contractSupplement cs 
+	join cs.contract c 
+	join c.contractSides csides 
+	join csides.party p 
+	left join p.personNames pn
+	left join p.enterpriseNames en
+where pn.language.id = 1

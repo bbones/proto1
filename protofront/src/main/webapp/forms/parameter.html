@@ -96,5 +96,7 @@
 </div>
 
 <script>
-	ParameterLib.init();
+	$.getScript("/protofront/scripts/parameter.js").done(function() {
+		ParameterLib.init();
+	}
 </script>

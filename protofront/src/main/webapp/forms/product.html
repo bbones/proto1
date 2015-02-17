@@ -135,5 +135,7 @@
 </div>
 
 <script>
-	$(document).ready(ProductLib.init());
+	$.getScript("/protofront/scripts/product.js").done(function() {
+		ProductLib.init();
+	}
 </script> 

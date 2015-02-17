@@ -47,9 +47,6 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	SideRole seller, buyer;
 	
 	@Autowired
-	ContractSide isdSide, pvaSide;
-	
-	@Autowired
 	Contract contract;
 	
 	@Autowired
@@ -196,15 +193,17 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	private void persistContract() {
-		em.persist(pvaSide);
-		em.persist(isdSide);
-		
+		logger.warn("Saving contract..............");
 		em.persist(contract);
+		logger.warn("End saving contract..............");
 	}
 
 	private void persistSideRole() {
+		logger.warn("Saving side role..............");
+
 		em.persist(seller);
 		em.persist(buyer);
+		logger.warn("End Saving side role..............");
 	}
 
 	private void persistEnterprise() {

@@ -9,6 +9,11 @@
 	<bean id="salesOrder1" class="org.proto1.domain.order.SalesOrder">
 		<property name="contractSupplement" ref="firstSupplement" />
 		<property name="documentNo" value="HRP201500001" />
+		<property name="issueDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2013-01-15" />
+			</bean>
+		</property>
 		<property name="lines">
 			<list>
 				<ref bean="orderLine1"/>
