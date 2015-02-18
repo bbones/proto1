@@ -12,10 +12,9 @@ var ProductLib = (function(){
 		$("#productType").combotree({
 			onSelect : function(record) {
 				console.log(record);
-				var lId = $('#langSelector').combobox('getValue');
 				$("#edgProducts").edatagrid({
 					url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-									+ record.id + '&' + lId,
+									+ record.id + '&' + IndexLib.lang(),
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgNames").edatagrid({

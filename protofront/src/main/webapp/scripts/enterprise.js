@@ -7,7 +7,7 @@ var EnterpriseLib = (function() {
 	function initEnterpriseGrid() {
 		$("#edgEnterprise").edatagrid({
 			url : "/protofront/service/enterprise/listbylang/" +
-				$('#langSelector').combobox('getValue'),
+				IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgNames").edatagrid({

@@ -6,12 +6,12 @@ var SalesOrderLib = (function() {
 	
 	function initSOGrid() {
 		$("#edgSalesOrder").edatagrid({
-			url : "/protofront/service/salesOrder/listbylang/" +
+			url : "/protofront/service/salesorder/listbylang/" +
 				IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/salesOrder/lines/' + row.soId + '&' + 
+					url : '/protofront/service/salesorder/lines/' + row.soId + '&' + 
 						IndexLib.lang()
 				});
 			} // OnSelect
