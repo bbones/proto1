@@ -24,7 +24,7 @@ var ProductLib = (function(){
 
 						$("#edgParameters").edatagrid({
 							url : '/protofront/service/product/parameters/'
-										+ row.id + '&' + $('#langSelector').combobox('getValue')
+										+ row.id + '&' + IndexLib.lang(),
 						});
 					} // OnSelect
 				}); // edatagrid

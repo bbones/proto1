@@ -24,15 +24,34 @@
 						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
 						<thead>
 							<tr>
-								<th field='soLineId' width=80>SO Line Id</th>
-								<th field='lotNo' width=250 editor="text">Lot No</th>
+								<th field='olId' width=80>SO Line Id</th>
+								<th field='productName' width=250 editor="text">Product</th>
+								<th field='duName' width=30 editor="text">DU</th>
+								<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+								<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
+								<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+								
 							</tr>
 						</thead>
 					</table>
 				</div>
-				<div title="Enterprise data"
-					data-options="iconCls:'icon-reload',selected:false"
-					style="padding: 10px;">
+				<div title="Order Line Parameters"
+					data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
+					<table id="edgLineParameters" title="Order Line Parameters" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
+						<thead>
+							<tr>
+								<th field='olpId' width=80>SO Line Id</th>
+								<th field='productName' width=250 editor="text">Product</th>
+								<th field='duName' width=30 editor="text">DU</th>
+								<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+								<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
+								<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+								
+							</tr>
+						</thead>
+					</table>
 				</div>
 			</div>
 	</div>

@@ -28,4 +28,9 @@ public class SalesOrderController {
 	}
 	
 
+	@RequestMapping(value = "lines/{soId}&{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  salesOrderLineList(@PathVariable Long soId, @PathVariable Long languageId) {
+		return salesOrderService.getSalesOrderLines(soId, languageId);
+	}
+	
 }

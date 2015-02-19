@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="ENTERPRISE_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"ENTERPRISE_ID", "LANGUAGE_ID"})) 
+@Table(name="SIDE_ROLE_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"SIDE_ROLE_ID", "LANGUAGE_ID"})) 
 public class SideRoleName extends AbstractEntity {
 	
 	@ManyToOne

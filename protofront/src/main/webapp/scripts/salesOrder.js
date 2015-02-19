@@ -11,8 +11,8 @@ var SalesOrderLib = (function() {
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/salesorder/lines/' + row.soId + '&' + 
-						IndexLib.lang()
+					url : '/protofront/service/salesorder/lines/' + IndexLib.lang() + '&' + row.soId
+						
 				});
 			} // OnSelect
 		});
