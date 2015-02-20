@@ -25,8 +25,50 @@
 	<bean id="dateFormat" class="java.text.SimpleDateFormat">
 		<constructor-arg value="yyyy-MM-dd" />
 	</bean>
+ 
+	<bean id="uah" class="org.proto1.domain.Currency">
+		<property name="charCode" value="UAH" />
+		<property name="numCode" value="980" />
+		<property name="sign" value="₴" />
+	</bean>
 
-
+	<bean id="usd" class="org.proto1.domain.Currency">
+		<property name="charCode" value="USD" />
+		<property name="numCode" value="840" />
+		<property name="sign" value="$" />
+	</bean>
+	
+	
+	<bean id="eur" class="org.proto1.domain.Currency">
+		<property name="charCode" value="EUR" />
+		<property name="numCode" value="978" />
+		<property name="sign" value="€" />
+	</bean>
+	
+	<bean id="gbp" class="org.proto1.domain.Currency">
+		<property name="charCode" value="GBP" />
+		<property name="numCode" value="826" />
+		<property name="sign" value="$" />
+	</bean>
+	
+	<bean id="jpy" class="org.proto1.domain.Currency">
+		<property name="charCode" value="JPY" />
+		<property name="numCode" value="392" />
+		<property name="sign" value="£" />
+	</bean>
+	
+	<bean id="chf" class="org.proto1.domain.Currency">
+		<property name="charCode" value="CHF" />
+		<property name="numCode" value="756" />
+		<property name="sign" value="¥" />
+	</bean>
+	
+	<bean id="rub" class="org.proto1.domain.Currency">
+		<property name="charCode" value="RUB" />
+		<property name="numCode" value="643" />
+		<property name="sign" value="₽" />
+	</bean>
+	
 	<bean id="seller" class="org.proto1.domain.SideRole">
 		<property name="sideRoleNames">
 	    	<list>
@@ -285,6 +327,7 @@
 				<constructor-arg value="2015-02-13" />
 			</bean>
 		</property>
+		<property name="currency" ref="usd" />
 	</bean>
 	
 	

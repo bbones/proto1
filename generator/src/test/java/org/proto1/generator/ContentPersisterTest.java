@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.After;
@@ -13,7 +14,7 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Contract;
-import org.proto1.domain.ContractSide;
+import org.proto1.domain.Currency;
 import org.proto1.domain.DimensionUnit;
 import org.proto1.domain.Language;
 import org.proto1.domain.SideRole;
@@ -45,6 +46,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	SideRole seller, buyer;
+	
+	@Autowired
+	Currency uah, usd, eur, gbp, jpy, chf, rub;
 	
 	@Autowired
 	Contract contract;
@@ -92,6 +96,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		
 		persistLanguage();
 		persistDimensionUnit();
+		persistCurrency();
 		persistPerson();
 		persistEnterprise();
 		persistSideRole();
@@ -107,6 +112,16 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	}
 	
+	private void persistCurrency() {
+		em.persist(uah);
+		em.persist(usd);
+		em.persist(eur);
+		em.persist(gbp);
+		em.persist(jpy);
+		em.persist(chf);
+		em.persist(rub);
+	}
+
 	private void persistDimensionUnit() {
 		em.persist(kg);
 		em.persist(metricTonn);

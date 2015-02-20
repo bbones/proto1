@@ -16,8 +16,35 @@
 			</table>
 
 			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+				<div title="SO details"
+					data-options="iconCls:'icon-reload',selected:true"	style="padding: 10px;">
+					 <form id="sof" action="form1_proc.php" method="post" enctype="multipart/form-data">
+				        <table>
+				            <tr>
+				                <td>Id:</td>
+				                <td><input name="soId" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>SO #:</td>
+				                <td><input name="soNo" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>Issue date:</td>
+				                <td><input name="soIssueDate" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>Customer:</td>
+				                <td><input name="customerName" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td></td>
+				                <td><input type="submit" value="Submit"></input></td>
+				            </tr>
+				        </table>
+				    </form>
+				</div>
 				<div title="SO Lines"
-					data-options="iconCls:'icon-save',selected:true"
+					data-options="iconCls:'icon-save',selected:false"
 					style="overflow: auto; padding: 10px;" >
 					<table id="edgLines" title="Lines" singleSelect="true"
 						style="width: 600px; height: auto" 
