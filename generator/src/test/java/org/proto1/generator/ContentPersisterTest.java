@@ -75,7 +75,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Language english, russian, ukrainian;
 	
 	@Autowired
-	DimensionUnit metricTonn, cubicMeter, kg;
+	DimensionUnit metricTonn, cubicMeter, kg, mm, percent;
 	
 	@Autowired
 	LocalizedStringConstant defaultEnglishProductType, defaultRussianProductType, defaultUkrainianProductType;
@@ -124,8 +124,10 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	private void persistDimensionUnit() {
 		em.persist(kg);
+		em.persist(mm);
 		em.persist(metricTonn);
 		em.persist(cubicMeter);
+		em.persist(percent);
 	}
 
 	private void persistOrder() {

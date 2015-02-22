@@ -7,6 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.DimensionUnit;
 import org.proto1.domain.product.Parameter;
 
 @Entity
@@ -21,6 +22,11 @@ public class OrderLineParameter extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "parameter_id")
 	private Parameter parameter;
+	
+	@ManyToOne
+	@JoinColumn(name = "DIM_INIT_ID")
+	private DimensionUnit dimensionUnit;
+	
 	private String value;
 
 	public OrderLine getOrderLine() {
@@ -47,4 +53,13 @@ public class OrderLineParameter extends AbstractEntity {
 		this.value = value;
 	}
 
+	public DimensionUnit getDimensionUnit() {
+		return dimensionUnit;
+	}
+
+	public void setDimensionUnit(DimensionUnit dimensionUnit) {
+		this.dimensionUnit = dimensionUnit;
+	}
+
+	
 }

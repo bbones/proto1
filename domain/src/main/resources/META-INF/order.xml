@@ -41,6 +41,7 @@
 					<property name="orderLine" ref="orderLine1" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
+					<property name="dimensionUnit" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -64,6 +65,7 @@
 					<property name="orderLine" ref="orderLine2" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
+					<property name="dimensionUnit" ref="mm" />
 				</bean>
 			</list>
 		</property>

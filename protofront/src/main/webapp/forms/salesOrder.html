@@ -66,15 +66,17 @@
 					data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
 					<table id="edgLineParameters" title="Order Line Parameters" singleSelect="true"
 						style="width: 600px; height: auto" 
-						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolparam', idField : 'soLineId'">
 						<thead>
 							<tr>
-								<th field='olpId' width=80>SO Line Id</th>
-								<th field='productName' width=250 editor="text">Product</th>
-								<th field='duName' width=30 editor="text">DU</th>
-								<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
-								<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
-								<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+								<th field='olpId' width=80>OLP Id</th>
+								<th field='olId' width=80">QL Id</th>
+
+								<th field='parDUId' width=80>Par DU ID</th>
+								<th field='parDUName' width=80 editor="text">Par DU Name</th>
+								
+								<th field='parId' width=250>Par Id</th>
+								<th field='parValue' width=80 editor="text">Value</th>
 								
 							</tr>
 						</thead>
@@ -100,6 +102,20 @@
 </div>
 
 <div id="tbsolines" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbsolparam" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendLine()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"

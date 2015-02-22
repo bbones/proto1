@@ -21,11 +21,25 @@ var SalesOrderLib = (function() {
 	function initSOLinesGrid() {
 		$("#edgLines").edatagrid({});
 	}
+	
+	function initAccord() {
+		$("#aa").accordion({
+			onSelect : function(title, index) {
+				alert(title + index);
+			}
+		});
+	}
+	
+	function initSOLineParam() {
+		$("#edgLineParameters").edatagrid();
+	}
 
 	return {
 		init : function() {
+			initAccord();
 			initSOGrid();
 			initSOLinesGrid();
+			initSOLineParam();
 		}
 	}
 })();
