@@ -9,4 +9,6 @@ public interface SalesOrderService {
 
 	List<Map<String, Object>> getSalesOrderLines(Long soId, Long languageId);
 
+	List<Map<String, Object>> getSalesOrderLineParameters(Long olId, Long languageId);
+
 }

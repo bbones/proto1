@@ -11,10 +11,17 @@ var SalesOrderLib = (function() {
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/salesorder/lines/' + IndexLib.lang() + '&' + row.soId
-						
+					url : '/protofront/service/salesorder/lines/' +  IndexLib.lang() + '&' + row.soId, 
+					onSelect : function(index, row) {
+						console.log(row);
+						$("#edgLineParameters").edatagrid({
+							url : '/protofront/service/salesorder/lineparameters/' + IndexLib.lang() + '&' + row.olId
+								
+						});
+					} // OnSelect edgLines
+	
 				});
-			} // OnSelect
+			} // OnSelect edgSalesOrder
 		});
 	};
 	
@@ -23,11 +30,11 @@ var SalesOrderLib = (function() {
 	}
 	
 	function initAccord() {
-		$("#aa").accordion({
-			onSelect : function(title, index) {
-				alert(title + index);
-			}
-		});
+//		$("#aa").accordion({
+//			onSelect : function(title, index) {
+//				alert(title + index);
+//			}
+//		});
 	}
 	
 	function initSOLineParam() {
@@ -43,3 +50,4 @@ var SalesOrderLib = (function() {
 		}
 	}
 })();
+

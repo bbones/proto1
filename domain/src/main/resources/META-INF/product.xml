@@ -551,6 +551,61 @@
 		</property>
 	</bean>
 
+	<!-- Liquid converter steel -->
+	<bean id="scrap" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="steelProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="scrap" />
+					<property name="language" ref="english" />
+					<property name="name" value="Steel scrap" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="scrap" />
+					<property name="language" ref="russian" />
+					<property name="name" value="лом черных металлов" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="scrap" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="брухт чорних металів" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Liquid converter steel -->
+	<bean id="converterSteel" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="steelProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="converterSteel" />
+					<property name="language" ref="english" />
+					<property name="name" value="converter steel" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="converterSteel" />
+					<property name="language" ref="russian" />
+					<property name="name" value="конвертерная сталь" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="converterSteel" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="конвертерна сталь" />
+				</bean>
+
+			</list>
+		</property>
+	</bean>
+	
+
 	<!-- Slab -->
 	<bean id="slab" class="org.proto1.domain.product.Product">
 		<property name="productType" ref="castedProduct"/>

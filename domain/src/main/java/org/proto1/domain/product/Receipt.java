@@ -2,7 +2,9 @@ package org.proto1.domain.product;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -19,10 +21,13 @@ public class Receipt extends AbstractEntity {
 	@ManyToOne
 	private Product product;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="receipt_ingredients")
+
 	private List<ReceiptItem> ingredients;
 	
-	@OneToMany
+	@OneToMany(cascade=CascadeType.PERSIST)
+	@JoinTable(name="receipt_byproducts")
 	private List<ReceiptItem> byProducts;
 
 	public String getName() {

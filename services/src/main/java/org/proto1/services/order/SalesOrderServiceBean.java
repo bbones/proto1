@@ -3,6 +3,7 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.repository.order.OrderLineParameterRepository;
 import org.proto1.repository.order.OrderLineRepository;
 import org.proto1.repository.order.SalesOrderRepository;
 import org.proto1.services.ApplicationConstants;
@@ -19,6 +20,9 @@ public class SalesOrderServiceBean implements SalesOrderService {
 	OrderLineRepository salesOrderLineRepository;
 
 	@Autowired
+	OrderLineParameterRepository salesOrderLineParameterRepository;
+
+	@Autowired
 	ApplicationConstants applicationConstant;
 
 
@@ -31,6 +35,12 @@ public class SalesOrderServiceBean implements SalesOrderService {
 	public List<Map<String, Object>> getSalesOrderLines(Long soId,
 			Long languageId) {
 		return salesOrderLineRepository.getOrderLineList(soId, languageId);
+	}
+
+
+	public List<Map<String, Object>> getSalesOrderLineParameters(Long olId,
+			Long languageId) {
+		return salesOrderLineParameterRepository.getOrderLineParameters(languageId, olId);
 	}
 
 }

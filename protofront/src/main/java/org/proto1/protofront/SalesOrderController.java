@@ -33,4 +33,9 @@ public class SalesOrderController {
 		return salesOrderService.getSalesOrderLines(soId, languageId);
 	}
 	
+	@RequestMapping(value = "lineparameters/{olId}&{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  salesOrderLineParameters(@PathVariable Long olId, @PathVariable Long languageId) {
+		return salesOrderService.getSalesOrderLineParameters(olId, languageId);
+	}
+	
 }

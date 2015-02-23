@@ -25,12 +25,14 @@ import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductParameter;
 import org.proto1.domain.product.ProductType;
+import org.proto1.domain.product.Receipt;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(locations={"classpath:/META-INF/product.xml", "classpath:/META-INF/order.xml","classpath:/META-INF/utility.xml"})
+@ContextConfiguration(locations={"classpath:/META-INF/product.xml", "classpath:/META-INF/order.xml",
+		"classpath:/META-INF/utility.xml", "classpath:/META-INF/receipt.xml"})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -63,9 +65,14 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	Product 
-		steelPlate, channel, iBeam, slab, pigIron, hotIron, 
+		pigIron, hotIron, 
+		converterSteel, steelPlate, channel, iBeam, slab, scrap,
 		coke, cokeBreese, coalTar,
 		ironOreConcentrate, ironOre, ironOrePellet, ironOreSinter;
+	
+	@Autowired
+	Receipt
+		hotIronReceipt, converterSteelReceipt, slabReceipt, steelPlateReceipt;
 	
 	@Autowired
 	Parameter
@@ -104,6 +111,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistProductType();
 		persistParameters();
 		persistProduct();
+		persistReceipt();
 		persistLocalizedStringConstant();
 		
 		persistOrder();
@@ -112,6 +120,13 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	}
 	
+	private void persistReceipt() {
+		em.persist(hotIronReceipt);
+		em.persist(converterSteelReceipt); 
+		em.persist(slabReceipt);
+		em.persist(steelPlateReceipt);		
+	}
+
 	private void persistCurrency() {
 		em.persist(uah);
 		em.persist(usd);
@@ -173,6 +188,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		// Products
 		em.persist(pigIron);
 		em.persist(hotIron);
+		em.persist(scrap);
+		em.persist(converterSteel);
 		em.persist(steelPlate);
 		em.persist(channel);
 		em.persist(iBeam);
