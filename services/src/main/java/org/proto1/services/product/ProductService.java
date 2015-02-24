@@ -1,4 +1,4 @@
-package org.proto1.services;
+package org.proto1.services.product;
 
 import java.util.List;
 import java.util.Map;

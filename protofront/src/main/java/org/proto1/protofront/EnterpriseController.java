@@ -9,7 +9,7 @@ import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.dto.EnterpriseNameDTO;
-import org.proto1.services.EnterpriseService;
+import org.proto1.services.party.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

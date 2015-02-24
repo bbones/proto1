@@ -1,0 +1,112 @@
+<div class="easyui-panel" title="Receipt" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
+
+		<table id="edgReceipt" title="Receipt" singleSelect="true"
+			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
+			<thead>
+				<tr>
+					<th field='receiptId' width=80>Receipt Id</th>
+					<th field='receiptNo' width=250 editor="text">Receipt #</th>
+					<th field='productId' width=80>Product Id</th>
+					<th field='productName' width=250 editor="text">Product Name</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+		
+	<div style="padding: 10px 30px 20px 30px">
+		<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+			<div title="Ingredients"
+				data-options="iconCls:'icon-save',selected:true"
+				style="overflow: auto; padding: 10px;" >
+				<table id="edgIngredients" title="Ingredients" singleSelect="true"
+					style="width: 600px; height: auto" 
+					data-options="iconCls: 'icon-edit', toolbar: '#tbri', idField : 'ingredId'">
+					<thead>
+						<tr>
+							<th field='ingredId' width=60>Ingred Item Id</th>
+							<th field='ingredProdId' width=60>Ing Prod Id</th>
+							<th field='ingredName' width=150>Ing Name</th>
+							<th field='qnty' width=80>Qnty</th>
+							<th field='duName' width=30>DU</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div title="Byproducts"
+				data-options="iconCls:'icon-reload',selected:false"
+				style="padding: 10px;">
+				<table id="edgByproducts" title="Byproducts" singleSelect="true"
+					style="width: 600px; height: auto" 
+					data-options="iconCls: 'icon-edit', toolbar: '#tbrbp', idField : 'ingredId'">
+					<thead>
+						<tr>
+							<th field='ingredId' width=60>Ingred Item Id</th>
+							<th field='ingredProdId' width=60>Ing Prod Id</th>
+							<th field='ingredName' width=150>Ing Name</th>
+							<th field='qnty' width=80>Qnty</th>
+							<th field='duName' width=30>DU</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div title="Other details"
+				data-options="iconCls:'icon-reload',selected:false"
+				style="padding: 10px;">
+			</div>
+		</div> <!-- Accordion -->
+	</div>
+		
+</div>
+			
+
+<div id="tbr" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendReceipt()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeReceipt()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.saveReceipt()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectChange()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbri" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbrbp" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+
+<script>
+	$.getScript("/protofront/scripts/receipt.js").done(function() {
+		ReceiptLib.init();
+	});
+</script> 

@@ -8,7 +8,7 @@
 	<bean id = "hotIronReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="hotIron" />
 		<property name="dimensionUnit" ref="metricTonn" />
-		<property name="name" value="Pig Iron Receipt #1" />
+		<property name="documentNo" value="Pig Iron Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
@@ -30,7 +30,7 @@
 	<bean id = "converterSteelReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="converterSteel" />
 		<property name="dimensionUnit" ref="metricTonn" />
-		<property name="name" value="Converter steel Receipt #1" />
+		<property name="documentNo" value="Converter steel Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
@@ -52,7 +52,7 @@
 	<bean id = "slabReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="slab" />
 		<property name="dimensionUnit" ref="metricTonn" />
-		<property name="name" value="Slab Receipt #1" />
+		<property name="documentNo" value="Slab Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
@@ -68,12 +68,12 @@
 	<bean id = "steelPlateReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="steelPlate" />
 		<property name="dimensionUnit" ref="metricTonn" />
-		<property name="name" value="Steel Plate Receipt #1" />
+		<property name="documentNo" value="Steel Plate Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="steelPlateReceipt" />
-					<property name="product" ref="ironOreSinter" />
+					<property name="product" ref="slab" />
 					<property name="dimensionUnit" ref="metricTonn" />
 					<property name="qnty" value="1.173" />
 				</bean>
@@ -83,7 +83,7 @@
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="steelPlateReceipt" />
-					<property name="product" ref="coke" />
+					<property name="product" ref="scrap" />
 					<property name="dimensionUnit" ref="metricTonn" />
 					<property name="qnty" value="0.184" />
 				</bean>

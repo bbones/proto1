@@ -10,10 +10,10 @@ import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.DimensionUnit;
+import org.proto1.domain.Document;
 
 @Entity
-public class Receipt extends AbstractEntity {
-	private String name;
+public class Receipt extends Document {
 	
 	@ManyToOne
 	private DimensionUnit dimensionUnit;
@@ -29,14 +29,6 @@ public class Receipt extends AbstractEntity {
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name="receipt_byproducts")
 	private List<ReceiptItem> byProducts;
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public Product getProduct() {
 		return product;

@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 import org.dozer.Mapper;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.dto.ParameterNameDTO;
-import org.proto1.services.ParameterService;
+import org.proto1.services.product.ParameterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

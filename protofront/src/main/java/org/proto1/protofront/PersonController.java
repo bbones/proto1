@@ -9,7 +9,7 @@ import org.proto1.domain.party.PersonName;
 import org.proto1.domain.party.Person;
 import org.proto1.dto.PersonNameDTO;
 import org.proto1.dto.PersonDTO;
-import org.proto1.services.PersonService;
+import org.proto1.services.party.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

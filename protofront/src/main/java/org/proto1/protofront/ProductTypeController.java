@@ -11,7 +11,7 @@ import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.dto.ProductTypeDTO;
 import org.proto1.dto.ProductTypeNameDTO;
 import org.proto1.services.MasterDataService;
-import org.proto1.services.ProductTypeService;
+import org.proto1.services.product.ProductTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

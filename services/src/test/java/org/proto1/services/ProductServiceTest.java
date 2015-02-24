@@ -8,6 +8,8 @@ import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.ProductRepository;
+import org.proto1.services.product.ProductService;
+import org.proto1.services.product.ProductServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
