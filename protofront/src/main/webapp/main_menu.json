@@ -1,41 +1,61 @@
-[{
-    "id": "masterData",
-    "text": "Master Data",
-    "state": "closed",
-    "children": [{
-        "id": "enterprise",
-        "text": "Enterprise"
-    },{
-        "id": "person",
-        "text": "Person"
-    },{
-        "id": "period",
-        "text": "Period"
-    },{
-        "id": "productType",
-        "text": "Product Type"
-    },{
-        "id": "product",
-        "text": "Product"
-    },{
-        "id": "parameter",
-        "text": "Parameter"
-    }]
-},{
-   "id": "documents",
-    "text": "Documents",
-    "state": "closed",
-    "children": [{
-        "id": "contract",
-        "text": "Contract"
-    },{
-        "id": "salesOrder",
-        "text": "Sales Order"
-    },{
-        "id": "receipt",
-        "text": "Receipt"
-    },{
-        "id": "bill",
-        "text": "Bill"
-    }]
-}]
+[
+	{
+	    "id": "masterData",
+	    "text": "Master Data",
+	    "state": "closed",
+	    "children": [{
+	        "id": "enterprise",
+	        "text": "Enterprise"
+	    	},{
+	        	"id": "person",
+	       		"text": "Person"
+	    	},{
+	        	"id": "period",
+	        	"text": "Period"
+	    	},{
+	        	"id": "productType",
+	        	"text": "Product Type"
+	    	},{
+		        "id": "product",
+		        "text": "Product"
+		    },{
+		        "id": "parameter",
+		        "text": "Parameter"
+		    }
+		]
+	},
+	{
+		"id": "documents",
+	    "text": "Documents",
+	    "state": "closed",
+	    "children": [
+	    	{
+	        	"id": "contract",
+		        "text": "Contract"
+	    	},
+	    	{
+		    	"id": "orders",
+		        "text": "Orders",
+		        "state": "closed",
+		        "children": [
+		        	{
+		        		"id": "salesOrder",
+			        	"text": "Sales Order"
+			    	},
+			    	{
+		        		"id": "demand",
+		        		"text": "Demand Planning"
+		    		}
+		    	]
+		    },
+	    	{
+	       		"id": "receipt",
+		        "text": "Receipt"
+		    },
+		    {
+		        "id": "bill",
+		        "text": "Bill"
+	    	}
+	    ]
+	}
+]

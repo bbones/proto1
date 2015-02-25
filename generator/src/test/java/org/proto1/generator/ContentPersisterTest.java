@@ -88,7 +88,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	LocalizedStringConstant defaultEnglishProductType, defaultRussianProductType, defaultUkrainianProductType;
 	
 	@Autowired
-	SalesOrder salesOrder1;
+	SalesOrder hrpSalesOrder1, hrpSalesOrder2, slabSalesOrder1, slabSalesOrder2;
 
 	@Before
 	public void startUp () {
@@ -146,7 +146,10 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	private void persistOrder() {
-		em.persist(salesOrder1);
+		em.persist(hrpSalesOrder1);
+		em.persist(hrpSalesOrder2);
+		em.persist(slabSalesOrder1);
+		em.persist(slabSalesOrder2);
 		
 	}
 

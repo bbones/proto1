@@ -1,5 +1,5 @@
 /**
- * 
+ * @author Valentin Pogrebinsky (pva@isd.com.ua)
  */
 
 var ParameterLib = (function(){

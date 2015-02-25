@@ -1,0 +1,63 @@
+<div title="Parameters"
+	data-options="iconCls:'icon-reload',selected:true" style="padding: 10px;">
+	<div style="padding: 10px 10px 10px 10px">
+
+		<h3>Select product type</h3>
+		<input id="productType" class="easyui-combotree" value = "1"
+			style="width: 600px;">
+
+	</div>
+	
+	<div style="padding: 10px 10px 10px 10px">
+		<table id="dgProducts" class="easyui-datagrid" title="Products" singleSelect="true"
+			style="width: 600px; height: auto">
+			<thead>
+				<tr>
+					<th field='id' width=60>Product Id</th>
+					<th field='name' width=250 editor="text">Product name</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	
+	<div style="padding: 10px 10px 10px 10px">
+		<table id="dgParameters" class="easyui-datagrid"  title="Parameters" singleSelect="false"
+			style="width: 600px; height: auto"
+			data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'parameterId'">
+			<thead>
+				<tr>
+		            <th field="ck" checkbox="true"></th>
+					<th field='parameterId' width=60>Parameter Id</th>
+					<th field='parameterName' width=250>Parameter Name</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+<div class="easyui-panel" style="padding: 5px;">
+	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
+		onclick="DemandLib.showDemand()">Show consolidated demand</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true"
+		onclick="DemandLib.createProductionOrder()">New Production Order</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true"
+		onclick="DemandLib.createPurchaseOrder()">New Purchase Order</a> 
+</div>
+
+<div title="Demands"
+	data-options="iconCls:'icon-reload',selected:true" style="padding: 10px 10px 10px 10px;">
+	
+	<table id="dgDemand" class="easyui-datagrid"  title="Demands" singleSelect="false"
+			style="width: 600px; height: auto"
+			data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'id'">
+	</table>
+	
+	
+</div>
+
+<script>
+	$.getScript("/protofront/scripts/demand.js").done(function() {
+		DemandLib.init();
+	});
+</script> 

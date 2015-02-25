@@ -6,7 +6,7 @@
 	<import resource="domain.xml" />
 	<import resource="product.xml"/>
 
-	<bean id="salesOrder1" class="org.proto1.domain.order.SalesOrder">
+	<bean id="hrpSalesOrder1" class="org.proto1.domain.order.SalesOrder">
 		<property name="contractSupplement" ref="firstSupplement" />
 		<property name="documentNo" value="HRP201500001" />
 		<property name="issueDate">
@@ -16,14 +16,14 @@
 		</property>
 		<property name="lines">
 			<list>
-				<ref bean="orderLine1"/>
-				<ref bean="orderLine2"/>
+				<ref bean="orderLine11"/>
+				<ref bean="orderLine12"/>
 			</list>
 		</property>
 	</bean>
 
-	<bean id="orderLine1" class="org.proto1.domain.order.OrderLine">
-		<property name="order" ref="salesOrder1" />
+	<bean id="orderLine11" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="hrpSalesOrder1" />
 		<property name="dimensionUnit" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="400" />
@@ -33,12 +33,12 @@
 		<property name="orderLineParameterList">
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
-					<property name="orderLine" ref="orderLine1" />
+					<property name="orderLine" ref="orderLine11" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="St3" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
-					<property name="orderLine" ref="orderLine1" />
+					<property name="orderLine" ref="orderLine11" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
 					<property name="dimensionUnit" ref="mm" />
@@ -47,22 +47,217 @@
 		</property>
 	</bean>
 	
-	<bean id="orderLine2" class="org.proto1.domain.order.OrderLine">
-		<property name="order" ref="salesOrder1" />
+	<bean id="orderLine12" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="hrpSalesOrder1" />
 		<property name="dimensionUnit" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="400" />
-		<property name="qnty" value="105" />
-		<property name="amount" value="42000" />
+		<property name="qnty" value="200" />
+		<property name="amount" value="80000" />
 		<property name="orderLineParameterList">
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
-					<property name="orderLine" ref="orderLine2" />
+					<property name="orderLine" ref="orderLine12" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="A36" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
-					<property name="orderLine" ref="orderLine2" />
+					<property name="orderLine" ref="orderLine12" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="7000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="hrpSalesOrder2" class="org.proto1.domain.order.SalesOrder">
+		<property name="contractSupplement" ref="firstSupplement" />
+		<property name="documentNo" value="HRP201500001" />
+		<property name="issueDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2013-01-15" />
+			</bean>
+		</property>
+		<property name="lines">
+			<list>
+				<ref bean="orderLine21"/>
+				<ref bean="orderLine22"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="orderLine21" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="hrpSalesOrder2" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="price" value="400" />
+		<property name="qnty" value="300" />
+		<property name="amount" value="120000" />
+		
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine21" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="St3" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine21" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="8000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="orderLine22" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="hrpSalesOrder2" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="price" value="200" />
+		<property name="qnty" value="400" />
+		<property name="amount" value="80000" />
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine22" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="A36" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine22" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="7000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="slabSalesOrder1" class="org.proto1.domain.order.SalesOrder">
+		<property name="contractSupplement" ref="firstSupplement" />
+		<property name="documentNo" value="SLAB201500001" />
+		<property name="issueDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2013-01-15" />
+			</bean>
+		</property>
+		<property name="lines">
+			<list>
+				<ref bean="orderLine31"/>
+				<ref bean="orderLine32"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="orderLine31" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="slabSalesOrder1" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="slab" />
+		<property name="price" value="200" />
+		<property name="qnty" value="500" />
+		<property name="amount" value="100000" />
+		
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine31" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="St3" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine31" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="8000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="orderLine32" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="slabSalesOrder1" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="slab" />
+		<property name="price" value="200" />
+		<property name="qnty" value="600" />
+		<property name="amount" value="120000" />
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine32" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="A36" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine32" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="7000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="slabSalesOrder2" class="org.proto1.domain.order.SalesOrder">
+		<property name="contractSupplement" ref="firstSupplement" />
+		<property name="documentNo" value="HRP201500001" />
+		<property name="issueDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2013-01-15" />
+			</bean>
+		</property>
+		<property name="lines">
+			<list>
+				<ref bean="orderLine41"/>
+				<ref bean="orderLine42"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="orderLine41" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="slabSalesOrder2" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="price" value="250" />
+		<property name="qnty" value="700" />
+		<property name="amount" value="175000" />
+		
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine41" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="St3" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine41" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="8000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="orderLine42" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="slabSalesOrder2" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="price" value="250" />
+		<property name="qnty" value="800" />
+		<property name="amount" value="200000" />
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine42" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="A36" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine42" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
 					<property name="dimensionUnit" ref="mm" />

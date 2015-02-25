@@ -3,6 +3,7 @@ package org.proto1.domain;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import org.apache.commons.logging.Log;
@@ -11,20 +12,37 @@ import org.junit.Test;
 
 public class HashMapTest {
 	protected final Log logger = LogFactory.getLog(getClass());
+	HashMap<Set<String>, Double> hashMap = new HashMap<Set<String>, Double>();
 
 	@Test
 	public void test() {
-		HashMap<Set<Integer>, Double> hashMap = new HashMap<Set<Integer>, Double>();
-		logger.debug(hashMap.hashCode());
+		hashMap.put(new HashSet<String>(Arrays.asList("1","2","3")), 0.0);
 		
-		hashMap.put(new HashSet<Integer>(Arrays.asList(1,2,3)), 100.0);
-		logger.debug(hashMap.hashCode());
+		hashMap.put(new HashSet<String>(Arrays.asList("2","3")), 0.0);
 		
-		hashMap.put(new HashSet<Integer>(Arrays.asList(2,3)), 100.0);
-		logger.debug(hashMap.hashCode());
+		hashMap.put(new HashSet<String>(Arrays.asList("1","3")), 0.0);
+
+		printMap();
+
+		addSet(new HashSet<String>(Arrays.asList("2","3")), 50.0);
+
+		addSet(new HashSet<String>(Arrays.asList("1","3")), 20.0);
+
+		addSet(new HashSet<String>(Arrays.asList("1","3")), 100.0);
+
+		printMap();
 		
-		hashMap.put(new HashSet<Integer>(Arrays.asList(1,3)), 100.0);
-		logger.debug(hashMap.hashCode());
+	}
+
+	private void printMap() {
+		for(Map.Entry<Set<String>, Double> entry : hashMap.entrySet()) {
+			logger.debug(entry.getKey() + "->" + entry.getValue());
+		}
+		
+	}
+
+	private void addSet(HashSet<String> hashSet, Double balance) {
+		hashMap.put(hashSet, balance + hashMap.get(hashSet));
 	}
 
 }
