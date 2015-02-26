@@ -18,6 +18,7 @@
 			<list>
 				<ref bean="orderLine11"/>
 				<ref bean="orderLine12"/>
+				<ref bean="orderLine13"/>
 			</list>
 		</property>
 	</bean>
@@ -65,6 +66,30 @@
 					<property name="orderLine" ref="orderLine12" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="orderLine13" class="org.proto1.domain.order.OrderLine">
+		<property name="order" ref="hrpSalesOrder1" />
+		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="product" ref="steelPlate" />
+		<property name="price" value="400" />
+		<property name="qnty" value="250" />
+		<property name="amount" value="100000" />
+		<property name="orderLineParameterList">
+			<list>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine13" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="A36" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine13" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="8000" />
 					<property name="dimensionUnit" ref="mm" />
 				</bean>
 			</list>
@@ -220,7 +245,7 @@
 	<bean id="orderLine41" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="slabSalesOrder2" />
 		<property name="dimensionUnit" ref="metricTonn" />
-		<property name="product" ref="steelPlate" />
+		<property name="product" ref="slab" />
 		<property name="price" value="250" />
 		<property name="qnty" value="700" />
 		<property name="amount" value="175000" />
@@ -245,7 +270,7 @@
 	<bean id="orderLine42" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="slabSalesOrder2" />
 		<property name="dimensionUnit" ref="metricTonn" />
-		<property name="product" ref="steelPlate" />
+		<property name="product" ref="slab" />
 		<property name="price" value="250" />
 		<property name="qnty" value="800" />
 		<property name="amount" value="200000" />
