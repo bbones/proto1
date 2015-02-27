@@ -4,6 +4,10 @@
 
 var DemandLib = (function(){
 	
+	var currentProduct = function() {
+		return $("#dgProducts").datagrid('getSelected').id;
+	}
+	
 	var initParameterGrid = function () {
 		$("#dgParameters").datagrid({});
 		
@@ -43,7 +47,7 @@ var DemandLib = (function(){
 		console.log(paramList);
 		$.ajax({
 			dataType: 'json',
-			url:'/protofront/service/demand/getconsol/' + IndexLib.lang() + "&" + $("#dgProducts").datagrid('getSelected').id,
+			url:'/protofront/service/demand/getconsol/' + IndexLib.lang() + "&" + currentProduct(),
 			data: JSON.stringify(paramList), // {paramList : JSON.stringify(paramList)},
 			type: 'post',
 			contentType: 'application/json',
@@ -57,14 +61,31 @@ var DemandLib = (function(){
 			})
 		}); 
 	}
+	
+	var collectData = function(pod) {
+		pod.addOrderLine({
+			productId : currentProduct()
+		});
+		console.log(pod);
+	}
+	
+	var makeOrder = function(pod) {
+		console.log("makeOrder->" + pod);
+	};
 
 	return {
 		init : function() {
+			$.getScript("/protofront/scripts/ordermodel.js");
 			initProductSelector();
 			initParameterGrid();
 		},
 		showDemand : function() {
 			initDemandGrid();
+		},
+		createProductionOrder : function () {
+			var productionOrderData = new Order();
+			collectData(productionOrderData);
+			makeOrder(productionOrderData);
 		}
 	}
 })();

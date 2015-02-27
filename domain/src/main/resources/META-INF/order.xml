@@ -44,6 +44,18 @@
 					<property name="value" value="8000" />
 					<property name="dimensionUnit" ref="mm" />
 				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine11" />
+					<property name="parameter" ref="width" />
+					<property name="value" value="2500" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine11" />
+					<property name="parameter" ref="thickness" />
+					<property name="value" value="150" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
 			</list>
 		</property>
 	</bean>
@@ -68,6 +80,18 @@
 					<property name="value" value="7000" />
 					<property name="dimensionUnit" ref="mm" />
 				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine12" />
+					<property name="parameter" ref="width" />
+					<property name="value" value="2500" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine12" />
+					<property name="parameter" ref="thickness" />
+					<property name="value" value="120" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
 			</list>
 		</property>
 	</bean>
@@ -90,6 +114,18 @@
 					<property name="orderLine" ref="orderLine13" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine13" />
+					<property name="parameter" ref="width" />
+					<property name="value" value="2500" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine13" />
+					<property name="parameter" ref="thickness" />
+					<property name="value" value="120" />
 					<property name="dimensionUnit" ref="mm" />
 				</bean>
 			</list>
@@ -133,6 +169,18 @@
 					<property name="value" value="8000" />
 					<property name="dimensionUnit" ref="mm" />
 				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine21" />
+					<property name="parameter" ref="width" />
+					<property name="value" value="2500" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine21" />
+					<property name="parameter" ref="thickness" />
+					<property name="value" value="120" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
 			</list>
 		</property>
 	</bean>
@@ -155,6 +203,18 @@
 					<property name="orderLine" ref="orderLine22" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine22" />
+					<property name="parameter" ref="width" />
+					<property name="value" value="2000" />
+					<property name="dimensionUnit" ref="mm" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine22" />
+					<property name="parameter" ref="thickness" />
+					<property name="value" value="150" />
 					<property name="dimensionUnit" ref="mm" />
 				</bean>
 			</list>
@@ -228,7 +288,7 @@
 	
 	<bean id="slabSalesOrder2" class="org.proto1.domain.order.SalesOrder">
 		<property name="contractSupplement" ref="firstSupplement" />
-		<property name="documentNo" value="HRP201500001" />
+		<property name="documentNo" value="SLAB201500002" />
 		<property name="issueDate">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2013-01-15" />
