@@ -27,5 +27,9 @@ public interface ProductTypeRepository extends CrudRepository<ProductType, Long>
 	
 	@Query("select count(pt) from ProductType pt where pt.parentType.id = :parent_id")
 	public int countChild(@Param("parent_id") Long parentId);
+	
+	@Query("select new Map(pt.id as id, ptn.name as name, pt.parentType.id as parentId)"
+			+ "from ProductType pt join pt.productTypeNames ptn where ptn.language.id=:language_id and pt.id = :id")
+	public Map<String, Object> getNamedByLanguage(@Param("id")Long id,@Param("language_id") Long languageId);
 
 }

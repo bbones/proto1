@@ -32,6 +32,12 @@
 
 			</list>
 		</property>
+		<property name="childProductTypes">
+			<list>
+				<ref bean="cokeMainProduct"/>
+				<ref bean="cokeByProduct"/>
+			</list>
+		</property>
 	</bean>
 	
 	<bean id="cokeMainProduct" class="org.proto1.domain.product.ProductType">
@@ -110,6 +116,12 @@
 					<property name="name" value="Залізорудна продукція" />
 				</bean>
 
+			</list>
+		</property>
+		<property name="childProductTypes">
+			<list>
+				<ref bean="nonAgglomeratedIORM"/>
+				<ref bean="agglomeratedIORM"/>
 			</list>
 		</property>
 	</bean>
@@ -196,6 +208,12 @@
 				</bean>
 			</list>
 		</property>
+		<property name="childProductTypes">
+			<list>
+				<ref bean="highCarbonIronProduct"/>
+				<ref bean="steelProduct"/>
+			</list>
+		</property>
 	</bean>
 	
 
@@ -250,6 +268,13 @@
 				</bean>
 			</list>
 		</property>
+		<property name="childProductTypes">
+			<list>
+				<ref bean="rolledProduct"/>
+				<ref bean="castedProduct"/>
+			</list>
+		</property>
+		
 	</bean>
 	
 	<!-- RolledProduct -->
@@ -274,6 +299,12 @@
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="Прокат чорних металів" />
 				</bean>
+			</list>
+		</property>
+		<property name="childProductTypes">
+			<list>
+				<ref bean="flatRolledProduct"/>
+				<ref bean="longRolledProduct"/>
 			</list>
 		</property>
 	</bean>

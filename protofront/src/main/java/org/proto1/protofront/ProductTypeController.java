@@ -44,6 +44,11 @@ public class ProductTypeController {
 		return ptList;
 	}
 	
+//	@RequestMapping(value = "getTree/{prodTypeId}&{languageId}", method = RequestMethod.POST)
+//	public List<Map<String, Object>> getTreeByProductTypeIdByLanguageId(@PathVariable Long prodTypeId, @PathVariable Long languageId) {
+//		return pts.getTreeByProductTypeIdByLanguageId(prodTypeId, languageId);
+//	}
+//
 	@RequestMapping(value = "getNewProductType", method = RequestMethod.POST)
 	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
 		ProductType pt = new ProductType();

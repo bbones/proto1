@@ -94,5 +94,19 @@ public class ProductTypeServiceBean implements ProductTypeService {
 		productTypeNameRepository.save(ptn);
 		
 	}
-
+/*
+	public List<Map<String, Object>> getTreeByProductTypeIdByLanguageId(
+			Long prodTypeId, Long languageId) {
+		List<Map<String, Object>> pt = productTypeRepository.getRootParentTypesLanguageId(languageId);
+		Map<String, Object> branch = null;
+		Map<String, Object> node = productTypeRepository.getNamedByLanguage(prodTypeId, languageId);
+		while(node.get("parentId") != null) {
+			if (branch == null) { 
+				branch = node;
+			} else
+				node.put("children", value)
+		}
+		return pt;
+	}
+*/
 }

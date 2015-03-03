@@ -41,6 +41,9 @@ var IndexLib = (function(){
 		},
 		lang : function() {
 			return $('#langSelector').combobox('getValue');
+		},
+		getRootProductType : function() {
+			return 5;
 		}
 	}
 })();

@@ -20,5 +20,7 @@ public interface ProductTypeService {
 	ProductType save(ProductType productType);
 	void deleteProductTypeById(Long id);
 	void saveProductTypeName(Long id, Long productTypeId, Long languageId, String productTypeName);
+//	List<Map<String, Object>> getTreeByProductTypeIdByLanguageId(
+//			Long prodTypeId, Long languageId);
 
 }

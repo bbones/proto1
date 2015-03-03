@@ -21,6 +21,9 @@ public class ProductType extends AbstractEntity {
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="productType")
 	private List<ProductTypeName> productTypeNames = new ArrayList<ProductTypeName>();
+	
+	@OneToMany(mappedBy="parentType")
+	private List<ProductType> childProductTypes = new ArrayList<ProductType>();
 
 	public ProductType getParentType() {
 		return parentType;
@@ -38,4 +41,12 @@ public class ProductType extends AbstractEntity {
 		this.productTypeNames = productTypeNames;
 	}
 
+	public List<ProductType> getChildProductTypes() {
+		return childProductTypes;
+	}
+
+	public void setChildProductTypes(List<ProductType> childProductTypes) {
+		this.childProductTypes = childProductTypes;
+	}
+	
 }

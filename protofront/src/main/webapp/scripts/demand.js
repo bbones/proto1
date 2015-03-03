@@ -1,5 +1,7 @@
 /**
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
+ * TODO dimUnit in grouping demand
+ * 
  */
 
 var DemandLib = (function(){
@@ -39,6 +41,7 @@ var DemandLib = (function(){
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var paramList = new Array();
 		var columnList = new Array();
+		// columnList.push({field:'ck',checkbox:true,width:10});
 		for(var key in selectedParams) {
 			paramList.push(selectedParams[key].parameterId);
 			columnList.push({field:'F'+selectedParams[key].parameterId,title:selectedParams[key].parameterName,width:80});
@@ -57,22 +60,41 @@ var DemandLib = (function(){
 			console.log(columnList);
 			$("#dgDemand").datagrid({
 				columns : [columnList],
-				data : result
+				data : result,
+				singleSelect : false
 			})
 		}); 
 	}
 	
 	var collectData = function(pod) {
-		pod.addOrderLine({
-			productId : currentProduct()
-		});
+		debugger;
+		var selectedParams = $("#dgParameters").datagrid('getSelections');
+		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
+		for (var key in selectedDemandRows) {
+			var orderLine = new OrderLine(
+				currentProduct(), // product
+				selectedDemandRows[key].qnty, // qnty, 
+				1, // TODO dimUnitId
+				new Array()
+			);
+			for(var pk in selectedParams) {
+				var param = new OrderLineParameter(
+						selectedParams[pk].parameterId,
+						selectedDemandRows[key]['F' + selectedParams[pk].parameterId]
+					);
+				orderLine.parameterList.push(param);
+			}
+		}
+		
+		pod.addOrderLine(orderLine);
 		console.log(pod);
-	}
+	};
+	
 	
 	var makeOrder = function(pod) {
 		console.log("makeOrder->" + pod);
 	};
-
+	
 	return {
 		init : function() {
 			$.getScript("/protofront/scripts/ordermodel.js");
@@ -82,10 +104,27 @@ var DemandLib = (function(){
 		showDemand : function() {
 			initDemandGrid();
 		},
+		switchProductType : function() { // TODO Debug backdoor!!!
+			$("#dgProducts").datagrid({
+				url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
+								+ 5 + '&' + IndexLib.lang(),
+				onSelect : function(index, row) {
+					console.log(row);
+					$("#dgParameters").datagrid({
+						url : '/protofront/service/product/parameters/'
+									+ row.id + '&' + IndexLib.lang()
+					});
+				} // OnSelect
+			}); // edatagrid
+		},
 		createProductionOrder : function () {
-			var productionOrderData = new Order();
-			collectData(productionOrderData);
-			makeOrder(productionOrderData);
+			debugger;
+			var order = new Order();
+			collectData(order);
+			makeOrder(order);
+		},
+		createPurchaseOrder : function() {
+			console.log($("#dgDemand").datagrid('getSelections').length);
 		}
-	}
+	}; 
 })();
