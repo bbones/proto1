@@ -84,9 +84,9 @@ var DemandLib = (function(){
 					);
 				orderLine.parameterList.push(param);
 			}
+			pod.addOrderLine(orderLine);
 		}
 		
-		pod.addOrderLine(orderLine);
 		console.log(pod);
 	};
 	
@@ -118,7 +118,6 @@ var DemandLib = (function(){
 			}); // edatagrid
 		},
 		createProductionOrder : function () {
-			debugger;
 			var order = new Order();
 			collectData(order);
 			makeOrder(order);
