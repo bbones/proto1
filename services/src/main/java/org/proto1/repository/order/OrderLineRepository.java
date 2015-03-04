@@ -20,13 +20,15 @@ public interface OrderLineRepository extends CrudRepository<OrderLine, Long> {
 	
 	public List<OrderLine> getListByProductId(Long productId);
 	
-	@Query("select new Map(olp.parameter.id as pid, olp.value as pvalue) "
-			+ "from OrderLine ol join ol.orderLineParameterList olp "
-			+ "where olp.parameter.id in :param_list and ol.id = :order_line_id")
-	public List<Map<String, Object>> getParametersValues(@Param("param_list") Long[] parameterList, @Param("order_line_id") Long orderLineId);
+	@Query("select new Map(olp.parameter.id as pid, olp.value as pvalue,  olp.dimensionUnit.id as duId, dun.shortName as duName) "
+			+ "from OrderLine ol join ol.orderLineParameterList olp left outer join olp.dimensionUnit.dimensionUnitNames dun "
+			+ "where olp.parameter.id in :param_list and ol.id = :order_line_id and (dun.language.id = :language_id or dun.language.id is null)")
+	public List<Map<String, Object>> getParametersValues(@Param("param_list") Long[] parameterList, @Param("order_line_id") Long orderLineId,
+			@Param("language_id") Long languageId);
 	
 	@Query("select new Map(ol.id as id, ol.qnty as qntyu) "
 			+ "from OrderLine ol where ol.product.id=:product_id")
 	public List<Map<String, Object>> getLBPID(@Param("product_id") Long productId);
 
 }
+

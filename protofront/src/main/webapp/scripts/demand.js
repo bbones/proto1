@@ -41,12 +41,13 @@ var DemandLib = (function(){
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var paramList = new Array();
 		var columnList = new Array();
-		// columnList.push({field:'ck',checkbox:true,width:10});
+		columnList.push({field:'ck',checkbox:true,width:10});
 		for(var key in selectedParams) {
 			paramList.push(selectedParams[key].parameterId);
-			columnList.push({field:'F'+selectedParams[key].parameterId,title:selectedParams[key].parameterName,width:80});
+			columnList.push({field:'FVD'+selectedParams[key].parameterId,title:selectedParams[key].parameterName,width:80});
 		};
-		columnList.push({field:'qnty',title:'qnty',width:80});
+		columnList.push({field:'qnty',title:'Qnty',width:80});
+		columnList.push({field:'olDUName',title:'Qnty DU',width:40});
 		console.log(paramList);
 		$.ajax({
 			dataType: 'json',
@@ -67,14 +68,14 @@ var DemandLib = (function(){
 	}
 	
 	var collectData = function(pod) {
-		debugger;
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
 		for (var key in selectedDemandRows) {
+			debugger;
 			var orderLine = new OrderLine(
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
-				1, // TODO dimUnitId
+				selectedDemandRows[key].olDUId, // dimUnitId
 				new Array()
 			);
 			for(var pk in selectedParams) {
@@ -92,7 +93,19 @@ var DemandLib = (function(){
 	
 	
 	var makeOrder = function(pod) {
-		console.log("makeOrder->" + pod);
+		console.log("makeOrder->");
+		
+		$.ajax({
+			dataType: 'json',
+			url:'/protofront/service/demand/createProdOrder/',
+			data: JSON.stringify(pod), // {paramList : JSON.stringify(paramList)},
+			type: 'post',
+			contentType: 'application/json',
+		    mimeType: 'application/json'
+		}).done(function(result) {
+			console.log(result);
+		}); 
+
 	};
 	
 	return {

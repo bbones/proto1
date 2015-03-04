@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.proto1.dto.ProductionOrderDTO;
 import org.proto1.services.order.DemandService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,4 +31,10 @@ public class DemandController {
 			@RequestBody Long[] paramList) {
 		return demandService.getConsolidatedDemand(languageId, productId, paramList);
 	}
+	
+	@RequestMapping(value = "/createProdOrder", method = RequestMethod.POST, consumes="application/json")
+	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) {
+		return null;
+	}
+
 }

@@ -30,7 +30,7 @@ public class RepositoryBehaviorTest extends AbstractJUnit4SpringContextTests{
 		
 		Long[] pl = {4L,2L,1L};
 		for(OrderLine ol : orderLineRepository.getListByProductId(5L)) {
-			logger.debug(orderLineRepository.getParametersValues(pl, ol.getId()));
+			logger.debug(orderLineRepository.getParametersValues(pl, ol.getId(), 1L));
 		}
 
 	}

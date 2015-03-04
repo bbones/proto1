@@ -34,7 +34,7 @@ public class DemandServiceTest extends AbstractJUnit4SpringContextTests {
 
 	@Test
 	public void testGetConsolidatedDemand2() {
-		Long[] pl = {4L,3L};
+		Long[] pl = {4L,3L, 2L, 1L};
 		demandService.getConsolidatedDemand(1L, 5L, pl);
 	}
 
