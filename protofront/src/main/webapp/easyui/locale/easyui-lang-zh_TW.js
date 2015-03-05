@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Valentin Pogrebinsky
+ * All rights reserved. 
+ *******************************************************************************/
 if ($.fn.pagination){
 	$.fn.pagination.defaults.beforePageText = '第';
 	$.fn.pagination.defaults.afterPageText = '共{pages}頁';

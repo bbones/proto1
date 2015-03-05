@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Valentin Pogrebinsky
+ * All rights reserved. 
+ *******************************************************************************/
 // i18next, v1.7.4
 // Copyright (c)2014 Jan Mühlemann (jamuhl).
 // Distributed under MIT license

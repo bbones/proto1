@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Valentin Pogrebinsky
+ * All rights reserved. 
+ *******************************************************************************/
 if ($.fn.pagination){
 	$.fn.pagination.defaults.beforePageText = 'Página';
 	$.fn.pagination.defaults.afterPageText = 'de {pages}';

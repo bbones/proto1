@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Valentin Pogrebinsky
+ * All rights reserved. 
+ *******************************************************************************/
 /**
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  * TODO dimUnit in grouping demand

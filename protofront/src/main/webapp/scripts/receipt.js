@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Valentin Pogrebinsky
+ * All rights reserved. 
+ *******************************************************************************/
 /**
  * TODO Show Receipt List
  * TODO External Receipt Search

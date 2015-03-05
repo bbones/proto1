@@ -1,3 +1,7 @@
+/*******************************************************************************
+ * Copyright (c) 2015 Valentin Pogrebinsky
+ * All rights reserved. 
+ *******************************************************************************/
 /**
  * File ReceiptRepository.java
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
