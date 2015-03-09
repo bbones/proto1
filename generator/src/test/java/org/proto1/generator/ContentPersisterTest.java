@@ -22,6 +22,8 @@ import org.proto1.domain.Currency;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.Language;
 import org.proto1.domain.SideRole;
+import org.proto1.domain.inventory.InventoryLot;
+import org.proto1.domain.inventory.Location;
 import org.proto1.domain.order.SalesOrder;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.Person;
@@ -35,8 +37,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-@ContextConfiguration(locations={"classpath:/META-INF/product.xml", "classpath:/META-INF/order.xml",
-		"classpath:/META-INF/utility.xml", "classpath:/META-INF/receipt.xml"})
+@ContextConfiguration(locations={
+		"classpath:/META-INF/product.xml", 
+		"classpath:/META-INF/order.xml",
+		"classpath:/META-INF/inventory.xml",
+		"classpath:/META-INF/utility.xml", 
+		"classpath:/META-INF/receipt.xml"
+	})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	protected final Log logger = LogFactory.getLog(getClass());
@@ -93,6 +100,12 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	SalesOrder hrpSalesOrder1, hrpSalesOrder2, slabSalesOrder1, slabSalesOrder2;
+	
+	@Autowired
+	Location centralInventory, goodsInTransit, oreYard, slabInventory, mariupolPort;
+	
+	@Autowired
+	InventoryLot slabLot1;
 
 	@Before
 	public void startUp () {
@@ -108,6 +121,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistLanguage();
 		persistUnitOfMeasurement();
 		persistCurrency();
+		persistLocation();
+		persistInventoryLot();
 		persistPerson();
 		persistEnterprise();
 		persistSideRole();
@@ -124,6 +139,18 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	}
 	
+	private void persistInventoryLot() {
+		em.persist(slabLot1);
+	}
+
+	private void persistLocation() {
+		em.persist(centralInventory);
+		em.persist(goodsInTransit); 
+		em.persist(oreYard);
+		em.persist(slabInventory);
+		em.persist(mariupolPort);		
+	}
+
 	private void persistReceipt() {
 		em.persist(hotIronReceipt);
 		em.persist(converterSteelReceipt); 

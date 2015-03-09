@@ -45,7 +45,11 @@
 			    	{
 		        		"id": "demand",
 		        		"text": "Demand Planning"
-		    		}
+		    		},
+		    		{
+		        		"id": "prodOrder",
+			        	"text": "Production Order"
+			    	}
 		    	]
 		    },
 	    	{

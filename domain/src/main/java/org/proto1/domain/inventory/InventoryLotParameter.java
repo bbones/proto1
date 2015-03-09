@@ -1,5 +1,6 @@
 package org.proto1.domain.inventory;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -7,6 +8,7 @@ import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Parameter;
 
+@Entity
 public class InventoryLotParameter extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name = "inventory_lot_id")

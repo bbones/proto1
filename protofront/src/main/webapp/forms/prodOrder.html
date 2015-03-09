@@ -1,0 +1,139 @@
+<!-- TODO: edgSalesOrder, accordion, orderDeatils, edgOrderLines  -->
+
+<div class="easyui-panel" title="Sales Order" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
+
+			<table id="edgProdOrder" title="Production Order" singleSelect="true"
+				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbso', idField : 'soId'">
+				<thead>
+					<tr>
+						<th field='poId' width=80>SO Id</th>
+						<th field='poNo' width=250 editor="text">SO #</th>
+						<th field='poIssueDate' width=250 editor="date">Issue Date</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+				<div title="SO details"
+					data-options="iconCls:'icon-reload',selected:true"	style="padding: 10px;">
+					 <form id="sof" action="form1_proc.php" method="post" enctype="multipart/form-data">
+				        <table>
+				            <tr>
+				                <td>Id:</td>
+				                <td><input name="soId" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>SO #:</td>
+				                <td><input name="soNo" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>Issue date:</td>
+				                <td><input name="soIssueDate" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>Customer:</td>
+				                <td><input name="customerName" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td></td>
+				                <td><input type="submit" value="Submit"></input></td>
+				            </tr>
+				        </table>
+				    </form>
+				</div>
+				<div title="SO Lines"
+					data-options="iconCls:'icon-save',selected:false"
+					style="overflow: auto; padding: 10px;" >
+					<table id="edgLines" title="Lines" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
+						<thead>
+							<tr>
+								<th field='olId' width=80>SO Line Id</th>
+								<th field='productName' width=250 editor="text">Product</th>
+								<th field='uomName' width=30 editor="text">DU</th>
+								<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+								<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
+								<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+								
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div title="Order Line Parameters"
+					data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
+					<table id="edgLineParameters" title="Order Line Parameters" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolparam', idField : 'soLineId'">
+						<thead>
+							<tr>
+								<th field='olpId' width=60>OLP Id</th>
+
+								<th field='paramId' width=60>Par Id</th>
+								<th field='paramName' width=120>Parameter</th>
+								
+								<th field='olpValue' width=120 editor="text">Value</th>
+
+								<th field='uomId' width=60>Par UOM ID</th>
+								<th field='uomName' width=80 editor="text">Par UOM Name</th>
+								
+								
+							</tr>
+						</thead>
+					</table>
+				</div>
+			</div>
+	</div>
+</div>
+
+<div id="tbso" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendParameter()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeParameter()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.acceptParameter()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectParameter()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbsolines" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbsolparam" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+
+
+<script>
+	$.getScript("/protofront/scripts/prodOrder.js").done(function() {
+		ProductionOrderLib.init();
+	});
+</script> 
