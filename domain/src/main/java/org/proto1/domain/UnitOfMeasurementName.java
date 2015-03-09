@@ -11,12 +11,12 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="DIM_UNIT_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"DIM_UNIT_ID", "LANGUAGE_ID"})) 
-public class DimensionUnitName extends AbstractEntity {
+@Table(name="UNIT_OF_DIMENSION_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"UNIT_OF_MEASUREMENT_ID", "LANGUAGE_ID"})) 
+public class UnitOfMeasurementName extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name="DIM_UNIT_ID")
-	private DimensionUnit dimensionUnit;
+	@JoinColumn(name="UNIT_OF_MEASUREMENT_ID")
+	private UnitOfMeasurement unitOfMeasurement;
 	
 	@ManyToOne
 	@JoinColumn(name="language_id")
@@ -26,12 +26,12 @@ public class DimensionUnitName extends AbstractEntity {
 	private String fullName;
 
 	
-	public DimensionUnit getDimensionUnit() {
-		return dimensionUnit;
+	public UnitOfMeasurement getUnitOfMeasurement() {
+		return unitOfMeasurement;
 	}
 
-	public void setDimensionUnit(DimensionUnit dimensionUnit) {
-		this.dimensionUnit = dimensionUnit;
+	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
+		this.unitOfMeasurement = unitOfMeasurement;
 	}
 
 	public Language getLanguage() {

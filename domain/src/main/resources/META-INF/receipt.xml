@@ -7,20 +7,20 @@
 	
 	<bean id = "hotIronReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="hotIron" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="documentNo" value="Pig Iron Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="hotIronReceipt" />
 					<property name="product" ref="ironOreSinter" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="1.711" />
 				</bean>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="hotIronReceipt" />
 					<property name="product" ref="coke" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="0.4168" />
 				</bean>
 			</list>
@@ -29,20 +29,20 @@
 	
 	<bean id = "converterSteelReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="converterSteel" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="documentNo" value="Converter steel Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="converterSteelReceipt" />
 					<property name="product" ref="hotIron" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="0.905" />
 				</bean>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="converterSteelReceipt" />
 					<property name="product" ref="scrap" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="0.18" />
 				</bean>
 			</list>
@@ -51,14 +51,14 @@
 	
 	<bean id = "slabReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="slab" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="documentNo" value="Slab Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="slabReceipt" />
 					<property name="product" ref="converterSteel" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="1.023" />
 				</bean>
 			</list>
@@ -67,14 +67,14 @@
 	
 	<bean id = "steelPlateReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="steelPlate" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="documentNo" value="Steel Plate Receipt #1" />
 		<property name="ingredients">
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="steelPlateReceipt" />
 					<property name="product" ref="slab" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="1.173" />
 				</bean>
 			</list>
@@ -84,7 +84,7 @@
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="steelPlateReceipt" />
 					<property name="product" ref="scrap" />
-					<property name="dimensionUnit" ref="metricTonn" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="0.184" />
 				</bean>
 			</list>

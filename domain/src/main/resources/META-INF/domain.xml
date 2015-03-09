@@ -345,23 +345,23 @@
 		</property>
 	</bean>
 	
-	<bean id="metricTonn" class="org.proto1.domain.DimensionUnit">
-		<property name="dimensionUnitNames">
+	<bean id="metricTonn" class="org.proto1.domain.UnitOfMeasurement">
+		<property name="unitOfMeasurementNames">
 			<list>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="metricTonn" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="mt" />
 					<property name="fullName" value="metric tonn" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="metricTonn" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="language" ref="russian" />
 					<property name="shortName" value="мт" />
 					<property name="fullName" value="метрическая тонна" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="metricTonn" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="language" ref="ukrainian" />
 					<property name="shortName" value="мт" />
 					<property name="fullName" value="метрична тона" />
@@ -370,23 +370,23 @@
 		</property>
 	</bean>
 	
-	<bean id="cubicMeter" class="org.proto1.domain.DimensionUnit">
-		<property name="dimensionUnitNames">
+	<bean id="cubicMeter" class="org.proto1.domain.UnitOfMeasurement">
+		<property name="unitOfMeasurementNames">
 			<list>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="cubicMeter" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="cubicMeter" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="m3" />
 					<property name="fullName" value="metric tonn" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="cubicMeter" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="cubicMeter" />
 					<property name="language" ref="russian" />
 					<property name="shortName" value="м3" />
 					<property name="fullName" value="кубический метр" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="cubicMeter" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="cubicMeter" />
 					<property name="language" ref="ukrainian" />
 					<property name="shortName" value="м3" />
 					<property name="fullName" value="кубічний метер" />
@@ -396,23 +396,23 @@
 	
 	</bean>
 
-	<bean id="kg" class="org.proto1.domain.DimensionUnit">
-		<property name="dimensionUnitNames">
+	<bean id="kg" class="org.proto1.domain.UnitOfMeasurement">
+		<property name="unitOfMeasurementNames">
 			<list>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="kg" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="kg" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="kg" />
 					<property name="fullName" value="kilogram" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="kg" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="kg" />
 					<property name="language" ref="russian" />
 					<property name="shortName" value="кг" />
 					<property name="fullName" value="килограмм" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="kg" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="kg" />
 					<property name="language" ref="ukrainian" />
 					<property name="shortName" value="кг" />
 					<property name="fullName" value="кілограм" />
@@ -421,23 +421,23 @@
 		</property>
 	</bean>
 
-	<bean id="mm" class="org.proto1.domain.DimensionUnit">
-		<property name="dimensionUnitNames">
+	<bean id="mm" class="org.proto1.domain.UnitOfMeasurement">
+		<property name="unitOfMeasurementNames">
 			<list>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="mm" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="mm" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="mm" />
 					<property name="fullName" value="kilogram" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="mm" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="mm" />
 					<property name="language" ref="russian" />
 					<property name="shortName" value="мм" />
 					<property name="fullName" value="миллиметр" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="mm" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="mm" />
 					<property name="language" ref="ukrainian" />
 					<property name="shortName" value="мм" />
 					<property name="fullName" value="мiлiметр" />
@@ -446,23 +446,23 @@
 		</property>
 	</bean>
 	
-	<bean id="percent" class="org.proto1.domain.DimensionUnit">
-		<property name="dimensionUnitNames">
+	<bean id="percent" class="org.proto1.domain.UnitOfMeasurement">
+		<property name="unitOfMeasurementNames">
 			<list>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="percent" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="percent" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="%" />
 					<property name="fullName" value="percent" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="percent" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="percent" />
 					<property name="language" ref="russian" />
 					<property name="shortName" value="%" />
 					<property name="fullName" value="процент" />
 				</bean>
-				<bean class="org.proto1.domain.DimensionUnitName">
-					<property name="dimensionUnit" ref="percent" />
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="percent" />
 					<property name="language" ref="ukrainian" />
 					<property name="shortName" value="%" />
 					<property name="fullName" value="вiдсоток" />

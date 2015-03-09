@@ -13,7 +13,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
-import org.proto1.domain.DimensionUnit;
+import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Product;
 
 @Entity
@@ -28,8 +28,8 @@ public class OrderLine extends AbstractEntity {
 	private Product product;
 	
 	@ManyToOne
-	@JoinColumn(name="DIM_UNIT_ID")
-	private DimensionUnit dimensionUnit;
+	@JoinColumn(name="UNIT_OF_MEASUREMENT_ID")
+	private UnitOfMeasurement unitOfMeasurement;
 	
 	private Double qnty;
 	
@@ -82,20 +82,20 @@ public class OrderLine extends AbstractEntity {
 		this.orderLineParameterList = orderLineParameterList;
 	}
 
-	public DimensionUnit getDimensionUnit() {
-		return dimensionUnit;
-	}
-
-	public void setDimensionUnit(DimensionUnit dimensionUnit) {
-		this.dimensionUnit = dimensionUnit;
-	}
-
 	public Double getQnty() {
 		return qnty;
 	}
 
 	public void setQnty(Double qnty) {
 		this.qnty = qnty;
+	}
+
+	public UnitOfMeasurement getUnitOfMeasurement() {
+		return unitOfMeasurement;
+	}
+
+	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
+		this.unitOfMeasurement = unitOfMeasurement;
 	}
 	
 }

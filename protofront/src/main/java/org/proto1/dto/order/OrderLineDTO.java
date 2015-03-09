@@ -21,7 +21,7 @@ public class OrderLineDTO extends DTO {
 	private Long orderLineId;
 	private Long productId;
 	private Double qnty;
-	private Long dimUnit;
+	private Long uomId;
 	private List<OrderLineParameterDTO> parameterList;
 
 	public Long getOrderLineId() {
@@ -56,12 +56,12 @@ public class OrderLineDTO extends DTO {
 		this.parameterList = parameterList;
 	}
 
-	public Long getDimUnit() {
-		return dimUnit;
+	public Long getUomId() {
+		return uomId;
 	}
 
-	public void setDimUnit(Long dimUnit) {
-		this.dimUnit = dimUnit;
+	public void setUomId(Long uomId) {
+		this.uomId = uomId;
 	}
 
 }

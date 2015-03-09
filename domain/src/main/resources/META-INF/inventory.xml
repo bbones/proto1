@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<import resource="product.xml"/>
+	
+	<bean id="centralInventory" class="org.proto1.domain.inventory.Location">
+		<property name="name" value="Central Inventory" />
+	</bean>
+
+	<bean id="goodsInTransit" class="org.proto1.domain.inventory.Location">
+		<property name="name" value="Goods in transit" />
+	</bean>
+
+	<bean id="oreYard" class="org.proto1.domain.inventory.Location">
+		<property name="name" value="Ore Yard" />
+	</bean>
+
+	<bean id="slabInventory" class="org.proto1.domain.inventory.Location">
+		<property name="name" value="Slab Inventory" />
+	</bean>
+
+	<bean id="mariupolPort" class="org.proto1.domain.inventory.Location">
+		<property name="name" value="Slab Inventory" />
+	</bean>
+
+	<bean id="slabLot1" class="org.proto1.domain.inventory.InventoryLot">
+		<property name="product" ref="slab" />
+		<property name="location" ref="slabInventory" />
+		<property name="inventoryLotParameterList">
+			<list>
+				<bean class="org.proto1.domain.inventory.InventoryLotParameter">
+					<property name="inventoryLot" ref="slabLot1" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="value" value="St3" />
+				</bean>
+				<bean class="org.proto1.domain.inventory.InventoryLotParameter">
+					<property name="inventoryLot" ref="slabLot1" />
+					<property name="parameter" ref="length" />
+					<property name="value" value="8000" />
+					<property name="unitOfMeasurement" ref="mm" />
+				</bean>
+			</list>
+		</property>
+		<property name="qnty" value="100" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
+	</bean>
+</beans>

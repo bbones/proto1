@@ -19,7 +19,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Contract;
 import org.proto1.domain.Currency;
-import org.proto1.domain.DimensionUnit;
+import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.Language;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.order.SalesOrder;
@@ -86,7 +86,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Language english, russian, ukrainian;
 	
 	@Autowired
-	DimensionUnit metricTonn, cubicMeter, kg, mm, percent;
+	UnitOfMeasurement metricTonn, cubicMeter, kg, mm, percent;
 	
 	@Autowired
 	LocalizedStringConstant defaultEnglishProductType, defaultRussianProductType, defaultUkrainianProductType;
@@ -106,7 +106,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.getTransaction().begin();
 		
 		persistLanguage();
-		persistDimensionUnit();
+		persistUnitOfMeasurement();
 		persistCurrency();
 		persistPerson();
 		persistEnterprise();
@@ -141,7 +141,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(rub);
 	}
 
-	private void persistDimensionUnit() {
+	private void persistUnitOfMeasurement() {
 		em.persist(kg);
 		em.persist(mm);
 		em.persist(metricTonn);

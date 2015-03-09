@@ -17,7 +17,7 @@ public class OrderLineParameterDTO extends DTO {
 
 	private Long pId;
 	private String pValue;
-	private Long pDU;
+	private Long pUOM;
 
 	public Long getpId() {
 		return pId;
@@ -35,12 +35,12 @@ public class OrderLineParameterDTO extends DTO {
 		this.pValue = pValue;
 	}
 
-	public Long getpDU() {
-		return pDU;
+	public Long getpUOM() {
+		return pUOM;
 	}
 
-	public void setpDU(Long pDU) {
-		this.pDU = pDU;
+	public void setpUOM(Long pUOM) {
+		this.pUOM = pUOM;
 	}
 
 }

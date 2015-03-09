@@ -13,14 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
-import org.proto1.domain.DimensionUnit;
+import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.Document;
 
 @Entity
 public class Receipt extends Document {
 	
 	@ManyToOne
-	private DimensionUnit dimensionUnit;
+	private UnitOfMeasurement unitOfMeasurement;
 	
 	@ManyToOne
 	private Product product;
@@ -58,12 +58,12 @@ public class Receipt extends Document {
 		this.byProducts = byProducts;
 	}
 
-	public DimensionUnit getDimensionUnit() {
-		return dimensionUnit;
+	public UnitOfMeasurement getUnitOfMeasurement() {
+		return unitOfMeasurement;
 	}
 
-	public void setDimensionUnit(DimensionUnit dimensionUnit) {
-		this.dimensionUnit = dimensionUnit;
+	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
+		this.unitOfMeasurement = unitOfMeasurement;
 	}
 
 	

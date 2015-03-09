@@ -16,11 +16,11 @@ import java.util.Set;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.proto1.domain.DimensionUnitName;
+import org.proto1.domain.UnitOfMeasurementName;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.product.Product;
-import org.proto1.repository.DimensionUnitNameRepository;
-import org.proto1.repository.DimensionUnitRepository;
+import org.proto1.repository.UnitOfMeasurementNameRepository;
+import org.proto1.repository.UnitOfMeasurementRepository;
 import org.proto1.repository.ProductRepository;
 import org.proto1.repository.order.OrderLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +33,14 @@ public class DemandServiceBean implements DemandService {
 	private class RegisterKey {
 		private Long parameterId;
 		private String parameterValue;
-		private Long duId;
-		private String duName;
+		private Long uomId;
+		private String uomName;
 		
-		public RegisterKey(Long parameterId, String parameterValue, Long duId, String duName) {
+		public RegisterKey(Long parameterId, String parameterValue, Long uomId, String uomName) {
 			this.parameterId = parameterId;
 			this.parameterValue = parameterValue;
-			this.duId = duId;
-			this.duName = duName; 
+			this.uomId = uomId;
+			this.uomName = uomName; 
 		}
 
 		public Long getParameterId() {
@@ -59,22 +59,22 @@ public class DemandServiceBean implements DemandService {
 			this.parameterValue = parameterValue;
 		}
 
-		public Long getDuId() {
-			return duId;
+		public Long getUomId() {
+			return uomId;
 		}
 
-		public void setDuId(Long duId) {
-			this.duId = duId;
+		public void setUomId(Long uomId) {
+			this.uomId = uomId;
 		}
 
-		public String getDuName() {
-			return duName;
+		public String getUomName() {
+			return uomName;
 		}
 
-		public void setDuName(String duName) {
-			this.duName = duName;
+		public void setUomName(String uomName) {
+			this.uomName = uomName;
 		}
-		
+
 		
 	}
 
@@ -85,7 +85,7 @@ public class DemandServiceBean implements DemandService {
 	ProductRepository productRepository;
 	
 	@Autowired
-	DimensionUnitNameRepository dimensionUnitNameRepository;
+	UnitOfMeasurementNameRepository unitOfMeasurementNameRepository;
 	
 	public List<Map<String, Object>> getConsolidatedDemand(Long languageId, Long productId,
 			Long[] paramList) {
@@ -95,10 +95,10 @@ public class DemandServiceBean implements DemandService {
 			List<Map<String, Object>> pvl = orderLineRepository.getParametersValues(paramList, ol.getId(), languageId);
 			ArrayList<RegisterKey> key = new ArrayList<RegisterKey>();
 			for(Map<String, Object> entry : pvl) {
-				logger.info(entry.get("pid") +"->"+entry.get("pvalue") +" | " + entry.get("duId") + "->" + entry.get("duName"));
-				key.add(new RegisterKey((Long)entry.get("pid"), (String)entry.get("pvalue"), (Long)entry.get("duId"), (String)entry.get("duName")) );
+				logger.info(entry.get("pid") +"->"+entry.get("pvalue") +" | " + entry.get("uomId") + "->" + entry.get("uomName"));
+				key.add(new RegisterKey((Long)entry.get("pid"), (String)entry.get("pvalue"), (Long)entry.get("uomId"), (String)entry.get("uomName")) );
 			}
-			key.add(new RegisterKey(-1L, "DU", ol.getDimensionUnit().getId(), ""));
+			key.add(new RegisterKey(-1L, "UOM", ol.getUnitOfMeasurement().getId(), ""));
 			Double oldValue = register.get(key);
 			if (oldValue != null) {
 				register.put(key,  oldValue + ol.getQnty());
@@ -120,12 +120,12 @@ public class DemandServiceBean implements DemandService {
 			
 			for(RegisterKey key : entry.getKey()) {
 				if (key.getParameterId() == -1) {
-					map.put("olDUId", key.getDuId());
-					map.put("olDUName", dimensionUnitNameRepository.getShortName(key.getDuId(), languageId));
+					map.put("olUOMId", key.getUomId());
+					map.put("olUOMName", unitOfMeasurementNameRepository.getShortName(key.getUomId(), languageId));
 				} else {
 					map.put("F" + key.getParameterId(), key.getParameterValue());
-					map.put("FDU" + key.getParameterId(), key.getDuId());
-					map.put("FVD" + key.getParameterId(), key.getParameterValue() + ((key.getDuId() != null) ? " " + key.getDuName() : ""));
+					map.put("FUOM" + key.getParameterId(), key.getUomId());
+					map.put("FVD" + key.getParameterId(), key.getParameterValue() + ((key.getUomId() != null) ? " " + key.getUomName() : ""));
 				}
 			}
 			
@@ -140,7 +140,7 @@ public class DemandServiceBean implements DemandService {
 		for(Map.Entry<ArrayList<RegisterKey>, Double> entry : register.entrySet()) {
 			String str = "KEY:";
 			for(RegisterKey par : entry.getKey()) {
-				str += ":" + par.getParameterId() + "-" + par.getParameterValue() + " " + par.getDuName();
+				str += ":" + par.getParameterId() + "-" + par.getParameterValue() + " " + par.getUomName();
 			}
 			logger.debug(str + "->" + entry.getValue());
 		}

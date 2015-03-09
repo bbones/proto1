@@ -9,7 +9,7 @@
 function OrderLine(productId, qnty, dimUnitId, parameterList, orderLineId) {
 	this.productId = productId;
 	this.qnty = qnty;
-	this.dimUnit = dimUnitId;
+	this.uomId = uomId;
 	this.parameterList = parameterList;
 	this.orderLineId = orderLineId;
 };
@@ -24,8 +24,8 @@ function Order() {
 	}
 };
 
-function OrderLineParameter(pId, pValue, pDU) {
+function OrderLineParameter(pId, pValue, pUOM) {
 	this.pId = pId;
 	this.pValue = pValue;
-	this.pDU = pDU;
+	this.pUOM = pUOM;
 };

@@ -11,25 +11,25 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import org.proto1.domain.AbstractEntity;
-import org.proto1.domain.DimensionUnit;
+import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Parameter;
 
 @Entity
 @Table(name = "ORDER_LINE_PARAMETER", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"order_line_id", "parameter_id" }))
+		"ORDER_LINE_ID", "PARAMETER_ID" }))
 public class OrderLineParameter extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name = "order_line_id")
+	@JoinColumn(name = "ORDER_LINE_ID")
 	private OrderLine orderLine;
 
 	@ManyToOne
-	@JoinColumn(name = "parameter_id")
+	@JoinColumn(name = "PARAMETER_ID")
 	private Parameter parameter;
 	
 	@ManyToOne
-	@JoinColumn(name = "DIM_INIT_ID")
-	private DimensionUnit dimensionUnit;
+	@JoinColumn(name = "UNIT_OF_MEASUREMENT_ID")
+	private UnitOfMeasurement unitOfMeasurement;
 	
 	private String value;
 
@@ -57,12 +57,12 @@ public class OrderLineParameter extends AbstractEntity {
 		this.value = value;
 	}
 
-	public DimensionUnit getDimensionUnit() {
-		return dimensionUnit;
+	public UnitOfMeasurement getUnitOfMeasurement() {
+		return unitOfMeasurement;
 	}
 
-	public void setDimensionUnit(DimensionUnit dimensionUnit) {
-		this.dimensionUnit = dimensionUnit;
+	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
+		this.unitOfMeasurement = unitOfMeasurement;
 	}
 
 	

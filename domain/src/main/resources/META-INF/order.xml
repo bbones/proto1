@@ -25,7 +25,7 @@
 
 	<bean id="orderLine11" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="hrpSalesOrder1" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="400" />
 		<property name="qnty" value="100" />
@@ -42,19 +42,19 @@
 					<property name="orderLine" ref="orderLine11" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
 					<property name="parameter" ref="width" />
 					<property name="value" value="2500" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
 					<property name="parameter" ref="thickness" />
 					<property name="value" value="150" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -62,7 +62,7 @@
 	
 	<bean id="orderLine12" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="hrpSalesOrder1" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="400" />
 		<property name="qnty" value="200" />
@@ -78,19 +78,19 @@
 					<property name="orderLine" ref="orderLine12" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
 					<property name="parameter" ref="width" />
 					<property name="value" value="2500" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
 					<property name="parameter" ref="thickness" />
 					<property name="value" value="120" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -98,7 +98,7 @@
 	
 	<bean id="orderLine13" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="hrpSalesOrder1" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="400" />
 		<property name="qnty" value="250" />
@@ -114,19 +114,19 @@
 					<property name="orderLine" ref="orderLine13" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
 					<property name="parameter" ref="width" />
 					<property name="value" value="2500" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
 					<property name="parameter" ref="thickness" />
 					<property name="value" value="120" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -150,7 +150,7 @@
 
 	<bean id="orderLine21" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="hrpSalesOrder2" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="400" />
 		<property name="qnty" value="300" />
@@ -167,19 +167,19 @@
 					<property name="orderLine" ref="orderLine21" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
 					<property name="parameter" ref="width" />
 					<property name="value" value="2500" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
 					<property name="parameter" ref="thickness" />
 					<property name="value" value="120" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -187,7 +187,7 @@
 	
 	<bean id="orderLine22" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="hrpSalesOrder2" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="steelPlate" />
 		<property name="price" value="200" />
 		<property name="qnty" value="400" />
@@ -203,19 +203,19 @@
 					<property name="orderLine" ref="orderLine22" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
 					<property name="parameter" ref="width" />
 					<property name="value" value="2000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
 					<property name="parameter" ref="thickness" />
 					<property name="value" value="150" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -239,7 +239,7 @@
 
 	<bean id="orderLine31" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="slabSalesOrder1" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="slab" />
 		<property name="price" value="200" />
 		<property name="qnty" value="500" />
@@ -256,7 +256,7 @@
 					<property name="orderLine" ref="orderLine31" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -264,7 +264,7 @@
 	
 	<bean id="orderLine32" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="slabSalesOrder1" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="slab" />
 		<property name="price" value="200" />
 		<property name="qnty" value="600" />
@@ -280,7 +280,7 @@
 					<property name="orderLine" ref="orderLine32" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -304,7 +304,7 @@
 
 	<bean id="orderLine41" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="slabSalesOrder2" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="slab" />
 		<property name="price" value="250" />
 		<property name="qnty" value="700" />
@@ -321,7 +321,7 @@
 					<property name="orderLine" ref="orderLine41" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="8000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>
@@ -329,7 +329,7 @@
 	
 	<bean id="orderLine42" class="org.proto1.domain.order.OrderLine">
 		<property name="order" ref="slabSalesOrder2" />
-		<property name="dimensionUnit" ref="metricTonn" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
 		<property name="product" ref="slab" />
 		<property name="price" value="250" />
 		<property name="qnty" value="800" />
@@ -345,7 +345,7 @@
 					<property name="orderLine" ref="orderLine42" />
 					<property name="parameter" ref="length" />
 					<property name="value" value="7000" />
-					<property name="dimensionUnit" ref="mm" />
+					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
 		</property>

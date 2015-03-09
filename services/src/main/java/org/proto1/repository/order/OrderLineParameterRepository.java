@@ -14,10 +14,10 @@ import org.springframework.data.repository.query.Param;
 
 public interface OrderLineParameterRepository extends CrudRepository<OrderLineParameter, Long> {
 	
-	@Query("select new Map(olp.id as olpId, olp.value as olpValue, p.id as paramId, pn.name as paramName, du.id as duId, dun.shortName as duName) "
+	@Query("select new Map(olp.id as olpId, olp.value as olpValue, p.id as paramId, pn.name as paramName, uom.id as uomId, uomn.shortName as uomName) "
 			+ "from OrderLineParameter olp join olp.parameter p join p.parameterNames pn "
-			+ "left join olp.dimensionUnit du left join du.dimensionUnitNames dun "
-			+ "where olp.orderLine.id = :ol_id and pn.language.id = :language_id and (dun.language.id = :language_id or dun.language.id is null)")
+			+ "left join olp.unitOfMeasurement uom left join uom.unitOfMeasurementNames uomn "
+			+ "where olp.orderLine.id = :ol_id and pn.language.id = :language_id and (uomn.language.id = :language_id or uomn.language.id is null)")
 	public List<Map<String, Object>> getOrderLineParameters(@Param("language_id") Long languageId, @Param("ol_id") Long orderLineId);
 
 }
@@ -26,6 +26,6 @@ public interface OrderLineParameterRepository extends CrudRepository<OrderLinePa
 select olp.id as olpId, olp.value as olpValue, p.id as paramId, pn.name as paramName, du.id as duId, dun.shortName as duName
 from OrderLineParameter olp 
 	join olp.parameter p join p.parameterNames pn 
-	left join olp.dimensionUnit du left join du.dimensionUnitNames dun
+	left join olp.unitOfMeasurement uom left join uom.unitOfMeasurementNames uomn 
 where olp.orderLine.id = :ol_id and pn.language.id = :language_id and (dun.language.id = :language_id or dun.language.id is null)
 */
