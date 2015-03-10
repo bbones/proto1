@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
-public interface SalesOrderRepository extends CrudRepository<SalesOrder, Long> {
+public interface SalesOrderRepository extends BaseOrderRepository<SalesOrder> {
 	@Query("select new Map(so.id as soId, so.documentNo as soNo, so.issueDate as soIssueDate, coalesce(pn.lastName, en.name) as customerName) " +
 			"from SalesOrder so	join so.contractSupplement cs join cs.contract c join c.contractSides csides " + 
 			"join csides.party p left join p.personNames pn	left join p.enterpriseNames en " +

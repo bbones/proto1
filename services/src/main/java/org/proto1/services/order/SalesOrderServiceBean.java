@@ -15,16 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SalesOrderServiceBean implements SalesOrderService {
+public class SalesOrderServiceBean extends BaseOrderServiceBean implements SalesOrderService {
 	
 	@Autowired
 	SalesOrderRepository salesOrderRepository;
-
-	@Autowired
-	OrderLineRepository salesOrderLineRepository;
-
-	@Autowired
-	OrderLineParameterRepository salesOrderLineParameterRepository;
 
 	@Autowired
 	ApplicationConstants applicationConstant;
@@ -35,16 +29,5 @@ public class SalesOrderServiceBean implements SalesOrderService {
 				applicationConstant.getDefaultBuyerRole().getId());
 	}
 
-
-	public List<Map<String, Object>> getSalesOrderLines(Long soId,
-			Long languageId) {
-		return salesOrderLineRepository.getOrderLineList(soId, languageId);
-	}
-
-
-	public List<Map<String, Object>> getSalesOrderLineParameters(Long olId,
-			Long languageId) {
-		return salesOrderLineParameterRepository.getOrderLineParameters(languageId, olId);
-	}
 
 }
