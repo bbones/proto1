@@ -1,5 +1,6 @@
-package org.proto1.protofront;
+package org.proto1.protofront.order;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -22,18 +23,19 @@ public class ProductionOrderController {
 	ProductionOrderService productionOrderService;
 	
 	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  salesOrderListByLanguage(@PathVariable Long languageId) {
+	public @ResponseBody List<Map<String, Object>>  prodOrderListByLanguage(@PathVariable Long languageId) {
 		return productionOrderService.getProductionOrderList(languageId);
 	}
 	
 
 	@RequestMapping(value = "lines/{soId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  salesOrderLineList(@PathVariable Long soId, @PathVariable Long languageId) {
+	public @ResponseBody List<Map<String, Object>>  prodOrderLineList(@PathVariable Long soId, @PathVariable Long languageId) {
 		return productionOrderService.getOrderLines(soId, languageId);
 	}
 	
 	@RequestMapping(value = "lineparameters/{olId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  salesOrderLineParameters(@PathVariable Long olId, @PathVariable Long languageId) {
-		return productionOrderService.getOrderLineParameters(olId, languageId);
+	public @ResponseBody List<Map<String, Object>>  prodOrderLineParameters(@PathVariable Long olId, @PathVariable Long languageId) {
+		List<Map<String, Object>> result = productionOrderService.getOrderLineParameters(olId, languageId);
+		return (result == null) ? new ArrayList<Map<String, Object>>() : result;
 	}
 }

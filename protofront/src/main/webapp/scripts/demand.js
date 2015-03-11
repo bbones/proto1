@@ -75,7 +75,6 @@ var DemandLib = (function(){
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
 		for (var key in selectedDemandRows) {
-			debugger;
 			var orderLine = new OrderLine(
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
@@ -98,7 +97,7 @@ var DemandLib = (function(){
 	
 	
 	var makeOrder = function(pod) {
-		console.log("makeOrder->");
+		console.log("Making Order->");
 		
 		$.ajax({
 			dataType: 'json',
@@ -108,6 +107,7 @@ var DemandLib = (function(){
 			contentType: 'application/json',
 		    mimeType: 'application/json'
 		}).done(function(result) {
+			console.log("Done!");
 			console.log(result);
 		}); 
 

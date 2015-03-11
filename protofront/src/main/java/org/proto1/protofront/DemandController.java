@@ -9,8 +9,11 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.dozer.Mapper;
+import org.proto1.domain.order.ProductionOrder;
 import org.proto1.dto.order.ProductionOrderDTO;
 import org.proto1.services.order.DemandService;
+import org.proto1.services.order.ProductionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,6 +31,13 @@ public class DemandController {
 	@Autowired
 	DemandService demandService;
 	
+	@Autowired
+	ProductionOrderService productioOrderService;
+	
+	@Autowired
+	Mapper mapper;
+
+	
 	@RequestMapping(value = "getconsol/{languageId}&{productId}", method = RequestMethod.POST, consumes="application/json")
 	public @ResponseBody List<Map<String, Object>> getConsolidatedDemand(
 			@PathVariable("languageId") Long languageId, 
@@ -38,7 +48,9 @@ public class DemandController {
 	
 	@RequestMapping(value = "/createProdOrder", method = RequestMethod.POST, consumes="application/json")
 	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) {
-		return null;
+		ProductionOrder po = mapper.map(productionOrder, ProductionOrder.class);
+		po = productioOrderService.save(po);
+		return po.getId();
 	}
 
 }

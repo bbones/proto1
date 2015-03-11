@@ -14,12 +14,13 @@ var ProductionOrderLib = (function() {
 				IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
+				debugger;
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/salesorder/lines/' +  IndexLib.lang() + '&' + row.soId, 
+					url : '/protofront/service/prodorder/lines/' +  IndexLib.lang() + '&' + row.poId, 
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgLineParameters").edatagrid({
-							url : '/protofront/service/salesorder/lineparameters/' + IndexLib.lang() + '&' + row.olId
+							url : '/protofront/service/prodorder/lineparameters/' + IndexLib.lang() + '&' + row.olId
 								
 						});
 					} // OnSelect edgLines
@@ -33,21 +34,12 @@ var ProductionOrderLib = (function() {
 		$("#edgLines").edatagrid({});
 	}
 	
-	function initAccord() {
-//		$("#aa").accordion({
-//			onSelect : function(title, index) {
-//				alert(title + index);
-//			}
-//		});
-	}
-	
-	function initSOLineParam() {
+	function initPOLineParam() {
 		$("#edgLineParameters").edatagrid();
 	}
 
 	return {
 		init : function() {
-			initAccord();
 			initPOGrid();
 			initPOLinesGrid();
 			initPOLineParam();

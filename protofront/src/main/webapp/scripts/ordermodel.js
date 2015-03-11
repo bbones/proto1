@@ -6,7 +6,7 @@
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  */
 
-function OrderLine(productId, qnty, dimUnitId, parameterList, orderLineId) {
+function OrderLine(productId, qnty, uomId, parameterList, orderLineId) {
 	this.productId = productId;
 	this.qnty = qnty;
 	this.uomId = uomId;

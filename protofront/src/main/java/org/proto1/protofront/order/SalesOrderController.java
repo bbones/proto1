@@ -2,7 +2,7 @@
  * Copyright (c) 2015 Valentin Pogrebinsky
  * All rights reserved. 
  *******************************************************************************/
-package org.proto1.protofront;
+package org.proto1.protofront.order;
 
 import java.util.List;
 import java.util.Map;
