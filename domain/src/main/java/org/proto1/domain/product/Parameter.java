@@ -15,6 +15,7 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.proto1.domain.AbstractEntity;
 
 @Entity
@@ -28,6 +29,7 @@ public class Parameter extends AbstractEntity {
 	private Type type;
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="parameter")
+	@JsonIgnore
 	private List<ParameterName> parameterNames = new ArrayList<ParameterName>();
 
 	public Type getType() {
