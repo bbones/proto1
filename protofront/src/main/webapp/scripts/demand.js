@@ -51,7 +51,7 @@ var DemandLib = (function(){
 			columnList.push({field:'FVD'+selectedParams[key].parameterId,title:selectedParams[key].parameterName,width:80});
 		};
 		columnList.push({field:'qnty',title:'Qnty',width:80});
-		columnList.push({field:'olDUName',title:'Qnty DU',width:40});
+		columnList.push({field:'olUOMName',title:'Qnty UOM',width:40});
 		console.log(paramList);
 		$.ajax({
 			dataType: 'json',

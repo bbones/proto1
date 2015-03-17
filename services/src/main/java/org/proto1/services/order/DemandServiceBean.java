@@ -75,6 +75,53 @@ public class DemandServiceBean implements DemandService {
 			this.uomName = uomName;
 		}
 
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + getOuterType().hashCode();
+			result = prime * result
+					+ ((parameterId == null) ? 0 : parameterId.hashCode());
+			result = prime
+					* result
+					+ ((parameterValue == null) ? 0 : parameterValue.hashCode());
+			result = prime * result + ((uomId == null) ? 0 : uomId.hashCode());
+			return result;
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			RegisterKey other = (RegisterKey) obj;
+			if (!getOuterType().equals(other.getOuterType()))
+				return false;
+			if (parameterId == null) {
+				if (other.parameterId != null)
+					return false;
+			} else if (!parameterId.equals(other.parameterId))
+				return false;
+			if (parameterValue == null) {
+				if (other.parameterValue != null)
+					return false;
+			} else if (!parameterValue.equals(other.parameterValue))
+				return false;
+			if (uomId == null) {
+				if (other.uomId != null)
+					return false;
+			} else if (!uomId.equals(other.uomId))
+				return false;
+			return true;
+		}
+
+		private DemandServiceBean getOuterType() {
+			return DemandServiceBean.this;
+		}
+
 		
 	}
 
@@ -142,7 +189,7 @@ public class DemandServiceBean implements DemandService {
 			for(RegisterKey par : entry.getKey()) {
 				str += ":" + par.getParameterId() + "-" + par.getParameterValue() + " " + par.getUomName();
 			}
-			logger.debug(str + "->" + entry.getValue());
+			logger.debug(str + "->" + entry.getValue() + ":HASH:" + entry.hashCode());
 		}
 	}
 

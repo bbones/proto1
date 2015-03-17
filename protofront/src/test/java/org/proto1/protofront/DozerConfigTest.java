@@ -2,7 +2,7 @@
  * Copyright (c) 2015 Valentin Pogrebinsky
  * All rights reserved. 
  *******************************************************************************/
-package protofront;
+package org.proto1.protofront;
 
 import static org.junit.Assert.*;
 
