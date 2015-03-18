@@ -78,7 +78,7 @@ var DemandLib = (function(){
 			var orderLine = new OrderLine(
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
-				selectedDemandRows[key].olDUId, // dimUnitId
+				selectedDemandRows[key].uomId, // 
 				new Array()
 			);
 			for(var pk in selectedParams) {

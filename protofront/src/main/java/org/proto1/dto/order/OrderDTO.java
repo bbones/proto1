@@ -5,6 +5,7 @@
 
 package org.proto1.dto.order;
 
+import java.util.Date;
 import java.util.List;
 
 import org.proto1.dto.DTO;
@@ -20,6 +21,7 @@ public class OrderDTO extends DTO {
 
 	private Long orderId;
 	private String orderNo;
+	private Date issueDate;
 	
 	private List<OrderLineDTO> orderLines;
 
@@ -45,5 +47,13 @@ public class OrderDTO extends DTO {
 
 	public void setOrderNo(String orderNo) {
 		this.orderNo = orderNo;
+	}
+
+	public Date getIssueDate() {
+		return issueDate;
+	}
+
+	public void setIssueDate(Date issueDate) {
+		this.issueDate = issueDate;
 	}
 }

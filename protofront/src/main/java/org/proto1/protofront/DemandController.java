@@ -12,6 +12,7 @@ import org.apache.commons.logging.LogFactory;
 import org.dozer.Mapper;
 import org.proto1.domain.order.ProductionOrder;
 import org.proto1.dto.order.ProductionOrderDTO;
+import org.proto1.protofront.order.BaseOrderMapper;
 import org.proto1.services.order.DemandService;
 import org.proto1.services.order.ProductionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class DemandController {
 	ProductionOrderService productioOrderService;
 	
 	@Autowired
-	Mapper mapper;
+	BaseOrderMapper mapper;
 
 	
 	@RequestMapping(value = "getconsol/{languageId}&{productId}", method = RequestMethod.POST, consumes="application/json")
@@ -47,7 +48,7 @@ public class DemandController {
 	}
 	
 	@RequestMapping(value = "/createProdOrder", method = RequestMethod.POST, consumes="application/json")
-	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) {
+	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) throws InstantiationException, IllegalAccessException {
 		ProductionOrder po = mapper.map(productionOrder, ProductionOrder.class);
 		po = productioOrderService.save(po);
 		return po.getId();
