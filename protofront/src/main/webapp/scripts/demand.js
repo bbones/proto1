@@ -78,14 +78,14 @@ var DemandLib = (function(){
 			var orderLine = new OrderLine(
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
-				selectedDemandRows[key].uomId, // 
+				selectedDemandRows[key].olUOMId, // 
 				new Array()
 			);
 			for(var pk in selectedParams) {
 				var param = new OrderLineParameter(
 						selectedParams[pk].parameterId,
 						selectedDemandRows[key]['F' + selectedParams[pk].parameterId],
-						selectedDemandRows[key]['FDU' + selectedParams[pk].parameterId]
+						selectedDemandRows[key]['FUOM' + selectedParams[pk].parameterId]
 					);
 				orderLine.parameterList.push(param);
 			}

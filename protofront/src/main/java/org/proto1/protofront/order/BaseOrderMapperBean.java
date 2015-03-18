@@ -74,6 +74,7 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		for(OrderLineParameterDTO olpd : parameterList) {
 			OrderLineParameter olp = new OrderLineParameter();
 			mapOrderLineParameter(olpd, olp, orderLine);
+			orderLineParameterList.add(olp);
 		}
 	}
 
