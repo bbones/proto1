@@ -37,6 +37,7 @@
 					<property name="orderLine" ref="orderLine11" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="St3" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
@@ -73,6 +74,7 @@
 					<property name="orderLine" ref="orderLine12" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="A36" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
@@ -109,6 +111,7 @@
 					<property name="orderLine" ref="orderLine13" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="A36" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
@@ -162,6 +165,7 @@
 					<property name="orderLine" ref="orderLine21" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="St3" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
@@ -198,6 +202,7 @@
 					<property name="orderLine" ref="orderLine22" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="A36" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
@@ -251,6 +256,7 @@
 					<property name="orderLine" ref="orderLine31" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="St3" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine31" />
@@ -275,6 +281,7 @@
 					<property name="orderLine" ref="orderLine32" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="A36" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine32" />
@@ -316,6 +323,7 @@
 					<property name="orderLine" ref="orderLine41" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="St3" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine41" />
@@ -340,6 +348,7 @@
 					<property name="orderLine" ref="orderLine42" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="value" value="A36" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine42" />

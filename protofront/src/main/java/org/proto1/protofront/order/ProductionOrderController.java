@@ -28,9 +28,9 @@ public class ProductionOrderController {
 	}
 	
 
-	@RequestMapping(value = "lines/{soId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  prodOrderLineList(@PathVariable Long soId, @PathVariable Long languageId) {
-		return productionOrderService.getOrderLines(soId, languageId);
+	@RequestMapping(value = "lines/{poId}&{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  prodOrderLineList(@PathVariable Long poId, @PathVariable Long languageId) {
+		return productionOrderService.getOrderLines(poId, languageId);
 	}
 	
 	@RequestMapping(value = "lineparameters/{olId}&{languageId}", method = RequestMethod.POST )

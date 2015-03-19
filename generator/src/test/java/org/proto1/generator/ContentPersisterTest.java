@@ -93,7 +93,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Language english, russian, ukrainian;
 	
 	@Autowired
-	UnitOfMeasurement metricTonn, cubicMeter, kg, mm, percent;
+	UnitOfMeasurement notDefinedUOM, metricTonn, cubicMeter, kg, mm, percent;
 	
 	@Autowired
 	LocalizedStringConstant defaultEnglishProductType, defaultRussianProductType, defaultUkrainianProductType;
@@ -169,6 +169,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	}
 
 	private void persistUnitOfMeasurement() {
+		em.persist(notDefinedUOM);
 		em.persist(kg);
 		em.persist(mm);
 		em.persist(metricTonn);

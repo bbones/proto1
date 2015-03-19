@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Product;

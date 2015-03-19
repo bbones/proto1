@@ -15,11 +15,11 @@ var SalesOrderLib = (function() {
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/salesorder/lines/' +  IndexLib.lang() + '&' + row.soId, 
+					url : '/protofront/service/salesorder/lines/' +  row.soId + '&' + IndexLib.lang(), 
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgLineParameters").edatagrid({
-							url : '/protofront/service/salesorder/lineparameters/' + IndexLib.lang() + '&' + row.olId
+							url : '/protofront/service/salesorder/lineparameters/' + row.olId + '&' + IndexLib.lang()
 								
 						});
 					} // OnSelect edgLines

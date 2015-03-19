@@ -12,20 +12,28 @@ function Order() {
 	this.orderLines = new Array();
 	
 	this.addOrderLine = function(orderLine) {
-			this.orderLines.push(orderLine);
-	}
+		orderLine.orderId = this.orderId;	
+		this.orderLines.push(orderLine);
+	};
 };
 
-function OrderLine(productId, qnty, uomId, parameterList, orderLineId) {
+function OrderLine(orderLineId, productId, qnty, uomId, parameterList, orderId) {
+	this.orderLineId = orderLineId;
 	this.productId = productId;
 	this.qnty = qnty;
 	this.uomId = uomId;
 	this.parameterList = parameterList;
-	this.orderLineId = orderLineId;
+	this.orderId = orderId;
+//	this.addOrderLineParameter(orderLineParameter) {
+//		orderLineParameter.olId = this.orderLineId;
+//		this.parameterList.push(orderLineParameter);
+//	};
 };
 
-function OrderLineParameter(pId, pValue, pUOM) {
+function OrderLineParameter(olpId, pId, pValue, pUOM, olId) {
+	this.olpId = olpId;
 	this.pId = pId;
 	this.pValue = pValue;
 	this.pUOM = pUOM;
+	this.olId = olId;
 };

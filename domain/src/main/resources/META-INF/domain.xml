@@ -345,6 +345,31 @@
 		</property>
 	</bean>
 	
+	<bean id="notDefinedUOM" class="org.proto1.domain.UnitOfMeasurement">
+		<property name="unitOfMeasurementNames">
+			<list>
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+					<property name="language" ref="english" />
+					<property name="shortName" value="(n/d)" />
+					<property name="fullName" value="metric tonn" />
+				</bean>
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+					<property name="language" ref="russian" />
+					<property name="shortName" value="(н.о.)" />
+					<property name="fullName" value="метрическая тонна" />
+				</bean>
+				<bean class="org.proto1.domain.UnitOfMeasurementName">
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+					<property name="language" ref="ukrainian" />
+					<property name="shortName" value="(н.в.)" />
+					<property name="fullName" value="метрична тона" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id="metricTonn" class="org.proto1.domain.UnitOfMeasurement">
 		<property name="unitOfMeasurementNames">
 			<list>

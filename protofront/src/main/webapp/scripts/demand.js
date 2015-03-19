@@ -12,12 +12,12 @@ var DemandLib = (function(){
 	
 	var currentProduct = function() {
 		return $("#dgProducts").datagrid('getSelected').id;
-	}
+	};
 	
 	var initParameterGrid = function () {
 		$("#dgParameters").datagrid({});
 		
-	}
+	};
 	
 	var initProductSelector = function() {
 		$("#productType").combotree({
@@ -38,7 +38,7 @@ var DemandLib = (function(){
 			}
 		});
 		$("#dgProducts").datagrid();
-	}
+	};
 	
 	
 	var initDemandGrid = function() {
@@ -67,42 +67,48 @@ var DemandLib = (function(){
 				columns : [columnList],
 				data : result,
 				singleSelect : false
-			})
+			});
 		}); 
-	}
+	};
 	
-	var collectData = function(pod) {
+	var collectData = function() {
+		var order = new Order();
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
 		for (var key in selectedDemandRows) {
 			var orderLine = new OrderLine(
+				null,
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
 				selectedDemandRows[key].olUOMId, // 
-				new Array()
+				new Array(),
+				order
 			);
 			for(var pk in selectedParams) {
 				var param = new OrderLineParameter(
+						null,
 						selectedParams[pk].parameterId,
 						selectedDemandRows[key]['F' + selectedParams[pk].parameterId],
 						selectedDemandRows[key]['FUOM' + selectedParams[pk].parameterId]
 					);
 				orderLine.parameterList.push(param);
 			}
-			pod.addOrderLine(orderLine);
+			order.addOrderLine(orderLine);
 		}
 		
-		console.log(pod);
+		console.log(order);
+		return order;
 	};
 	
 	
 	var makeOrder = function(pod) {
 		console.log("Making Order->");
+		var order = collectData();
 		
 		$.ajax({
 			dataType: 'json',
 			url:'/protofront/service/demand/createProdOrder/',
-			data: JSON.stringify(pod), // {paramList : JSON.stringify(paramList)},
+			data: JSON.stringify(order), // {paramList : JSON.stringify(paramList)},
 			type: 'post',
 			contentType: 'application/json',
 		    mimeType: 'application/json'
@@ -136,9 +142,7 @@ var DemandLib = (function(){
 			}); // edatagrid
 		},
 		createProductionOrder : function () {
-			var order = new Order();
-			collectData(order);
-			makeOrder(order);
+			makeOrder();
 		},
 		createPurchaseOrder : function() {
 			console.log($("#dgDemand").datagrid('getSelections').length);

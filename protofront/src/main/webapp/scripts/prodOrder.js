@@ -14,13 +14,12 @@ var ProductionOrderLib = (function() {
 				IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
-				debugger;
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/prodorder/lines/' +  IndexLib.lang() + '&' + row.poId, 
+					url : '/protofront/service/prodorder/lines/' + row.poId  + '&' +  IndexLib.lang(), 
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgLineParameters").edatagrid({
-							url : '/protofront/service/prodorder/lineparameters/' + IndexLib.lang() + '&' + row.olId
+							url : '/protofront/service/prodorder/lineparameters/' +  row.olId + '&' + IndexLib.lang()
 								
 						});
 					} // OnSelect edgLines

@@ -81,10 +81,12 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	@Override
 	public void mapOrderLineParameter(OrderLineParameterDTO olpd,
 			OrderLineParameter olp, OrderLine orderLine) {
-		olp.setId(olpd.getpId());
+		
+		olp.setParameter(parameterService.get(olpd.getpId()));
 		olp.setValue(olpd.getpValue());
 		olp.setOrderLine(orderLine);
 		olp.setVersion(olp.getVersion());
+		olp.setUnitOfMeasurement(uomService.get(olpd.getpUOM()));
 	}
 
 }

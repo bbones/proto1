@@ -21,9 +21,9 @@ public abstract class BaseOrderServiceBean implements BaseOrderService {
 		return null;
 	}
 
-	public List<Map<String, Object>> getOrderLines(Long soId,
+	public List<Map<String, Object>> getOrderLines(Long orderId,
 			Long languageId) {
-		return salesOrderLineRepository.getOrderLineList(soId, languageId);
+		return salesOrderLineRepository.getOrderLineList(orderId, languageId);
 	}
 
 

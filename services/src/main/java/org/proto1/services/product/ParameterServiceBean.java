@@ -7,6 +7,7 @@ package org.proto1.services.product;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.repository.ParameterNameRepository;
 import org.proto1.repository.ParameterRepository;
@@ -32,6 +33,10 @@ public class ParameterServiceBean implements ParameterService {
 
 	public List<ParameterName> getNamesList(Long parameterId) {
 		return parameterNameRepository.getByParameterId(parameterId);
+	}
+
+	public Parameter get(Long id) {
+		return parameterRepository.findOne(id);
 	}
 
 }

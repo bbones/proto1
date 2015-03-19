@@ -4,12 +4,10 @@
  *******************************************************************************/
 package org.proto1.repository.order;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.order.OrderLine;
-import org.proto1.domain.product.Product;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -20,7 +18,7 @@ public interface OrderLineRepository extends CrudRepository<OrderLine, Long> {
 			+ "from OrderLine ol join ol.product p join p.productNames pn join ol.unitOfMeasurement uom join uom.unitOfMeasurementNames uomn "
 			+ "where pn.language.id = :language_id and uomn.language.id = :language_id and ol.order.id =:order_id")
 	
-	public List<Map<String, Object>> getOrderLineList(@Param("language_id") Long languageId, @Param("order_id") Long orderId);
+	public List<Map<String, Object>> getOrderLineList(@Param("order_id") Long orderId, @Param("language_id") Long languageId);
 	
 	public List<OrderLine> getListByProductId(Long productId);
 	

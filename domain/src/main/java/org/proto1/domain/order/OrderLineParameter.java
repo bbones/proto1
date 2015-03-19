@@ -4,11 +4,13 @@
  *******************************************************************************/
 package org.proto1.domain.order;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.UnitOfMeasurement;
@@ -20,17 +22,18 @@ import org.proto1.domain.product.Parameter;
 public class OrderLineParameter extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name = "ORDER_LINE_ID")
+	@JoinColumn(name = "ORDER_LINE_ID", nullable=false)
 	private OrderLine orderLine;
 
 	@ManyToOne
-	@JoinColumn(name = "PARAMETER_ID")
+	@JoinColumn(name = "PARAMETER_ID", nullable=false)
 	private Parameter parameter;
 	
 	@ManyToOne
-	@JoinColumn(name = "UNIT_OF_MEASUREMENT_ID")
+	@JoinColumn(name = "UNIT_OF_MEASUREMENT_ID", nullable=false)
 	private UnitOfMeasurement unitOfMeasurement;
 	
+	@Column(nullable = false) 
 	private String value;
 
 	public OrderLine getOrderLine() {
