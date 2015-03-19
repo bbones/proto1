@@ -138,7 +138,7 @@ public class DemandServiceBean implements DemandService {
 			Long[] paramList) {
 		Map<ArrayList<RegisterKey>, Double> register = new HashMap<ArrayList<RegisterKey>, Double> () ;
 		
-		for(OrderLine ol : orderLineRepository.getListByProductId(productId)) {
+		for(OrderLine ol : orderLineRepository.getUncoveredDemandLines(productId)) {
 			List<Map<String, Object>> pvl = orderLineRepository.getParametersValues(paramList, ol.getId(), languageId);
 			ArrayList<RegisterKey> key = new ArrayList<RegisterKey>();
 			for(Map<String, Object> entry : pvl) {
