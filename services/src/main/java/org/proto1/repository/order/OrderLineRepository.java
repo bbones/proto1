@@ -1,6 +1,7 @@
 /*******************************************************************************
  * Copyright (c) 2015 Valentin Pogrebinsky
  * All rights reserved. 
+ * TODO: getUncoveredDemand query - different type of cover criteria
  *******************************************************************************/
 package org.proto1.repository.order;
 
@@ -21,6 +22,9 @@ public interface OrderLineRepository extends CrudRepository<OrderLine, Long> {
 	public List<Map<String, Object>> getOrderLineList(@Param("order_id") Long orderId, @Param("language_id") Long languageId);
 	
 	public List<OrderLine> getListByProductId(Long productId);
+	
+	@Query("from OrderLine ol where ol.order.id in (select id from SalesOrder)")
+	public List<OrderLine> getUncoveredDemandLines(Long productId);
 	
 	@Query("select new Map(olp.parameter.id as pid, olp.value as pvalue,  olp.unitOfMeasurement.id as uomId, uomn.shortName as uomName) "
 			+ "from OrderLine ol join ol.orderLineParameterList olp left outer join olp.unitOfMeasurement.unitOfMeasurementNames uomn "
