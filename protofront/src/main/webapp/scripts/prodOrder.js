@@ -42,7 +42,12 @@ var ProductionOrderLib = (function() {
 			initPOGrid();
 			initPOLinesGrid();
 			initPOLineParam();
+		},
+		addBOMs : function() {
+			$.ajax('/protofront/service/prodorder/createOrderBOMs').onSuccess(function() {
+				alert("Success!")
+			});
 		}
-	}
+	};
 })();
 

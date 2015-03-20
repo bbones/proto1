@@ -8,19 +8,13 @@
 package org.proto1.services.order;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.proto1.domain.UnitOfMeasurementName;
 import org.proto1.domain.order.OrderLine;
-import org.proto1.domain.product.Product;
 import org.proto1.repository.UnitOfMeasurementNameRepository;
-import org.proto1.repository.UnitOfMeasurementRepository;
 import org.proto1.repository.ProductRepository;
 import org.proto1.repository.order.OrderLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;

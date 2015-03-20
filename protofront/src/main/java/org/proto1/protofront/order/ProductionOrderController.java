@@ -38,4 +38,10 @@ public class ProductionOrderController {
 		List<Map<String, Object>> result = productionOrderService.getOrderLineParameters(olId, languageId);
 		return (result == null) ? new ArrayList<Map<String, Object>>() : result;
 	}
+
+	@RequestMapping(value = "createOrderBOMs/{poId}", method = RequestMethod.POST )
+	public void  createOrderBOMs(@PathVariable Long poId) {
+		productionOrderService.createOrderBOMs(poId);
+	}
+
 }

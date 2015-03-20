@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.dozer.Mapper;
 import org.proto1.domain.order.ProductionOrder;
 import org.proto1.dto.order.ProductionOrderDTO;
 import org.proto1.protofront.order.BaseOrderMapper;

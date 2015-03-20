@@ -3,6 +3,7 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.ProductionOrder;
 import org.proto1.repository.order.ProductionOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,16 @@ public class ProductionOrderServiceBean extends BaseOrderServiceBean implements 
 
 	public ProductionOrder save(ProductionOrder productionOrder) {
 		return productionOrderRepository.save(productionOrder);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.ProductionOrderService#createOrderBOMs(java.lang.Long)
+	 */
+	public void createOrderBOMs(Long productionOrderId) {
+		ProductionOrder po = productionOrderRepository.findOne(productionOrderId);
+		for(OrderLine ol : po.getLines()) {
+			
+		}
 	}
 
 }

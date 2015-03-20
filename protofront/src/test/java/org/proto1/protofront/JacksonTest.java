@@ -1,7 +1,5 @@
 package org.proto1.protofront;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -25,8 +23,6 @@ import org.junit.Test;
 import org.proto1.domain.Language;
 import org.proto1.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 public class JacksonTest {
 	@Autowired

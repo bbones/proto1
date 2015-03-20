@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.proto1.domain.order.SalesOrder;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface SalesOrderRepository extends BaseOrderRepository<SalesOrder> {

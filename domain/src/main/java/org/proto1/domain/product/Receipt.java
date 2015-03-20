@@ -12,7 +12,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.Document;
 

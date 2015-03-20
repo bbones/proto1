@@ -4,20 +4,9 @@
  *******************************************************************************/
 package org.proto1.services;
 
-import static org.junit.Assert.*;
-import static org.easymock.EasyMock.*;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
 import org.junit.Ignore;
 import org.junit.Test;
-import org.proto1.domain.order.OrderLine;
-import org.proto1.domain.product.Product;
-import org.proto1.repository.ProductRepository;
-import org.proto1.repository.order.OrderLineRepository;
 import org.proto1.services.order.DemandService;
-import org.proto1.services.order.DemandServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;

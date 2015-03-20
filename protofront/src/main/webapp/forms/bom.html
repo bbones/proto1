@@ -1,0 +1,21 @@
+<div class="easyui-panel" title="Sales Order" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
+		<table id="edgBOM" title="Production Order" singleSelect="true"
+			style="width: 700px; height: auto"
+			data-options="iconCls: 'icon-edit', toolbar: '#tbpo', idField : 'poId'">
+			<thead>
+				<tr>
+					<th field='poId' width=80>PO Id</th>
+					<th field='poNo' width=250 editor="text">PO #</th>
+					<th field='poIssueDate' width=250 editor="date">Issue Date</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+</div>
+
+<script>
+	$.getScript("/protofront/scripts/bom.js").done(function() {
+		BOMLib.init();
+	});
+</script> 

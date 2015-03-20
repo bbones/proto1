@@ -7,8 +7,6 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
-import org.proto1.repository.order.OrderLineParameterRepository;
-import org.proto1.repository.order.OrderLineRepository;
 import org.proto1.repository.order.SalesOrderRepository;
 import org.proto1.services.ApplicationConstants;
 import org.springframework.beans.factory.annotation.Autowired;

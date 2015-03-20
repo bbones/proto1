@@ -16,4 +16,9 @@ public interface ProductionOrderService {
 	
 	ProductionOrder save(ProductionOrder productionOrder);
 
+	/**
+	 * @param productionOrderId Production Order Id
+	 */
+	void createOrderBOMs(Long productionOrderId);
+
 }

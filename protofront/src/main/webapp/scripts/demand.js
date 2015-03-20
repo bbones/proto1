@@ -4,7 +4,6 @@
  *******************************************************************************/
 /**
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
- * TODO dimUnit in grouping demand
  * 
  */
 
