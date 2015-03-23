@@ -44,8 +44,12 @@ var ProductionOrderLib = (function() {
 			initPOLineParam();
 		},
 		addBOMs : function() {
-			$.ajax('/protofront/service/prodorder/createOrderBOMs').onSuccess(function() {
-				alert("Success!")
+			var poid = $("#edgProdOrder").edatagrid('getSelected').poId;
+			$.ajax({
+				url : '/protofront/service/prodorder/createOrderBOMs/' + poid,
+				type: 'post'
+			}).done(function() {
+				alert("Success!");
 			});
 		}
 	};

@@ -13,6 +13,7 @@ package org.proto1.repository;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.product.Product;
 import org.proto1.domain.product.Receipt;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -39,6 +40,8 @@ public interface ReceiptRepository extends CrudRepository<Receipt, Long> {
 			+ "join i.unitOfMeasurement uom join uom.unitOfMeasurementNames uomn "
 			+ "where pn.language.id = :language_id and r.id=:receipt_id and uomn.language.id = :language_id ")
 	public List<Map<String, Object>> getByProductsList(@Param("language_id") Long languageId, @Param("receipt_id") Long receiptId);
+	
+	public Receipt getReceiptByProductAndByDefaultTrue(Product product);
 }
 
 /* getListByLanguageId

@@ -10,6 +10,9 @@
 var BOMLib = (function(){
 	return {
 		init : function() {
+			$("#edgBOM").edatagrid({
+				url:"/protofront/service/bom/listbylang/" +	IndexLib.lang()
+			});
 			console.log("BOMLib initialized");
 		}
 	};

@@ -32,6 +32,8 @@ public class Receipt extends Document {
 	@OneToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(name="receipt_byproducts")
 	private List<ReceiptItem> byProducts;
+	
+	private boolean byDefault;
 
 	public Product getProduct() {
 		return product;
@@ -63,6 +65,14 @@ public class Receipt extends Document {
 
 	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
 		this.unitOfMeasurement = unitOfMeasurement;
+	}
+
+	public boolean isByDefault() {
+		return byDefault;
+	}
+
+	public void setByDefault(boolean byDefault) {
+		this.byDefault = byDefault;
 	}
 
 	
