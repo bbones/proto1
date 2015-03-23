@@ -36,7 +36,8 @@ public class BOMServiceBean implements BOMService {
 			BOM bom = new BOM();
 			bom.setOrderLine(ol);
 			bom.setReceipt(receiptProvider.getDefaultReceipt(ol.getProduct()));
-			bom.setDocumentNo("BOM" + productionOrder.getDocumentNo()+"/"+ol.getId());
+			bom.setDocumentNo("BOM:" + productionOrder.getDocumentNo()+"::"+ol.getId());
+			bom.calcBOMLines();
 			bomRepository.save(bom);
 		}
 

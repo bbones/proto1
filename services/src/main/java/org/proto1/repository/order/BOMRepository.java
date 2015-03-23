@@ -22,8 +22,9 @@ public interface BOMRepository extends CrudRepository<BOM, Long> {
 	 * @param languageId
 	 * @return
 	 */
-	@Query("select new Map(bom.id as bomId, bom.documentNo as bomNo, bom.issueDate as bomIssueDate) "
-			+ "from BOM bom")
+	@Query("select new Map(bom.id as bomId, bom.documentNo as bomNo, "
+			+ "bom.issueDate as bomIssueDate, br.documentNo as bomReceiptName) "
+			+ "from BOM bom join bom.receipt br")
 	List<Map<String, Object>> getBOMList();
 
 }
