@@ -2,6 +2,9 @@
  * Copyright (c) 2015 Valentin Pogrebinsky
  * All rights reserved. 
  *******************************************************************************/
+/**
+ * TODO Inherited parameters
+ */
 package org.proto1.domain.product;
 
 import javax.persistence.Entity;
