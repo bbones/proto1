@@ -29,7 +29,10 @@ public class ReceiptItem extends AbstractEntity {
 	private UnitOfMeasurement unitOfMeasurement;
 	
 	private double qnty;
-	private boolean master;
+	/*
+	 * To ReceiptItem marked master BOM calculator copies derivative parameters
+	 */
+	private boolean master; 
 
 	public Receipt getReceipt() {
 		return receipt;
