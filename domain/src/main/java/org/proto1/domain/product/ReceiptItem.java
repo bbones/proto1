@@ -29,6 +29,7 @@ public class ReceiptItem extends AbstractEntity {
 	private UnitOfMeasurement unitOfMeasurement;
 	
 	private double qnty;
+	private boolean master;
 
 	public Receipt getReceipt() {
 		return receipt;
@@ -61,6 +62,14 @@ public class ReceiptItem extends AbstractEntity {
 	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
 		this.unitOfMeasurement = unitOfMeasurement;
 	}
-	
-	
+
+	public boolean isMaster() {
+		return master;
+	}
+
+	public void setMaster(boolean master) {
+		this.master = master;
+	}
+
+
 }

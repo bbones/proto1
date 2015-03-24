@@ -10,10 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class BaseOrderServiceBean implements BaseOrderService {
 
 	@Autowired
-	OrderLineRepository salesOrderLineRepository;
+	OrderLineRepository orderLineRepository;
 
 	@Autowired
-	OrderLineParameterRepository salesOrderLineParameterRepository;
+	OrderLineParameterRepository orderLineParameterRepository;
 
 
 	public List<Map<String, Object>> getOrderList(Long languageId) {
@@ -23,13 +23,13 @@ public abstract class BaseOrderServiceBean implements BaseOrderService {
 
 	public List<Map<String, Object>> getOrderLines(Long orderId,
 			Long languageId) {
-		return salesOrderLineRepository.getOrderLineList(orderId, languageId);
+		return orderLineRepository.getOrderLineList(orderId, languageId);
 	}
 
 
 	public List<Map<String, Object>> getOrderLineParameters(Long olId,
 			Long languageId) {
-		return salesOrderLineParameterRepository.getOrderLineParameters(languageId, olId);
+		return orderLineParameterRepository.getOrderLineParameters(languageId, olId);
 	}
 
 }

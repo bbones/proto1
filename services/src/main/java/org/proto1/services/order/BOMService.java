@@ -27,4 +27,18 @@ public interface BOMService {
 	 */
 	List<Map<String, Object>> getBOMList(Long languageId);
 
+	/**
+	 * @param bomId
+	 * @param languageId
+	 * @return
+	 */
+	List<Map<String, Object>> getOrderLines(Long bomId, Long languageId);
+
+	/**
+	 * @param orderLineId
+	 * @param languageId
+	 * @return
+	 */
+	List<Map<String, Object>> getOrderLineParameters(Long orderLineId, Long languageId);
+
 }

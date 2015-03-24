@@ -5,6 +5,7 @@
  */
 package org.proto1.protofront.order;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,17 @@ public class BOMController {
 	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
 	public @ResponseBody List<Map<String, Object>>  bomListByLanguage(@PathVariable Long languageId) {
 		return bomService.getBOMList(languageId);
+	}
+	
+	@RequestMapping(value = "lines/{bomId}&{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  bomLineList(@PathVariable Long bomId, @PathVariable Long languageId) {
+		return bomService.getOrderLines(bomId, languageId);
+	}
+	
+	@RequestMapping(value = "lineparameters/{olId}&{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  prodOrderLineParameters(@PathVariable Long olId, @PathVariable Long languageId) {
+		List<Map<String, Object>> result = bomService.getOrderLineParameters(olId, languageId);
+		return (result == null) ? new ArrayList<Map<String, Object>>() : result;
 	}
 	
 }

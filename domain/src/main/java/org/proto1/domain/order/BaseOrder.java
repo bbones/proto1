@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.domain.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -22,7 +23,7 @@ import org.proto1.domain.Document;
 @Table(name="BASE_ORDER")
 public abstract class BaseOrder extends Document {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="order")
-	private List<OrderLine> lines;
+	private List<OrderLine> lines = new ArrayList<OrderLine>();
 	
 	public List<OrderLine> getLines() {
 		return lines;

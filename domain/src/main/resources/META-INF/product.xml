@@ -478,22 +478,26 @@
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="false" />
+					<property name="required" value="true" />
+					<property name="inherited" value="true" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="thickness" />
-					<property name="required" value="false" />
+					<property name="required" value="true" />
+					<property name="inherited" value="false" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="width" />
-					<property name="required" value="false" />
+					<property name="required" value="true" />
+					<property name="inherited" value="false" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="length" />
-					<property name="required" value="false" />
+					<property name="required" value="true" />
+					<property name="inherited" value="false" />
 				</bean>
 			</list>
 		</property>
@@ -529,13 +533,15 @@
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="channel" />
 					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="false" />
+					<property name="required" value="true" />
+					<property name="inherited" value="true" />
 				</bean>
 
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="channel" />
 					<property name="parameter" ref="length" />
 					<property name="required" value="false" />
+					<property name="inherited" value="false" />
 				</bean>
 			</list>
 		</property>
@@ -571,18 +577,20 @@
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="iBeam" />
 					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="false" />
+					<property name="required" value="true" />
+					<property name="inherited" value="true" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="iBeam" />
 					<property name="parameter" ref="length" />
 					<property name="required" value="false" />
+					<property name="inherited" value="false" />
 				</bean>
 			</list>
 		</property>
 	</bean>
 
-	<!-- Liquid converter steel -->
+	<!-- Steel raw material -->
 	<bean id="scrap" class="org.proto1.domain.product.Product">
 		<property name="productType" ref="steelProduct"/>
 		<property name="productNames">
@@ -630,6 +638,17 @@
 					<property name="product" ref="converterSteel" />
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="конвертерна сталь" />
+				</bean>
+
+			</list>
+		</property>
+		<property name="productParameters">
+			<list>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="channel" />
+					<property name="parameter" ref="gradeOfSteel" />
+					<property name="required" value="true" />
+					<property name="inherited" value="false" />
 				</bean>
 
 			</list>

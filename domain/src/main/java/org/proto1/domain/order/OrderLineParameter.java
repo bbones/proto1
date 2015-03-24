@@ -33,6 +33,8 @@ public class OrderLineParameter extends AbstractEntity {
 	
 	@Column(nullable = false) 
 	private String value;
+	
+	private boolean derivative;
 
 	public OrderLine getOrderLine() {
 		return orderLine;
@@ -64,6 +66,14 @@ public class OrderLineParameter extends AbstractEntity {
 
 	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
 		this.unitOfMeasurement = unitOfMeasurement;
+	}
+
+	public boolean isDerivative() {
+		return derivative;
+	}
+
+	public void setDerivative(boolean derivative) {
+		this.derivative = derivative;
 	}
 
 	

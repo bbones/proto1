@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.proto1.domain.AbstractEntity;
 
-//	ToDo : 
+//	TODO : 
 //		Formatter for name from parameter values
 //		Values source
 //		Checking value procedure
@@ -29,6 +29,8 @@ public class ProductParameter extends AbstractEntity {
 	private Parameter parameter;
 	
 	private Boolean required;
+	
+	private Boolean inherited;
 
 	public Product getProduct() {
 		return product;
@@ -52,6 +54,14 @@ public class ProductParameter extends AbstractEntity {
 
 	public void setRequired(Boolean required) {
 		this.required = required;
+	}
+
+	public Boolean getInherited() {
+		return inherited;
+	}
+
+	public void setInherited(Boolean inherited) {
+		this.inherited = inherited;
 	}
 
 }

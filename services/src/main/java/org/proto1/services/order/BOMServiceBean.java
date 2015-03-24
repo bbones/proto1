@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class BOMServiceBean implements BOMService {
+public class BOMServiceBean extends BaseOrderServiceBean implements BOMService {
 	
 	@Autowired
 	ReceiptProvider receiptProvider; 
@@ -49,5 +49,6 @@ public class BOMServiceBean implements BOMService {
 	public List<Map<String, Object>> getBOMList(Long languageId) {
 		return bomRepository.getBOMList();
 	}
+
 
 }

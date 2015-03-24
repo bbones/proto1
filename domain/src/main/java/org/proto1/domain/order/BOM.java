@@ -5,7 +5,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Receipt;
+import org.proto1.domain.product.ReceiptItem;
 
 @Entity
 public class BOM extends BaseOrder {
@@ -35,6 +37,16 @@ public class BOM extends BaseOrder {
 	}
 	
 	public void calcBOMLines() {
-		
+		for(ReceiptItem ri : receipt.getIngredients()) {
+			OrderLine bomLine = new OrderLine();
+			bomLine.setOrder(this);
+			bomLine.setProduct(ri.getProduct());
+			bomLine.setQnty(ri.getQnty()*orderLine.getQnty());
+			bomLine.setUnitOfMeasurement(ri.getUnitOfMeasurement());
+			if (ri.isMaster()) {
+				bomLine.setOrderLineParameterList(orderLine.getDerivativeParameters());
+			};
+			getLines().add(bomLine);
+		}
 	}
 }

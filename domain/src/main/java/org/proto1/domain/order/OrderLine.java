@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.domain.order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -96,6 +97,19 @@ public class OrderLine extends AbstractEntity {
 
 	public void setUnitOfMeasurement(UnitOfMeasurement unitOfMeasurement) {
 		this.unitOfMeasurement = unitOfMeasurement;
+	}
+
+	/**
+	 * @return
+	 */
+	public List<OrderLineParameter> getDerivativeParameters() {
+		List<OrderLineParameter> olpList = new ArrayList<OrderLineParameter>();
+		for(OrderLineParameter olp : getOrderLineParameterList()) {
+			if (olp.isDerivative()) {
+				olpList.add(olp);
+			}
+		}
+		return olpList;
 	}
 	
 }
