@@ -1,5 +1,8 @@
 package org.proto1.domain.order;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -44,7 +47,16 @@ public class BOM extends BaseOrder {
 			bomLine.setQnty(ri.getQnty()*orderLine.getQnty());
 			bomLine.setUnitOfMeasurement(ri.getUnitOfMeasurement());
 			if (ri.isMaster()) {
-				bomLine.setOrderLineParameterList(orderLine.getDerivativeParameters());
+				// Copy derivative parameters to master 
+				bomLine.setOrderLineParameterList(new ArrayList<OrderLineParameter>());
+				for(OrderLineParameter olpd : orderLine.getDerivativeParameters()) {
+					OrderLineParameter olp = new OrderLineParameter();
+					olp.setOrderLine(bomLine);
+					olp.setParameter(olpd.getParameter());
+					olp.setUnitOfMeasurement(olpd.getUnitOfMeasurement());
+					olp.setValue(olpd.getValue());
+					bomLine.getOrderLineParameterList().add(olp);
+				}
 			};
 			getLines().add(bomLine);
 		}

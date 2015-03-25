@@ -93,7 +93,7 @@ public class ProductServiceBean implements ProductService {
 	}
 
 	@Transactional
-	public ProductParameter saveProductParameter(Long productId, Long parameterId, Boolean required) {
+	public ProductParameter saveProductParameter(Long productId, Long parameterId, boolean required) {
 		ProductParameter productParameter = new ProductParameter();
 		productParameter.setProduct(productRepository.findOne(productId));
 		productParameter.setParameter(parameterRepository.findOne(parameterId));
@@ -105,6 +105,13 @@ public class ProductServiceBean implements ProductService {
 	@Transactional
 	public void deleteProductParameter(Long productParameterId) {
 		productParameterRepository.delete(productParameterId);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.product.ProductService#getProductParameter(java.lang.Long, java.lang.Long)
+	 */
+	public ProductParameter getProductParameter(Long productId, Long parameterId) {
+		return productParameterRepository.getByProductIdAndParameterId(productId, parameterId);
 	}
 
 

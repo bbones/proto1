@@ -49,7 +49,6 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 			mapOrderLine(old, ol, order);
 			lines.add(ol);
 		}
-		
 	}
 
 	@Override
@@ -86,6 +85,7 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		olp.setValue(olpd.getpValue());
 		olp.setOrderLine(orderLine);
 		olp.setVersion(olp.getVersion());
+		olp.setDerivative(productService.getProductParameter(orderLine.getProduct().getId(), olp.getParameter().getId()).isDerivative());
 		olp.setUnitOfMeasurement(uomService.get(olpd.getpUOM()));
 	}
 

@@ -28,9 +28,9 @@ public class ProductParameter extends AbstractEntity {
 	@JoinColumn(name="parameter_id")
 	private Parameter parameter;
 	
-	private Boolean required;
+	private boolean required;
 	
-	private Boolean inherited;
+	private boolean derivative;
 
 	public Product getProduct() {
 		return product;
@@ -48,20 +48,21 @@ public class ProductParameter extends AbstractEntity {
 		this.parameter = parameter;
 	}
 
-	public Boolean getRequired() {
+	public boolean isRequired() {
 		return required;
 	}
 
-	public void setRequired(Boolean required) {
+	public void setRequired(boolean required) {
 		this.required = required;
 	}
 
-	public Boolean getInherited() {
-		return inherited;
+	public boolean isDerivative() {
+		return derivative;
 	}
 
-	public void setInherited(Boolean inherited) {
-		this.inherited = inherited;
+	public void setDerivative(boolean derivative) {
+		this.derivative = derivative;
 	}
+
 
 }

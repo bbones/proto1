@@ -34,7 +34,7 @@ public class OrderLineParameter extends AbstractEntity {
 	@Column(nullable = false) 
 	private String value;
 	
-	private boolean derivative;
+	private boolean derivative = false;
 
 	public OrderLine getOrderLine() {
 		return orderLine;

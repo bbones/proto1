@@ -15,10 +15,18 @@ import org.springframework.data.repository.query.Param;
 public interface ProductParameterRepository extends JpaRepository<ProductParameter, Long> {
 
 	List<ProductParameter> getParameterByProductId(Long productId);
-	@Query("select new Map(pp.id as productParameterId, pp.product.id as productId, pp.parameter.id as parameterId, pp.required as required, ppn.name as parameterName) "
+	@Query("select new Map(pp.id as productParameterId, pp.product.id as productId, pp.parameter.id as parameterId, pp.required as required, "
+			+ "pp.derivative as derivative, ppn.name as parameterName) "
 			+ "from ProductParameter pp join pp.parameter.parameterNames ppn "
 			+ "where pp.product.id = :product_id and ppn.language.id=:language_id")
 	List<Map<String, Object>> getParametersByProductIdLanguageId(@Param("product_id") Long productId, @Param("language_id") Long languageId);
+	/**
+	 * @param productId
+	 * @param parameterId
+	 * @return
+	 */
+	ProductParameter getByProductIdAndParameterId(Long productId,
+			Long parameterId);
 	
 
 }

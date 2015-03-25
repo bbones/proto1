@@ -8,6 +8,8 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.proto1.domain.order.BOM;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.ProductionOrder;
@@ -31,6 +33,8 @@ public class BOMServiceBean extends BaseOrderServiceBean implements BOMService {
 	/* (non-Javadoc)
 	 * @see org.proto1.services.order.BOMService#createBOM(org.proto1.domain.order.ProductionOrder)
 	 */
+	
+	@Transactional
 	public void createBOM(ProductionOrder productionOrder) {
 		for(OrderLine ol : productionOrder.getLines()) {
 			BOM bom = new BOM();

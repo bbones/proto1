@@ -63,6 +63,7 @@
 					<property name="product" ref="converterSteel" />
 					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="1.023" />
+					<property name="master" value="true"/>
 				</bean>
 			</list>
 		</property>
@@ -80,6 +81,7 @@
 					<property name="product" ref="slab" />
 					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="1.173" />
+					<property name="master" value="true"/>
 				</bean>
 			</list>
 		</property>
