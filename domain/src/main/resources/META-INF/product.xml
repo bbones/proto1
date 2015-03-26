@@ -645,7 +645,7 @@
 		<property name="productParameters">
 			<list>
 				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="channel" />
+					<property name="product" ref="converterSteel" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="required" value="true" />
 					<property name="derivative" value="false" />

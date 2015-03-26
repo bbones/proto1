@@ -122,7 +122,6 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistUnitOfMeasurement();
 		persistCurrency();
 		persistLocation();
-		persistInventoryLot();
 		persistPerson();
 		persistEnterprise();
 		persistSideRole();
@@ -134,6 +133,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistLocalizedStringConstant();
 		
 		persistOrder();
+		persistInventoryLot();
 
 		em.getTransaction().commit();
 

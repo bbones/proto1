@@ -21,6 +21,9 @@
 		    },{
 		        "id": "parameter",
 		        "text": "Parameter"
+		    },{
+		        "id": "location",
+		        "text": "Location"
 		    }
 		]
 	},
@@ -63,6 +66,10 @@
 		    {
 		        "id": "bill",
 		        "text": "Bill"
+	    	},
+		    {
+		        "id": "inventory",
+		        "text": "Inventory"
 	    	}
 	    ]
 	}
