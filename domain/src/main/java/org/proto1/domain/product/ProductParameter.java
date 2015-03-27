@@ -33,6 +33,8 @@ public class ProductParameter extends AbstractEntity {
 	private boolean derivative;
 	
 	private String valueProvider;
+	
+	private ProductParameter masterParameter;
 
 	public Product getProduct() {
 		return product;
@@ -72,6 +74,14 @@ public class ProductParameter extends AbstractEntity {
 
 	public void setValueProvider(String valueProvider) {
 		this.valueProvider = valueProvider;
+	}
+
+	public ProductParameter getMasterParameter() {
+		return masterParameter;
+	}
+
+	public void setMasterParameter(ProductParameter masterParameter) {
+		this.masterParameter = masterParameter;
 	}
 
 

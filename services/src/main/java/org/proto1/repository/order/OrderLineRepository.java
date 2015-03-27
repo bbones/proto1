@@ -23,7 +23,9 @@ public interface OrderLineRepository extends CrudRepository<OrderLine, Long> {
 	
 	public List<OrderLine> getListByProductId(Long productId);
 	
-	@Query("from OrderLine ol where (ol.product.id = :product_id) and (ol.order.id in (select id from SalesOrder))")
+	@Query("from OrderLine ol "
+			+ "where (ol.product.id = :product_id) and "
+			+ "((ol.order.id in (select id from SalesOrder)) or (ol.order.id in (select id from BOM)))")
 	public List<OrderLine> getUncoveredDemandLines(@Param("product_id") Long productId);
 	
 	@Query("select new Map(olp.parameter.id as pid, olp.value as pvalue,  olp.unitOfMeasurement.id as uomId, uomn.shortName as uomName) "

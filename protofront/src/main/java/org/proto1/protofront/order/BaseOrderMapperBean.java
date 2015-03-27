@@ -12,7 +12,7 @@ import org.proto1.dto.order.OrderDTO;
 import org.proto1.dto.order.OrderLineDTO;
 import org.proto1.dto.order.OrderLineParameterDTO;
 import org.proto1.services.UnitOfMeasurementService;
-import org.proto1.services.product.ParameterService;
+import org.proto1.services.parameter.ParameterService;
 import org.proto1.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

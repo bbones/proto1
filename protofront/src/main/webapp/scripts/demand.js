@@ -114,6 +114,7 @@ var DemandLib = (function(){
 		}).done(function(result) {
 			console.log("Done!");
 			console.log(result);
+			alert("Done!" + result);
 		}); 
 
 	};
