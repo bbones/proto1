@@ -33,6 +33,7 @@ import org.proto1.domain.product.ProductParameter;
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.Receipt;
 import org.proto1.domain.utility.LocalizedStringConstant;
+import org.proto1.domain.valueprovider.GradeSteelStandard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
@@ -42,7 +43,8 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 		"classpath:/META-INF/order.xml",
 		"classpath:/META-INF/inventory.xml",
 		"classpath:/META-INF/utility.xml", 
-		"classpath:/META-INF/receipt.xml"
+		"classpath:/META-INF/receipt.xml",
+		"classpath:/META-INF/valueprovider.xml"
 	})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
@@ -106,6 +108,9 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	InventoryLot slabLot1;
+	
+	@Autowired
+	GradeSteelStandard astm, gost;
 
 	@Before
 	public void startUp () {
@@ -134,11 +139,18 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		
 		persistOrder();
 		persistInventoryLot();
+		
+		peristStandard();
 
 		em.getTransaction().commit();
 
 	}
 	
+	private void peristStandard() {		// TODO Auto-generated method stub
+		em.persist(gost);
+		em.persist(astm);
+	}
+
 	private void persistInventoryLot() {
 		em.persist(slabLot1);
 	}

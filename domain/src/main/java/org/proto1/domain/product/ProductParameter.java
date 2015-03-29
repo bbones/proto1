@@ -21,11 +21,11 @@ import org.proto1.domain.AbstractEntity;
 public class ProductParameter extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name="product_id")
+	@JoinColumn(name="PRODUCT_ID")
 	private Product product;
 	
 	@ManyToOne
-	@JoinColumn(name="parameter_id")
+	@JoinColumn(name="PARAMETER_ID")
 	private Parameter parameter;
 	
 	private boolean required;
@@ -34,6 +34,8 @@ public class ProductParameter extends AbstractEntity {
 	
 	private String valueProvider;
 	
+	@ManyToOne
+	@JoinColumn(name="MASTER_PARAMETER_ID")
 	private ProductParameter masterParameter;
 
 	public Product getProduct() {

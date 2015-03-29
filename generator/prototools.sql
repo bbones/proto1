@@ -1,4 +1,6 @@
-create schema TOOLS
+create schema TOOLS;
+CREATE SCHEMA VALUEPROVIDER;
+
 
 select new Map(pp.id as prodParamId, pp.product.id as prodId, pp.parameter.id as parameterId, pp.optional as optional, ppn.name as parameterName)
 from ProductParameter pp join pp.parameter.parameterNames ppn

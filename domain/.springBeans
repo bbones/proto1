@@ -15,6 +15,7 @@
 		<config>src/main/resources/META-INF/parameter.xml</config>
 		<config>src/main/resources/META-INF/order.xml</config>
 		<config>src/main/resources/META-INF/inventory.xml</config>
+		<config>src/main/resources/META-INF/valueprovider.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

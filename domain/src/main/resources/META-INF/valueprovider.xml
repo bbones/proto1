@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="astm" class="org.proto1.domain.valueprovider.GradeSteelStandard">
+		<property name="name" value="ASTM" />
+		<property name="grades">
+			<list>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="A36" />
+				</bean>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="A516" />
+				</bean>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="A533" />
+				</bean>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="A387" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="gost" class="org.proto1.domain.valueprovider.GradeSteelStandard">
+		<property name="name" value="ГОСТ" />
+		<property name="grades">
+			<list>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="Ст3" />
+				</bean>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="09Г2С" />
+				</bean>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="16ГНМ" />
+				</bean>
+				<bean class="org.proto1.domain.valueprovider.GradeSteel">
+					<property name="name" value="12ХМ" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+</beans>
