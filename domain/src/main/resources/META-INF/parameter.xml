@@ -105,6 +105,30 @@
 		</property>
 	</bean>	
 	
+	<bean id="gradeOfSteelStandard" class="org.proto1.domain.product.Parameter">
+		<property name="type" value="STRING" />
+		<property name="parameterNames">
+			<list>
+				<bean id="gradeOfSteelEnglish" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteelStandard"/>
+					<property name="language" ref="english" />
+					<property name="name" value="Grade of steel standard" />
+				</bean>
+			
+				<bean id="gradeOfSteelRussian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteelStandard"/>
+					<property name="language" ref="russian" />
+					<property name="name" value="Стандарт по марке стали" />
+				</bean>
+				<bean id="gradeOfSteelRussian" class="org.proto1.domain.product.ParameterName">
+					<property name="parameter" ref="gradeOfSteelStandard"/>
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Стандарт по марці" />
+				</bean>
+			</list>
+		</property>
+	</bean>	
+	
 
 	<bean id="gradeOfCoke" class="org.proto1.domain.product.Parameter">
 		<property name="type" value="STRING" />

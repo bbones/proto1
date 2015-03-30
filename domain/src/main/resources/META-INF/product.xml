@@ -477,9 +477,17 @@
 			<list>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />
+					<property name="parameter" ref="gradeOfSteelStandard" />
+					<property name="required" value="true" />
+					<property name="derivative" value="true" />
+					<property name="valueProvider" value="GradeOfSteelStandardProvider" />
+				</bean>
+				<bean class="org.proto1.domain.product.ProductParameter">
+					<property name="product" ref="steelPlate" />
 					<property name="parameter" ref="gradeOfSteel" />
 					<property name="required" value="true" />
 					<property name="derivative" value="true" />
+					<property name="valueProvider" value="GradeOfSteelProvider" />
 				</bean>
 				<bean class="org.proto1.domain.product.ProductParameter">
 					<property name="product" ref="steelPlate" />

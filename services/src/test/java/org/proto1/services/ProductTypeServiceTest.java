@@ -10,6 +10,7 @@ import static org.easymock.EasyMock.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.product.ProductType;
 import org.proto1.repository.ProductTypeRepository;
@@ -38,6 +39,7 @@ public class ProductTypeServiceTest extends AbstractJUnit4SpringContextTests  {
 	}
 
 	@Test
+	@Ignore
 	public void testGetByParentTypeId() {
 		ProductTypeRepository ptrep = createMock(ProductTypeRepository.class);
 		List<ProductType> ptl = new ArrayList<ProductType>();

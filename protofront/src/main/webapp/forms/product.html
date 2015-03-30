@@ -80,7 +80,7 @@
 						data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'productParameterId'">
 						<thead>
 							<tr>
-								<th field='productParameterId' width=250>Product Parameter Id</th>
+								<th field='productParameterId' width=100>Product Parameter Id</th>
 								<th
 									data-options="field:'parameterId',width:100,
                         			formatter:function(value,row){
@@ -98,6 +98,8 @@
                         			}">Parameter</th>
 								<th
 									data-options="field:'required',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Status</th>
+								<th field='valueProvider' width=150>Value Provider</th>
+								<th field='masterParameterId' width=150>Master Parameter ID</th>
 							</tr>
 						</thead>
 					</table>

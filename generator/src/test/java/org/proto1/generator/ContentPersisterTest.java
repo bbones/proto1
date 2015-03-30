@@ -89,7 +89,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
 	@Autowired
 	Parameter
-		gradeOfSteel, gradeOfCoke, ironContent, thickness, width, length;
+		gradeOfSteel, gradeOfSteelStandard, gradeOfCoke, ironContent, thickness, width, length;
 	
 	@Autowired
 	Language english, russian, ukrainian;
@@ -219,6 +219,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(thickness);
 		em.persist(width);
 		em.persist(length);
+		em.persist(gradeOfSteelStandard);
 		em.persist(gradeOfSteel);
 		em.persist(gradeOfCoke);
 		em.persist(ironContent);
