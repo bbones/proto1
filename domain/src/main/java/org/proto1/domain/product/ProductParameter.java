@@ -85,6 +85,4 @@ public class ProductParameter extends AbstractEntity {
 	public void setMasterParameter(ProductParameter masterParameter) {
 		this.masterParameter = masterParameter;
 	}
-
-
 }
