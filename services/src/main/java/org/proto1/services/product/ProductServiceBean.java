@@ -114,5 +114,12 @@ public class ProductServiceBean implements ProductService {
 		return productParameterRepository.getByProductIdAndParameterId(productId, parameterId);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.proto1.services.product.ProductService#getProductParameter(java.lang.Long)
+	 */
+	public ProductParameter getProductParameter(Long id) {
+		return productParameterRepository.findOne(id);
+	}
+
 
 }

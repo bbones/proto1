@@ -26,9 +26,6 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	@Autowired
 	UnitOfMeasurementService uomService; 
 	
-	@Autowired
-	ParameterService parameterService;
-	
 	@Override
 	public <T extends BaseOrder, S extends OrderDTO> T map(S source, Class<T> destinationClass) 
 				throws InstantiationException, IllegalAccessException {
@@ -81,11 +78,11 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	public void mapOrderLineParameter(OrderLineParameterDTO olpd,
 			OrderLineParameter olp, OrderLine orderLine) {
 		
-		olp.setParameter(parameterService.get(olpd.getpId()));
+		olp.setProductParameter(productService.getProductParameter(olpd.getPPId()));
 		olp.setValue(olpd.getpValue());
 		olp.setOrderLine(orderLine);
 		olp.setVersion(olp.getVersion());
-		olp.setDerivative(productService.getProductParameter(orderLine.getProduct().getId(), olp.getParameter().getId()).isDerivative());
+		olp.setDerivative(olp.getProductParameter().isDerivative());
 		olp.setUnitOfMeasurement(uomService.get(olpd.getpUOM()));
 	}
 

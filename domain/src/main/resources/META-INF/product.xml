@@ -475,41 +475,50 @@
 		</property>
 		<property name="productParameters">
 			<list>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="steelPlate" />
-					<property name="parameter" ref="gradeOfSteelStandard" />
-					<property name="required" value="true" />
-					<property name="derivative" value="true" />
-					<property name="valueProvider" value="GradeOfSteelStandardProvider" />
-				</bean>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="steelPlate" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="true" />
-					<property name="derivative" value="true" />
-					<property name="valueProvider" value="GradeOfSteelProvider" />
-				</bean>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="steelPlate" />
-					<property name="parameter" ref="thickness" />
-					<property name="required" value="true" />
-					<property name="derivative" value="false" />
-				</bean>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="steelPlate" />
-					<property name="parameter" ref="width" />
-					<property name="required" value="true" />
-					<property name="derivative" value="false" />
-				</bean>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="steelPlate" />
-					<property name="parameter" ref="length" />
-					<property name="required" value="true" />
-					<property name="derivative" value="false" />
-				</bean>
+			
+				<ref bean = "spGOSS"/>
+				<ref bean = "spGOS"/>
+				<ref bean = "spThickness"/>
+				<ref bean = "spWidth"/>
+				<ref bean = "spLength"/>
+				
 			</list>
 		</property>
 	</bean>
+	
+	<bean id = "spGOSS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="steelPlate" />
+		<property name="parameter" ref="gradeOfSteelStandard" />
+		<property name="required" value="true" />
+		<property name="derivative" value="true" />
+		<property name="valueProvider" value="GradeOfSteelStandardProvider" />
+	</bean>
+	<bean id = "spGOS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="steelPlate" />
+		<property name="parameter" ref="gradeOfSteel" />
+		<property name="required" value="true" />
+		<property name="derivative" value="true" />
+		<property name="valueProvider" value="GradeOfSteelProvider" />
+	</bean>
+	<bean id = "spThickness" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="steelPlate" />
+		<property name="parameter" ref="thickness" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+	<bean id = "spWidth" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="steelPlate" />
+		<property name="parameter" ref="width" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+	<bean id = "spLength" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="steelPlate" />
+		<property name="parameter" ref="length" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+	
 	
 	<!-- Channel -->
 	<bean id="channel" class="org.proto1.domain.product.Product">
@@ -538,22 +547,26 @@
 		</property>
 		<property name="productParameters">
 			<list>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="channel" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="true" />
-					<property name="derivative" value="true" />
-				</bean>
-
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="channel" />
-					<property name="parameter" ref="length" />
-					<property name="required" value="false" />
-					<property name="derivative" value="false" />
-				</bean>
+				<ref bean = "channelGOS"/>
+				<ref bean = "channelLength"/>
 			</list>
 		</property>
 	</bean>
+	
+	<bean id = "channelGOS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="channel" />
+		<property name="parameter" ref="gradeOfSteel" />
+		<property name="required" value="true" />
+		<property name="derivative" value="true" />
+	</bean>
+
+	<bean id = "channelLength" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="channel" />
+		<property name="parameter" ref="length" />
+		<property name="required" value="false" />
+		<property name="derivative" value="false" />
+	</bean>
+	
 
 	<!-- I-Beam -->
 	<bean id="iBeam" class="org.proto1.domain.product.Product">
@@ -582,20 +595,23 @@
 		</property>
 		<property name="productParameters">
 			<list>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="iBeam" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="true" />
-					<property name="derivative" value="true" />
-				</bean>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="iBeam" />
-					<property name="parameter" ref="length" />
-					<property name="required" value="false" />
-					<property name="derivative" value="false" />
-				</bean>
+				<ref bean = "ibGOS"/>
+				<ref bean = "ibLength"/>
 			</list>
 		</property>
+	</bean>
+
+	<bean id = "ibGOS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="iBeam" />
+		<property name="parameter" ref="gradeOfSteel" />
+		<property name="required" value="true" />
+		<property name="derivative" value="true" />
+	</bean>
+	<bean id = "ibLength" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="iBeam" />
+		<property name="parameter" ref="length" />
+		<property name="required" value="false" />
+		<property name="derivative" value="false" />
 	</bean>
 
 	<!-- Steel raw material -->
@@ -652,15 +668,23 @@
 		</property>
 		<property name="productParameters">
 			<list>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="converterSteel" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="true" />
-					<property name="derivative" value="false" />
-				</bean>
-
+				<ref bean="csGOS"/>
 			</list>
 		</property>
+	</bean>
+
+	<bean id="csGOSS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="converterSteel" />
+		<property name="parameter" ref="gradeOfSteelStandard" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+
+	<bean id="csGOS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="converterSteel" />
+		<property name="parameter" ref="gradeOfSteel" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
 	</bean>
 	
 
@@ -691,16 +715,33 @@
 		</property>
 		<property name="productParameters">
 			<list>
-				<bean class="org.proto1.domain.product.ProductParameter">
-					<property name="product" ref="slab" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="required" value="true" />
-					<property name="derivative" value="true" />
-				</bean>
-
+				<ref bean="slabGOSS"/>
+				<ref bean="slabGOS"/>
+				<ref bean="slabLength"/>
 			</list>
 		</property>
 		
+	</bean>
+
+	<bean id="slabGOSS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="slab" />
+		<property name="parameter" ref="gradeOfSteelStandard" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+
+	<bean id="slabGOS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="slab" />
+		<property name="parameter" ref="gradeOfSteel" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+
+	<bean id="slabLength" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="slab" />
+		<property name="parameter" ref="length" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
 	</bean>
 	
 

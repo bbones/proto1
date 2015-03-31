@@ -15,16 +15,16 @@ public class OrderLineParameterDTO extends DTO {
 
 	private static final long serialVersionUID = 6919876053194796391L;
 
-	private Long pId;
+	private Long ppId;
 	private String pValue;
 	private Long pUOM;
 
-	public Long getpId() {
-		return pId;
+	public Long getPPId() {
+		return ppId;
 	}
 
-	public void setpId(Long pId) {
-		this.pId = pId;
+	public void setPPId(Long ppId) {
+		this.ppId = ppId;
 	}
 
 	public String getpValue() {

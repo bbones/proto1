@@ -31,7 +31,7 @@ var SalesOrderLib = (function() {
 	
 	function initSOLinesGrid() {
 		$("#edgLines").edatagrid({});
-	}
+	};
 	
 	function initAccord() {
 //		$("#aa").accordion({
@@ -43,7 +43,7 @@ var SalesOrderLib = (function() {
 	
 	function initSOLineParam() {
 		$("#edgLineParameters").edatagrid();
-	}
+	};
 
 	return {
 		init : function() {
@@ -51,7 +51,10 @@ var SalesOrderLib = (function() {
 			initSOGrid();
 			initSOLinesGrid();
 			initSOLineParam();
-		}
-	}
+		},
+		button : function (value, row, index) {
+            return '<input type="button" onclick="alert(' + row.olpId + ')" value="Add" class="GridButton"/>';
+        }
+	};
 })();
 

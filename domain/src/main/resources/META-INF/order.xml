@@ -35,25 +35,31 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="value" value="St3" />
+					<property name="productParameter" ref="spGOSS" />
+					<property name="value" value="ГОСТ" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
-					<property name="parameter" ref="length" />
+					<property name="productParameter" ref="spGOS" />
+					<property name="value" value="Ст3сп" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine11" />
+					<property name="productParameter" ref="spLength" />
 					<property name="value" value="8000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
-					<property name="parameter" ref="width" />
+					<property name="productParameter" ref="spWidth" />
 					<property name="value" value="2500" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine11" />
-					<property name="parameter" ref="thickness" />
+					<property name="productParameter" ref="spThickness" />
 					<property name="value" value="150" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
@@ -72,26 +78,32 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
-					<property name="parameter" ref="gradeOfSteel" />
+					<property name="productParameter" ref="spGOSS" />
+					<property name="value" value="ASTM" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine12" />
+					<property name="productParameter" ref="spGOS" />
 					<property name="value" value="A36" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
-					<property name="parameter" ref="length" />
-					<property name="value" value="7000" />
+					<property name="productParameter" ref="spLength" />
+					<property name="value" value="8000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
-					<property name="parameter" ref="width" />
+					<property name="productParameter" ref="spWidth" />
 					<property name="value" value="2500" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine12" />
-					<property name="parameter" ref="thickness" />
-					<property name="value" value="120" />
+					<property name="productParameter" ref="spThickness" />
+					<property name="value" value="150" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
@@ -109,26 +121,32 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="value" value="A36" />
+					<property name="productParameter" ref="spGOSS" />
+					<property name="value" value="ГОСТ" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
-					<property name="parameter" ref="length" />
+					<property name="productParameter" ref="spGOS" />
+					<property name="value" value="Ст3пс" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine13" />
+					<property name="productParameter" ref="spLength" />
 					<property name="value" value="8000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
-					<property name="parameter" ref="width" />
-					<property name="value" value="2500" />
+					<property name="productParameter" ref="spWidth" />
+					<property name="value" value="2000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine13" />
-					<property name="parameter" ref="thickness" />
-					<property name="value" value="120" />
+					<property name="productParameter" ref="spThickness" />
+					<property name="value" value="150" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
@@ -163,26 +181,32 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="value" value="St3" />
+					<property name="productParameter" ref="spGOSS" />
+					<property name="value" value="ГОСТ" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
-					<property name="parameter" ref="length" />
-					<property name="value" value="8000" />
+					<property name="productParameter" ref="spGOS" />
+					<property name="value" value="Ст3пс" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine21" />
+					<property name="productParameter" ref="spLength" />
+					<property name="value" value="6000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
-					<property name="parameter" ref="width" />
-					<property name="value" value="2500" />
+					<property name="productParameter" ref="spWidth" />
+					<property name="value" value="2000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine21" />
-					<property name="parameter" ref="thickness" />
-					<property name="value" value="120" />
+					<property name="productParameter" ref="spThickness" />
+					<property name="value" value="150" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
@@ -200,25 +224,31 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="value" value="A36" />
+					<property name="productParameter" ref="spGOSS" />
+					<property name="value" value="ГОСТ" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
-					<property name="parameter" ref="length" />
-					<property name="value" value="7000" />
+					<property name="productParameter" ref="spGOS" />
+					<property name="value" value="Ст3сп" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine22" />
+					<property name="productParameter" ref="spLength" />
+					<property name="value" value="6000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
-					<property name="parameter" ref="width" />
+					<property name="productParameter" ref="spWidth" />
 					<property name="value" value="2000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine22" />
-					<property name="parameter" ref="thickness" />
+					<property name="productParameter" ref="spThickness" />
 					<property name="value" value="150" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
@@ -254,13 +284,20 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine31" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="value" value="St3" />
+					<property name="productParameter" ref="slabGOSS" />
+					<property name="value" value="ГОСТ" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+			
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine31" />
+					<property name="productParameter" ref="slabGOS" />
+					<property name="value" value="Ст3сп" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine31" />
-					<property name="parameter" ref="length" />
+					<property name="productParameter" ref="slabLength" />
 					<property name="value" value="8000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
@@ -279,13 +316,20 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine32" />
-					<property name="parameter" ref="gradeOfSteel" />
+					<property name="productParameter" ref="slabGOSS" />
+					<property name="value" value="ASTM" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+			
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine32" />
+					<property name="productParameter" ref="slabGOS" />
 					<property name="value" value="A36" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine32" />
-					<property name="parameter" ref="length" />
+					<property name="productParameter" ref="slabLength" />
 					<property name="value" value="7000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
@@ -321,14 +365,21 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine41" />
-					<property name="parameter" ref="gradeOfSteel" />
-					<property name="value" value="St3" />
+					<property name="productParameter" ref="slabGOSS" />
+					<property name="value" value="ASTM" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+			
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine41" />
+					<property name="productParameter" ref="slabGOS" />
+					<property name="value" value="A36" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine41" />
-					<property name="parameter" ref="length" />
-					<property name="value" value="8000" />
+					<property name="productParameter" ref="slabLength" />
+					<property name="value" value="7000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>
@@ -346,14 +397,21 @@
 			<list>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine42" />
-					<property name="parameter" ref="gradeOfSteel" />
+					<property name="productParameter" ref="slabGOSS" />
+					<property name="value" value="ASTM" />
+					<property name="unitOfMeasurement" ref="notDefinedUOM" />
+				</bean>
+			
+				<bean class="org.proto1.domain.order.OrderLineParameter">
+					<property name="orderLine" ref="orderLine42" />
+					<property name="productParameter" ref="slabGOS" />
 					<property name="value" value="A36" />
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 				</bean>
 				<bean class="org.proto1.domain.order.OrderLineParameter">
 					<property name="orderLine" ref="orderLine42" />
-					<property name="parameter" ref="length" />
-					<property name="value" value="7000" />
+					<property name="productParameter" ref="slabLength" />
+					<property name="value" value="8000" />
 					<property name="unitOfMeasurement" ref="mm" />
 				</bean>
 			</list>

@@ -46,8 +46,8 @@ var DemandLib = (function(){
 		var columnList = new Array();
 		columnList.push({field:'ck',checkbox:true,width:10});
 		for(var key in selectedParams) {
-			paramList.push(selectedParams[key].parameterId);
-			columnList.push({field:'FVD'+selectedParams[key].parameterId,title:selectedParams[key].parameterName,width:80});
+			paramList.push(selectedParams[key].productParameterId);
+			columnList.push({field:'FVD'+selectedParams[key].productParameterId,title:selectedParams[key].parameterName,width:80});
 		};
 		columnList.push({field:'qnty',title:'Qnty',width:80});
 		columnList.push({field:'olUOMName',title:'Qnty UOM',width:40});

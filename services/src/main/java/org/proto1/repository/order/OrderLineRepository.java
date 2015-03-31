@@ -28,9 +28,9 @@ public interface OrderLineRepository extends CrudRepository<OrderLine, Long> {
 			+ "((ol.order.id in (select id from SalesOrder)) or (ol.order.id in (select id from BOM)))")
 	public List<OrderLine> getUncoveredDemandLines(@Param("product_id") Long productId);
 	
-	@Query("select new Map(olp.parameter.id as pid, olp.value as pvalue,  olp.unitOfMeasurement.id as uomId, uomn.shortName as uomName) "
+	@Query("select new Map(olp.productParameter.id as pid, olp.value as pvalue,  olp.unitOfMeasurement.id as uomId, uomn.shortName as uomName) "
 			+ "from OrderLine ol join ol.orderLineParameterList olp left outer join olp.unitOfMeasurement.unitOfMeasurementNames uomn "
-			+ "where olp.parameter.id in :param_list and ol.id = :order_line_id and (uomn.language.id = :language_id or uomn.language.id is null)")
+			+ "where olp.productParameter.id in :param_list and ol.id = :order_line_id and (uomn.language.id = :language_id or uomn.language.id is null)")
 	public List<Map<String, Object>> getParametersValues(@Param("param_list") Long[] parameterList, @Param("order_line_id") Long orderLineId,
 			@Param("language_id") Long languageId);
 	
@@ -39,4 +39,10 @@ public interface OrderLineRepository extends CrudRepository<OrderLine, Long> {
 	public List<Map<String, Object>> getLBPID(@Param("product_id") Long productId);
 
 }
+
+/*
+select olp.productParameter.id as pid, olp.value as pvalue,  olp.unitOfMeasurement.id as uomId, uomn.shortName as uomName
+from OrderLine ol join ol.orderLineParameterList olp left outer join olp.unitOfMeasurement.unitOfMeasurementNames uomn 
+where olp.productParameter.id in (1,2,3) and ol.id = :order_line_id and (uomn.language.id = :language_id or uomn.language.id is null)
+ */
 

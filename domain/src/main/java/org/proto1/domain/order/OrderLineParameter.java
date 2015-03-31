@@ -10,13 +10,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Parameter;
+import org.proto1.domain.product.ProductParameter;
 
 @Entity
 @Table(name = "ORDER_LINE_PARAMETER", uniqueConstraints = @UniqueConstraint(columnNames = {
-		"ORDER_LINE_ID", "PARAMETER_ID" }))
+		"ORDER_LINE_ID", "PRODUCT_PARAMETER_ID" }))
 public class OrderLineParameter extends AbstractEntity {
 
 	@ManyToOne
@@ -24,8 +26,8 @@ public class OrderLineParameter extends AbstractEntity {
 	private OrderLine orderLine;
 
 	@ManyToOne
-	@JoinColumn(name = "PARAMETER_ID", nullable=false)
-	private Parameter parameter;
+	@JoinColumn(name = "PRODUCT_PARAMETER_ID", nullable=false)
+	private ProductParameter productParameter;
 	
 	@ManyToOne
 	@JoinColumn(name = "UNIT_OF_MEASUREMENT_ID", nullable=false)
@@ -42,14 +44,6 @@ public class OrderLineParameter extends AbstractEntity {
 
 	public void setOrderLine(OrderLine orderLine) {
 		this.orderLine = orderLine;
-	}
-
-	public Parameter getParameter() {
-		return parameter;
-	}
-
-	public void setParameter(Parameter parameter) {
-		this.parameter = parameter;
 	}
 
 	public String getValue() {
@@ -74,6 +68,14 @@ public class OrderLineParameter extends AbstractEntity {
 
 	public void setDerivative(boolean derivative) {
 		this.derivative = derivative;
+	}
+
+	public ProductParameter getProductParameter() {
+		return productParameter;
+	}
+
+	public void setProductParameter(ProductParameter productParameter) {
+		this.productParameter = productParameter;
 	}
 
 	

@@ -43,5 +43,7 @@ public interface ProductService {
 	void deleteProductParameter(Long productId);
 	
 	ProductParameter getProductParameter(Long productId, Long parameterId);
+	
+	ProductParameter getProductParameter(Long id);
 
 }
