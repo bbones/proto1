@@ -29,6 +29,7 @@ public class ProductTypeServiceTest extends AbstractJUnit4SpringContextTests  {
 	ProductType ironProduct, steelProduct, rolledProduct, castedProduct;
 	
 	@Test
+	@Ignore
 	public void testGetTree() {
 		ProductTypeRepository ptrep = createMock(ProductTypeRepository.class);
 		expect(ptrep.getById(1L)).andReturn(ironProduct);
