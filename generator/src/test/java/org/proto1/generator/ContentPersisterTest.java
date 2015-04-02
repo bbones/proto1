@@ -37,7 +37,7 @@ import org.proto1.domain.valueprovider.GradeSteelStandard;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-
+  
 @ContextConfiguration(locations={
 		"classpath:/META-INF/product.xml", 
 		"classpath:/META-INF/order.xml",
@@ -116,8 +116,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	public void startUp () {
 
 		Map<String, String> properties = new HashMap<String, String>();
-		  properties.put("javax.persistence.jdbc.user", "sa");
-		  properties.put("javax.persistence.jdbc.password", "");
+		  properties.put("javax.persistence.jdbc.user", "bbones");
+		  properties.put("javax.persistence.jdbc.password", "bb");
 		emf = Persistence.createEntityManagerFactory("proto1", properties);	
 		em = emf.createEntityManager();
 		
