@@ -22,7 +22,10 @@ public class SalesOrderServiceBean extends BaseOrderServiceBean implements Sales
 	ApplicationConstants applicationConstant;
 
 
-	public List<Map<String, Object>> getSalesOrderList(Long languageId) {
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.BaseOrderService#getOrderList(java.lang.Long)
+	 */
+	public List<Map<String, Object>> getOrderList(Long languageId) {
 		return salesOrderRepository.getListByLanguageId(languageId, 
 				applicationConstant.getDefaultBuyerRole().getId());
 	}

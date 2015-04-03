@@ -15,6 +15,7 @@ import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.Language;
 
 @Entity
 @NamedEntityGraph(name = "Product.productNames", attributeNodes = @NamedAttributeNode("productNames"))
@@ -40,6 +41,15 @@ public class Product extends AbstractEntity implements Serializable {
 
 	public List<ProductName> getProductNames() {
 		return productNames;
+	}
+	
+	public ProductName getTranslation(Language language) {
+		for (ProductName name: productNames) {
+			if (name.getLanguage().equals(language)) {
+				return name;
+			}
+		}
+		return null;
 	}
 
 	public void setProductNames(List<ProductName> productNames) {

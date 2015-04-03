@@ -26,7 +26,7 @@ public class ProductionOrderController {
 	
 	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
 	public @ResponseBody List<Map<String, Object>>  prodOrderListByLanguage(@PathVariable Long languageId) {
-		return productionOrderService.getProductionOrderList(languageId);
+		return productionOrderService.getOrderList(languageId);
 	}
 	
 

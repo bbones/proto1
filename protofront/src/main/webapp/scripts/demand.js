@@ -71,6 +71,7 @@ var DemandLib = (function(){
 	};
 	
 	var collectData = function() {
+		debugger;
 		var order = new Order();
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
@@ -86,9 +87,9 @@ var DemandLib = (function(){
 			for(var pk in selectedParams) {
 				var param = new OrderLineParameter(
 						null,
-						selectedParams[pk].parameterId,
-						selectedDemandRows[key]['F' + selectedParams[pk].parameterId],
-						selectedDemandRows[key]['FUOM' + selectedParams[pk].parameterId]
+						selectedParams[pk].productParameterId,
+						selectedDemandRows[key]['F' + selectedParams[pk].productParameterId],
+						selectedDemandRows[key]['FUOM' + selectedParams[pk].productParameterId]
 					);
 				orderLine.parameterList.push(param);
 			}

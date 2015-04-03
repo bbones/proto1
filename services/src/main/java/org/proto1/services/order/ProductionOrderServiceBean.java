@@ -20,7 +20,7 @@ public class ProductionOrderServiceBean extends BaseOrderServiceBean implements 
 	@Autowired
 	BOMService bomService;
 
-	public List<Map<String, Object>> getProductionOrderList(Long languageId) {
+	public List<Map<String, Object>> getOrderList(Long languageId) {
 		return productionOrderRepository.getOrderList();
 	}
 

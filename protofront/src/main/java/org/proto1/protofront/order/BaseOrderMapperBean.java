@@ -3,6 +3,7 @@ package org.proto1.protofront.order;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
@@ -25,7 +26,9 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	
 	@Autowired
 	UnitOfMeasurementService uomService; 
-	
+	/**
+	 * From OrderDTO to BaseOrder 
+	 */
 	@Override
 	public <T extends BaseOrder, S extends OrderDTO> T map(S source, Class<T> destinationClass) 
 				throws InstantiationException, IllegalAccessException {
@@ -78,12 +81,74 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	public void mapOrderLineParameter(OrderLineParameterDTO olpd,
 			OrderLineParameter olp, OrderLine orderLine) {
 		
-		olp.setProductParameter(productService.getProductParameter(olpd.getPPId()));
+		olp.setProductParameter(productService.getProductParameter(olpd.getPpId()));
 		olp.setValue(olpd.getpValue());
 		olp.setOrderLine(orderLine);
 		olp.setVersion(olp.getVersion());
 		olp.setDerivative(olp.getProductParameter().isDerivative());
 		olp.setUnitOfMeasurement(uomService.get(olpd.getpUOM()));
+	}
+
+	/**
+	 * From BaseOrder to DTO
+	 */
+	@Override
+	public <T extends OrderDTO, S extends BaseOrder> T mapToDTO(S source, Class<T> destinationClass, 
+				Language language) 
+				throws InstantiationException, IllegalAccessException {
+		T result = destinationClass.newInstance();
+		result.setOrderId(source.getId());
+		result.setOrderNo(source.getDocumentNo());
+		result.setIssueDate(source.getIssueDate());
+		result.setVersion(source.getVersion());
+		result.setOrderLines(new ArrayList<OrderLineDTO>());
+		mapOrderLines(source.getLines(), result.getOrderLines(), language);
+		return result;
+	}
+
+	@Override
+	public void mapOrderLines(List<OrderLine> orderLines, List<OrderLineDTO> linesDTO, Language language) {
+		for(OrderLine ol : orderLines) {
+			OrderLineDTO old = new OrderLineDTO();
+			mapOrderLine(ol, old, language);
+			linesDTO.add(old);
+		}
+	}
+
+	@Override
+	public void mapOrderLine(OrderLine ol, OrderLineDTO old, Language language) {
+		
+		old.setOrderLineId(ol.getOrder().getId());
+		old.setProductId(ol.getProduct().getId());
+		old.setOrderLineId(ol.getId());
+		old.setQnty(old.getQnty());
+		old.setUomId(ol.getUnitOfMeasurement().getId());
+		old.setParameterList(new ArrayList<OrderLineParameterDTO>());
+		mapOrderLineParameters(old.getParameterList(), ol.getOrderLineParameterList(), ol);
+		old.setVersion(old.getVersion());
+	}
+
+	@Override
+	public void mapOrderLineParameters(
+			List<OrderLineParameter> parameterList,
+			List<OrderLineParameterDTO> parameterListDTO, Language language) {
+		for(OrderLineParameter olp : parameterList) {
+			OrderLineParameterDTO olpd = new OrderLineParameterDTO();
+			mapOrderLineParameter(olp, olpd, language);
+			parameterListDTO.add(olpd);
+		}
+	}
+
+	@Override
+	public void mapOrderLineParameter(OrderLineParameter olp,
+			OrderLineParameterDTO olpd, Language language) {
+		
+		olpd.setPpId(olp.getProductParameter().getId());
+		olpd.setpValue(olp.getValue());
+		olpd.setOlId(olp.getOrderLine().getId());
+		olpd.setVersion(olp.getVersion());
+		olpd.setDerivative(olp.getProductParameter().isDerivative() ? "true" : "false");
+		olpd.setpUOM(olp.getUnitOfMeasurement().getId());
 	}
 
 }

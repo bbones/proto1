@@ -29,7 +29,7 @@ public class BOMController {
 	
 	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
 	public @ResponseBody List<Map<String, Object>>  bomListByLanguage(@PathVariable Long languageId) {
-		return bomService.getBOMList(languageId);
+		return bomService.getOrderList(languageId);
 	}
 	
 	@RequestMapping(value = "lines/{bomId}&{languageId}", method = RequestMethod.POST )

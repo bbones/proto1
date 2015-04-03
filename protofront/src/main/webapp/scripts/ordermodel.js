@@ -30,9 +30,9 @@ function OrderLine(orderLineId, productId, qnty, uomId, parameterList, orderId) 
 //	};
 };
 
-function OrderLineParameter(olpId, pId, pValue, pUOM, olId) {
+function OrderLineParameter(olpId, ppId, pValue, pUOM, olId) {
 	this.olpId = olpId;
-	this.pId = pId;
+	this.ppId = ppId;
 	this.pValue = pValue;
 	this.pUOM = pUOM;
 	this.olId = olId;

@@ -16,11 +16,6 @@ public abstract class BaseOrderServiceBean implements BaseOrderService {
 	OrderLineParameterRepository orderLineParameterRepository;
 
 
-	public List<Map<String, Object>> getOrderList(Long languageId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public List<Map<String, Object>> getOrderLines(Long orderId,
 			Long languageId) {
 		return orderLineRepository.getOrderLineList(orderId, languageId);

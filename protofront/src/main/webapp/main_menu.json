@@ -56,6 +56,10 @@
 			    	{
 			    		"id": "bom",
 			    		"text" : "Bill of materials"
+			    	},
+			    	{
+			    		"id": "request",
+			    		"text" : "Request"
 			    	}
 		    	]
 		    },

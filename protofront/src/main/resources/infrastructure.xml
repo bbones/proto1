@@ -15,7 +15,7 @@
 	<bean id="entityManagerFactory" 
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
     	  p:dataSource-ref="dataSource"
-    	  p:persistenceXmlLocation="classpath:persistence.xml"
+    	  p:persistenceXmlLocation="classpath:META-INF/persistence.xml"
           p:persistenceUnitName="proto2">
         <property name="packagesToScan">
         	<list>
@@ -24,7 +24,7 @@
         </property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" 
-                p:showSql="true"
+                p:showSql="false"
 				p:generateDdl="true"
 				p:database="POSTGRESQL"
 			/>

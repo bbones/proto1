@@ -7,7 +7,7 @@ import org.proto1.domain.order.ProductionOrder;
 
 public interface ProductionOrderService {
 
-	List<Map<String, Object>> getProductionOrderList(Long languageId);
+	List<Map<String, Object>> getOrderList(Long languageId);
 
 	List<Map<String, Object>> getOrderLines(Long soId, Long languageId);
 

@@ -18,14 +18,8 @@ public class OrderLineParameterDTO extends DTO {
 	private Long ppId;
 	private String pValue;
 	private Long pUOM;
-
-	public Long getPPId() {
-		return ppId;
-	}
-
-	public void setPPId(Long ppId) {
-		this.ppId = ppId;
-	}
+	private Long olId;
+	private String derivative;
 
 	public String getpValue() {
 		return pValue;
@@ -41,6 +35,30 @@ public class OrderLineParameterDTO extends DTO {
 
 	public void setpUOM(Long pUOM) {
 		this.pUOM = pUOM;
+	}
+
+	public Long getPpId() {
+		return ppId;
+	}
+
+	public void setPpId(Long ppId) {
+		this.ppId = ppId;
+	}
+
+	public Long getOlId() {
+		return olId;
+	}
+
+	public void setOlId(Long olId) {
+		this.olId = olId;
+	}
+
+	public String getDerivative() {
+		return derivative;
+	}
+
+	public void setDerivative(String derivative) {
+		this.derivative = derivative;
 	}
 
 }

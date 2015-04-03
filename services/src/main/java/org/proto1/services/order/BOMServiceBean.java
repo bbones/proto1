@@ -50,7 +50,7 @@ public class BOMServiceBean extends BaseOrderServiceBean implements BOMService {
 	/* (non-Javadoc)
 	 * @see org.proto1.services.order.BOMService#getBOMList(java.lang.Long)
 	 */
-	public List<Map<String, Object>> getBOMList(Long languageId) {
+	public List<Map<String, Object>> getOrderList(Long languageId) {
 		return bomRepository.getBOMList();
 	}
 
