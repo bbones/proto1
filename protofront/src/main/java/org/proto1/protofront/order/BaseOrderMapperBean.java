@@ -38,7 +38,9 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		result.setIssueDate(source.getIssueDate());
 		result.setVersion(source.getVersion());
 		result.setLines(new ArrayList<OrderLine>());
-		mapOrderLines(source.getOrderLines(), result.getLines(), result);
+		if (source.getOrderLines() != null) {
+			mapOrderLines(source.getOrderLines(), result.getLines(), result);
+		}
 		return result;
 	}
 
@@ -62,7 +64,9 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		UnitOfMeasurement uom = uomService.get(old.getUomId());
 		ol.setUnitOfMeasurement(uom);
 		ol.setOrderLineParameterList(new ArrayList<OrderLineParameter>());
-		mapOrderLineParameters(old.getParameterList(), ol.getOrderLineParameterList(), ol);
+		if (old.getParameterList() != null) {
+			mapOrderLineParameters(old.getParameterList(), ol.getOrderLineParameterList(), ol);
+		}
 		ol.setVersion(old.getVersion());
 	}
 

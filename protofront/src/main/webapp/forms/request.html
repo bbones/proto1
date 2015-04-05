@@ -3,12 +3,19 @@
 
 		<table id="edgRequest" title="Request" singleSelect="true"
 			style="width: 700px; height: auto"
-			data-options="iconCls: 'icon-edit', toolbar: '#tbso', idField : 'rId'">
+			data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'rId'">
 			<thead>
 				<tr>
-					<th field='rId' width=80>SO Id</th>
-					<th field='rNo' width=250 editor="text">SO #</th>
-					<th field='rIssueDate' width=250 editor="date">Issue Date</th>
+					<th field='orderId' width=80>SO Id</th>
+					<th field='orderNo' width=250 editor="text">SO #</th>
+					<th field='issueDate' width=250  formatter=RequestLib.dateFormatter 
+							editor="{
+								type:'datebox', 
+								options:{
+									formatter:RequestLib.dateFormatter,
+									parser:RequestLib.dateParser
+								}
+							}">Issue Date</th>
 				</tr>
 			</thead>
 		</table>
@@ -18,10 +25,10 @@
 			style="overflow: auto; padding: 10px;" >
 			<table id="edgLines" title="Lines" singleSelect="true"
 				style="width: 600px; height: auto" 
-				data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
+				data-options="iconCls: 'icon-edit', toolbar: '#tbolines', idField : 'olId'">
 				<thead>
 					<tr>
-						<th field='olId' width=80>SO Line Id</th>
+						<th field='olId' width=80>Line Id</th>
 						<th field='productName' width=250 editor="text">Product</th>
 						<th field='uomName' width=30 editor="text">DU</th>
 						<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
@@ -37,7 +44,7 @@
 			data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
 			<table id="edgLineParameters" title="Order Line Parameters" singleSelect="true"
 				style="width: 600px; height: auto" 
-				data-options="iconCls: 'icon-edit', toolbar: '#tbsolparam', idField : 'soLineId'">
+				data-options="iconCls: 'icon-edit', toolbar: '#tbolparam', idField : 'olpId'">
 				<thead>
 					<tr>
 						<th field='olpId' width=60>OLP Id</th>
@@ -59,6 +66,49 @@
 		</div>
 		
 	</div>
+</div>
+
+<div id="tbr" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="RequestLib.appendRequest()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="RequestLib.removeRequest()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="RequestLib.acceptRequest()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="RequestLib.rejectRequest()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbolines" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="RequestLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="RequestLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="RequestLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="RequestLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbolparam" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="RequestLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="RequestLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="RequestLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="RequestLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
 </div>
 
 <script>
