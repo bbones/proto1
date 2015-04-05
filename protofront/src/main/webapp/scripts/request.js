@@ -10,10 +10,9 @@ var RequestLib = (function() {
 	
 	function initRequestGrid() {
 		$("#edgRequest").edatagrid({
-			url : "/protofront/service/requests/lang:" +
-				IndexLib.lang(),
-			saveUrl : "/protofront/service/requests/lang:" +
-				IndexLib.lang(),
+			url : "/protofront/service/requests/lang:" + IndexLib.lang(),
+			saveUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
+			// destroyUrl : "/protofront/service/requests/",
 			method:'GET',
 			onSelect : function(index, row) {
 				console.log(row);
@@ -27,7 +26,11 @@ var RequestLib = (function() {
 //						});
 //					} // OnSelect edgLines
 //				});
-			} // OnSelect edgRequest
+			}, // OnSelect edgRequest
+			onDestroy : function(index,row){
+				debugger;
+				alert(row.orderId);
+			}
 		});
 	};
 	
@@ -81,6 +84,9 @@ var RequestLib = (function() {
             var m = date.getMonth()+1;
             var d = date.getDate();
             return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
+        },
+        removeRequest : function() {
+        	$("#edgRequest").edatagrid('destroyRow');
         }
 
 	};

@@ -30,5 +30,8 @@ public class SalesOrderServiceBean extends BaseOrderServiceBean implements Sales
 				applicationConstant.getDefaultBuyerRole().getId());
 	}
 
+	public void delete(Long orderId) {
+		salesOrderRepository.delete(orderId);
+	}
 
 }

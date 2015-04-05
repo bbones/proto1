@@ -37,4 +37,8 @@ public class ProductionOrderServiceBean extends BaseOrderServiceBean implements 
 		bomService.createBOM(productionOrder);
 	}
 
+	public void delete(Long orderId) {
+		productionOrderRepository.delete(orderId);
+	}
+
 }

@@ -54,5 +54,8 @@ public class BOMServiceBean extends BaseOrderServiceBean implements BOMService {
 		return bomRepository.getBOMList();
 	}
 
+	public void delete(Long orderId) {
+		bomRepository.delete(orderId);
+	}
 
 }

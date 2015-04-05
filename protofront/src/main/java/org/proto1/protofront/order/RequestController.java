@@ -53,6 +53,11 @@ public class RequestController {
 		result.put("issueDate", po.getIssueDate());
 		return result;
 	}
+	
+	@RequestMapping(value = "/{requestId}", method = RequestMethod.DELETE)
+	public void deleteRequest(@PathVariable Long requestId) {
+		requestService.delete(requestId);
+	}
 
 
 	@RequestMapping(value = "/{rId}/lines/lang:{languageId}", method = RequestMethod.GET )

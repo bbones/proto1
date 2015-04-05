@@ -3,12 +3,13 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.repository.order.BaseOrderRepository;
 import org.proto1.repository.order.OrderLineParameterRepository;
 import org.proto1.repository.order.OrderLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseOrderServiceBean implements BaseOrderService {
-
+	
 	@Autowired
 	OrderLineRepository orderLineRepository;
 
@@ -26,5 +27,6 @@ public abstract class BaseOrderServiceBean implements BaseOrderService {
 			Long languageId) {
 		return orderLineParameterRepository.getOrderLineParameters(languageId, olId);
 	}
+	
 
 }

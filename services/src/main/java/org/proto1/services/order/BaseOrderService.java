@@ -9,5 +9,7 @@ public interface BaseOrderService {
 	List<Map<String, Object>> getOrderLines(Long soId, Long languageId);
 
 	List<Map<String, Object>> getOrderLineParameters(Long olId, Long languageId);
+	
+	void delete(Long orderId);
 
 }

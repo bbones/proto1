@@ -32,8 +32,13 @@ public class RequestServiceBean extends BaseOrderServiceBean  implements Request
 	 * @see org.proto1.services.order.RequestService#save(org.proto1.domain.order.Request)
 	 */
 	public Request save(Request request) {
-		// TODO Auto-generated method stub
 		return requestRepository.save(request);
 	}
+	
+	public void delete(Long orderId) {
+		requestRepository.delete(orderId);
+	}
+
+
 
 }
