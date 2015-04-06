@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -47,7 +48,8 @@ public class DemandController {
 	}
 	
 	@RequestMapping(value = "/createProdOrder", method = RequestMethod.POST, consumes="application/json")
-	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) throws InstantiationException, IllegalAccessException {
+	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) 
+			throws InstantiationException, IllegalAccessException, ParseException {
 		ProductionOrder po = mapper.map(productionOrder, ProductionOrder.class);
 		po = productioOrderService.save(po);
 		return po.getId();

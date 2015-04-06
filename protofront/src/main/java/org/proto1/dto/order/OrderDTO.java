@@ -56,4 +56,5 @@ public class OrderDTO extends DTO {
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}
+
 }

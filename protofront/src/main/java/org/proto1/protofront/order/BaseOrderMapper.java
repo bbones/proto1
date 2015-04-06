@@ -5,6 +5,7 @@
  */
 package org.proto1.protofront.order;
 
+import java.text.ParseException;
 import java.util.List;
 
 import org.proto1.domain.Language;
@@ -22,7 +23,7 @@ import org.proto1.dto.order.OrderLineParameterDTO;
 public interface BaseOrderMapper {
 	<T extends BaseOrder, S extends OrderDTO> T map(S source,
 			Class<T> destinationClass) throws InstantiationException,
-			IllegalAccessException;
+			IllegalAccessException, ParseException;
 
 	void mapOrderLines(List<OrderLineDTO> orderLines, List<OrderLine> lines,
 			BaseOrder order);

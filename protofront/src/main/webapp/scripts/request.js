@@ -12,6 +12,7 @@ var RequestLib = (function() {
 		$("#edgRequest").edatagrid({
 			url : "/protofront/service/requests/lang:" + IndexLib.lang(),
 			saveUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
+			updateUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
 			// destroyUrl : "/protofront/service/requests/",
 			method:'GET',
 			onSelect : function(index, row) {
@@ -28,9 +29,16 @@ var RequestLib = (function() {
 //				});
 			}, // OnSelect edgRequest
 			onDestroy : function(index,row){
-				debugger;
-				alert(row.orderId);
+				$.ajax({
+					url : "/protofront/service/requests/"+row.orderId,
+					method : "DELETE"
+				});
 			}
+//			,
+//			onEndEdit : function(index,row,changes) {
+//				debugger;
+//				row.issueDate = new Date(row.issueDate).getTime();
+//			}
 		});
 	};
 	
@@ -58,15 +66,13 @@ var RequestLib = (function() {
         acceptRequest : function() {
         	$("#edgRequest").edatagrid('saveRow');
         },
-        dateFormatter : function(value,row,index) {
-        	var d=new Date(value);
+        dateFormatter : function(value) {
+        	var d = new Date(value);
         	return d.toLocaleDateString();
-        	// return $.fn.datebox.defaults.formatter(d);
-
         },
         dateParser : function(s){
-        	debugger;
-        	if (typeof(s) == 'number')
+        	console.log(s);
+        	if (!isNaN(s))
         		return new Date(s);
             if (!s) return new Date();
             var ss = (s.split('.'));
@@ -79,14 +85,13 @@ var RequestLib = (function() {
                 return new Date();
             }
         },
-        myformatter : function(date){
-            var y = date.getFullYear();
-            var m = date.getMonth()+1;
-            var d = date.getDate();
-            return y+'-'+(m<10?('0'+m):m)+'-'+(d<10?('0'+d):d);
-        },
         removeRequest : function() {
         	$("#edgRequest").edatagrid('destroyRow');
+        },
+        getChanges : function() {
+        	debugger;
+        	var r = $("#edgRequest").datagrid('getChanges');
+        	console.log(r);
         }
 
 	};
