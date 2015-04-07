@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.Request;
@@ -102,7 +103,9 @@ public class RequestController extends BaseController {
 		ol.setVersion(orderLineDTO.getVersion());
 		ol = requestService.saveOrderLine(ol);
 		orderLineDTO.setOrderLineId(ol.getId());
-		orderLineDTO.setProductName(ol.getProduct().get);
+		Language language = languageService.get(languageId);
+		orderLineDTO.setProductName(ol.getProduct().getTranslation(language).getName());
+		orderLineDTO.setUomName(uom.getTranslation(language).getShortName());
 		return orderLineDTO;
 	}
 

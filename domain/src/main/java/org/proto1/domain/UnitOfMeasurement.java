@@ -11,6 +11,8 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.proto1.domain.product.ProductName;
+
 
 @Entity
 @Table(name="UNIT_OF_MEASUREMENT")
@@ -27,5 +29,15 @@ public class UnitOfMeasurement extends AbstractEntity {
 			List<UnitOfMeasurementName> unitOfMeasurementNames) {
 		this.unitOfMeasurementNames = unitOfMeasurementNames;
 	}
+	
+	public UnitOfMeasurementName getTranslation(Language language) {
+		for (UnitOfMeasurementName name: unitOfMeasurementNames) {
+			if (name.getLanguage().equals(language)) {
+				return name;
+			}
+		}
+		return null;
+	}
+
 
 }

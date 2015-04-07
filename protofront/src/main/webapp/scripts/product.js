@@ -17,17 +17,17 @@ var ProductLib = (function(){
 			onSelect : function(record) {
 				console.log(record);
 				$("#edgProducts").edatagrid({
-					url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-									+ record.id + '&' + IndexLib.lang(),
+					url : '/protofront/service/products/getList?productType='
+									+ record.id + '&languageId' + IndexLib.lang(),
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgNames").edatagrid({
-							url : '/protofront/service/product/names/'
+							url : '/protofront/service/products/names/'
 										+ row.id
 						});
 
 						$("#edgParameters").edatagrid({
-							url : '/protofront/service/product/parameters/'
+							url : '/protofront/service/products/parameters/'
 										+ row.id + '&' + IndexLib.lang(),
 						});
 					} // OnSelect

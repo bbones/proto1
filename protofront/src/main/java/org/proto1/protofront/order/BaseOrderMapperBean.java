@@ -41,7 +41,7 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		T result = destinationClass.newInstance();
 		result.setId(source.getOrderId());
 		result.setDocumentNo(source.getOrderNo());
-		result.setIssueDate(source.getIssueDate());
+		result.setIssueDate(new Date(source.getIssueDate()));
 		result.setVersion(source.getVersion());
 		result.setLines(new ArrayList<OrderLine>());
 		if (source.getOrderLines() != null) {
@@ -109,7 +109,7 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		T result = destinationClass.newInstance();
 		result.setOrderId(source.getId());
 		result.setOrderNo(source.getDocumentNo());
-		result.setIssueDate(source.getIssueDate());
+		result.setIssueDate(source.getIssueDate().getTime());
 		result.setVersion(source.getVersion());
 		result.setOrderLines(new ArrayList<OrderLineDTO>());
 		mapOrderLines(source.getLines(), result.getOrderLines(), language);

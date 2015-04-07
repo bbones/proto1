@@ -10,7 +10,7 @@
 					<th field='orderNo' width=250 editor="text">SO #</th>
 					<th field='issueDate' width=250  formatter=RequestLib.dateFormatter 
 							editor="{
-								type:'datebox', 
+								type:'datebox2', 
 								options:{
 									formatter:RequestLib.dateFormatter,
 									parser:RequestLib.dateParser
@@ -29,7 +29,17 @@
 				<thead>
 					<tr>
 						<th field='olId' width=80>Line Id</th>
-						<th field='productName' width=250 editor="text">Product</th>
+						<th field='productId' width=250 formatter=RequestLib.productFormatter 
+								editor="{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/product/languagelist' + IndexLib.lang(),
+			                                required:true
+			                            }
+                        			}">Product</th>
 						<th field='uomName' width=30 editor="text">DU</th>
 						<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
 						<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
@@ -89,7 +99,7 @@
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-remove',plain:true"	onclick="RequestLib.removeLine()">Remove</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="RequestLib.saveLine()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="RequestLib.acceptLine()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-undo',plain:true" onclick="RequestLib.rejectLine()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"

@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 	
 	final static Logger logger = Logger.getLogger(ProductController.class);
@@ -51,8 +51,8 @@ public class ProductController {
 	MasterDataService mds;
 
 
-	@RequestMapping(value = "prodListByProdTypeIdByLanguageId/{productTypeId}&{languageId}", method = RequestMethod.POST)
-	public @ResponseBody List<Map<String, Object>> prodListByProdTypeIdByLanguageId(@PathVariable Long productTypeId, @PathVariable Long languageId) {
+	@RequestMapping(value = "?productType={productTypeId}&languageId={languageId}", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getList(@PathVariable Long productTypeId, @PathVariable Long languageId) {
 		List<Map<String, Object>> prodList = productService.getListByProdTypeIdByLanguageId(productTypeId, languageId);
 		return prodList;
 	}

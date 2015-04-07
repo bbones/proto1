@@ -21,7 +21,7 @@ public class OrderDTO extends DTO {
 
 	private Long orderId;
 	private String orderNo;
-	private Date issueDate;
+	private Long issueDate;
 	
 	private List<OrderLineDTO> orderLines;
 
@@ -49,11 +49,11 @@ public class OrderDTO extends DTO {
 		this.orderNo = orderNo;
 	}
 
-	public Date getIssueDate() {
+	public Long getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(Date issueDate) {
+	public void setIssueDate(Long issueDate) {
 		this.issueDate = issueDate;
 	}
 
