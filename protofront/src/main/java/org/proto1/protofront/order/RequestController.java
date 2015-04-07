@@ -13,10 +13,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.UnitOfMeasurement;
+import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.Request;
+import org.proto1.domain.product.Product;
+import org.proto1.dto.order.OrderLineDTO;
 import org.proto1.dto.order.RequestDTO;
+import org.proto1.protofront.BaseController;
 import org.proto1.services.LanguageService;
+import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.order.RequestService;
+import org.proto1.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -32,15 +39,21 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/requests")
-public class RequestController {
+public class RequestController extends BaseController {
 	@Autowired
 	RequestService requestService;
 	
 	@Autowired
 	LanguageService languageService;
+	
+	@Autowired
+	UnitOfMeasurementService unitOfMeasurementService;
 
 	@Autowired
 	BaseOrderMapper mapper;
+	
+	@Autowired
+	ProductService productService;
 
 	@RequestMapping(value = "/lang:{languageId}", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  getList(@PathVariable Long languageId) {
@@ -48,7 +61,7 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/lang:{languageId}", method = RequestMethod.POST )
-	public @ResponseBody Map<String, Object> create(@PathVariable Long languageId,
+	public @ResponseBody Map<String, Object> save(@PathVariable Long languageId,
 			RequestDTO requestDTO) 
 			throws InstantiationException, IllegalAccessException, ParseException {
 		Request po = mapper.map(requestDTO, Request.class);
@@ -66,27 +79,29 @@ public class RequestController {
 	}
 
 
-	@RequestMapping(value = "/{rId}/lines/lang:{languageId}", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  getOrderLines(@PathVariable Long rId, 
+	@RequestMapping(value = "/{orderId}/lines/lang:{languageId}", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  getOrderLines(@PathVariable Long orderId, 
 			@PathVariable Long languageId) {
-		return requestService.getOrderLines(rId, languageId);
+		return requestService.getOrderLines(orderId, languageId);
 	}
 
-	@InitBinder
-	public void binder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
-		    public void setAsText(String value) {
-		        try {
-		            setValue(new SimpleDateFormat("dd.MM.yyyy").parse(value));
-		        } catch(ParseException e) {
-		            setValue(null);
-		        }
-		    }
-
-		    public String getAsText() {
-		        return new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
-		    }        
-
-		});	    // as shown above
+	@RequestMapping(value = "/lines/lang:{languageId}", method = RequestMethod.POST )
+	public @ResponseBody List<Map<String, Object>>  saveOrderLine(@PathVariable Long languageId,
+			OrderLineDTO orderLineDTO) {
+		OrderLine ol = new OrderLine();
+		if (orderLineDTO.getOrderLineId() != null)
+			ol.setId(orderLineDTO.getOrderLineId());
+		ol.setOrder(requestService.get(orderLineDTO.getOrderId()));
+		ol.setQnty(orderLineDTO.getQnty());
+		UnitOfMeasurement uom = unitOfMeasurementService.get(orderLineDTO.getUomId());
+		ol.setUnitOfMeasurement(uom);
+		ol.setPrice(orderLineDTO.getPrice());
+		ol.setAmount(orderLineDTO.getAmount());
+		Product product = productService.getById(orderLineDTO.getProductId());
+		ol.setProduct(product);
+		ol.setVersion(orderLineDTO.getVersion());
+		requestService.s
+		return requestService.getOrderLines(orderId, languageId);
 	}
+
 }

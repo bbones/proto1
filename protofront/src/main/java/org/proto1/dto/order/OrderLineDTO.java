@@ -19,9 +19,13 @@ public class OrderLineDTO extends DTO {
 	private static final long serialVersionUID = 2482598190978934721L;
 
 	private Long orderLineId;
+	private Long orderId;
 	private Long productId;
 	private Double qnty;
 	private Long uomId;
+	private Double price;
+	private Double amount;
+
 	private List<OrderLineParameterDTO> parameterList;
 
 	public Long getOrderLineId() {
@@ -62,6 +66,30 @@ public class OrderLineDTO extends DTO {
 
 	public void setUomId(Long uomId) {
 		this.uomId = uomId;
+	}
+
+	public Long getOrderId() {
+		return orderId;
+	}
+
+	public void setOrderId(Long orderId) {
+		this.orderId = orderId;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+
+	public Double getAmount() {
+		return amount;
+	}
+
+	public void setAmount(Double amount) {
+		this.amount = amount;
 	}
 
 }

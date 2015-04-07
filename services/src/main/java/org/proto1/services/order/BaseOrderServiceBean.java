@@ -3,6 +3,8 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.order.OrderLine;
+import org.proto1.domain.order.OrderLineParameter;
 import org.proto1.repository.order.BaseOrderRepository;
 import org.proto1.repository.order.OrderLineParameterRepository;
 import org.proto1.repository.order.OrderLineRepository;
@@ -21,6 +23,14 @@ public abstract class BaseOrderServiceBean implements BaseOrderService {
 			Long languageId) {
 		return orderLineRepository.getOrderLineList(orderId, languageId);
 	}
+	
+	public OrderLine saveOrderLine(OrderLine orderLine) {
+		return orderLineRepository.save(orderLine);
+	}
+
+	public void deleteOrderLine(Long orderLineId) {
+		orderLineRepository.delete(orderLineId);
+	}
 
 
 	public List<Map<String, Object>> getOrderLineParameters(Long olId,
@@ -28,5 +38,11 @@ public abstract class BaseOrderServiceBean implements BaseOrderService {
 		return orderLineParameterRepository.getOrderLineParameters(languageId, olId);
 	}
 	
-
+	public OrderLineParameter save(OrderLineParameter orderLineParameter) {
+		return orderLineParameterRepository.save(orderLineParameter);
+	}
+	
+	public void deleteOrderLineParameter(Long orderLineParameterId) {
+		orderLineParameterRepository.delete(orderLineParameterId);
+	}
 }

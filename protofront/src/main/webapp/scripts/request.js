@@ -13,20 +13,20 @@ var RequestLib = (function() {
 			url : "/protofront/service/requests/lang:" + IndexLib.lang(),
 			saveUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
 			updateUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
-			// destroyUrl : "/protofront/service/requests/",
 			method:'GET',
 			onSelect : function(index, row) {
-				console.log(row);
-//				$("#edgLines").edatagrid({
-//					url : '/protofront/service/requests/'  +  row.soId + '/lines/lang:' + IndexLib.lang(), 
-//					onSelect : function(index, row) {
-//						console.log(row);
-//						$("#edgLineParameters").edatagrid({
-//							url : '/protofront/service/requests/lines/'+ row.olId + 
-//								'/lineparameters/lang:' + IndexLib.lang()
-//						});
-//					} // OnSelect edgLines
-//				});
+				$("#edgLines").edatagrid({
+					url : '/protofront/service/requests/'  +  row.soId + '/lines/lang:' + IndexLib.lang(), 
+					saveUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
+					updateUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
+					onSelect : function(index, row) {
+						console.log(row);
+						$("#edgLineParameters").edatagrid({
+							url : '/protofront/service/requests/lines/'+ row.olId + 
+								'/lineparameters/lang:' + IndexLib.lang()
+						});
+					} // OnSelect edgLines
+				});
 			}, // OnSelect edgRequest
 			onDestroy : function(index,row){
 				$.ajax({
@@ -34,11 +34,6 @@ var RequestLib = (function() {
 					method : "DELETE"
 				});
 			}
-//			,
-//			onEndEdit : function(index,row,changes) {
-//				debugger;
-//				row.issueDate = new Date(row.issueDate).getTime();
-//			}
 		});
 	};
 	
@@ -71,7 +66,6 @@ var RequestLib = (function() {
         	return d.toLocaleDateString();
         },
         dateParser : function(s){
-        	console.log(s);
         	if (!isNaN(s))
         		return new Date(s);
             if (!s) return new Date();

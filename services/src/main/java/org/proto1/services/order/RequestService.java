@@ -19,4 +19,10 @@ public interface RequestService extends BaseOrderService {
 	 */
 	Request save(Request request);
 	
+	/**
+	 * @param id
+	 * @return Request object with given Id
+	 */
+	Request get(Long id);
+	
 }

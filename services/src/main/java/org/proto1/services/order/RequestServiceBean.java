@@ -39,6 +39,8 @@ public class RequestServiceBean extends BaseOrderServiceBean  implements Request
 		requestRepository.delete(orderId);
 	}
 
-
+	public Request get(Long orderId) {
+		return requestRepository.findOne(orderId);
+	}
 
 }
