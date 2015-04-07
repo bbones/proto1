@@ -21,8 +21,10 @@ public class OrderLineDTO extends DTO {
 	private Long orderLineId;
 	private Long orderId;
 	private Long productId;
+	private String productName;
 	private Double qnty;
 	private Long uomId;
+	private String uomName;
 	private Double price;
 	private Double amount;
 
@@ -90,6 +92,22 @@ public class OrderLineDTO extends DTO {
 
 	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getUomName() {
+		return uomName;
+	}
+
+	public void setUomName(String uomName) {
+		this.uomName = uomName;
 	}
 
 }

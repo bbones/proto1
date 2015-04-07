@@ -86,7 +86,7 @@ public class RequestController extends BaseController {
 	}
 
 	@RequestMapping(value = "/lines/lang:{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  saveOrderLine(@PathVariable Long languageId,
+	public @ResponseBody OrderLineDTO  saveOrderLine(@PathVariable Long languageId,
 			OrderLineDTO orderLineDTO) {
 		OrderLine ol = new OrderLine();
 		if (orderLineDTO.getOrderLineId() != null)
@@ -100,8 +100,14 @@ public class RequestController extends BaseController {
 		Product product = productService.getById(orderLineDTO.getProductId());
 		ol.setProduct(product);
 		ol.setVersion(orderLineDTO.getVersion());
-		requestService.s
-		return requestService.getOrderLines(orderId, languageId);
+		ol = requestService.saveOrderLine(ol);
+		orderLineDTO.setOrderLineId(ol.getId());
+		orderLineDTO.setProductName(ol.getProduct().get);
+		return orderLineDTO;
 	}
 
+	@RequestMapping(value = "/lines/{id}", method = RequestMethod.DELETE )
+	public void deleteOrderLine(@PathVariable Long id) {
+		requestService.deleteOrderLine(id);
+	}
 }
