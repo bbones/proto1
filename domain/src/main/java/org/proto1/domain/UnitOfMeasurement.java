@@ -11,8 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.proto1.domain.product.ProductName;
-
 
 @Entity
 @Table(name="UNIT_OF_MEASUREMENT")

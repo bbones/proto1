@@ -17,7 +17,8 @@ var RequestLib = (function() {
 			method:'GET',
 			onSelect : function(index, row) {
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/requests/'  +  row.soId + '/lines/lang:' + IndexLib.lang(), 
+					url : '/protofront/service/requests/'  +  row.orderId + '/lines/lang:' + IndexLib.lang(), 
+					method:'GET',
 					saveUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
 					updateUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
 					onSelect : function(index, row) {

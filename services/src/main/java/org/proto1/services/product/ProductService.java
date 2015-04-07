@@ -25,8 +25,9 @@ public interface ProductService {
 
 	void delete(Long id);
 
-	List<Map<String, Object>> getListByProdTypeIdByLanguageId(
-			Long productTypeId, Long languageId);
+	List<Map<String, Object>> getList(Long languageId);
+
+	List<Map<String, Object>> getList(Long productTypeId, Long languageId);
 
 	// ProductName methods
 	ProductName saveProductName(Long productNameId, Long productId, Long languageId, String productNames);
@@ -45,5 +46,5 @@ public interface ProductService {
 	ProductParameter getProductParameter(Long productId, Long parameterId);
 	
 	ProductParameter getProductParameter(Long id);
-
+	
 }

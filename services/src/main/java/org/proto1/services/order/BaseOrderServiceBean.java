@@ -5,7 +5,6 @@ import java.util.Map;
 
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.OrderLineParameter;
-import org.proto1.repository.order.BaseOrderRepository;
 import org.proto1.repository.order.OrderLineParameterRepository;
 import org.proto1.repository.order.OrderLineRepository;
 import org.springframework.beans.factory.annotation.Autowired;

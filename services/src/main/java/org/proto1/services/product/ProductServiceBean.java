@@ -62,9 +62,12 @@ public class ProductServiceBean implements ProductService {
 		productRepository.delete(id);
 	}
 
-	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(
-			Long productTypeId, Long languageId) {
+	public List<Map<String, Object>> getList(Long productTypeId, Long languageId) {
 		return productRepository.getListByProdTypeIdByLanguageId(productTypeId, languageId);
+	}
+
+	public List<Map<String, Object>> getList(Long languageId) {
+		return productRepository.getListByLanguageId(languageId);
 	}
 
 	public ProductName saveProductName(Long productNameId, Long productId,
@@ -120,6 +123,5 @@ public class ProductServiceBean implements ProductService {
 	public ProductParameter getProductParameter(Long id) {
 		return productParameterRepository.findOne(id);
 	}
-
 
 }

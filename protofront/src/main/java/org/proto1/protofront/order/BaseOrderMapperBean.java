@@ -1,13 +1,9 @@
 package org.proto1.protofront.order;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
-
 import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.order.BaseOrder;
@@ -18,7 +14,6 @@ import org.proto1.dto.order.OrderDTO;
 import org.proto1.dto.order.OrderLineDTO;
 import org.proto1.dto.order.OrderLineParameterDTO;
 import org.proto1.services.UnitOfMeasurementService;
-import org.proto1.services.parameter.ParameterService;
 import org.proto1.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

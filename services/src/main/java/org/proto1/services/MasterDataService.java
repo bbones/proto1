@@ -5,8 +5,10 @@
 package org.proto1.services;
 
 import java.util.List;
+import java.util.Map;
 
 import org.proto1.domain.Language;
+import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.LanguageRepository;
 
@@ -21,4 +23,6 @@ public interface MasterDataService {
 	LocalizedStringConstant getLocalizedString(String key, Long languageId);
 
 	List<LocalizedStringConstant> getRequiredLocalizedStringList(String key);
+
+	List<Map<String, Object>> getUOMList(Long languageId);
 }

@@ -13,7 +13,6 @@ import javax.persistence.UniqueConstraint;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.UnitOfMeasurement;
-import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ProductParameter;
 
 @Entity

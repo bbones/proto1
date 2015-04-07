@@ -22,5 +22,10 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 			"from Product p join p.productNames pn " + 
 			"where p.productType.id = :pt_id and pn.language.id = :language_id")
 	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(@Param("pt_id") Long productTypeId, @Param("language_id") Long languageId);
+
+	@Query("select new Map(p.id as id, pn.name as name) " + 
+			"from Product p join p.productNames pn " + 
+			"where pn.language.id = :language_id")
+	public List<Map<String, Object>> getListByLanguageId(@Param("language_id")Long languageId);
 	
 }

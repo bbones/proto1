@@ -36,11 +36,21 @@
 			                                valueField:'id',
 			                                textField:'name',
 			                                method:'get',
-			                                url:'/protofront/service/product/languagelist' + IndexLib.lang(),
+			                                url:'/protofront/service/products/languageId=' + IndexLib.lang(),
 			                                required:true
 			                            }
                         			}">Product</th>
-						<th field='uomName' width=30 editor="text">DU</th>
+						<th field='uomId' width=50 formatter=RequestLib.productFormatter 
+								editor="{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/masterdata/uoms/languageId=' + IndexLib.lang(),
+			                                required:true
+			                            }
+                        			}">DU</th>
 						<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
 						<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
 						<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>

@@ -5,7 +5,6 @@
 
 package org.proto1.dto.order;
 
-import java.util.Date;
 import java.util.List;
 
 import org.proto1.dto.DTO;

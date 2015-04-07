@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
-import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.ProductionOrder;
 import org.proto1.repository.order.ProductionOrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;

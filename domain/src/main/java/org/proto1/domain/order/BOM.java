@@ -1,14 +1,11 @@
 package org.proto1.domain.order;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.Receipt;
 import org.proto1.domain.product.ReceiptItem;
 

@@ -51,11 +51,18 @@ public class ProductController {
 	MasterDataService mds;
 
 
-	@RequestMapping(value = "?productType={productTypeId}&languageId={languageId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/productType={productTypeId}&languageId={languageId}", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, Object>> getList(@PathVariable Long productTypeId, @PathVariable Long languageId) {
-		List<Map<String, Object>> prodList = productService.getListByProdTypeIdByLanguageId(productTypeId, languageId);
+		List<Map<String, Object>> prodList = productService.getList(productTypeId, languageId);
 		return prodList;
 	}
+
+	@RequestMapping(value = "/languageId={languageId}", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getList(@PathVariable Long languageId) {
+		List<Map<String, Object>> prodList = productService.getList(languageId);
+		return prodList;
+	}
+
 
 	@RequestMapping(value = "submit", method = RequestMethod.POST)
 	public @ResponseBody ProductDTO submit(final ProductDTO productDTO) {

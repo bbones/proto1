@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import javax.transaction.Transactional;
-
 import org.dozer.Mapper;
 import org.proto1.services.order.ProductionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
