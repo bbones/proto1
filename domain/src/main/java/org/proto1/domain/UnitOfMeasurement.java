@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,7 +17,7 @@ import javax.persistence.Table;
 @Table(name="UNIT_OF_MEASUREMENT")
 public class UnitOfMeasurement extends AbstractEntity {
 	
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="unitOfMeasurement")
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="unitOfMeasurement", fetch=FetchType.EAGER)
 	private List<UnitOfMeasurementName> unitOfMeasurementNames;
 
 	public List<UnitOfMeasurementName> getUnitOfMeasurementNames() {

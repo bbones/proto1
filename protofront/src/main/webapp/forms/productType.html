@@ -28,7 +28,7 @@
                                 valueField:'id',
                                 textField:'name',
                                 method:'get',
-                                url:'/protofront/service/masterdata/languagelist',
+                                url:'/protofront/service/masterdata/languages',
                                 required:true
                             }
                         }">Language</th>
@@ -41,89 +41,7 @@
 </div>
 
 <script>
-	$('#productTypes')
-			.treegrid(
-					{
-						url : '/protofront/service/productType/getByParentTypeIdByLanguageId/'
-								+ $('#langSelector').combobox('getValue'),
-						idField : 'id',
-						treeField : 'name',
-						columns : [ [ {
-							title : 'Product Types',
-							field : 'name',
-							width : 400
-						} ] ],
-						onSelect :function(data) {
-							console.log(data['id']);
-							$('#edg').edatagrid({
-								url : '/protofront/service/productType/getNames/' + data['id'],
-				             	saveUrl: '/protofront/service/productType/saveName/',
-				             	updateUrl: '/protofront/service/productType/saveName/',
-				             	destroyUrl: '/protofront/service/productType/deleteName/'
-				 
-							});
-						},
-		                onContextMenu: function(e,row){
-		                    e.preventDefault();
-		                    $(this).treegrid('select',row.id);
-		                    $('#mm').menu('show',{
-		                        left: e.pageX,
-		                        top: e.pageY
-		                    });
-		                }
-					});
-
-	 
-	 function newNode() {
-		 var node = $('#productTypes').treegrid('getSelected');
-		 if (node){
-			 $.ajax({
-					type : 'POST',
-					url : '/protofront/service/productType/getNewProductType',
-					data:{
-						parentId : node['id'], 
-						languageId : $('#langSelector').combobox('getValue')
-					},
-					success : function(respdata) {
-						var nodes = [{
-							id : respdata['id'], 
-							name : respdata['localizedProductName']
-						}]
-						$('#productTypes').treegrid('append', {
-					         parent:node.id,
-					         data :nodes,
-					     });
-					},
-					error : function(data, status, er) {
-						alert("error: " + data + " status: " + status + " er:" + er);
-					}
-
-				});
-		     
-		     
-		 }
-	 }
-	 
-	 function removeNode() {
-		 var node = $('#productTypes').treegrid('getSelected');
-		 if(node) {
-			 $.ajax({
-				 type: 'POST',
-				 url: '/protofront/service/productType/delete',
-				 data: {
-					 id : node['id']
-				 },
-				 success : function() {
-					 $('#productTypes').treegrid('remove', node.id);
-					 $('#dg').datagrid('loadData', [{}]);
-				 },
-				 error : function(data, status, er) {
-					alert("error: " + data + " status: " + status + " er:" + er);
-				}
-			 });
-		 }
-	 }
-	 
-	 $('#edg').edatagrid();
-	 
+	$.getScript("/protofront/scripts/productType.js").done(function() {
+		ProductTypeLib.init();
+	});
 </script>

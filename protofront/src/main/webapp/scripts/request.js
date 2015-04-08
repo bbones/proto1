@@ -40,7 +40,14 @@ var RequestLib = (function() {
 	};
 	
 	function initLinesGrid() {
-		$("#edgLines").edatagrid({});
+		$("#edgLines").edatagrid({
+			onDestroy : function(index,row){
+				$.ajax({
+					url : "/protofront/service/requests/lines/"+row.olId,
+					method : "DELETE"
+				});
+			}
+		});
 	};
 	
 	
@@ -85,10 +92,24 @@ var RequestLib = (function() {
         	$("#edgRequest").edatagrid('destroyRow');
         },
         appendLine : function() {
-        	$("#edgLines").edatagrid('addRow');
+        	$("#edgLines").edatagrid('addRow', {
+        		row : {
+        			orderId : $("#edgRequest").edatagrid('getSelected').orderId
+        		}
+        	});
         },
         acceptLine : function() {
         	$("#edgLines").edatagrid('saveRow');
+		},
+		removeLine : function() {
+        	$("#edgLines").edatagrid('destroyRow');
+			
+		},
+		productFormatter : function(value,row){
+			return row.productName;
+		},
+		uomFormatter : function(value,row){
+			return row.uomName;
 		}
 
 	};

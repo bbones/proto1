@@ -25,10 +25,10 @@
 			style="overflow: auto; padding: 10px;" >
 			<table id="edgLines" title="Lines" singleSelect="true"
 				style="width: 600px; height: auto" 
-				data-options="iconCls: 'icon-edit', toolbar: '#tbolines', idField : 'olId'">
+				data-options="iconCls: 'icon-edit', toolbar: '#tbolines', idField : 'orderLineId'">
 				<thead>
 					<tr>
-						<th field='olId' width=80>Line Id</th>
+						<th field='orderLineId' width=80>Line Id</th>
 						<th field='productId' width=250 formatter=RequestLib.productFormatter 
 								editor="{
 		                            	type:'combobox',
@@ -40,7 +40,7 @@
 			                                required:true
 			                            }
                         			}">Product</th>
-						<th field='uomId' width=50 formatter=RequestLib.productFormatter 
+						<th field='uomId' width=50 formatter=RequestLib.uomFormatter 
 								editor="{
 		                            	type:'combobox',
 		                            	options:{
@@ -51,9 +51,9 @@
 			                                required:true
 			                            }
                         			}">DU</th>
-						<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
-						<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
-						<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+						<th field='qnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+						<th field='price' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
+						<th field='amount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
 						
 					</tr>
 				</thead>

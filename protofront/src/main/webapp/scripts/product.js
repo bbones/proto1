@@ -17,8 +17,9 @@ var ProductLib = (function(){
 			onSelect : function(record) {
 				console.log(record);
 				$("#edgProducts").edatagrid({
-					url : '/protofront/service/products/getList?productType='
-									+ record.id + '&languageId' + IndexLib.lang(),
+					url : '/protofront/service/products/productType='
+									+ record.id + '&languageId=' + IndexLib.lang(),
+					method : 'GET',
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgNames").edatagrid({
@@ -38,15 +39,15 @@ var ProductLib = (function(){
 	
 	function  initNameGrid() {
 		$("#edgNames").edatagrid({
-			saveUrl : '/protofront/service/product/saveName',
-			destroyUrl : '/protofront/service/product/deleteName'
+			saveUrl : '/protofront/service/products/saveName',
+			destroyUrl : '/protofront/service/products/deleteName'
 		});
 	}
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
-			saveUrl : '/protofront/service/product/saveParameter',
-			destroyUrl : '/protofront/service/product/deleteParameter'
+			saveUrl : '/protofront/service/products/saveParameter',
+			destroyUrl : '/protofront/service/products/deleteParameter'
 		});
 	}
 	
@@ -69,7 +70,7 @@ var ProductLib = (function(){
 			if (ptId) {
 				$.ajax({
 					type : 'POST',
-					url : '/protofront/service/product/getNewProduct',
+					url : '/protofront/service/products/getNewProduct',
 					data : {
 						productTypeId : ptId,
 						languageId : $('#langSelector')

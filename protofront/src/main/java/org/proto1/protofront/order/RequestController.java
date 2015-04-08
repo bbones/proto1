@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.order.OrderLine;
@@ -82,6 +84,7 @@ public class RequestController extends BaseController {
 	}
 
 	@RequestMapping(value = "/lines/lang:{languageId}", method = RequestMethod.POST )
+	@Transactional
 	public @ResponseBody OrderLineDTO  saveOrderLine(@PathVariable Long languageId,
 			OrderLineDTO orderLineDTO) {
 		OrderLine ol = new OrderLine();
@@ -101,6 +104,7 @@ public class RequestController extends BaseController {
 		Language language = languageService.get(languageId);
 		orderLineDTO.setProductName(ol.getProduct().getTranslation(language).getName());
 		orderLineDTO.setUomName(uom.getTranslation(language).getShortName());
+		orderLineDTO.setVersion(ol.getVersion());
 		return orderLineDTO;
 	}
 
