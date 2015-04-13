@@ -5,6 +5,8 @@
  */
 package org.proto1.services.order;
 
+import org.proto1.domain.order.OrderLine;
+import org.proto1.domain.order.OrderLineParameter;
 import org.proto1.domain.order.Request;
 
 /**
@@ -24,5 +26,9 @@ public interface RequestService extends BaseOrderService {
 	 * @return Request object with given Id
 	 */
 	Request get(Long id);
+
+	OrderLine getOrderLine(Long orderLineId);
+
+	OrderLineParameter saveOrderLineParameter(OrderLineParameter orderLineParameter);
 	
 }

@@ -71,12 +71,13 @@ public class ProductServiceBean implements ProductService {
 	}
 
 	public ProductName saveProductName(Long productNameId, Long productId,
-			Long languageId, String productNames) {
+			Long languageId, String productNames, Integer version) {
 		ProductName productName = new ProductName();
 		productName.setId(productNameId);
 		productName.setProduct(productRepository.findOne(productId));
 		productName.setLanguage(languageRepository.findOne(languageId));
 		productName.setName(productNames);
+		productName.setVersion(version);
 		productNameRepository.save(productName);
 		
 		return productName;

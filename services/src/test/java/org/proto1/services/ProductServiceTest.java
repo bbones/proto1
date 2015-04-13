@@ -73,7 +73,7 @@ public class ProductServiceTest extends AbstractJUnit4SpringContextTests  {
 		productService.setProductRepository(prep);
 		productService.setLanguageRepository(lrep);
 
-		productService.saveProductName(null, 1L, 3L, "Плита горячекатана");
+		productService.saveProductName(null, 1L, 3L, "Плита горячекатана", null);
 		Product prod = prep.getById(1L);
 		assertEquals(3, prod.getProductNames().size());
 	}

@@ -22,11 +22,11 @@ var RequestLib = (function() {
 					saveUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
 					updateUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
 					onSelect : function(index, row) {
-//						console.log(row);
-//						$("#edgLineParameters").edatagrid({
-//							url : '/protofront/service/requests/lines/'+ row.olId + 
-//								'/lineparameters/lang:' + IndexLib.lang()
-//						});
+						console.log(row);
+						$("#edgLineParameters").edatagrid({
+							url : '/protofront/service/requests/lines/'+ row.olId + 
+								'/lineparameters/lang:' + IndexLib.lang()
+						});
 					} // OnSelect edgLines
 				});
 			}, // OnSelect edgRequest
@@ -43,7 +43,7 @@ var RequestLib = (function() {
 		$("#edgLines").edatagrid({
 			onDestroy : function(index,row){
 				$.ajax({
-					url : "/protofront/service/requests/lines/"+row.olId,
+					url : "/protofront/service/requests/lines/"+row.orderLineId,
 					method : "DELETE"
 				});
 			}

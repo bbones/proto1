@@ -8,7 +8,7 @@ public class ProductDTO extends DTO {
 	private static final long serialVersionUID = 1902362765792727670L;
 	
 	private Long id;
-	private String localizedProductName;
+	private String productName;
 	
 	public Long getId() {
 		return id;
@@ -18,12 +18,13 @@ public class ProductDTO extends DTO {
 		this.id = id;
 	}
 
-	public String getLocalizedProductName() {
-		return localizedProductName;
+	public String getProductName() {
+		return productName;
 	}
 
-	public void setLocalizedProductName(String localizedProductName) {
-		this.localizedProductName = localizedProductName;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
+
 
 }

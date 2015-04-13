@@ -57,18 +57,20 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	@Override
 	public void mapOrderLine(OrderLineDTO old, OrderLine ol,  BaseOrder order) {
 		
+		ol.setId(old.getOrderLineId());
 		ol.setOrder(order);
 		Product product = productService.getById(old.getProductId());
 		ol.setProduct(product);
-		ol.setId(old.getOrderLineId());
 		ol.setQnty(old.getQnty());
 		UnitOfMeasurement uom = uomService.get(old.getUomId());
 		ol.setUnitOfMeasurement(uom);
+		ol.setPrice(old.getPrice());
+		ol.setAmount(old.getAmount());
+		ol.setVersion(old.getVersion());
 		ol.setOrderLineParameterList(new ArrayList<OrderLineParameter>());
 		if (old.getParameterList() != null) {
 			mapOrderLineParameters(old.getParameterList(), ol.getOrderLineParameterList(), ol);
 		}
-		ol.setVersion(old.getVersion());
 	}
 
 	@Override
@@ -86,12 +88,12 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	public void mapOrderLineParameter(OrderLineParameterDTO olpd,
 			OrderLineParameter olp, OrderLine orderLine) {
 		
-		olp.setProductParameter(productService.getProductParameter(olpd.getPpId()));
-		olp.setValue(olpd.getpValue());
+		olp.setProductParameter(productService.getProductParameter(olpd.getProductParameterId()));
+		olp.setValue(olpd.getValue());
 		olp.setOrderLine(orderLine);
 		olp.setVersion(olp.getVersion());
 		olp.setDerivative(olp.getProductParameter().isDerivative());
-		olp.setUnitOfMeasurement(uomService.get(olpd.getpUOM()));
+		olp.setUnitOfMeasurement(uomService.get(olpd.getParameterUOM()));
 	}
 
 	/**
@@ -148,12 +150,12 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 	public void mapOrderLineParameter(OrderLineParameter olp,
 			OrderLineParameterDTO olpd, Language language) {
 		
-		olpd.setPpId(olp.getProductParameter().getId());
-		olpd.setpValue(olp.getValue());
-		olpd.setOlId(olp.getOrderLine().getId());
+		olpd.setProductParameterId(olp.getProductParameter().getId());
+		olpd.setValue(olp.getValue());
+		olpd.setOrderLineId(olp.getOrderLine().getId());
 		olpd.setVersion(olp.getVersion());
 		olpd.setDerivative(olp.getProductParameter().isDerivative() ? "true" : "false");
-		olpd.setpUOM(olp.getUnitOfMeasurement().getId());
+		olpd.setParameterUOM(olp.getUnitOfMeasurement().getId());
 	}
 
 }

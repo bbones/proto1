@@ -8,6 +8,7 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.Request;
 import org.proto1.repository.order.RequestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,5 +43,8 @@ public class RequestServiceBean extends BaseOrderServiceBean  implements Request
 	public Request get(Long orderId) {
 		return requestRepository.findOne(orderId);
 	}
-
+	public OrderLine getOrderLine(Long orderLineId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
@@ -25,7 +26,7 @@ public class Product extends AbstractEntity implements Serializable {
 	@ManyToOne
 	private ProductType productType;
 	
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product")
+	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product", fetch=FetchType.EAGER)
 	private List<ProductName> productNames;
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product")

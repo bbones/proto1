@@ -30,7 +30,8 @@ public interface ProductService {
 	List<Map<String, Object>> getList(Long productTypeId, Long languageId);
 
 	// ProductName methods
-	ProductName saveProductName(Long productNameId, Long productId, Long languageId, String productNames);
+	ProductName saveProductName(Long productNameId, Long productId, Long languageId, 
+			String productNames, Integer version);
 
 	void deleteName(Long productNameId);
 

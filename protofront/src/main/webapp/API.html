@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>API proto1</h1>
+	<div style="padding: 10px 30px 20px 30px">
+		<table border="solid">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Purpose</th>
+					<th>Return</th>
+					<th>Path</th>
+					<th>Method</th>
+					<th>Parameters</th>
+					<th>Data</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td>Master Data</td>
+					<td></td>
+					<td>/masterdata</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Languages</td>
+					<td>List<br>{id,<br>name,<br>required}</td>
+					<td>/masterdata/languages/</td>
+					<td>none</td>
+					<td>none</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Products</td>
+					<td>List<br>{id,<br>name}</td>
+					<td>/products/languageId={languageId}</td>
+					<td>GET</td>
+					<td>languageId</td>
+					<td>none</td>
+					<td>Localized by {languageId} product list</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td>Products</td>
+					<td>{id,<br>name}</td>
+					<td>/products/{id}/languageId={languageId}</td>
+					<td>GET</td>
+					<td>id<br>languageId</td>
+					<td>none</td>
+					<td>Localized by {languageId} product with {id} data</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td>Products</td>
+					<td>{id,<br>name}</td>
+					<td>/products/languageId={languageId}</td>
+					<td>POST</td>
+					<td>id<br>languageId</td>
+					<td>none</td>
+					<td>Save Product data return updated ProductDTO with localized by {languageId} product with {id} data</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td>Products</td>
+					<td>none</td>
+					<td>/products/{id}</td>
+					<td>DELETE</td>
+					<td>id</td>
+					<td>none</td>
+					<td>Localized by {languageId} product with {id} data</td>
+					
+				</tr>
+				<tr>
+					<td></td>
+					<td>Product names</td>
+					<td>none</td>
+					<td>/products/{id}/names</td>
+					<td>GET</td>
+					<td>id</td>
+					<td>none</td>
+					<td>Localization names for given id</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Product name</td>
+					<td>ProductNameDTO</td>
+					<td>/products/names</td>
+					<td>POST</td>
+					<td>id</td>
+					<td>none</td>
+					<td>Localization names for given id</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>Product parameters</td>
+					<td>ProductParameterDTO</td>
+					<td>/products/parameters</td>
+					<td>POST</td>
+					<td>id</td>
+					<td>none</td>
+					<td>Save Parameter</td>
+				</tr>
+			</tbody>
+	</table>
+	</div>
+
+</body>
+</html>

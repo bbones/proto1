@@ -15,42 +15,39 @@ public class OrderLineParameterDTO extends DTO {
 
 	private static final long serialVersionUID = 6919876053194796391L;
 
-	private Long ppId;
-	private String pValue;
-	private Long pUOM;
-	private Long olId;
+	private Long orderLineParameterId;
+	private Long productParameterId;
+	private String value;
+	private Long parameterUOM;
+	private Long orderLineId;
 	private String derivative;
 
-	public String getpValue() {
-		return pValue;
+	public Long getOrderLineParameterId() {
+		return orderLineParameterId;
 	}
 
-	public void setpValue(String pValue) {
-		this.pValue = pValue;
+	public void setOrderLineParameterId(Long orderLineParameterId) {
+		this.orderLineParameterId = orderLineParameterId;
 	}
 
-	public Long getpUOM() {
-		return pUOM;
+	public Long getProductParameterId() {
+		return productParameterId;
 	}
 
-	public void setpUOM(Long pUOM) {
-		this.pUOM = pUOM;
+	public void setProductParameterId(Long productParameterId) {
+		this.productParameterId = productParameterId;
 	}
 
-	public Long getPpId() {
-		return ppId;
+	public String getValue() {
+		return value;
 	}
 
-	public void setPpId(Long ppId) {
-		this.ppId = ppId;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
-	public Long getOlId() {
-		return olId;
-	}
-
-	public void setOlId(Long olId) {
-		this.olId = olId;
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	public String getDerivative() {
@@ -61,4 +58,21 @@ public class OrderLineParameterDTO extends DTO {
 		this.derivative = derivative;
 	}
 
+	public Long getOrderLineId() {
+		return orderLineId;
+	}
+
+	public void setOrderLineId(Long orderLineId) {
+		this.orderLineId = orderLineId;
+	}
+
+	public Long getParameterUOM() {
+		return parameterUOM;
+	}
+
+	public void setParameterUOM(Long parameterUOM) {
+		this.parameterUOM = parameterUOM;
+	}
+
+	
 }

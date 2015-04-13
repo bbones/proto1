@@ -17,6 +17,8 @@ import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.Language;
+import org.proto1.domain.UnitOfMeasurement;
 
 @Entity
 public class Parameter extends AbstractEntity {
@@ -31,6 +33,9 @@ public class Parameter extends AbstractEntity {
 	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="parameter")
 	@JsonIgnore
 	private List<ParameterName> parameterNames = new ArrayList<ParameterName>();
+	
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private List<UnitOfMeasurement> acceptedUOM = new ArrayList<UnitOfMeasurement>();
 
 	public Type getType() {
 		return type;
@@ -47,6 +52,21 @@ public class Parameter extends AbstractEntity {
 	public void setParameterNames(List<ParameterName> parameterNames) {
 		this.parameterNames = parameterNames;
 	}
-	
 
+	public List<UnitOfMeasurement> getAcceptedUOM() {
+		return acceptedUOM;
+	}
+
+	public void setAcceptedUOM(List<UnitOfMeasurement> acceptedUOM) {
+		this.acceptedUOM = acceptedUOM;
+	}
+	
+	public ParameterName getParameterName(Language language) {
+		for (ParameterName pn : parameterNames) {
+			if (pn.getLanguage().equals(language)) {
+				return pn;
+			}
+		}
+		return null;
+	}
 }

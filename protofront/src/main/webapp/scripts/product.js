@@ -8,28 +8,23 @@
 
 var ProductLib = (function(){
 	
-	function initProductGrid() {
-		$("#edgProducts").edatagrid({});
-	}
-	
 	function initProductTypeTree() {
 		$("#productType").combotree({
 			onSelect : function(record) {
 				console.log(record);
 				$("#edgProducts").edatagrid({
-					url : '/protofront/service/products/productType='
+					url : '/protofront/service/products/types?productTypeId='
 									+ record.id + '&languageId=' + IndexLib.lang(),
-					method : 'GET',
 					onSelect : function(index, row) {
 						console.log(row);
 						$("#edgNames").edatagrid({
-							url : '/protofront/service/products/names/'
-										+ row.id
+							url : '/protofront/service/products/'
+										+ row.id + '/names'
 						});
 
 						$("#edgParameters").edatagrid({
-							url : '/protofront/service/products/parameters/'
-										+ row.id + '&' + IndexLib.lang(),
+							url : '/protofront/service/products/'+ row.id + 
+								'/parameters/?languageId=' + IndexLib.lang(),
 						});
 					} // OnSelect
 				}); // edatagrid
@@ -37,17 +32,25 @@ var ProductLib = (function(){
 		}); // Combotree
 	}
 	
+	function initProductGrid() {
+		$("#edgProducts").edatagrid({method : "GET"});
+	}
+	
 	function  initNameGrid() {
 		$("#edgNames").edatagrid({
-			saveUrl : '/protofront/service/products/saveName',
-			destroyUrl : '/protofront/service/products/deleteName'
+			method : 'GET',
+			saveUrl : '/protofront/service/products/names',
+			updateUrl : '/protofront/service/products/names',
+			destroyUrl : '/protofront/service/products/names'
 		});
 	}
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
-			saveUrl : '/protofront/service/products/saveParameter',
-			destroyUrl : '/protofront/service/products/deleteParameter'
+			method : 'GET',
+			saveUrl : '/protofront/service/products/parameters',
+			updateUrl : '/protofront/service/products/parameters',
+			destroyUrl : '/protofront/service/products/parameters'
 		});
 	}
 	
@@ -92,6 +95,10 @@ var ProductLib = (function(){
 				}); 
 			} // if
 		}, 
+		
+		saveName : function() {
+			$("#edgNames").edatagrid('saveRow');
+		},
 	
 		removeName : function () {
 			$("#edgNames").edatagrid('destroyRow');

@@ -23,18 +23,18 @@ public class ReceiptController {
 	ReceiptService receiptService;
 	
 	
-	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
+	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  receiptListByLanguage(@PathVariable Long languageId) {
 		return receiptService.getReceiptList(languageId);
 	}
 	
-	@RequestMapping(value = "ingredients/{languageId}&{receiptId}", method = RequestMethod.POST )
+	@RequestMapping(value = "ingredients/{languageId}&{receiptId}", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  ingredientsListByLanguage(@PathVariable Long languageId, 
 			@PathVariable Long receiptId) {
 		return receiptService.getIngredientsLis(languageId, receiptId);
 	}
 	
-	@RequestMapping(value = "byproducts/{languageId}&{receiptId}", method = RequestMethod.POST )
+	@RequestMapping(value = "byproducts/{languageId}&{receiptId}", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  byproductsListByLanguage(@PathVariable Long languageId, 
 			@PathVariable Long receiptId) {
 		return receiptService.getByproductsList(languageId, receiptId);

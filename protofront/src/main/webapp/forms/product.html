@@ -34,8 +34,8 @@
 				style="width: 700px; height: auto">
 				<thead>
 					<tr>
-						<th field='id' width=250>Product Id</th>
-						<th field='name' width=250 editor="text">Product name</th>
+						<th field='id' width=80>Product Id</th>
+						<th field='name' width=250">Product name</th>
 					</tr>
 				</thead>
 			</table>
@@ -50,7 +50,7 @@
 						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'nameId'">
 						<thead>
 							<tr>
-								<th field='nameId' width=250>Product Name Id</th>
+								<th field='nameId' width=80>Product Name Id</th>
 								<th
 									data-options="field:'languageId',width:100,
                         			formatter:function(value,row){
@@ -62,7 +62,7 @@
 			                                valueField:'id',
 			                                textField:'name',
 			                                method:'get',
-			                                url:'/protofront/service/masterdata/languagelist',
+			                                url:'/protofront/service/masterdata/languages',
 			                                required:true
 			                            }
                         			}">Language</th>

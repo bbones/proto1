@@ -10,7 +10,6 @@ import java.util.Map;
 
 import org.dozer.Mapper;
 import org.proto1.dto.LanguageDTO;
-import org.proto1.dto.UnitOfMeasurementDTO;
 import org.proto1.services.MasterDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
