@@ -9,8 +9,9 @@ var ProductTypeLib = (function(){
 		$('#productTypes')
 		.treegrid(
 				{
-					url : '/protofront/service/productType/getByParentTypeIdByLanguageId/'
+					url : '/protofront/service/productTypes/parents/?languageId='
 							+ $('#langSelector').combobox('getValue'),
+					method : "GET",
 					idField : 'id',
 					treeField : 'name',
 					columns : [ [ {
@@ -21,10 +22,10 @@ var ProductTypeLib = (function(){
 					onSelect :function(data) {
 						console.log(data['id']);
 						$('#edg').edatagrid({
-							url : '/protofront/service/productType/getNames/' + data['id'],
-			             	saveUrl: '/protofront/service/productType/saveName/',
-			             	updateUrl: '/protofront/service/productType/saveName/',
-			             	destroyUrl: '/protofront/service/productType/deleteName/'
+							url : '/protofront/service/productTypes/' + data['id'] + '/names/',
+			             	saveUrl: '/protofront/service/productTypes/',
+			             	updateUrl: '/protofront/service/productTypes/'
+			             	// destroyUrl: '/protofront/service/productTypes/deleteName/'
 			 
 						});
 					},

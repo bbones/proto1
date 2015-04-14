@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/productType")
+@RequestMapping("/productTypes")
 public class ProductTypeController {
 	@Autowired
 	ProductTypeService pts;
@@ -35,8 +35,8 @@ public class ProductTypeController {
 	@Autowired
 	Mapper mapper;
 
-	@RequestMapping(value = "getByParentTypeIdByLanguageId/{languageId}", method = RequestMethod.POST)
-	public List<Map<String, Object>> getByParentTypeIdByLanguageId(@RequestParam(required=false) Long id, @PathVariable Long languageId) {
+	@RequestMapping(value = "parents", method = RequestMethod.GET)
+	public List<Map<String, Object>> getByParentTypeIdByLanguageId(@RequestParam(required=false) Long id, @RequestParam Long languageId) {
 		List<Map<String, Object>> ptList = pts.getByParentTypeIdByLanguageId(id, languageId);
 		for(Map<String, Object> pt : ptList) {
 			if (pts.countChild((Long)pt.get("id")) > 0)
@@ -79,7 +79,7 @@ public class ProductTypeController {
 		pts.deleteProductTypeById(id);
 	}
 
-	@RequestMapping(value = "getNames/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "{id}/names", method = RequestMethod.POST)
 	public List<ProductTypeNameDTO> getNames(@PathVariable Long id) {
 		List<ProductTypeNameDTO> ptNamesList = new ArrayList<ProductTypeNameDTO>();
 		for(ProductTypeName ptn : pts.getNames(id)) {
