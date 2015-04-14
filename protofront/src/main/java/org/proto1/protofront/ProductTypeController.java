@@ -79,7 +79,7 @@ public class ProductTypeController {
 		pts.deleteProductTypeById(id);
 	}
 
-	@RequestMapping(value = "{id}/names", method = RequestMethod.POST)
+	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
 	public List<ProductTypeNameDTO> getNames(@PathVariable Long id) {
 		List<ProductTypeNameDTO> ptNamesList = new ArrayList<ProductTypeNameDTO>();
 		for(ProductTypeName ptn : pts.getNames(id)) {

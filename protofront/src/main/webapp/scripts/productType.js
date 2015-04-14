@@ -6,42 +6,41 @@
 
 var ProductTypeLib = (function(){
 	function initTreeGrid() {
-		$('#productTypes')
-		.treegrid(
-				{
-					url : '/protofront/service/productTypes/parents/?languageId='
-							+ $('#langSelector').combobox('getValue'),
-					method : "GET",
-					idField : 'id',
-					treeField : 'name',
-					columns : [ [ {
-						title : 'Product Types',
-						field : 'name',
-						width : 400
-					} ] ],
-					onSelect :function(data) {
-						console.log(data['id']);
-						$('#edg').edatagrid({
-							url : '/protofront/service/productTypes/' + data['id'] + '/names/',
-			             	saveUrl: '/protofront/service/productTypes/',
-			             	updateUrl: '/protofront/service/productTypes/'
-			             	// destroyUrl: '/protofront/service/productTypes/deleteName/'
-			 
-						});
-					},
-	                onContextMenu: function(e,row){
-	                    e.preventDefault();
-	                    $(this).treegrid('select',row.id);
-	                    $('#mm').menu('show',{
-	                        left: e.pageX,
-	                        top: e.pageY
-	                    });
-	                }
+		$('#productTypes').tree({
+			url : '/protofront/service/productTypes/parents/?languageId='
+					+ IndexLib.lang(),
+			method : "GET",
+			idField : 'id',
+			treeField : 'name',
+			dnd : true,
+			onSelect :function(data) {
+				console.log(data);
+				$('#edg').edatagrid({
+					url : '/protofront/service/productTypes/' + data['id'] + '/names/',
+	             	saveUrl: '/protofront/service/productTypes/',
+	             	updateUrl: '/protofront/service/productTypes/'
+	             	// destroyUrl: '/protofront/service/productTypes/deleteName/'
+	 
 				});
+			},
+			onDrop: function(targetNode, source, point){
+				console.log(targetNode);
+				console.log(source);
+				console.log(point);
+			},
+            onContextMenu: function(e,row){
+                e.preventDefault();
+                $(this).treegrid('select',row.id);
+                $('#mm').menu('show',{
+                    left: e.pageX,
+                    top: e.pageY
+                });
+            }
+		});
 	};
 	
 	function initTranslationGrid() {
-		$('#edg').edatagrid();
+		$('#edg').edatagrid({method : 'GET'});
 	}
 	
 	 

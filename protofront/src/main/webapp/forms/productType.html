@@ -1,18 +1,16 @@
 <div>
 
 	<div id="mm" class="easyui-menu" style="width: 120px;">
-		<div data-options="iconCls:'icon-add'" onclick="newNode()">New
+		<div data-options="iconCls:'icon-add'" onclick="ProductTypeLib.newNode()">New
 			Node</div>
+		<div data-options="iconCls:'icon-add'" onclick="ProductTypeLib.newRootNode()">New
+			Root Node</div>
 		<div data-options="iconCls:'icon-remove'"
-			onclick="removeNode()">Delete Node</div>
-		<div data-options="iconCls:'icon-cut'"
-			onclick="javascript:alert('cut')">Cut</div>
-		<div data-options="iconCls:'icon-back'"
-			onclick="javascript:alert('paste')">Paste</div>
+			onclick="ProductTypeLib.removeNode()">Delete Node</div>
 	</div>
 
-	<table id="productTypes" title="Product Types" class="easyui-treegrid"
-		style="width: 700px; height: 300px"></table>
+	<table id="productTypes" title="Product Types" 
+			style="width: 700px; height: 300px"></table>
 	<table id="edg" title="Translations" singleSelect="true" style="width: 700px; height: auto">
 		<thead>
 			<tr>
