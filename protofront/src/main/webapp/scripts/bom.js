@@ -10,19 +10,13 @@
 var BOMLib = (function(){
 	function initBOMGrid() {
 		$("#edgBOM").edatagrid({
-			url : "/protofront/service/bom/listbylang/" +
+			url : "/protofront/service/boms/?languageId=" +
 				IndexLib.lang(),
+			method : 'GET',
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/bom/lines/' + row.bomId  + '&' +  IndexLib.lang(), 
-					onSelect : function(index, row) {
-						console.log(row);
-						$("#edgLineParameters").edatagrid({
-							url : '/protofront/service/bom/lineparameters/' +  row.olId + '&' + IndexLib.lang()
-								
-						});
-					} // OnSelect edgLines
+					url : '/protofront/service/boms/' + row.bomId  + '/lines?languageId=' +  IndexLib.lang(), 
 	
 				});
 			} // OnSelect edgProdOrder
@@ -30,11 +24,23 @@ var BOMLib = (function(){
 	};
 	
 	function initPOLinesGrid() {
-		$("#edgLines").edatagrid({});
+		$("#edgLines").edatagrid({
+			method : 'GET',
+			onSelect : function(index, row) {
+				console.log(row);
+				$("#edgLineParameters").edatagrid({
+					url : '/protofront/service/boms/lines/' +  row.orderLineId 
+						+ '/lineparameters?languageId=' + IndexLib.lang()
+				});
+			} // OnSelect edgLines
+
+		});
 	}
 	
 	function initPOLineParam() {
-		$("#edgLineParameters").edatagrid();
+		$("#edgLineParameters").edatagrid({
+			method : 'GET'
+		});
 	}
 
 

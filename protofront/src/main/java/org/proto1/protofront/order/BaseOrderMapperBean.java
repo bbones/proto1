@@ -36,7 +36,8 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 		T result = destinationClass.newInstance();
 		result.setId(source.getOrderId());
 		result.setDocumentNo(source.getOrderNo());
-		result.setIssueDate(new Date(source.getIssueDate()));
+		if (source.getIssueDate() != null)
+			result.setIssueDate(new Date(source.getIssueDate()));
 		result.setVersion(source.getVersion());
 		result.setLines(new ArrayList<OrderLine>());
 		if (source.getOrderLines() != null) {

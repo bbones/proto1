@@ -11,23 +11,14 @@ var RequestLib = (function() {
 	function initRequestGrid() {
 		
 		$("#edgRequest").edatagrid({
-			url : "/protofront/service/requests/lang:" + IndexLib.lang(),
-			saveUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
-			updateUrl : "/protofront/service/requests/lang:" + IndexLib.lang(),
+			url : "/protofront/service/requests/?languageId=" + IndexLib.lang(),
+			saveUrl : "/protofront/service/requests/?languageId=" + IndexLib.lang(),
+			updateUrl : "/protofront/service/requests/?languageId=" + IndexLib.lang(),
 			method:'GET',
 			onSelect : function(index, row) {
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/requests/'  +  row.orderId + '/lines/lang:' + IndexLib.lang(), 
-					method:'GET',
-					saveUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
-					updateUrl : "/protofront/service/requests/lines/lang:" + IndexLib.lang(),
-					onSelect : function(index, row) {
-						console.log(row);
-						$("#edgLineParameters").edatagrid({
-							url : '/protofront/service/requests/lines/'+ row.olId + 
-								'/lineparameters/lang:' + IndexLib.lang()
-						});
-					} // OnSelect edgLines
+					url : '/protofront/service/requests/'  +  row.orderId + '/lines?languageId=' 
+							+ IndexLib.lang()
 				});
 			}, // OnSelect edgRequest
 			onDestroy : function(index,row){
@@ -41,6 +32,17 @@ var RequestLib = (function() {
 	
 	function initLinesGrid() {
 		$("#edgLines").edatagrid({
+			method:'GET',
+			saveUrl : "/protofront/service/requests/lines?languageId=" + IndexLib.lang(),
+			updateUrl : "/protofront/service/requests/lines?languageId=" + IndexLib.lang(),
+			onSelect : function(index, row) {
+				console.log(row);
+				$("#edgLineParameters").edatagrid({
+					url : '/protofront/service/requests/lines/'+ row.orderLineId + 
+						'/lineparameters?languageId=' + IndexLib.lang()
+				});
+			}, // OnSelect edgLines
+
 			onDestroy : function(index,row){
 				$.ajax({
 					url : "/protofront/service/requests/lines/"+row.orderLineId,
@@ -52,7 +54,9 @@ var RequestLib = (function() {
 	
 	
 	function initLineParam() {
-		$("#edgLineParameters").edatagrid();
+		$("#edgLineParameters").edatagrid({
+			method:'GET'
+		});
 	};
 
 	return {

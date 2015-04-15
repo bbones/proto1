@@ -54,13 +54,13 @@ public class RequestController extends BaseController {
 	@Autowired
 	ProductService productService;
 
-	@RequestMapping(value = "/lang:{languageId}", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  getList(@PathVariable Long languageId) {
+	@RequestMapping(value = "/", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  getList(@RequestParam Long languageId) {
 		return requestService.getOrderList(languageId);
 	}
 
-	@RequestMapping(value = "/lang:{languageId}", method = RequestMethod.POST )
-	public @ResponseBody Map<String, Object> save(@PathVariable Long languageId,
+	@RequestMapping(value = "/", method = RequestMethod.POST )
+	public @ResponseBody Map<String, Object> save(@RequestParam Long languageId,
 			RequestDTO requestDTO) 
 			throws InstantiationException, IllegalAccessException, ParseException {
 		Request po = mapper.map(requestDTO, Request.class);
@@ -78,15 +78,15 @@ public class RequestController extends BaseController {
 	}
 
 	// Request lines
-	@RequestMapping(value = "/{orderId}/lines/lang:{languageId}", method = RequestMethod.GET )
+	@RequestMapping(value = "/{orderId}/lines", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  getOrderLines(@PathVariable Long orderId, 
-			@PathVariable Long languageId) {
+			@RequestParam Long languageId) {
 		return requestService.getOrderLines(orderId, languageId);
 	}
 
-	@RequestMapping(value = "/lines/lang:{languageId}", method = RequestMethod.POST )
+	@RequestMapping(value = "/lines", method = RequestMethod.POST )
 	@Transactional
-	public @ResponseBody OrderLineDTO  saveOrderLine(@PathVariable Long languageId,
+	public @ResponseBody OrderLineDTO  saveOrderLine(@RequestParam Long languageId,
 			OrderLineDTO orderLineDTO) {
 		OrderLine ol = new OrderLine();
 		Request request = requestService.get(orderLineDTO.getOrderId());
@@ -106,13 +106,13 @@ public class RequestController extends BaseController {
 	}
 
 	// Request Line Parameters
-	@RequestMapping(value = "/lines/{lineId}", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  getOrderLineParameters(@PathVariable Long orderId, 
+	@RequestMapping(value = "/lines/{lineId}/lineparameters", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  getOrderLineParameters(@PathVariable Long lineId, 
 			@RequestParam Long languageId) {
-		return requestService.getOrderLines(orderId, languageId);
+		return requestService.getOrderLines(lineId, languageId);
 	}
 
-	@RequestMapping(value = "/lines/parameters", method = RequestMethod.POST )
+	@RequestMapping(value = "/lines/lineparameters", method = RequestMethod.POST )
 	public @ResponseBody OrderLineParameterDTO  saveOrderLineParameter(@RequestParam Long languageId,
 			OrderLineParameterDTO orderLineParameterDTO) {
 		OrderLineParameter olp = new OrderLineParameter();
@@ -120,12 +120,11 @@ public class RequestController extends BaseController {
 		mapper.mapOrderLineParameter(orderLineParameterDTO, olp, ol);
 		olp = requestService.saveOrderLineParameter(olp);
 		orderLineParameterDTO.setOrderLineParameterId(olp.getId());
-		orderLineParameterDTO.setOrderLineParameterId(olp.getId());;
 		orderLineParameterDTO.setVersion(ol.getVersion());
 		return orderLineParameterDTO;
 	}
 
-	@RequestMapping(value = "/parameters/{id}", method = RequestMethod.DELETE )
+	@RequestMapping(value = "/lines/parameters/{id}", method = RequestMethod.DELETE )
 	public void deleteOrderLineParameter(@PathVariable Long id) {
 		requestService.deleteOrderLine(id);
 	}

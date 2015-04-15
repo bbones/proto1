@@ -43,7 +43,7 @@ public class ProductionOrderController {
 		return (result == null) ? new ArrayList<Map<String, Object>>() : result;
 	}
 
-	@RequestMapping(value = "createOrderBOMs/{poId}", method = RequestMethod.POST )
+	@RequestMapping(value = "{poId}/createOrderBOMs", method = RequestMethod.POST )
 	public void  createOrderBOMs(@PathVariable Long poId) {
 		productionOrderService.createOrderBOMs(poId);
 	}
