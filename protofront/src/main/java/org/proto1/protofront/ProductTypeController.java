@@ -43,7 +43,6 @@ public class ProductTypeController {
 				pt.put("state", "closed");
 			else
 				pt.put("state", "open");
-			pt.put("text", pt.get("name")); // "text" field for EasyUI tree and combotree
 		}
 		return ptList;
 	}
@@ -53,7 +52,7 @@ public class ProductTypeController {
 //		return pts.getTreeByProductTypeIdByLanguageId(prodTypeId, languageId);
 //	}
 //
-	@RequestMapping(value = "getNewProductType", method = RequestMethod.POST)
+	@RequestMapping(value = "new", method = RequestMethod.POST)
 	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
 		ProductType pt = new ProductType();
 		ProductType parent = pts.getNodeById(parentId);
@@ -74,8 +73,8 @@ public class ProductTypeController {
 		return ptDTO;
 	}
 
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	public void deleteProductType(@RequestParam(required=false) Long id) {
+	@RequestMapping(value = "{id}", method = RequestMethod.DELETE)
+	public void deleteProductType(@PathVariable Long id) {
 		pts.deleteProductTypeById(id);
 	}
 
@@ -91,7 +90,7 @@ public class ProductTypeController {
 		return ptNamesList;
 	}
 
-	@RequestMapping(value = "saveName", method = RequestMethod.POST)
+	@RequestMapping(value = "names", method = RequestMethod.POST)
 	public void updateName(@RequestParam(required=false) Long nameId, @RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId, 
 			@RequestParam(required=false) String productTypeName) {
 		pts.saveProductTypeName(nameId, productTypeId, languageId, productTypeName);

@@ -1,3 +1,6 @@
+/**
+ * TODO Abstract @RestController for lines and parameters
+ */
 package org.proto1.protofront.order;
 
 import java.util.ArrayList;
@@ -10,11 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/prodorder")
+@RequestMapping("/prodorders")
 public class ProductionOrderController {
 	@Autowired
 	Mapper mapper;
@@ -22,19 +26,19 @@ public class ProductionOrderController {
 	@Autowired
 	ProductionOrderService productionOrderService;
 	
-	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  prodOrderListByLanguage(@PathVariable Long languageId) {
+	@RequestMapping(value = "/", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  prodOrderListByLanguage(@RequestParam Long languageId) {
 		return productionOrderService.getOrderList(languageId);
 	}
 	
 
-	@RequestMapping(value = "lines/{poId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  prodOrderLineList(@PathVariable Long poId, @PathVariable Long languageId) {
+	@RequestMapping(value = "{poId}/lines", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  prodOrderLineList(@PathVariable Long poId, @RequestParam Long languageId) {
 		return productionOrderService.getOrderLines(poId, languageId);
 	}
 	
-	@RequestMapping(value = "lineparameters/{olId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  prodOrderLineParameters(@PathVariable Long olId, @PathVariable Long languageId) {
+	@RequestMapping(value = "lines/{olId}/lineparameters", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  prodOrderLineParameters(@PathVariable Long olId, @RequestParam Long languageId) {
 		List<Map<String, Object>> result = productionOrderService.getOrderLineParameters(olId, languageId);
 		return (result == null) ? new ArrayList<Map<String, Object>>() : result;
 	}

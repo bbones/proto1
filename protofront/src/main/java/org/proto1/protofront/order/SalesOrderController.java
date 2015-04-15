@@ -13,11 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/salesorder")
+@RequestMapping("/salesorders")
 public class SalesOrderController {
 	@Autowired
 	Mapper mapper;
@@ -26,19 +27,19 @@ public class SalesOrderController {
 	SalesOrderService salesOrderService;
 	
 	
-	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  salesOrderListByLanguage(@PathVariable Long languageId) {
+	@RequestMapping(value = "/", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  salesOrderListByLanguage(@RequestParam Long languageId) {
 		return salesOrderService.getOrderList(languageId);
 	}
 	
 
-	@RequestMapping(value = "lines/{soId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  salesOrderLineList(@PathVariable Long soId, @PathVariable Long languageId) {
+	@RequestMapping(value = "{soId}/lines", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  salesOrderLineList(@PathVariable Long soId, @RequestParam Long languageId) {
 		return salesOrderService.getOrderLines(soId, languageId);
 	}
 	
-	@RequestMapping(value = "lineparameters/{olId}&{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  salesOrderLineParameters(@PathVariable Long olId, @PathVariable Long languageId) {
+	@RequestMapping(value = "lines/{olId}/lineparameters", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  salesOrderLineParameters(@PathVariable Long olId, @RequestParam Long languageId) {
 		return salesOrderService.getOrderLineParameters(olId, languageId);
 	}
 	

@@ -27,8 +27,8 @@
 			<h3>Select product type</h3>
 			<input id="productType" class="easyui-combotree" 
 				style="width: 600px;"
-				data-options="url:'/protofront/service/productType/getByParentTypeIdByLanguageId/'
-								+ $('#langSelector').combobox('getValue')">
+				data-options="url:'/protofront/service/productTypes/parents/?languageId='
+								+ IndexLib.lang(), method:'GET'">
 
 			<table id="edgProducts" title="Products" singleSelect="true"
 				style="width: 700px; height: auto">

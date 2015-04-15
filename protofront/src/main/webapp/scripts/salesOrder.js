@@ -10,44 +10,39 @@ var SalesOrderLib = (function() {
 	
 	function initSOGrid() {
 		$("#edgSalesOrder").edatagrid({
-			url : "/protofront/service/salesorder/listbylang/" +
+			url : "/protofront/service/salesorders/?languageId=" +
 				IndexLib.lang(),
+			method : 'GET',
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgLines").edatagrid({
-					url : '/protofront/service/salesorder/lines/' +  row.soId + '&' + IndexLib.lang(), 
-					onSelect : function(index, row) {
-						console.log(row);
-						$("#edgLineParameters").edatagrid({
-							url : '/protofront/service/salesorder/lineparameters/' + row.olId + '&' + IndexLib.lang()
-								
-						});
-					} // OnSelect edgLines
-	
+					url : '/protofront/service/salesorders/'  +  row.soId + '/lines?languageId=' + IndexLib.lang(), 
 				});
 			} // OnSelect edgSalesOrder
 		});
 	};
 	
 	function initSOLinesGrid() {
-		$("#edgLines").edatagrid({});
+		$("#edgLines").edatagrid({
+			method : 'GET',
+			onSelect : function(index, row) {
+				console.log(row);
+				$("#edgLineParameters").edatagrid({
+					url : '/protofront/service/salesorders/lines/' + row.orderLineId + '/lineparameters?languageId=' + IndexLib.lang()
+						
+				});
+			} // OnSelect edgLines
+		});
 	};
 	
-	function initAccord() {
-//		$("#aa").accordion({
-//			onSelect : function(title, index) {
-//				alert(title + index);
-//			}
-//		});
-	}
-	
 	function initSOLineParam() {
-		$("#edgLineParameters").edatagrid();
+		$("#edgLineParameters").edatagrid({
+			method : 'GET'
+		});
 	};
 
 	return {
 		init : function() {
-			initAccord();
 			initSOGrid();
 			initSOLinesGrid();
 			initSOLineParam();

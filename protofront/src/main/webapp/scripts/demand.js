@@ -14,29 +14,35 @@ var DemandLib = (function(){
 	};
 	
 	var initParameterGrid = function () {
-		$("#dgParameters").datagrid({});
+		$("#dgParameters").datagrid({
+			method : 'GET'
+			
+		});
 		
 	};
 	
 	var initProductSelector = function() {
 		$("#productType").combotree({
-			url:'/protofront/service/productType/getByParentTypeIdByLanguageId/' + IndexLib.lang(),
+			url : '/protofront/service/productTypes/parents/?languageId=' + IndexLib.lang(),
+			method : 'GET',
 			onSelect : function(record) {
 				$("#dgProducts").datagrid({
-					url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-									+ record.id + '&' + IndexLib.lang(),
-					onSelect : function(index, row) {
-						console.log(row);
-						$("#dgParameters").datagrid({
-							url : '/protofront/service/product/parameters/'
-										+ row.id + '&' + IndexLib.lang()
-						});
-					} // OnSelect
+					url : '/protofront/service/products/types?productTypeId='+ record.id + '&languageId=' + IndexLib.lang()
 				}); // edatagrid
 
 			}
 		});
-		$("#dgProducts").datagrid();
+		
+		$("#dgProducts").datagrid({
+			method : 'GET',
+			onSelect : function(index, row) {
+				console.log(row);
+				$("#dgParameters").datagrid({
+					url : '/protofront/service/products/' + row.id + '/parameters?languageId=' + IndexLib.lang()
+				});
+			} // OnSelect
+
+		});
 	};
 	
 	

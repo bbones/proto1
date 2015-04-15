@@ -1,6 +1,6 @@
 <div>
 
-	<div id="mm" class="easyui-menu" style="width: 120px;">
+	<div id="mm" class="easyui-menu" >
 		<div data-options="iconCls:'icon-add'" onclick="ProductTypeLib.newNode()">New
 			Node</div>
 		<div data-options="iconCls:'icon-add'" onclick="ProductTypeLib.newRootNode()">New
@@ -9,9 +9,10 @@
 			onclick="ProductTypeLib.removeNode()">Delete Node</div>
 	</div>
 
-	<table id="productTypes" title="Product Types" 
-			style="width: 700px; height: 300px"></table>
-	<table id="edg" title="Translations" singleSelect="true" style="width: 700px; height: auto">
+	<!-- table  title="Product Types" 
+			style="width: 700px; height: 300px"></table> -->
+	<ul id="productTypes" class="easyui-tree"></ul>
+	<table id="edg" title="Translations" singleSelect="true" style="width: 700px; height: auto"> 
 		<thead>
 			<tr>
 				<th field='nameId' width = 250 >Product Type Name Id</th>

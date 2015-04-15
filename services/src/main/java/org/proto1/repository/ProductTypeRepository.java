@@ -21,11 +21,11 @@ public interface ProductTypeRepository extends CrudRepository<ProductType, Long>
 	
 	public List<ProductType> getByParentTypeId(Long id);
 	
-	@Query("select new Map(pt.id as id, pt.parentType.id as parent_id, ptn.name as name) " +
+	@Query("select new Map(pt.id as id, pt.parentType.id as parent_id, ptn.name as text) " +
 			"from ProductType pt join pt.productTypeNames ptn where pt.parentType.id = :parent_id and ptn.language.id = :language_id")
 	public List<Map<String, Object>> getByParentTypeIdLanguageId(@Param("parent_id") Long parentId, @Param("language_id") Long languageId);
 	
-	@Query("select new Map(pt.id as id, pt.parentType.id as parent_id, ptn.name as name) " +
+	@Query("select new Map(pt.id as id, pt.parentType.id as parent_id, ptn.name as text) " +
 			"from ProductType pt join pt.productTypeNames ptn where pt.parentType.id is null and ptn.language.id = :language_id")
 	public List<Map<String, Object>> getRootParentTypesLanguageId(@Param("language_id") Long languageId);
 	

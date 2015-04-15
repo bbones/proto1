@@ -17,7 +17,7 @@
 
 			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
 				<div title="SO details"
-					data-options="iconCls:'icon-reload',selected:true"	style="padding: 10px;">
+					data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
 					 <form id="sof" action="form1_proc.php" method="post" enctype="multipart/form-data">
 				        <table>
 				            <tr>
@@ -44,19 +44,19 @@
 				    </form>
 				</div>
 				<div title="SO Lines"
-					data-options="iconCls:'icon-save',selected:false"
+					data-options="iconCls:'icon-save',selected:true"
 					style="overflow: auto; padding: 10px;" >
 					<table id="edgLines" title="Lines" singleSelect="true"
 						style="width: 600px; height: auto" 
 						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
 						<thead>
 							<tr>
-								<th field='olId' width=80>SO Line Id</th>
+								<th field='orderLineId' width=80>SO Line Id</th>
 								<th field='productName' width=250 editor="text">Product</th>
 								<th field='uomName' width=30 editor="text">DU</th>
-								<th field='olQnty' width=80 editor="{type:'numberbox'}">Qnty</th>
-								<th field='olPrice' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
-								<th field='olAmount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+								<th field='qnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+								<th field='price' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
+								<th field='amount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
 								
 							</tr>
 						</thead>

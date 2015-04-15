@@ -111,7 +111,7 @@ public class ProductController {
 	}
 
 	// Product Parameters
-	@RequestMapping(value = "{productId}/parameters/", method = RequestMethod.GET)
+	@RequestMapping(value = "{productId}/parameters", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, java.lang.Object>> getProductParametersList(@PathVariable Long productId, 
 			@RequestParam Long languageId) {
 		return productService.getParameterList(productId, languageId);
