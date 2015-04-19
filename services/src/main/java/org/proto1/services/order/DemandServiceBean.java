@@ -135,6 +135,7 @@ public class DemandServiceBean implements DemandService {
 		for(OrderLine ol : orderLineRepository.getUncoveredDemandLines(productId)) {
 			List<Map<String, Object>> pvl = orderLineRepository.getParametersValues(paramList, ol.getId(), languageId);
 			ArrayList<RegisterKey> key = new ArrayList<RegisterKey>();
+			logger.info("OL---->" + ol.getId());
 			for(Map<String, Object> entry : pvl) {
 				logger.info(entry.get("pid") +"->"+entry.get("pvalue") +" | " + entry.get("uomId") + "->" + entry.get("uomName"));
 				key.add(new RegisterKey((Long)entry.get("pid"), (String)entry.get("pvalue"), (Long)entry.get("uomId"), (String)entry.get("uomName")) );

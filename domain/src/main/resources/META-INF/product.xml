@@ -491,6 +491,7 @@
 		<property name="parameter" ref="gradeOfSteelStandard" />
 		<property name="required" value="true" />
 		<property name="derivative" value="true" />
+		<property name="masterParameter" ref="slabGOSS" />
 		<property name="valueProvider" value="GradeOfSteelStandardProvider" />
 	</bean>
 	<bean id = "spGOS" class="org.proto1.domain.product.ProductParameter">
@@ -498,6 +499,7 @@
 		<property name="parameter" ref="gradeOfSteel" />
 		<property name="required" value="true" />
 		<property name="derivative" value="true" />
+		<property name="masterParameter" ref="slabGOS" />
 		<property name="valueProvider" value="GradeOfSteelProvider" />
 	</bean>
 	<bean id = "spThickness" class="org.proto1.domain.product.ProductParameter">
@@ -553,6 +555,13 @@
 		</property>
 	</bean>
 	
+	<bean id = "channelGOSS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="channel" />
+		<property name="parameter" ref="gradeOfSteelStandard" />
+		<property name="required" value="true" />
+		<property name="derivative" value="true" />
+	</bean>
+
 	<bean id = "channelGOS" class="org.proto1.domain.product.ProductParameter">
 		<property name="product" ref="channel" />
 		<property name="parameter" ref="gradeOfSteel" />
@@ -595,17 +604,26 @@
 		</property>
 		<property name="productParameters">
 			<list>
+				<ref bean = "ibGOSS"/>
 				<ref bean = "ibGOS"/>
 				<ref bean = "ibLength"/>
 			</list>
 		</property>
 	</bean>
 
+	<bean id = "ibGOSS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="iBeam" />
+		<property name="parameter" ref="gradeOfSteelStandard" />
+		<property name="required" value="true" />
+		<property name="derivative" value="true" />
+		<property name="masterParameter" ref="squareBulletGOSS" />
+	</bean>
 	<bean id = "ibGOS" class="org.proto1.domain.product.ProductParameter">
 		<property name="product" ref="iBeam" />
 		<property name="parameter" ref="gradeOfSteel" />
 		<property name="required" value="true" />
 		<property name="derivative" value="true" />
+		<property name="masterParameter" ref="squareBulletGOS" />
 	</bean>
 	<bean id = "ibLength" class="org.proto1.domain.product.ProductParameter">
 		<property name="product" ref="iBeam" />
@@ -739,6 +757,63 @@
 
 	<bean id="slabLength" class="org.proto1.domain.product.ProductParameter">
 		<property name="product" ref="slab" />
+		<property name="parameter" ref="length" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+	
+
+	<!-- Square bullet -->
+	<bean id="squareBullet" class="org.proto1.domain.product.Product">
+		<property name="productType" ref="castedProduct"/>
+		<property name="productNames">
+			<list>
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="squareBullet" />
+					<property name="language" ref="english" />
+					<property name="name" value="Square Bullet" />
+				</bean>
+			
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="squareBullet" />
+					<property name="language" ref="russian" />
+					<property name="name" value="Квадратная заготовка" />
+				</bean>
+
+				<bean class="org.proto1.domain.product.ProductName">
+					<property name="product" ref="squareBullet" />
+					<property name="language" ref="ukrainian" />
+					<property name="name" value="Квадратна заготовка" />
+				</bean>
+
+			</list>
+		</property>
+		<property name="productParameters">
+			<list>
+				<ref bean="squareBulletGOSS"/>
+				<ref bean="squareBulletGOS"/>
+				<ref bean="squareBulletLength"/>
+			</list>
+		</property>
+		
+	</bean>
+
+	<bean id="squareBulletGOSS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="squareBullet" />
+		<property name="parameter" ref="gradeOfSteelStandard" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+
+	<bean id="squareBulletGOS" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="squareBullet" />
+		<property name="parameter" ref="gradeOfSteel" />
+		<property name="required" value="true" />
+		<property name="derivative" value="false" />
+	</bean>
+
+	<bean id="squareBulletLength" class="org.proto1.domain.product.ProductParameter">
+		<property name="product" ref="squareBullet" />
 		<property name="parameter" ref="length" />
 		<property name="required" value="true" />
 		<property name="derivative" value="false" />

@@ -12,7 +12,15 @@ var IndexLib = (function(){
 		$('#mainMenu').tree({
 			onClick : function(node) { 
 				if (node.id != "") {
-					$("#test").panel('refresh', '/protofront/forms/' + node.id + '.html');
+					if (node.id == "purchaseOrder") {
+						$.getScript("/protofront/scripts/order.js").done(function() {
+							OrderLib.init("#test",{
+								url : "/protofront/service/salesorders/?languageId=" + IndexLib.lang()
+							});
+						});
+					} else {
+						$("#test").panel('refresh', '/protofront/forms/' + node.id + '.html');
+					}
 				} 
 			}
 		});

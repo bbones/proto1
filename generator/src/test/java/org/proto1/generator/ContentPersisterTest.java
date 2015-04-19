@@ -79,13 +79,14 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	@Autowired
 	Product 
 		pigIron, hotIron, 
-		converterSteel, steelPlate, channel, iBeam, slab, scrap,
+		converterSteel, steelPlate, channel, iBeam, slab, scrap, squareBullet,
 		coke, cokeBreese, coalTar,
 		ironOreConcentrate, ironOre, ironOrePellet, ironOreSinter;
 	
 	@Autowired
 	Receipt
-		hotIronReceipt, converterSteelReceipt, slabReceipt, steelPlateReceipt;
+		hotIronReceipt, converterSteelReceipt, slabReceipt, steelPlateReceipt, 
+		squareBulletReceipt, iBeamReceipt;
 	
 	@Autowired
 	Parameter
@@ -168,6 +169,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(converterSteelReceipt); 
 		em.persist(slabReceipt);
 		em.persist(steelPlateReceipt);		
+		em.persist(iBeamReceipt);
+		em.persist(squareBulletReceipt);
 	}
 
 	private void persistCurrency() {
@@ -238,10 +241,11 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		em.persist(hotIron);
 		em.persist(scrap);
 		em.persist(converterSteel);
+		em.persist(slab);
+		em.persist(squareBullet);
 		em.persist(steelPlate);
 		em.persist(channel);
 		em.persist(iBeam);
-		em.persist(slab);
 		
 		em.persist(coke);
 		em.persist(cokeBreese);

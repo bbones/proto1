@@ -60,6 +60,10 @@
 			    	{
 			    		"id": "request",
 			    		"text" : "Request"
+			    	},
+			    	{
+			    		"id": "purchaseOrder",
+			    		"text" : "Purchase Order"
 			    	}
 		    	]
 		    },

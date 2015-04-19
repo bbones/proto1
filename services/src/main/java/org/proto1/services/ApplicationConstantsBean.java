@@ -15,15 +15,20 @@ public class ApplicationConstantsBean implements ApplicationConstants, Initializ
 	@Autowired
 	SideRoleRepository sideRoleRepository;
 	
-	private SideRole sideRole;
+	private SideRole buyerSideRole, sellerSideRole;
 	
 	public SideRole getDefaultBuyerRole() {
-		return sideRole;
+		return buyerSideRole;
 	}
 
 	public void afterPropertiesSet() throws Exception {
 
-		sideRole = sideRoleRepository.getBySideRoleName("Buyer");
+		buyerSideRole = sideRoleRepository.getBySideRoleName("Buyer");
+		sellerSideRole = sideRoleRepository.getBySideRoleName("Seller");
+	}
+
+	public SideRole getDefaultSellerRole() {
+		return sellerSideRole;
 	}
 
 }

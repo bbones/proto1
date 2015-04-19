@@ -1,56 +1,16 @@
-<div class="col-xs-2">
-	<div class="panel panel-default">
-		<div class="panel-heading">Contract</div>
-		<div class="panel-body">
-			<form role="form" id="contractForm">
-				<div class="form-group">
-					<label for="contractId">Contract #ID:</label> <input type="number"
-						class="form-control" name="id" id="id">
-				</div>
-				<div class="form-group">
-					<label for="contractNo">Document #:</label> <input type="text"
-						class="form-control" name="documentNo" id="documentNo">
-				</div>
-				<div class="form-group">
-					<label for="issueDate">Issue date:</label> <input type="date" 
-						class="form-control" name="issueDate" id="issueDate">
-				</div>
-				<div class="form-group">
-					<label for="version">Version:</label> <input type="text"
-						class="form-control" name="version" id="version">
-				</div>
-			</form>
-		</div>
+<div class="easyui-panel" title="Receipt" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
+
+		<table id="edgReceipt" title="Receipt" singleSelect="true"
+			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
+			<thead>
+				<tr>
+					<th field='receiptId' width=80>Receipt Id</th>
+					<th field='receiptNo' width=250 editor="text">Receipt #</th>
+					<th field='productId' width=80>Product Id</th>
+					<th field='productName' width=250 editor="text">Product Name</th>
+				</tr>
+			</thead>
+		</table>
 	</div>
-
 </div>
-
-<script>
-	var pos = (document.location.href).search('#contract:');
-	if (pos != -1) {
-		var id = document.location.href.substr(pos + 10);
-		findBEAction('/protofront/service/contract/findByID/', [ 'id',
-				'documentNo', 'issueDate', 'version' ]);
-	}
-
-	$("#submitBtn").click(
-			function() {
-				submitBtnAction('/protofront/service/contract/submit', 
-						[ 'id', 'documentNo', 'issueDate', 'version' ]);
-			});
-
-	$("#findBEBtn").click(
-			function() {
-				findBEAction('/protofront/service/contract/findByID/', 
-						[ 'id', 'documentNo', 'issueDate', 'version' ]);
-			});
-
-	$("#deleteBtn").click(function() {
-		var urlid = '/protofront/service/contract/deleteByID/';
-		deleteBtnAction(urlid);
-	});
-
-	$("#newBtn").click(function() {
-		clearForm();
-	});
-</script>

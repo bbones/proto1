@@ -49,7 +49,7 @@ public class BOM extends BaseOrder {
 				for(OrderLineParameter olpd : orderLine.getDerivativeParameters()) {
 					OrderLineParameter olp = new OrderLineParameter();
 					olp.setOrderLine(bomLine);
-					olp.setProductParameter(olpd.getProductParameter());
+					olp.setProductParameter(olpd.getProductParameter().getMasterParameter());
 					olp.setUnitOfMeasurement(olpd.getUnitOfMeasurement());
 					olp.setValue(olpd.getValue());
 					bomLine.getOrderLineParameterList().add(olp);

@@ -1,35 +1,40 @@
 <!-- TODO: edgSalesOrder, accordion, orderDeatils, edgOrderLines  -->
 
-<div class="easyui-panel" title="Production Order" style="width: 800px">
+<div class="easyui-panel" title="Sales Order" style="width: 800px">
 	<div style="padding: 10px 30px 20px 30px">
 
-			<table id="edgProdOrder" title="Production Order" singleSelect="true"
-				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbpo', idField : 'poId'">
+			<table id="edgSalesOrder" title="SalesOrder" singleSelect="true"
+				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbso', idField : 'soId'">
 				<thead>
 					<tr>
-						<th field='poId' width=80>PO Id</th>
-						<th field='poNo' width=250 editor="text">PO #</th>
-						<th field='poIssueDate' width=250 editor="date">Issue Date</th>
+						<th field='soId' width=80>SO Id</th>
+						<th field='soNo' width=250 editor="text">SO #</th>
+						<th field='soIssueDate' width=250 editor="date">Issue Date</th>
+						<th field='customerName' width=250 editor="test">Customer Name</th>
 					</tr>
 				</thead>
 			</table>
 
 			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
 				<div title="SO details"
-					data-options="iconCls:'icon-reload',selected:true"	style="padding: 10px;">
+					data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
 					 <form id="sof" action="form1_proc.php" method="post" enctype="multipart/form-data">
 				        <table>
 				            <tr>
 				                <td>Id:</td>
-				                <td><input name="poId" class="f1 easyui-textbox"></input></td>
+				                <td><input name="soId" class="f1 easyui-textbox"></input></td>
 				            </tr>
 				            <tr>
-				                <td>PO #:</td>
-				                <td><input name="poNo" class="f1 easyui-textbox"></input></td>
+				                <td>SO #:</td>
+				                <td><input name="soNo" class="f1 easyui-textbox"></input></td>
 				            </tr>
 				            <tr>
 				                <td>Issue date:</td>
-				                <td><input name="poIssueDate" class="f1 easyui-textbox"></input></td>
+				                <td><input name="soIssueDate" class="f1 easyui-textbox"></input></td>
+				            </tr>
+				            <tr>
+				                <td>Customer:</td>
+				                <td><input name="customerName" class="f1 easyui-textbox"></input></td>
 				            </tr>
 				            <tr>
 				                <td></td>
@@ -38,12 +43,12 @@
 				        </table>
 				    </form>
 				</div>
-				<div title="PO Lines"
-					data-options="iconCls:'icon-save',selected:false"
+				<div title="SO Lines"
+					data-options="iconCls:'icon-save',selected:true"
 					style="overflow: auto; padding: 10px;" >
 					<table id="edgLines" title="Lines" singleSelect="true"
 						style="width: 600px; height: auto" 
-						data-options="iconCls: 'icon-edit', toolbar: '#tbolines', idField : 'olId'">
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolines', idField : 'soLineId'">
 						<thead>
 							<tr>
 								<th field='orderLineId' width=80>SO Line Id</th>
@@ -61,7 +66,7 @@
 					data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
 					<table id="edgLineParameters" title="Order Line Parameters" singleSelect="true"
 						style="width: 600px; height: auto" 
-						data-options="iconCls: 'icon-edit', toolbar: '#tbolparams', idField : 'olpId'">
+						data-options="iconCls: 'icon-edit', toolbar: '#tbsolparam', idField : 'soLineId'">
 						<thead>
 							<tr>
 								<th field='olpId' width=60>OLP Id</th>
@@ -73,7 +78,8 @@
 
 								<th field='uomId' width=60>Par UOM ID</th>
 								<th field='uomName' width=80 editor="text">Par UOM Name</th>
-								<th field='derivative' widht=40 editor="text">Derivative</th>
+								
+								<th	data-options="field:'button',width:60,align:'center',formatter:SalesOrderLib.button">Status</th>
 								
 								
 							</tr>
@@ -84,44 +90,44 @@
 	</div>
 </div>
 
-<div id="tbpo" style="height: auto">
+<div id="tbso" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductionOrderLib.appendOrder()">Append</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendParameter()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductionOrderLib.removeOrder()">Remove</a> 
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeParameter()">Remove</a> 
 	<a href="javascript:void(0)"
 		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductionOrderLib.acceptOrder()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.acceptParameter()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-ok',plain:true" onclick="ProductionOrderLib.addBOMs()">Add BOMs</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<div id="tbolines" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductionOrderLib.appendLine()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductionOrderLib.removeLine()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductionOrderLib.saveLine()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductionOrderLib.rejectLine()">Reject</a>
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectParameter()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-search',plain:true"
 		onclick="getChanges()">GetChanges</a>
 </div>
 
-<div id="tbolparams" style="height: auto">
+<div id="tbsolines" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductionOrderLib.appendLineParameter()">Append</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendLine()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductionOrderLib.removeLineParameter()">Remove</a> 
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeLine()">Remove</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductionOrderLib.saveLineParameter()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.saveLine()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductionOrderLib.rejectLineParameter()">Reject</a>
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbsolparam" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="SalesOrderLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="SalesOrderLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="SalesOrderLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="SalesOrderLib.rejectLine()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-search',plain:true"
 		onclick="getChanges()">GetChanges</a>
@@ -130,7 +136,7 @@
 
 
 <script>
-	$.getScript("/protofront/scripts/prodOrder.js").done(function() {
-		ProductionOrderLib.init();
+	$.getScript("/protofront/scripts/salesOrder.js").done(function() {
+		SalesOrderLib.init();
 	});
 </script> 

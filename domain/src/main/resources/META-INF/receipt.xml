@@ -69,6 +69,24 @@
 		</property>
 	</bean>
 	
+	<bean id = "squareBulletReceipt" class="org.proto1.domain.product.Receipt">
+		<property name="product" ref="squareBullet" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
+		<property name="documentNo" value="Slab Receipt #1" />
+		<property name="byDefault" value="true"/>
+		<property name="ingredients">
+			<list>
+				<bean class="org.proto1.domain.product.ReceiptItem">
+					<property name="receipt" ref="squareBulletReceipt" />
+					<property name="product" ref="converterSteel" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
+					<property name="qnty" value="1.023" />
+					<property name="master" value="true"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
 	<bean id = "steelPlateReceipt" class="org.proto1.domain.product.Receipt">
 		<property name="product" ref="steelPlate" />
 		<property name="unitOfMeasurement" ref="metricTonn" />
@@ -89,6 +107,34 @@
 			<list>
 				<bean class="org.proto1.domain.product.ReceiptItem">
 					<property name="receipt" ref="steelPlateReceipt" />
+					<property name="product" ref="scrap" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
+					<property name="qnty" value="0.184" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id = "iBeamReceipt" class="org.proto1.domain.product.Receipt">
+		<property name="product" ref="iBeam" />
+		<property name="unitOfMeasurement" ref="metricTonn" />
+		<property name="documentNo" value="I-Beam Receipt #1" />
+		<property name="byDefault" value="true"/>
+		<property name="ingredients">
+			<list>
+				<bean class="org.proto1.domain.product.ReceiptItem">
+					<property name="receipt" ref="iBeamReceipt" />
+					<property name="product" ref="squareBullet" />
+					<property name="unitOfMeasurement" ref="metricTonn" />
+					<property name="qnty" value="1.173" />
+					<property name="master" value="true"/>
+				</bean>
+			</list>
+		</property>
+		<property name="byProducts">
+			<list>
+				<bean class="org.proto1.domain.product.ReceiptItem">
+					<property name="receipt" ref="iBeamReceipt" />
 					<property name="product" ref="scrap" />
 					<property name="unitOfMeasurement" ref="metricTonn" />
 					<property name="qnty" value="0.184" />
