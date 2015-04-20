@@ -14,8 +14,8 @@ var IndexLib = (function(){
 				if (node.id != "") {
 					if (node.id == "purchaseOrder") {
 						$.getScript("/protofront/scripts/order.js").done(function() {
-							OrderLib.init("#test",{
-								url : "/protofront/service/salesorders/?languageId=" + IndexLib.lang()
+							OrderLib.init("#test", {
+								orderURL : "/protofront/service/purchaseorders/",
 							});
 						});
 					} else {
@@ -67,7 +67,28 @@ var IndexLib = (function(){
 		},
 		getRootProductType : function() {
 			return 5;
-		}
+		},
+		productFormatter : function(value,row){
+			return row.productName;
+		},
+        dateFormatter : function(value) {
+        	var d = new Date(value);
+        	return d.toLocaleDateString();
+        },
+        dateParser : function(s){
+        	if (!isNaN(s))
+        		return new Date(s);
+            if (!s) return new Date();
+            var ss = (s.split('.'));
+            var d = parseInt(ss[0],10);
+            var m = parseInt(ss[1],10);
+            var y = parseInt(ss[2],10);
+            if (!isNaN(y) && !isNaN(m) && !isNaN(d)){
+                return new Date(y,m-1,d);
+            } else {
+                return new Date();
+            }
+        }
 	}
 })();
 

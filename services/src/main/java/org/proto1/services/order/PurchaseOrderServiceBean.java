@@ -3,10 +3,13 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.order.PurchaseOrder;
 import org.proto1.repository.order.PurchaseOrderRepository;
 import org.proto1.services.ApplicationConstants;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PurchaseOrderServiceBean extends BaseOrderServiceBean implements
 		PurchaseOrderService {
 	
@@ -24,8 +27,14 @@ public class PurchaseOrderServiceBean extends BaseOrderServiceBean implements
 	}
 
 	public void delete(Long orderId) {
-		// TODO Auto-generated method stub
+		purchaseOrderRepository.delete(orderId);
+	}
 
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.PurchaseOrderService#save(org.proto1.domain.order.PurchaseOrder)
+	 */
+	public PurchaseOrder save(PurchaseOrder purchaseOrder) {
+		return purchaseOrderRepository.save(purchaseOrder);
 	}
 
 }

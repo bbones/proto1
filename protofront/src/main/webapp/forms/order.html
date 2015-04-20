@@ -1,16 +1,133 @@
 <div class="easyui-panel" title="Order" style="width: 800px">
 	<div style="padding: 10px 30px 20px 30px">
-		<table id="edgOrder" title="Order" singleSelect="true" class="easyui-datagrid"
+		<table id="edgOrder" title="Order" singleSelect="true"
 				style="width: 700px; height: auto" 
-					data-options="iconCls: 'icon-edit', toolbar: '#tbso', idField : 'soId'">
+					data-options="iconCls: 'icon-edit', toolbar: '#tbOrder', idField : 'orderId'">
 			<thead>
 				<tr>
-					<th field='soId' width=80>SO Id</th>
-					<th field='soNo' width=250 editor="text">SO #</th>
-					<th field='soIssueDate' width=250 editor="date">Issue Date</th>
+					<th field='orderId' width=80>SO Id</th>
+					<th field='orderNo' width=250 editor="text">SO #</th>
+					<th field='issueDate' width=250 formatter=IndexLib.dateFormatter 
+							editor="{
+								type:'datebox2', 
+								options:{
+									formatter:IndexLib.dateFormatter,
+									parser:IndexLib.dateParser
+								}
+							}">Issue Date</th>
 				</tr>
 			</thead>
 		</table>
 	
+
+		<div title="Order Lines"
+			data-options="iconCls:'icon-save',selected:false"
+			style="overflow: auto; padding: 10px;" >
+			<table id="edgLines" title="Lines" singleSelect="true"
+				style="width: 600px; height: auto" 
+				data-options="iconCls: 'icon-edit', toolbar: '#tbolines', idField : 'orderLineId'">
+				<thead>
+					<tr>
+						<th field='orderLineId' width=80>Line Id</th>
+						<th field='productId' width=250 formatter=IndexLib.productFormatter 
+								editor="{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/products/languageId=' + IndexLib.lang(),
+			                                required:true
+			                            }
+                        			}">Product</th>
+						<th field='uomId' width=50 formatter=IndexLib.uomFormatter 
+								editor="{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'id',
+			                                textField:'name',
+			                                method:'get',
+			                                url:'/protofront/service/masterdata/uoms/languageId=' + IndexLib.lang(),
+			                                required:true
+			                            }
+                        			}">UOM</th>
+						<th field='qnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+						<th field='price' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
+						<th field='amount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
+						
+					</tr>
+				</thead>
+			</table>
+		</div>
+		
+		<div title="Order Line Parameters"
+			data-options="iconCls:'icon-reload',selected:false"	style="padding: 10px;">
+			<table id="edgLineParameters" title="Order Line Parameters" singleSelect="true"
+				style="width: 600px; height: auto" 
+				data-options="iconCls: 'icon-edit', toolbar: '#tbolparam', idField : 'olpId'">
+				<thead>
+					<tr>
+						<th field='olpId' width=60>OLP Id</th>
+
+						<th field='paramId' width=60>Par Id</th>
+						<th field='paramName' width=120>Parameter</th>
+						
+						<th field='olpValue' width=120 editor="text">Value</th>
+
+						<th field='uomId' width=60>Par UOM ID</th>
+						<th field='uomName' width=80 editor="text">Par UOM Name</th>
+						
+						<th	data-options="field:'button',width:60,align:'center',formatter:OrderLib.button">Status</th>
+						
+					</tr>
+				</thead>
+			</table>
+		</div>
+		
 	</div>
 </div>
+
+<div id="tbOrder" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="OrderLib.appendOrder()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="OrderLib.removeOrder()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="OrderLib.acceptOrder()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="OrderLib.rejectOrder()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="OrderLib.getChanges()">GetChanges</a>
+</div>
+
+<div id="tbolines" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="OrderLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="OrderLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="OrderLib.acceptLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="OrderLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbolparam" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="OrderLib.appendLine()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="OrderLib.removeLine()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="OrderLib.saveLine()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="OrderLib.rejectLine()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+
