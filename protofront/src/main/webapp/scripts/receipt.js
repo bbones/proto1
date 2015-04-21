@@ -11,25 +11,26 @@ var ReceiptLib = (function() {
 	
 	var initReceiptGrid = function() {
 		$("#edgReceipt").edatagrid({
-			url : "/protofront/service/receipt/listbylang/" + IndexLib.lang(),
+			url : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
+			method : "GET",
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgIngredients").edatagrid({
-					url : '/protofront/service/receipt/ingredients/' + IndexLib.lang() + "&" + row.receiptId
+					url : '/protofront/service/receipts/'+ row.receiptId + '/ingredients?languageId=' + IndexLib.lang() 
 				});
 				$("#edgByproducts").edatagrid({
-					url : '/protofront/service/receipt/byproducts/' + IndexLib.lang() + "&" + row.receiptId
+					url : '/protofront/service/receipts/'+ row.receiptId + '/byproducts?languageId=' + IndexLib.lang()
 				});
 			} // onSelect
 		});
-	}
+	};
 	
 	var initIngredGrid = function () {
-		$("#edgIngredients").edatagrid();
+		$("#edgIngredients").edatagrid({method : 'GET'});
 	};
 	
 	var initByProdGrid= function () {
-		$("#edgByproducts").edatagrid();
+		$("#edgByproducts").edatagrid({method : 'GET'});
 	};
 
 	
@@ -39,6 +40,6 @@ var ReceiptLib = (function() {
 			initIngredGrid();
 			initByProdGrid();
 		}
-	}
+	};
 	
 })();

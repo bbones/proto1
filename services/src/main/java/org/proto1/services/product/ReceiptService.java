@@ -7,12 +7,46 @@ package org.proto1.services.product;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.product.Receipt;
+import org.proto1.domain.product.ReceiptItem;
+
 public interface ReceiptService {
 
 	List<Map<String, Object>> getReceiptList(Long languageId);
 
-	List<Map<String, Object>> getIngredientsLis(Long languageId, Long receiptId);
+	/**
+	 * @param receiptId
+	 * @return
+	 */
+	Receipt get(Long receiptId);
+
+	/**
+	 * @param receiptId
+	 * @return void
+	 */
+	void deleteReceipt(Long receiptId);
+
+	/**
+	 * @param Receipt receipt
+	 * @return Receipt
+	 */
+	Receipt saveReceipt(Receipt receipt);
+
+	List<Map<String, Object>> getIngredientsList(Long languageId, Long receiptId);
 
 	List<Map<String, Object>> getByproductsList(Long languageId, Long receiptId);
+
+	/**
+	 * @param ReceiptItem ingredient
+	 * @return ReceiptItem
+	 */
+	ReceiptItem saveIngredient(ReceiptItem ingredient);
+
+	/**
+	 * @param Long ingredientId
+	 */
+	void deleteIngredient(Long ingredientId);
+
+
 
 }

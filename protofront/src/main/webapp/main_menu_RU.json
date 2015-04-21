@@ -1,0 +1,84 @@
+[
+	{
+	    "id": "masterData",
+	    "text": "НСИ",
+	    "state": "closed",
+	    "children": [{
+	        "id": "enterprise",
+	        "text": "Предприятия"
+	    	},{
+	        	"id": "person",
+	       		"text": "Люди"
+	    	},{
+	        	"id": "period",
+	        	"text": "Периоды"
+	    	},{
+	        	"id": "productType",
+	        	"text": "Типы продукции"
+	    	},{
+		        "id": "product",
+		        "text": "Продукция"
+		    },{
+		        "id": "parameter",
+		        "text": "Параметры"
+		    },{
+		        "id": "location",
+		        "text": "Расположения"
+		    }
+		]
+	},
+	{
+		"id": "documents",
+	    "text": "Документы",
+	    "state": "closed",
+	    "children": [
+	    	{
+	        	"id": "contract",
+		        "text": "Контракты"
+	    	},
+	    	{
+		    	"id": "orders",
+		        "text": "Заказы",
+		        "state": "closed",
+		        "children": [
+		        	{
+		        		"id": "salesOrder",
+			        	"text": "Заказы на продажу"
+			    	},
+			    	{
+		        		"id": "demand",
+		        		"text": "Планирование потребности"
+		    		},
+		    		{
+		        		"id": "prodOrder",
+			        	"text": "Заказы на производство"
+			    	},
+			    	{
+			    		"id": "bom",
+			    		"text" : "Производственные спецификации"
+			    	},
+			    	{
+			    		"id": "request",
+			    		"text" : "Запросы на снабжение"
+			    	},
+			    	{
+			    		"id": "purchaseOrder",
+			    		"text" : "Заказы на закупку"
+			    	}
+		    	]
+		    },
+	    	{
+	       		"id": "receipt",
+		        "text": "Рецепты"
+		    },
+		    {
+		        "id": "bill",
+		        "text": "Накладные"
+	    	},
+		    {
+		        "id": "inventory",
+		        "text": "Склад"
+	    	}
+	    ]
+	}
+]

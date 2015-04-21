@@ -88,8 +88,12 @@ var IndexLib = (function(){
             } else {
                 return new Date();
             }
+        },
+        changeLanguage : function(rec) {
+        	alert("main_menu_" + rec.locale + ".json");
+        	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
         }
-	}
+	};
 })();
 
 

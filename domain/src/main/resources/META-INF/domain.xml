@@ -5,21 +5,26 @@
 	
 	<bean id="english" class="org.proto1.domain.Language">
 		<property name="name" value="English"/>
+		<property name="locale" value="EN" />
 		<property name="required" value="true" />
 	</bean>
 
 	<bean id="russian" class="org.proto1.domain.Language">
 		<property name="name" value="Russian"/>
+		<property name="locale" value="RU" />
 		<property name="required" value="true" />
 	</bean>
 
 	<bean id="ukrainian" class="org.proto1.domain.Language">
 		<property name="name" value="Ukrainian"/>
+		<property name="locale" value="UK" />
 		<property name="required" value="true" />
 	</bean>
 
 	<bean id="french" class="org.proto1.domain.Language">
 		<property name="name" value="French"/>
+		<property name="locale" value="FR" />
+		<property name="required" value="false" />
 	</bean>
 
 	<bean id="dateFormat" class="java.text.SimpleDateFormat">

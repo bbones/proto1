@@ -13,6 +13,8 @@ public class Language extends AbstractEntity {
 	@NotNull
 	private String name;
 	
+	private String locale;
+	
 	@NotNull
 	private boolean required;
 
@@ -55,6 +57,14 @@ public class Language extends AbstractEntity {
 
 	public void setRequired(boolean required) {
 		this.required = required;
+	}
+
+	public String getLocale() {
+		return locale;
+	}
+
+	public void setLocale(String locale) {
+		this.locale = locale;
 	}
 	
 }

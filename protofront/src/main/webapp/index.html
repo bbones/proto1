@@ -24,9 +24,9 @@
 			<a href="#" class="easyui-menubutton" menu="#mm1" iconCls="icon-man">File</a>
 			<a href="#" class="easyui-menubutton" menu="#mm2" iconCls="icon-edit">Edit</a>
 			<a href="#" class="easyui-menubutton" menu="#mm3" iconCls="icon-help">Help</a>
-			<input id="langSelector" class="easyui-combobox" name="language" value=1
+			<input id="langSelector" class="easyui-combobox" name="language" value=3
     			data-options="valueField:'id',textField:'name',method:'get',
-    				url:'/protofront/service/masterdata/languages'">
+    				url:'/protofront/service/masterdata/languages', onSelect : IndexLib.changeLanguage">
 		</div>
 		<div id="mm1" style="width: 150px;">
 			<div iconCls="icon-lock">Log In</div>
@@ -59,7 +59,7 @@
 		style="width: 300px;">
 		<div style="margin: 20px 0;"></div>
 		<div class="easyui-panel" style="padding: 5px">
-			<ul id="mainMenu" class="easyui-tree" data-options="url:'main_menu.json'"></ul>
+			<ul id="mainMenu" class="easyui-tree" data-options="url:'main_menu_RU.json', method : 'GET'"></ul>
 		</div>
 	</div>
 	<div id="test" data-options="region:'center',title:'center title'" style="padding: 5px; background: #eee;">
