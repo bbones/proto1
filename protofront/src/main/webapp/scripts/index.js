@@ -71,6 +71,9 @@ var IndexLib = (function(){
 		productFormatter : function(value,row){
 			return row.productName;
 		},
+		uomFormatter : function(value,row){
+			return row.uomName;
+		},
         dateFormatter : function(value) {
         	var d = new Date(value);
         	return d.toLocaleDateString();

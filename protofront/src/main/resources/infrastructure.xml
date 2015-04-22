@@ -24,7 +24,7 @@
         </property>
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" 
-                p:showSql="false"
+                p:showSql="true"
 				p:generateDdl="true"
 				p:database="POSTGRESQL"
 			/>

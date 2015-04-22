@@ -11,7 +11,7 @@ import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductParameter;
 import org.proto1.repository.LanguageRepository;
-import org.proto1.repository.ProductRepository;
+import org.proto1.repository.product.ProductRepository;
 
 public interface ProductService {
 

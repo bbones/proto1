@@ -11,12 +11,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.repository.UnitOfMeasurementNameRepository;
-import org.proto1.repository.ProductRepository;
 import org.proto1.repository.order.OrderLineRepository;
+import org.proto1.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

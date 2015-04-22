@@ -75,7 +75,7 @@ public class ReceiptController {
 		return receiptService.getIngredientsList(languageId, receiptId);
 	}
 	
-	@RequestMapping(value = "{receiptId}/ingredients", method = RequestMethod.POST )
+	@RequestMapping(value = "ingredients", method = RequestMethod.POST )
 	public @ResponseBody ReceiptItemDTO  saveIngredient(@RequestParam Long languageId, ReceiptItemDTO ingredientDTO) {
 		ReceiptItem ingredient = mapReceiptItem(ingredientDTO);
 		ingredient = receiptService.saveIngredient(ingredient);
@@ -99,8 +99,14 @@ public class ReceiptController {
 	 * @return
 	 */
 	private ReceiptItemDTO mapReceiptItemDTO(ReceiptItem receiptItem) {
-		// TODO Auto-generated method stub
-		return null;
+		ReceiptItemDTO receiptItemDTO = new ReceiptItemDTO();
+		receiptItemDTO.setReceiptItemId(receiptItem.getId());
+		receiptItemDTO.setProductId(receiptItem.getProduct().getId());
+		receiptItemDTO.setReceiptId(receiptItem.getReceipt().getId());
+		receiptItemDTO.setQnty(receiptItem.getQnty());
+		receiptItemDTO.setMaster(receiptItem.isMaster());
+		receiptItemDTO.setVersion(receiptItem.getVersion());
+		return receiptItemDTO;
 	}
 
 	/**
@@ -109,8 +115,17 @@ public class ReceiptController {
 	 */
 	private ReceiptItem mapReceiptItem( ReceiptItemDTO receiptItemDTO) {
 		ReceiptItem receiptItem = new ReceiptItem();
+		if (receiptItemDTO.getReceiptItemId() != null)
+			receiptItem.setId(receiptItemDTO.getReceiptItemId());
 		Receipt receipt = receiptService.get(receiptItemDTO.getReceiptId());
-		return null;
+		receiptItem.setReceipt(receipt);
+		Product product = productService.getById(receiptItemDTO.getProductId());
+		receiptItem.setProduct(product);
+		receiptItem.setMaster(receiptItemDTO.isMaster());
+		receiptItem.setQnty(receiptItemDTO.getQnty());
+		UnitOfMeasurement unitOfMeasurement = unitOfMeasurementService.get(receiptItemDTO.getUomId());
+		receiptItem.setUnitOfMeasurement(unitOfMeasurement);
+		return receiptItem;
 	}
 
 

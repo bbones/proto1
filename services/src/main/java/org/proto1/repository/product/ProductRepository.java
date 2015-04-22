@@ -2,7 +2,7 @@
  * Copyright (c) 2015 Valentin Pogrebinsky
  * All rights reserved. 
  *******************************************************************************/
-package org.proto1.repository;
+package org.proto1.repository.product;
 
 import java.util.List;
 import java.util.Map;
@@ -23,7 +23,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 			"where p.productType.id = :pt_id and pn.language.id = :language_id")
 	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(@Param("pt_id") Long productTypeId, @Param("language_id") Long languageId);
 
-	@Query("select new Map(p.id as id, pn.name as name) " + 
+	@Query("select new Map(p.id as productId, pn.name as productName) " + 
 			"from Product p join p.productNames pn " + 
 			"where pn.language.id = :language_id")
 	public List<Map<String, Object>> getListByLanguageId(@Param("language_id")Long languageId);

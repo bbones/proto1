@@ -15,8 +15,8 @@
 	<bean id="entityManagerFactory" 
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
     	  p:dataSource-ref="dataSource"
-    	  p:persistenceXmlLocation="./META-INF/persistence.xml"
-          p:persistenceUnitName="proto1">
+    	  p:persistenceXmlLocation="classpath:META-INF/persistence.xml"
+          p:persistenceUnitName="proto2">
         <property name="packagesToScan">
         	<list>
         		<value>org.proto1.domain</value>
@@ -26,7 +26,7 @@
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" 
                 p:showSql="true"
 				p:generateDdl="true"
-				p:database="HSQL"
+				p:database="POSTGRESQL"
 			/>
         </property>
     </bean>
@@ -36,10 +36,10 @@
 	</bean>
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-    	<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
-    	<property name="url" value="jdbc:hsqldb:hsql://localhost/xdb"/>
-    	<property name="username" value="sa"/>
-    	<property name="password" value=""/>
+    	<property name="driverClassName" value="org.postgresql.Driver"/>
+    	<property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+    	<property name="username" value="bbones"/>
+    	<property name="password" value="bb"/>
 	</bean>
 
 </beans>

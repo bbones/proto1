@@ -26,12 +26,30 @@
 					data-options="iconCls: 'icon-edit', toolbar: '#tbri', idField : 'ingredId'">
 					<thead>
 						<tr>
-							<th field='ingredId' width=60>Ingred Item Id</th>
-							<th field='ingredProdId' width=60>Ing Prod Id</th>
-							<th field='ingredName' width=150>Ing Name</th>
-							<th field='qnty' width=80>Qnty</th>
-							<th field='uomId' width=50>UOM</th>
-							<th field='uomName' width=80>UOM Name</th>
+							<th field='receiptItemId' width=60>Ingred Item Id</th>
+							<th field='productId' width=160 formatter=IndexLib.productFormatter 
+								editor="{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'productId',
+			                                textField:'productName',
+			                                method:'get',
+			                                url:'/protofront/service/products/?languageId=' + IndexLib.lang(),
+			                                required:true
+			                            }
+			                    }">Ingredient</th>
+							<th field='qnty' width=80 editor="{type:'numberbox'}">Qnty</th>
+							<th field='uomId' width=50 formatter=IndexLib.uomFormatter 
+								editor="{
+		                            	type:'combobox',
+		                            	options:{
+			                                valueField:'uomId',
+			                                textField:'uomName',
+			                                method:'get',
+			                                url:'/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
+			                                required:true
+			                            }
+                        			}">UOM</th>
 						</tr>
 					</thead>
 				</table>
@@ -80,14 +98,14 @@
 
 <div id="tbri" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendParameter()">Append</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendIngredient()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeParameter()">Remove</a> 
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeIngredient()">Remove</a> 
 	<a href="javascript:void(0)"
 		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.acceptParameter()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.acceptIngredient()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectParameter()">Reject</a>
+		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectIngredient()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-search',plain:true"
 		onclick="getChanges()">GetChanges</a>
@@ -95,14 +113,14 @@
 
 <div id="tbrbp" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendParameter()">Append</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="ReceiptLib.appendByproduct()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeParameter()">Remove</a> 
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ReceiptLib.removeByproduct()">Remove</a> 
 	<a href="javascript:void(0)"
 		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.acceptParameter()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="ReceiptLib.acceptByproduct()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectParameter()">Reject</a>
+		data-options="iconCls:'icon-undo',plain:true" onclick="ReceiptLib.rejectByproduct()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-search',plain:true"
 		onclick="getChanges()">GetChanges</a>

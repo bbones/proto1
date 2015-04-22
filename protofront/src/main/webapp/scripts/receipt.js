@@ -12,6 +12,8 @@ var ReceiptLib = (function() {
 	var initReceiptGrid = function() {
 		$("#edgReceipt").edatagrid({
 			url : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
+			saveUrl : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
+			updateUrl : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
 			method : "GET",
 			onSelect : function(index, row) {
 				console.log(row);
@@ -26,7 +28,11 @@ var ReceiptLib = (function() {
 	};
 	
 	var initIngredGrid = function () {
-		$("#edgIngredients").edatagrid({method : 'GET'});
+		$("#edgIngredients").edatagrid({
+			method : 'GET',
+			saveUrl : "/protofront/service/receipts/ingredients?languageId="  + IndexLib.lang(),
+			updateUrl : "/protofront/service/receipts/ingredients?languageId="  + IndexLib.lang()			
+		});
 	};
 	
 	var initByProdGrid= function () {
@@ -39,6 +45,12 @@ var ReceiptLib = (function() {
 			initReceiptGrid(); 
 			initIngredGrid();
 			initByProdGrid();
+		},
+		appendIngredient : function() {
+			$("#edgIngredients").edatagrid('addRow', {row : {receiptId : $("#edgReceipt").edatagrid('getSelected').receiptId}});
+		},
+		acceptIngredient : function() {
+			$("#edgIngredients").edatagrid('saveRow');
 		}
 	};
 	

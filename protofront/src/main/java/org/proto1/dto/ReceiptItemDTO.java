@@ -15,6 +15,8 @@ public class ReceiptItemDTO extends DTO {
 	
 	private Long receiptItemId;
 	private Long receiptId;
+	private Long productId;
+	private String productName;
 	private Long uomId;
 	private String uomName;
 	private Double qnty;
@@ -66,6 +68,22 @@ public class ReceiptItemDTO extends DTO {
 
 	public void setMaster(boolean master) {
 		this.master = master;
+	}
+
+	public Long getProductId() {
+		return productId;
+	}
+
+	public void setProductId(Long productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 
 }

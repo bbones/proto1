@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
-import org.proto1.repository.ProductTypeRepository;
+import org.proto1.repository.product.ProductTypeRepository;
 
 public interface ProductTypeService {
 

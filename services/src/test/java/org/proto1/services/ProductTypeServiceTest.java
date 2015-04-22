@@ -13,7 +13,7 @@ import java.util.List;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.product.ProductType;
-import org.proto1.repository.ProductTypeRepository;
+import org.proto1.repository.product.ProductTypeRepository;
 import org.proto1.services.product.ProductTypeService;
 import org.proto1.services.product.ProductTypeServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;

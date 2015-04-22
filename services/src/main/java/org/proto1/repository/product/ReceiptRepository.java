@@ -8,7 +8,7 @@
  * Created 24/02/15
  *  
  */
-package org.proto1.repository;
+package org.proto1.repository.product;
 
 import java.util.List;
 import java.util.Map;
@@ -29,17 +29,17 @@ public interface ReceiptRepository extends CrudRepository<Receipt, Long> {
 			+ "where pn.language.id = :language_id and uomn.language.id = :language_id")
 	public List<Map<String, Object>> getList(@Param("language_id") Long languageId);
 	
-	@Query("select new Map(r.id as receiptId, i.id as ingredId, "
-			+ "i.product.id as ingredProdId, pn.name as ingredName,"
-			+ "i.qnty as qnty, i.id as uomId, uomn.shortName as uomName ) "
+	@Query("select new Map(r.id as receiptId, i.id as receiptItemId, "
+			+ "i.product.id as productId, pn.name as productName,"
+			+ "i.qnty as qnty, i.unitOfMeasurement.id as uomId, uomn.shortName as uomName, i.version as version ) "
 			+ "from Receipt r join r.ingredients i join i.product.productNames pn "
 			+ "join i.unitOfMeasurement uom join uom.unitOfMeasurementNames uomn "
 			+ "where pn.language.id = :language_id and r.id=:receipt_id and uomn.language.id = :language_id ")
 	public List<Map<String, Object>> getIngredientsList(@Param("language_id") Long languageId, @Param("receipt_id") Long receiptId);
 	
-	@Query("select new Map(r.id as receiptId, i.id as ingredId, "
-			+ "i.product.id as ingredProdId, pn.name as ingredName,"
-			+ "i.qnty as qnty, i.id as uomId, uomn.shortName as uomName ) "
+	@Query("select new Map(r.id as receiptId, i.id as receiptItemId, "
+			+ "i.product.id as productId, pn.name as productName,"
+			+ "i.qnty as qnty, i.unitOfMeasurement.id as uomId, uomn.shortName as uomName ) "
 			+ "from Receipt r join r.byProducts i join i.product.productNames pn "
 			+ "join i.unitOfMeasurement uom join uom.unitOfMeasurementNames uomn "
 			+ "where pn.language.id = :language_id and r.id=:receipt_id and uomn.language.id = :language_id ")
