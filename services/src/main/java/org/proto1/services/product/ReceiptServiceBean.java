@@ -15,6 +15,8 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.product.Receipt;
 import org.proto1.domain.product.ReceiptItem;
 import org.proto1.repository.product.ReceiptItemRepository;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class ReceiptServiceBean implements ReceiptService {
+	protected final Log logger = LogFactory.getLog(getClass());
 
 	@Autowired
 	ReceiptRepository receiptRepository;
@@ -80,6 +83,7 @@ public class ReceiptServiceBean implements ReceiptService {
 		} else {
 			for (ReceiptItem ri : ingredient.getReceipt().getIngredients()) {
 				if (ri.getId() == ingredient.getId()) {
+					logger.debug("Found");
 					BeanUtils.copyProperties(ingredient, ri);
 					result = ri;
 				}
