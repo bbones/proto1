@@ -76,29 +76,41 @@ public class ReceiptServiceBean implements ReceiptService {
 	 * @see org.proto1.services.product.ReceiptService#saveIngredient(org.proto1.domain.product.ReceiptItem)
 	 */
 	@Transactional
-	public ReceiptItem saveIngredient(ReceiptItem ingredient) {
+	public ReceiptItem saveIngredient(Long receiptId, ReceiptItem ingredient) {
 		ReceiptItem result = ingredient;
+
+		Receipt receipt = receiptRepository.findOne(receiptId);
+		ingredient.setReceipt(receipt);
+
 		if (ingredient.getId() == null) {
-			ingredient.getReceipt().getIngredients().add(ingredient);
+			receipt.getIngredients().add(ingredient);
 		} else {
-			for (ReceiptItem ri : ingredient.getReceipt().getIngredients()) {
-				if (ri.getId() == ingredient.getId()) {
-					logger.debug("Found");
+			for (ReceiptItem ri : receipt.getIngredients()) {
+				if (ri.getId().equals(ingredient.getId())) {
+					logger.debug("Found for update");
 					BeanUtils.copyProperties(ingredient, ri);
 					result = ri;
 				}
 			}
 		}
-		receiptRepository.save(ingredient.getReceipt());
+		receiptRepository.save(receipt);
 		return result;
 	}
 
 	/* (non-Javadoc)
 	 * @see org.proto1.services.product.ReceiptService#deleteIngredient(java.lang.Long)
 	 */
-	public void deleteIngredient(Long ingredientId) {
-		// TODO Auto-generated method stub
-		
+	public void deleteIngredient(Long receiptId, Long ingredientId) {
+		Receipt receipt = receiptRepository.findOne(receiptId);
+		ReceiptItem riForDelete = null;
+		for (ReceiptItem ri : receipt.getIngredients()) {
+			if (ri.getId().equals(ingredientId)) {
+				logger.debug("Found for delete");
+				riForDelete = ri;
+			}
+		}
+		receipt.getIngredients().remove(riForDelete);
+		receiptRepository.save(receipt);
 	}
 
 	// Byproducts methods

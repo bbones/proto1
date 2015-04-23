@@ -8,7 +8,6 @@
  */
 
 var ReceiptLib = (function() {
-	
 	var initReceiptGrid = function() {
 		$("#edgReceipt").edatagrid({
 			url : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
@@ -18,7 +17,9 @@ var ReceiptLib = (function() {
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgIngredients").edatagrid({
-					url : '/protofront/service/receipts/'+ row.receiptId + '/ingredients?languageId=' + IndexLib.lang() 
+					url : '/protofront/service/receipts/'+ row.receiptId + '/ingredients?languageId=' + IndexLib.lang(), 
+					saveUrl : "/protofront/service/receipts/" + row.receiptId + "/ingredients?languageId="  + IndexLib.lang(),
+					updateUrl : "/protofront/service/receipts/" + row.receiptId + "/ingredients?languageId="  + IndexLib.lang()			
 				});
 				$("#edgByproducts").edatagrid({
 					url : '/protofront/service/receipts/'+ row.receiptId + '/byproducts?languageId=' + IndexLib.lang()
@@ -30,8 +31,12 @@ var ReceiptLib = (function() {
 	var initIngredGrid = function () {
 		$("#edgIngredients").edatagrid({
 			method : 'GET',
-			saveUrl : "/protofront/service/receipts/ingredients?languageId="  + IndexLib.lang(),
-			updateUrl : "/protofront/service/receipts/ingredients?languageId="  + IndexLib.lang()			
+			onDestroy : function(index, row) {
+				$.ajax({
+					url : '/protofront/service/receipts/'+ row.receiptId + '/ingredients/' + row.receiptItemId,
+					method : "DELETE"
+				});
+			}
 		});
 	};
 	
@@ -51,6 +56,9 @@ var ReceiptLib = (function() {
 		},
 		acceptIngredient : function() {
 			$("#edgIngredients").edatagrid('saveRow');
+		},
+		removeIngredient : function() {
+			$("#edgIngredients").edatagrid('destroyRow');
 		}
 	};
 	

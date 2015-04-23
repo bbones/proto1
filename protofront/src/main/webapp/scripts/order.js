@@ -96,6 +96,22 @@ var OrderLib = (function(){
 
 		button : function (value, row, index) {
             return '<input type="button" onclick="alert(' + row.olpId + ')" value="Add" class="GridButton"/>';
-        }
+        },
+        
+        appendLine : function() {
+        	$("#edgLines").edatagrid('addRow', {
+        		row : {
+        			orderId : $("#edgRequest").edatagrid('getSelected').orderId
+        		}
+        	});
+        },
+        acceptLine : function() {
+        	$("#edgLines").edatagrid('saveRow');
+		},
+		removeLine : function() {
+        	$("#edgLines").edatagrid('destroyRow');
+			
+		}
+
 	};
 })();

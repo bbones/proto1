@@ -37,15 +37,16 @@ public interface ReceiptService {
 	List<Map<String, Object>> getByproductsList(Long languageId, Long receiptId);
 
 	/**
+	 * @param receiptId 
 	 * @param ReceiptItem ingredient
 	 * @return ReceiptItem
 	 */
-	ReceiptItem saveIngredient(ReceiptItem ingredient);
+	ReceiptItem saveIngredient(Long receiptId, ReceiptItem ingredient);
 
 	/**
 	 * @param Long ingredientId
 	 */
-	void deleteIngredient(Long ingredientId);
+	void deleteIngredient(Long receiptId, Long ingredientId);
 
 
 

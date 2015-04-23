@@ -75,17 +75,17 @@ public class ReceiptController {
 		return receiptService.getIngredientsList(languageId, receiptId);
 	}
 	
-	@RequestMapping(value = "ingredients", method = RequestMethod.POST )
-	public @ResponseBody ReceiptItemDTO  saveIngredient(@RequestParam Long languageId, ReceiptItemDTO ingredientDTO) {
+	@RequestMapping(value = "{receiptId}/ingredients", method = RequestMethod.POST )
+	public @ResponseBody ReceiptItemDTO  saveIngredient(@PathVariable Long receiptId, @RequestParam Long languageId, ReceiptItemDTO ingredientDTO) {
 		ReceiptItem ingredient = mapReceiptItem(ingredientDTO);
-		ingredient = receiptService.saveIngredient(ingredient);
+		ingredient = receiptService.saveIngredient(receiptId, ingredient);
 		ingredientDTO = mapReceiptItemDTO(ingredient);
 		return ingredientDTO;
 	}
 	
-	@RequestMapping(value = "ingredients/{ingredientId}", method = RequestMethod.DELETE )
-	public void  deleteIngredient(@PathVariable Long ingredientId) {
-		receiptService.deleteIngredient(ingredientId);
+	@RequestMapping(value = "{receiptId}/ingredients/{ingredientId}", method = RequestMethod.DELETE )
+	public void  deleteIngredient(@PathVariable Long receiptId, @PathVariable Long ingredientId) {
+		receiptService.deleteIngredient(receiptId, ingredientId);
 	}
 	
 	@RequestMapping(value = "{receiptId}/byproducts", method = RequestMethod.GET )
@@ -111,14 +111,13 @@ public class ReceiptController {
 
 	/**
 	 * @param ReceiptItemDTO receiptItemDTO
-	 * @return
+	 * @return ReceiptItem
+	 * Doesn't map receipt!!!
 	 */
 	private ReceiptItem mapReceiptItem( ReceiptItemDTO receiptItemDTO) {
 		ReceiptItem receiptItem = new ReceiptItem();
 		if (receiptItemDTO.getReceiptItemId() != null)
 			receiptItem.setId(receiptItemDTO.getReceiptItemId());
-		Receipt receipt = receiptService.get(receiptItemDTO.getReceiptId());
-		receiptItem.setReceipt(receipt);
 		Product product = productService.getById(receiptItemDTO.getProductId());
 		receiptItem.setProduct(product);
 		receiptItem.setMaster(receiptItemDTO.isMaster());
