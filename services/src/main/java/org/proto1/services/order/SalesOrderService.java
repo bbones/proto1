@@ -4,6 +4,8 @@
  *******************************************************************************/
 package org.proto1.services.order;
 
-public interface SalesOrderService extends BaseOrderService {
+import org.proto1.domain.order.SalesOrder;
+
+public interface SalesOrderService extends BaseOrderService<SalesOrder> {
 
 }

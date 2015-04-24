@@ -5,10 +5,13 @@ import java.util.Map;
 
 import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
+import org.proto1.domain.order.OrderLineParameter;
 
 public interface BaseOrderService<T extends BaseOrder> {
 	
 	T get(Long orderId);
+	
+	T save(T order);
 	
 	List<Map<String, Object>> getOrderList(Long languageId);
 
@@ -21,5 +24,17 @@ public interface BaseOrderService<T extends BaseOrder> {
 	void deleteOrderLine(Long id);
 	
 	void delete(Long orderId);
+
+	/**
+	 * @param orderLineId
+	 * @return
+	 */
+	OrderLine getOrderLine(Long orderLineId);
+
+	/**
+	 * @param olp
+	 * @return
+	 */
+	OrderLineParameter saveOrderLineParameter(OrderLineParameter olp);
 
 }

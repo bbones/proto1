@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProductionOrderServiceBean extends BaseOrderServiceBean implements ProductionOrderService  {
+public class ProductionOrderServiceBean extends BaseOrderServiceBean<ProductionOrder> implements ProductionOrderService  {
 	
 	@Autowired
 	ProductionOrderRepository productionOrderRepository;
@@ -38,6 +38,14 @@ public class ProductionOrderServiceBean extends BaseOrderServiceBean implements 
 
 	public void delete(Long orderId) {
 		productionOrderRepository.delete(orderId);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.BaseOrderService#get(java.lang.Long)
+	 */
+	public ProductionOrder get(Long orderId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

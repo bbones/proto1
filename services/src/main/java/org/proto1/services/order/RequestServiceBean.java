@@ -8,6 +8,7 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.Request;
 import org.proto1.repository.order.RequestRepository;
@@ -44,6 +45,13 @@ public class RequestServiceBean extends BaseOrderServiceBean  implements Request
 		return requestRepository.findOne(orderId);
 	}
 	public OrderLine getOrderLine(Long orderLineId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.BaseOrderService#save(org.proto1.domain.order.BaseOrder)
+	 */
+	public BaseOrder save(BaseOrder order) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.proto1.domain.order.BOM;
+import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.ProductionOrder;
 import org.proto1.repository.order.BOMRepository;
@@ -22,7 +23,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class BOMServiceBean extends BaseOrderServiceBean implements BOMService {
+public class BOMServiceBean extends BaseOrderServiceBean<BOM> implements BOMService {
 	
 	@Autowired
 	ReceiptProvider receiptProvider; 
@@ -57,5 +58,22 @@ public class BOMServiceBean extends BaseOrderServiceBean implements BOMService {
 	public void delete(Long orderId) {
 		bomRepository.delete(orderId);
 	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.BaseOrderService#get(java.lang.Long)
+	 */
+	public BOM get(Long orderId) {
+		// TODO Auto-generated method stub
+		return bomRepository.findOne(orderId);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.BaseOrderService#save(org.proto1.domain.order.BaseOrder)
+	 */
+	public BOM save(BOM order) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }

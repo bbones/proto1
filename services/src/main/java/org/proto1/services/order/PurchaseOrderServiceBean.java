@@ -3,6 +3,8 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.order.BaseOrder;
+import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.PurchaseOrder;
 import org.proto1.repository.order.PurchaseOrderRepository;
 import org.proto1.services.ApplicationConstants;
@@ -10,8 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class PurchaseOrderServiceBean extends BaseOrderServiceBean implements
-		PurchaseOrderService {
+public class PurchaseOrderServiceBean extends BaseOrderServiceBean<PurchaseOrder> implements PurchaseOrderService {
 	
 	@Autowired
 	PurchaseOrderRepository purchaseOrderRepository;
@@ -36,5 +37,13 @@ public class PurchaseOrderServiceBean extends BaseOrderServiceBean implements
 	public PurchaseOrder save(PurchaseOrder purchaseOrder) {
 		return purchaseOrderRepository.save(purchaseOrder);
 	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.order.BaseOrderService#get(java.lang.Long)
+	 */
+	public PurchaseOrder get(Long orderId) {
+		return purchaseOrderRepository.findOne(orderId);
+	}
+
 
 }

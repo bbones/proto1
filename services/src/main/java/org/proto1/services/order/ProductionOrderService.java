@@ -5,16 +5,8 @@ import java.util.Map;
 
 import org.proto1.domain.order.ProductionOrder;
 
-public interface ProductionOrderService {
+public interface ProductionOrderService extends BaseOrderService<ProductionOrder>{
 
-	List<Map<String, Object>> getOrderList(Long languageId);
-
-	List<Map<String, Object>> getOrderLines(Long soId, Long languageId);
-
-	List<Map<String, Object>> getOrderLineParameters(Long olId,
-			Long languageId);
-	
-	ProductionOrder save(ProductionOrder productionOrder);
 
 	/**
 	 * @param productionOrderId Production Order Id
