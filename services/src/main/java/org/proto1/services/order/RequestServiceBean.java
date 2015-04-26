@@ -8,7 +8,6 @@ package org.proto1.services.order;
 import java.util.List;
 import java.util.Map;
 
-import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.Request;
 import org.proto1.repository.order.RequestRepository;
@@ -20,7 +19,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-public class RequestServiceBean extends BaseOrderServiceBean  implements RequestService {
+public class RequestServiceBean extends BaseOrderServiceBean<Request>  implements RequestService {
 
 	@Autowired
 	RequestRepository requestRepository;
@@ -51,8 +50,4 @@ public class RequestServiceBean extends BaseOrderServiceBean  implements Request
 	/* (non-Javadoc)
 	 * @see org.proto1.services.order.BaseOrderService#save(org.proto1.domain.order.BaseOrder)
 	 */
-	public BaseOrder save(BaseOrder order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }

@@ -14,7 +14,6 @@ import org.proto1.domain.Language;
 import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.OrderLineParameter;
-import org.proto1.domain.order.Request;
 import org.proto1.dto.order.OrderLineDTO;
 import org.proto1.dto.order.OrderLineParameterDTO;
 import org.proto1.services.LanguageService;
@@ -22,7 +21,6 @@ import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.order.BaseOrderService;
 import org.proto1.services.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,10 +31,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  *
  */
-@Service
-public class BaseOrderController<T extends BaseOrder> {
+
+public class BaseOrderController<T extends BaseOrderService<?>> {
 	@Autowired
-	BaseOrderService<T> baseOrderService;
+	T baseOrderService;
 	
 	@Autowired
 	BaseOrderMapper mapper;

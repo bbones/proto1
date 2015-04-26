@@ -13,7 +13,7 @@ import org.proto1.domain.order.Request;
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  *
  */
-public interface RequestService extends BaseOrderService {
+public interface RequestService extends BaseOrderService<Request> {
 
 	/**
 	 * @param request

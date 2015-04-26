@@ -27,17 +27,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/purchaseorders")
-public class PurchaseOrderController {
-	
-	@Autowired
-	PurchaseOrderService purchaseOrderService;
+public class PurchaseOrderController extends BaseOrderController <PurchaseOrderService>{
 	
 	@Autowired
 	BaseOrderMapper mapper;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  salesOrderListByLanguage(@RequestParam Long languageId) {
-		return purchaseOrderService.getOrderList(languageId);
+	public @ResponseBody List<Map<String, Object>>  getList(@RequestParam Long languageId) {
+		return baseOrderService.getOrderList(languageId);
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST )
@@ -45,7 +42,7 @@ public class PurchaseOrderController {
 			PurchaseOrderDTO requestDTO) 
 			throws InstantiationException, IllegalAccessException, ParseException {
 		PurchaseOrder po = mapper.map(requestDTO, PurchaseOrder.class);
-		po = purchaseOrderService.save(po);
+		po = baseOrderService.save(po);
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("orderId", po.getId());
 		result.put("orderNo", po.getDocumentNo());
@@ -55,7 +52,7 @@ public class PurchaseOrderController {
 	
 	@RequestMapping(value = "/{requestId}", method = RequestMethod.DELETE)
 	public void deleteRequest(@PathVariable Long requestId) {
-		purchaseOrderService.delete(requestId);
+		baseOrderService.delete(requestId);
 	}
 
 
