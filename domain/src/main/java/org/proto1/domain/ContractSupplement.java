@@ -8,16 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @PrimaryKeyJoinColumn(name="CONTRACT_SUPPLEMENT_ID")
 public class ContractSupplement extends Document {
 	@ManyToOne
 	@JoinColumn(name="CONTRACT_ID")
+	@NotNull
 	private Contract contract;
 	
 	@ManyToOne
 	@JoinColumn(name="CURRENCY_CODE")
+	@NotNull
 	private Currency currency;
 
 	public Contract getContract() {

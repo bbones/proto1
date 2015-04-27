@@ -7,6 +7,7 @@ package org.proto1.domain.order;
 import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import org.proto1.domain.ContractSupplement;
 
@@ -15,6 +16,7 @@ public class SalesOrder extends BaseOrder {
 	
 	@ManyToOne
 	@JoinColumn(name="CONTRACT_SUPPLEMENT_ID")
+	@NotNull
 	private ContractSupplement contractSupplement;
 
 	public ContractSupplement getContractSupplement() {

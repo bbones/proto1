@@ -39,16 +39,14 @@ public class SalesOrderServiceBean extends BaseOrderServiceBean<SalesOrder> impl
 	 * @see org.proto1.services.order.BaseOrderService#get(java.lang.Long)
 	 */
 	public SalesOrder get(Long orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		return salesOrderRepository.findOne(orderId);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.proto1.services.order.BaseOrderService#save(org.proto1.domain.order.BaseOrder)
 	 */
 	public SalesOrder save(SalesOrder order) {
-		// TODO Auto-generated method stub
-		return null;
+		return salesOrderRepository.save(order);
 	}
 
 }

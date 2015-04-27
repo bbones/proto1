@@ -66,7 +66,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	Currency uah, usd, eur, gbp, jpy, chf, rub;
 	
 	@Autowired
-	Contract contract;
+	Contract contract_sell, contract_buy;
 	
 	@Autowired
 	ProductType 
@@ -280,7 +280,8 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	private void persistContract() {
 		logger.warn("Saving contract..............");
-		em.persist(contract);
+		em.persist(contract_sell);
+		em.persist(contract_buy);
 		logger.warn("End saving contract..............");
 	}
 

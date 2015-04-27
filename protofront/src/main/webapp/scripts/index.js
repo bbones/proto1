@@ -16,6 +16,7 @@ var IndexLib = (function(){
 						$.getScript("/protofront/scripts/order.js").done(function() {
 							OrderLib.init("#test", {
 								orderURL : "/protofront/service/purchaseorders/",
+								scriptURL : "/protofront/scripts/purchaseOrder.js"
 							});
 						});
 					} else {

@@ -22,6 +22,7 @@ var OrderLib = (function(){
 			method:'GET',
 			onSelect : function(index, row) {
 				if (row.orderId != null) {
+					$(this).trigger('orderRecordChanged');
 					$("#edgLines").edatagrid({
 						url : orderURL  +  row.orderId + '/lines?languageId=' 
 								+ IndexLib.lang()
@@ -86,9 +87,10 @@ var OrderLib = (function(){
 					initLineParam();
 				}
 			});
+			$.getScript(options.scriptURL);
 		},
         appendOrder : function() {
-        	$("#edgOrder").edatagrid('addRow');
+        	// $("#edgOrder").edatagrid('addRow');
         },
         acceptOrder : function() {
         	$("#edgOrder").edatagrid('saveRow');
@@ -101,7 +103,7 @@ var OrderLib = (function(){
         appendLine : function() {
         	$("#edgLines").edatagrid('addRow', {
         		row : {
-        			orderId : $("#edgRequest").edatagrid('getSelected').orderId
+        			orderId : $("#edgOrder").edatagrid('getSelected').orderId
         		}
         	});
         },
@@ -111,7 +113,9 @@ var OrderLib = (function(){
 		removeLine : function() {
         	$("#edgLines").edatagrid('destroyRow');
 			
+		},
+		getOrderURL : function() {
+			return orderURL;
 		}
-
 	};
 })();
