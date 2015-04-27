@@ -4,7 +4,6 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

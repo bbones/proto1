@@ -1,5 +1,5 @@
  <div>
-	 <form id="purchaseOrderForm" enctype="multipart/form-data">
+	 <form id="purchaseOrderForm" method="post" enctype="multipart/form-data">
 		<table>
 		    <tr>
 		        <td>Id:</td>
@@ -23,4 +23,8 @@
 		    </tr>
 		</table>
 	</form>
+	
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="PurchaseOrderLib.save();">Append</a>
+	
 </div>
