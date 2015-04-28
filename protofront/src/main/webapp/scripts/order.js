@@ -45,10 +45,12 @@ var OrderLib = (function(){
 			updateUrl : orderURL + 'lines?languageId=' + IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
-				$("#edgLineParameters").edatagrid({
-					url : orderURL + 'lines/'+ row.orderLineId + 
-						'/lineparameters?languageId=' + IndexLib.lang()
-				});
+				if (row.orderLineId != null) {
+					$("#edgLineParameters").edatagrid({
+						url : orderURL + 'lines/'+ row.orderLineId + 
+							'/lineparameters?languageId=' + IndexLib.lang()
+					});
+				}
 			}, // OnSelect edgLines
 
 			onDestroy : function(index,row){
@@ -112,6 +114,20 @@ var OrderLib = (function(){
 		},
 		removeLine : function() {
         	$("#edgLines").edatagrid('destroyRow');
+			
+		},
+        appendParameter : function() {
+        	$("#edgLineParameters").edatagrid('addRow', {
+        		row : {
+        			orderId : $("#edgLines").edatagrid('getSelected').olpId
+        		}
+        	});
+        },
+        acceptParameter : function() {
+        	$("#edgLineParameters").edatagrid('saveRow');
+		},
+		removeParameter : function() {
+        	$("#edgLineParameters").edatagrid('destroyRow');
 			
 		},
 		getOrderURL : function() {

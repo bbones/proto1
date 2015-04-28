@@ -10,21 +10,26 @@ var ParameterLib = (function(){
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
-			url : "/protofront/service/parameter/parameterListByLanguageId/" +
+			url : "/protofront/service/parameters/?languageId=" +
 				$('#langSelector').combobox('getValue'),
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgNames").edatagrid({
-					url : '/protofront/service/parameter/names/' + row.parameterId
+					url : '/protofront/service/parameters/' + row.parameterId + '/names'
 				});
 			} // OnSelect
 		});
 		
-	}
+	};
+	
+	function initNamesGrid() {
+		$("#edgNames").edatagrid();
+	};
 	
 	return {
 		init : function() {
 			initParameterGrid();
+			initNamesGrid();
 		}
 	}
 })();

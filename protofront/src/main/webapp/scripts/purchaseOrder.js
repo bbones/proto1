@@ -9,14 +9,14 @@ var PurchaseOrderLib = (function() {
 		$("#purchaseOrderForm").form('submit', {
 			url : '/protofront/service/purchaseorders/',
 			// method : 'POST',
-			onSubmit: function(){
+			onSubmit: function(param){
 				console.log('Submit');
+				param.languageId = IndexLib.lang();
 			},
 		    success:function(data){
 		        alert(data);
 		    }
 		});
-		
 	};
 	
 	return {

@@ -36,8 +36,8 @@
 									editor="{
 			                            	type:'combobox',
 			                            	options:{
-				                                valueField:'id',
-				                                textField:'name',
+				                                valueField:'productId',
+				                                textField:'productName',
 				                                method:'get',
 				                                url:'/protofront/service/products/?languageId=' + IndexLib.lang(),
 				                                required:true
@@ -47,8 +47,8 @@
 									editor="{
 			                            	type:'combobox',
 			                            	options:{
-				                                valueField:'id',
-				                                textField:'name',
+				                                valueField:'uomId',
+				                                textField:'uomName',
 				                                method:'get',
 				                                url:'/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
 				                                required:true
@@ -121,11 +121,11 @@
 
 <div id="tbolparam" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="OrderLib.appendLine()">Append</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="OrderLib.appendParameter()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="OrderLib.removeLine()">Remove</a> 
+		data-options="iconCls:'icon-remove',plain:true"	onclick="OrderLib.removeParameter()">Remove</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="OrderLib.saveLine()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="OrderLib.saveParameter()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-undo',plain:true" onclick="OrderLib.rejectLine()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"

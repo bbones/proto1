@@ -19,7 +19,7 @@ public class OrderDTO extends DTO {
 	private static final long serialVersionUID = -812432410799731830L;
 
 	private Long orderId;
-	private String orderNo;
+	private String documentNo;
 	private Long issueDate;
 	
 	private List<OrderLineDTO> orderLines;
@@ -40,20 +40,20 @@ public class OrderDTO extends DTO {
 		this.orderLines = orderLines;
 	}
 
-	public String getOrderNo() {
-		return orderNo;
-	}
-
-	public void setOrderNo(String orderNo) {
-		this.orderNo = orderNo;
-	}
-
 	public Long getIssueDate() {
 		return issueDate;
 	}
 
 	public void setIssueDate(Long issueDate) {
 		this.issueDate = issueDate;
+	}
+
+	public String getDocumentNo() {
+		return documentNo;
+	}
+
+	public void setDocumentNo(String documentNo) {
+		this.documentNo = documentNo;
 	}
 
 }

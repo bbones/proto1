@@ -195,7 +195,7 @@
 		</field>
 		<field>
 			<a>documentNo</a>
-			<b>orderNo</b>
+			<b>documentNo</b>
 		</field>
 		<field>
 			<a>lines</a>

@@ -16,6 +16,6 @@ public interface ParameterRepository extends CrudRepository<Parameter, Long> {
 	@Query("select new Map(p.id as parameterId, p.type as parameterType , pn.name as parameterName) " + 
 			"from Parameter p join p.parameterNames pn  " + 
 			"where pn.language.id = :language_id")
-	public List<Map<String, Object>> getListByLanguageId(@Param("language_id") Long languageId);
+	public List<Map<String, Object>> getList(@Param("language_id") Long languageId);
 	
 }

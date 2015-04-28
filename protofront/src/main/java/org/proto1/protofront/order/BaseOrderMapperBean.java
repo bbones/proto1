@@ -35,7 +35,7 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 				throws InstantiationException, IllegalAccessException, ParseException {
 		T result = destinationClass.newInstance();
 		result.setId(source.getOrderId());
-		result.setDocumentNo(source.getOrderNo());
+		result.setDocumentNo(source.getDocumentNo());
 		if (source.getIssueDate() != null)
 			result.setIssueDate(new Date(source.getIssueDate()));
 		result.setVersion(source.getVersion());
@@ -106,7 +106,7 @@ public class BaseOrderMapperBean implements BaseOrderMapper {
 				throws InstantiationException, IllegalAccessException {
 		T result = destinationClass.newInstance();
 		result.setOrderId(source.getId());
-		result.setOrderNo(source.getDocumentNo());
+		result.setDocumentNo(source.getDocumentNo());
 		result.setIssueDate(source.getIssueDate().getTime());
 		result.setVersion(source.getVersion());
 		result.setOrderLines(new ArrayList<OrderLineDTO>());

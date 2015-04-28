@@ -17,11 +17,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/parameter")
+@RequestMapping("/parameters")
 public class ParameterController {
 	final static Logger logger = Logger.getLogger(ParameterController.class);
 	
@@ -31,27 +32,15 @@ public class ParameterController {
 	@Autowired
 	ParameterService parameterService;
 	
-	
-	@RequestMapping(value = "parameterNamesByLanguageId/{languageId}", method = RequestMethod.GET)
-	public List<ParameterNameDTO> getParameterNamesList(@PathVariable Long languageId) {
-		List<ParameterNameDTO> result = new ArrayList<ParameterNameDTO>();
-		for(ParameterName pn : parameterService.getParameterNamesList(languageId))
-			result.add(mapper.map(pn, ParameterNameDTO.class)); 
-		
-		return result;
-		
-	}
-
-	@RequestMapping(value = "parameterListByLanguageId/{languageId}", method = RequestMethod.POST)
-	public List<Map<String, Object>> getParameterList(@PathVariable Long languageId) {
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public List<Map<String, Object>> getParameterList(@RequestParam Long languageId) {
 		return parameterService.getParameterList(languageId);
-		
 	}
 	
-	@RequestMapping(value = "names/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
 	public @ResponseBody List<ParameterNameDTO> getParameterNames(@PathVariable String id) {
 		List<ParameterNameDTO> pnList = new ArrayList<ParameterNameDTO>();
-		for(ParameterName pn : parameterService.getNamesList(new Long(id)))
+		for(ParameterName pn : parameterService.getNames(new Long(id)))
 			pnList.add(mapper.map(pn, ParameterNameDTO.class));
 		return pnList;
 	}

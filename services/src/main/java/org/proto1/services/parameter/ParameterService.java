@@ -16,8 +16,6 @@ public interface ParameterService {
 	
 	List<Map<String, Object>> getParameterList(Long languageId);
 
-	List<ParameterName> getParameterNamesList(Long languageId);
-
-	List<ParameterName>  getNamesList(Long parameterId);
+	List<ParameterName>  getNames(Long parameterId);
 
 }

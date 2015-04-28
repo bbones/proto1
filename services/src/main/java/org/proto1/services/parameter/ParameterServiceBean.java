@@ -23,15 +23,11 @@ public class ParameterServiceBean implements ParameterService {
 	@Autowired
 	ParameterNameRepository parameterNameRepository;
 
-	public List<ParameterName> getParameterNamesList(Long languageId) {
-		return parameterNameRepository.getByLanguageId(languageId);
-	}
-
 	public List<Map<String, Object>> getParameterList(Long languageId) {
-		return parameterRepository.getListByLanguageId(languageId);
+		return parameterRepository.getList(languageId);
 	}
 
-	public List<ParameterName> getNamesList(Long parameterId) {
+	public List<ParameterName> getNames(Long parameterId) {
 		return parameterNameRepository.getByParameterId(parameterId);
 	}
 
