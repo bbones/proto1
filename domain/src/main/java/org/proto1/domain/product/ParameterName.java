@@ -21,6 +21,22 @@ public class ParameterName extends AbstractEntity {
 	@JoinColumn(name="language_id")
 	private Language language;
 	private String name;
+	
+	public ParameterName() {
+		
+	}
+
+	/**
+	 * @param parameter2
+	 * @param parameterName
+	 * @param language2
+	 */
+	public ParameterName(Parameter parameter, String parameterName,
+			Language language) {
+		this.parameter = parameter;
+		this.name = parameterName;
+		this.language = language;
+	}
 
 	public Parameter getParameter() {
 		return parameter;

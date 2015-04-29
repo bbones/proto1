@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.order.PurchaseOrder;
+import org.proto1.dto.order.PurchaseOrderDTO;
 import org.proto1.services.ContractSupplementService;
 import org.proto1.services.order.PurchaseOrderService;
 import org.springframework.beans.factory.annotation.Autowired;

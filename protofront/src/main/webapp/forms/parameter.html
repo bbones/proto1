@@ -7,7 +7,7 @@
 		<thead>
 			<tr>
 				<th field='parameterId' width=90>Parameter Id</th>
-				<th field='parameterName' width=250>Parameter Name</th>
+				<th field='parameterName' width=250 editor='text'>Parameter Name</th>
 				<th field='parameterType' width=250
 									data-options="
                       				editor:{
@@ -66,35 +66,34 @@
 	</table>
 </div>
 
-<div id="tbn" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendName()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeName()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.saveName()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectName()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
 <div id="tbp" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendParameter()">Append</a>
+		data-options="iconCls:'icon-add',plain:true" onclick="ParameterLib.appendParameter()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeParameter()">Remove</a> 
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ParameterLib.removeParameter()">Remove</a> 
 	<a href="javascript:void(0)"
 		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.acceptParameter()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.acceptParameter()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectParameter()">Reject</a>
+		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectParameter()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-search',plain:true"
 		onclick="getChanges()">GetChanges</a>
 </div>
 
+<div id="tbn" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ParameterLib.appendName()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ParameterLib.removeName()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.saveName()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
 <script>
 	$.getScript("/protofront/scripts/parameter.js").done(function() {
 		ParameterLib.init();

@@ -3,9 +3,8 @@
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  * Created Apr 20, 2015
  */
-package org.proto1.protofront.order;
+package org.proto1.dto.order;
 
-import org.proto1.dto.order.OrderDTO;
 
 /**
  * @author Valentin Pogrebinsky (pva@isd.com.ua)

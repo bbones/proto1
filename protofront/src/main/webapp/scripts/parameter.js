@@ -12,11 +12,17 @@ var ParameterLib = (function(){
 		$("#edgParameters").edatagrid({
 			url : "/protofront/service/parameters/?languageId=" +
 				$('#langSelector').combobox('getValue'),
+			saveUrl : "/protofront/service/parameters/?languageId=" +
+				$('#langSelector').combobox('getValue'),
+			updateUrl :"/protofront/service/parameters/?languageId=" +
+				$('#langSelector').combobox('getValue'),
 			onSelect : function(index, row) {
 				console.log(row);
-				$("#edgNames").edatagrid({
-					url : '/protofront/service/parameters/' + row.parameterId + '/names'
-				});
+				if (row.parameterId != null) {
+					$("#edgNames").edatagrid({
+						url : '/protofront/service/parameters/' + row.parameterId + '/names'
+					});
+				}
 			} // OnSelect
 		});
 		
@@ -30,6 +36,15 @@ var ParameterLib = (function(){
 		init : function() {
 			initParameterGrid();
 			initNamesGrid();
+		},
+		appendParameter : function() {
+			$("#edgParameters").edatagrid('addRow');
+		},
+		removeParameter :  function() {
+			$("#edgParameters").edatagrid('destroyRow');
+		},
+		acceptParameter : function() {
+			$("#edgParameters").edatagrid('saveRow');
 		}
 	}
 })();

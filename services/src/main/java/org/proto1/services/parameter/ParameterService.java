@@ -18,4 +18,10 @@ public interface ParameterService {
 
 	List<ParameterName>  getNames(Long parameterId);
 
+	/**
+	 * @param parameter
+	 * @return
+	 */
+	Parameter save(Parameter parameter);
+
 }
