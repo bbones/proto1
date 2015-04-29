@@ -10,18 +10,19 @@ var ParameterLib = (function(){
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
-			url : "/protofront/service/parameters/?languageId=" +
-				$('#langSelector').combobox('getValue'),
-			saveUrl : "/protofront/service/parameters/?languageId=" +
-				$('#langSelector').combobox('getValue'),
-			updateUrl :"/protofront/service/parameters/?languageId=" +
-				$('#langSelector').combobox('getValue'),
+			url : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
+			saveUrl : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
+			updateUrl : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
 				if (row.parameterId != null) {
 					$("#edgNames").edatagrid({
-						url : '/protofront/service/parameters/' + row.parameterId + '/names'
+						url : '/protofront/service/parameters/' + row.parameterId + '/names',
+						saveUrl : '/protofront/service/parameters/' + row.parameterId + '/names',
+						updateUrl :'/protofront/service/parameters/' + row.parameterId + '/names'
+
 					});
+					$.ajax();
 				}
 			} // OnSelect
 		});
@@ -32,10 +33,17 @@ var ParameterLib = (function(){
 		$("#edgNames").edatagrid();
 	};
 	
+	function initUOMS() {
+		$('#dlUOM').datalist({
+		    url: '/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang()
+		});
+	};
+	
 	return {
 		init : function() {
 			initParameterGrid();
 			initNamesGrid();
+			initUOMS();
 		},
 		appendParameter : function() {
 			$("#edgParameters").edatagrid('addRow');
@@ -45,6 +53,15 @@ var ParameterLib = (function(){
 		},
 		acceptParameter : function() {
 			$("#edgParameters").edatagrid('saveRow');
+		},
+		appendName : function() {
+			$("#edgNames").edatagrid('addRow');
+		},
+		removeName :  function() {
+			$("#edgNames").edatagrid('destroyRow');
+		},
+		acceptName : function() {
+			$("#edgNames").edatagrid('saveRow');
 		}
-	}
+	};
 })();

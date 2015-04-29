@@ -3,7 +3,6 @@
  */
 package org.proto1.protofront.order;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,33 +18,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/prodorders")
-public class ProductionOrderController {
+public class ProductionOrderController extends BaseOrderController<ProductionOrderService> {
 	@Autowired
 	Mapper mapper;
 	
-	@Autowired
-	ProductionOrderService productionOrderService;
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  prodOrderListByLanguage(@RequestParam Long languageId) {
-		return productionOrderService.getOrderList(languageId);
+		return baseOrderService.getOrderList(languageId);
 	}
 	
-
-	@RequestMapping(value = "{poId}/lines", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  prodOrderLineList(@PathVariable Long poId, @RequestParam Long languageId) {
-		return productionOrderService.getOrderLines(poId, languageId);
-	}
-	
-	@RequestMapping(value = "lines/{olId}/lineparameters", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  prodOrderLineParameters(@PathVariable Long olId, @RequestParam Long languageId) {
-		List<Map<String, Object>> result = productionOrderService.getOrderLineParameters(olId, languageId);
-		return (result == null) ? new ArrayList<Map<String, Object>>() : result;
-	}
-
 	@RequestMapping(value = "{poId}/createOrderBOMs", method = RequestMethod.POST )
 	public void  createOrderBOMs(@PathVariable Long poId) {
-		productionOrderService.createOrderBOMs(poId);
+		baseOrderService.createOrderBOMs(poId);
 	}
 
 }

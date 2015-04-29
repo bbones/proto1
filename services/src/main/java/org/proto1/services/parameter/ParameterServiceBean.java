@@ -42,4 +42,11 @@ public class ParameterServiceBean implements ParameterService {
 		return parameterRepository.save(parameter);
 	}
 
+	/* (non-Javadoc)
+	 * @see org.proto1.services.parameter.ParameterService#saveParameterName(org.proto1.domain.product.ParameterName)
+	 */
+	public ParameterName saveParameterName(ParameterName parameterName) {
+		return parameterNameRepository.save(parameterName);
+	}
+
 }

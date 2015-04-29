@@ -44,26 +44,39 @@
 		data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'nameId', method : 'GET'">
 		<thead>
 			<tr>
-				<th field='parameterNameId' width=250>Product Name Id</th>
+				<th field='parameterNameId' width=50 editor='text'>Product Name Id</th>
 				<th
 					data-options="field:'languageId',width:100,
                     			formatter:function(value,row){
                         			return row.languageName;
                     			},
                    				editor:{
-                          	type:'combobox',
-                          	options:{
-                               valueField:'id',
-                               textField:'name',
-                               method:'get',
-                               url:'/protofront/service/masterdata/languagelist',
-                               required:true
-                           }
+                          			type:'combobox',
+		                          	options:{
+		                               valueField:'id',
+		                               textField:'name',
+		                               method:'get',
+		                               url:'/protofront/service/masterdata/languages',
+		                               required:true
+		                           }
                     			}">Language</th>
 				<th field='parameterName' width=250 editor="text">Parameter Name</th>
 			</tr>
 		</thead>
 	</table>
+</div>
+
+<div title="Translations"
+	data-options="iconCls:'icon-save',selected:false"
+	style="overflow: auto; padding: 10px;" >
+	<div id="dlUOM" class="easyui-datalist" title="Accepted UOM" style="width:400px;height:250px" data-options="
+	            method: 'get',
+	            checkbox: true,
+	            selectOnCheck: false,
+	            valueField : 'uomId',
+	            textField : 'uomName',
+	            onBeforeSelect: function(){return false;}
+	"></div>
 </div>
 
 <div id="tbp" style="height: auto">
@@ -87,7 +100,7 @@
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-remove',plain:true"	onclick="ParameterLib.removeName()">Remove</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.saveName()">Accept</a>
+		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.acceptName()">Accept</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectName()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"

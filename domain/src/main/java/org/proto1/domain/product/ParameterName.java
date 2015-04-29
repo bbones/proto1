@@ -7,6 +7,7 @@ package org.proto1.domain.product;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
@@ -16,10 +17,13 @@ public class ParameterName extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name="parameter_id")
+	@NotNull
 	private Parameter parameter;
 	@ManyToOne
 	@JoinColumn(name="language_id")
+	@NotNull
 	private Language language;
+	@NotNull
 	private String name;
 	
 	public ParameterName() {
