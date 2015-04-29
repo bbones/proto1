@@ -91,7 +91,8 @@ public class ParameterController {
 	@RequestMapping(value = "{id}/uoms", method = RequestMethod.GET)
 	public @ResponseBody List<Long> getParameterUOMsId(@PathVariable Long id) {
 		List<Long> uomIdList = new ArrayList<Long>();
-		for(UnitOfMeasurement uom : parameterService.get(id).getAcceptedUOM()) 
+		Parameter parameter = parameterService.get(id);
+		for(UnitOfMeasurement uom : parameter.getAcceptedUOM()) 
 			uomIdList.add(uom.getId());
 		return uomIdList;
 	}

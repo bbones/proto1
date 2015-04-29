@@ -29,6 +29,11 @@
 				</bean>
 			</list>
 		</property>
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="mm"/>
+			</list>
+		</property>
 	</bean>	
 	
 	<bean id="length" class="org.proto1.domain.product.Parameter">
@@ -52,6 +57,11 @@
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="Довжина" />
 				</bean>
+			</list>
+		</property>
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="mm"/>
 			</list>
 		</property>
 	</bean>	
@@ -79,6 +89,12 @@
 				</bean>
 			</list>
 		</property>
+
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="mm"/>
+			</list>
+		</property>
 	</bean>	
 
 	<bean id="gradeOfSteel" class="org.proto1.domain.product.Parameter">
@@ -103,6 +119,11 @@
 				</bean>
 			</list>
 		</property>
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="notDefinedUOM"/>
+			</list>
+		</property>
 	</bean>	
 	
 	<bean id="gradeOfSteelStandard" class="org.proto1.domain.product.Parameter">
@@ -125,6 +146,11 @@
 					<property name="language" ref="ukrainian" />
 					<property name="name" value="Стандарт по марці" />
 				</bean>
+			</list>
+		</property>
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="notDefinedUOM"/>
 			</list>
 		</property>
 	</bean>	
@@ -153,6 +179,11 @@
 				</bean>
 			</list>
 		</property>
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="notDefinedUOM"/>
+			</list>
+		</property>
 	</bean>	
 	
 	
@@ -178,6 +209,11 @@
 					<property name="name" value="Вміст заліза" />
 				</bean>
 			
+			</list>
+		</property>
+		<property name="acceptedUOM">
+			<list>
+				<ref bean="percent"/>
 			</list>
 		</property>
 	</bean>	

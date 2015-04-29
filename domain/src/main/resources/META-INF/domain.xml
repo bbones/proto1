@@ -497,7 +497,7 @@
 					<property name="unitOfMeasurement" ref="mm" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="mm" />
-					<property name="fullName" value="kilogram" />
+					<property name="fullName" value="millimeter" />
 				</bean>
 				<bean class="org.proto1.domain.UnitOfMeasurementName">
 					<property name="unitOfMeasurement" ref="mm" />

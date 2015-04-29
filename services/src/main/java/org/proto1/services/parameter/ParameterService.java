@@ -31,10 +31,4 @@ public interface ParameterService {
 	 */
 	ParameterName saveParameterName(ParameterName parameterName);
 
-	/**
-	 * @param long1
-	 * @return
-	 */
-	List<UnitOfMeasurement> getAcceptedUOMs(Long parameterId);
-
 }

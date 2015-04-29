@@ -5,14 +5,20 @@
 package org.proto1.domain.product;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
@@ -21,6 +27,7 @@ import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
 
 @Entity
+@Table(name="PARAMETER")
 public class Parameter extends AbstractEntity {
 	public enum Type {
 		STRING, NUMBER, DATE
@@ -34,8 +41,12 @@ public class Parameter extends AbstractEntity {
 	@JsonIgnore
 	private List<ParameterName> parameterNames = new ArrayList<ParameterName>();
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-	private List<UnitOfMeasurement> acceptedUOM = new ArrayList<UnitOfMeasurement>();
+//	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+//	@JoinTable(name="ACCEPTED_UOM",
+//		joinColumns = @JoinColumn(name="PARAMETER_ID"), 
+//		inverseJoinColumns=@JoinColumn(name="UNIT_OF_DIMENSION_ID"))
+	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	private Set<UnitOfMeasurement> acceptedUOM = new HashSet<UnitOfMeasurement>();
 
 	public Type getType() {
 		return type;
@@ -53,11 +64,11 @@ public class Parameter extends AbstractEntity {
 		this.parameterNames = parameterNames;
 	}
 
-	public List<UnitOfMeasurement> getAcceptedUOM() {
+	public Set<UnitOfMeasurement> getAcceptedUOM() {
 		return acceptedUOM;
 	}
 
-	public void setAcceptedUOM(List<UnitOfMeasurement> acceptedUOM) {
+	public void setAcceptedUOM(Set<UnitOfMeasurement> acceptedUOM) {
 		this.acceptedUOM = acceptedUOM;
 	}
 	

@@ -11,7 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name="UNIT_OF_DIMENSION_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"UNIT_OF_MEASUREMENT_ID", "LANGUAGE_ID"})) 
+@Table(name="UNIT_OF_MEASUREMENT_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"UNIT_OF_MEASUREMENT_ID", "LANGUAGE_ID"})) 
 public class UnitOfMeasurementName extends AbstractEntity {
 
 	@ManyToOne
