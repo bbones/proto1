@@ -14,8 +14,6 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -41,10 +39,6 @@ public class Parameter extends AbstractEntity {
 	@JsonIgnore
 	private List<ParameterName> parameterNames = new ArrayList<ParameterName>();
 	
-//	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
-//	@JoinTable(name="ACCEPTED_UOM",
-//		joinColumns = @JoinColumn(name="PARAMETER_ID"), 
-//		inverseJoinColumns=@JoinColumn(name="UNIT_OF_DIMENSION_ID"))
 	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<UnitOfMeasurement> acceptedUOM = new HashSet<UnitOfMeasurement>();
 

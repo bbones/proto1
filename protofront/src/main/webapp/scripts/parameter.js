@@ -24,8 +24,15 @@ var ParameterLib = (function(){
 					});
 					$.ajax('/protofront/service/parameters/' + row.parameterId + '/uoms').done(function (data) {
 						console.log(data);
-						for (var i=0; i < data.length()) {
-							$('#dlUOM').datagrid('selectRow', );
+						var d = $('#dlUOM').datalist('getData').rows;
+						console.log(d);
+						debugger;
+						for ( var i=0, i<d.length, i++ ) {
+							var indx = data.indexOf(d[i].uomId);
+							if (indx != -1) {
+								console.log(indx);
+								$('#dlUOM').datagrid('checkRow', i);
+							}
 						}
 					});
 				}
