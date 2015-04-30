@@ -71,11 +71,11 @@
 	style="overflow: auto; padding: 10px;" >
 	<div id="dlUOM" class="easyui-datalist" title="Accepted UOM" style="width:400px;height:250px" data-options="
 	            method: 'get',
-	            checkbox: true,
-	            selectOnCheck: false,
+				singleSelect : true,
+				lines : true,
+	            idField : 'uomId',
 	            valueField : 'uomId',
-	            textField : 'uomName',
-	            onBeforeSelect: function(){return false;}
+	            textField : 'uomName'
 	"></div>
 </div>
 
@@ -105,7 +105,7 @@
 		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectName()">Reject</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
+		onclick="ParameterLib.getChanges()">GetChanges</a>
 </div>
 <script>
 	$.getScript("/protofront/scripts/parameter.js").done(function() {

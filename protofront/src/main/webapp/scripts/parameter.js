@@ -22,7 +22,12 @@ var ParameterLib = (function(){
 						updateUrl :'/protofront/service/parameters/' + row.parameterId + '/names'
 
 					});
-					$.ajax();
+					$.ajax('/protofront/service/parameters/' + row.parameterId + '/uoms').done(function (data) {
+						console.log(data);
+						for (var i=0; i < data.length()) {
+							$('#dlUOM').datagrid('selectRow', );
+						}
+					});
 				}
 			} // OnSelect
 		});
@@ -62,6 +67,9 @@ var ParameterLib = (function(){
 		},
 		acceptName : function() {
 			$("#edgNames").edatagrid('saveRow');
+		},
+		getChanges : function() {
+			console.log($('#dlUOM').datagrid('getSelections'));
 		}
 	};
 })();
