@@ -25,15 +25,16 @@ var ParameterLib = (function(){
 					$.ajax('/protofront/service/parameters/' + row.parameterId + '/uoms').done(function (data) {
 						console.log(data);
 						var d = $('#dlUOM').datalist('getData').rows;
+						var l = d.length;
 						console.log(d);
 						debugger;
-						for ( var i=0, i<d.length, i++ ) {
+						for ( var i=0; i<l; i++ ) {
 							var indx = data.indexOf(d[i].uomId);
 							if (indx != -1) {
 								console.log(indx);
 								$('#dlUOM').datagrid('checkRow', i);
 							}
-						}
+						};
 					});
 				}
 			} // OnSelect
