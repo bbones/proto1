@@ -70,9 +70,10 @@
 	data-options="iconCls:'icon-save',selected:false"
 	style="overflow: auto; padding: 10px;" >
 	<div id="dlUOM" class="easyui-datalist" title="Accepted UOM" style="width:400px;height:250px" data-options="
+	            toolbar: '#tbuom',
 	            method: 'get',
 	            checkbox: true,
-				singleSelect : true,
+				singleSelect : false,
 				lines : true,
 	            idField : 'uomId',
 	            valueField : 'uomId',
@@ -108,6 +109,17 @@
 		data-options="iconCls:'icon-search',plain:true"
 		onclick="ParameterLib.getChanges()">GetChanges</a>
 </div>
+
+<div id="tbuom" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.acceptUOM()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="ParameterLib.getChanges()">GetChanges</a>
+</div>
+
 <script>
 	$.getScript("/protofront/scripts/parameter.js").done(function() {
 		ParameterLib.init();

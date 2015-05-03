@@ -78,6 +78,9 @@ var ParameterLib = (function(){
 		},
 		getChanges : function() {
 			console.log($('#dlUOM').datagrid('getSelections'));
+		},
+		acceptUOM : function() {
+			console.log($('#dlUOM').datagrid('getChecked'));
 		}
 	};
 })();
