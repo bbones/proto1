@@ -147,7 +147,7 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 
 	}
 	
-	private void peristStandard() {		// TODO Auto-generated method stub
+	private void peristStandard() {		
 		em.persist(gost);
 		em.persist(astm);
 	}

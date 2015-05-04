@@ -1,12 +1,21 @@
 package org.proto1.dto;
 
-public class UnitOfMeasurementDTO extends DTO {
+public class UnitOfMeasurementNameDTO extends DTO {
 
-	private static final long serialVersionUID = 6376088966271169163L;
+	private static final long serialVersionUID = -3596609762108126966L;
 
+	private Long uomNameId;
 	private Long uomId;
 	private String uomShortName;
 	private String uomFullName;
+
+	public Long getUomNameId() {
+		return uomNameId;
+	}
+
+	public void setUomNameId(Long uomNameId) {
+		this.uomNameId = uomNameId;
+	}
 
 	public Long getUomId() {
 		return uomId;

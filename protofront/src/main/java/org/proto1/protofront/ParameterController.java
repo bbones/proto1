@@ -18,6 +18,7 @@ import org.proto1.dto.ParameterDTO;
 import org.proto1.dto.ParameterNameDTO;
 import org.proto1.dto.UnitOfMeasurementDTO;
 import org.proto1.services.LanguageService;
+import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.parameter.ParameterService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -41,6 +42,9 @@ public class ParameterController {
 	@Autowired
 	LanguageService languageService;
 	
+	@Autowired
+	UnitOfMeasurementService unitOfMeasurementService;
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public List<Map<String, Object>> getParameterList(@RequestParam Long languageId) {
 		return parameterService.getParameterList(languageId);
@@ -53,10 +57,8 @@ public class ParameterController {
 			parameter.setId(parameterDTO.getParameterId());
 		parameter.setType(Parameter.Type.valueOf(parameterDTO.getParameterType()));
 		parameter.setVersion(parameterDTO.getVersion());
-		if (parameter.getParameterNames().size() == 0) {
-			Language language = languageService.get(languageId);
-			parameter.getParameterNames().add(new ParameterName(parameter, parameterDTO.getParameterName(), language));
-		}
+		Language language = languageService.get(languageId);
+		parameter.getParameterNames().add(new ParameterName(parameter, parameterDTO.getParameterName(), language));
 		parameter = parameterService.save(parameter);
 		parameterDTO.setParameterId(parameter.getId());
 		parameterDTO.setVersion(parameter.getVersion());
@@ -95,6 +97,20 @@ public class ParameterController {
 		for(UnitOfMeasurement uom : parameter.getAcceptedUOM()) 
 			uomIdList.add(uom.getId());
 		return uomIdList;
+	}
+
+	@RequestMapping(value = "{parameterId}/uoms", method = RequestMethod.POST)
+	public void addUOM(@PathVariable Long parameterId, @RequestParam Long uomId) {
+		Parameter parameter = parameterService.get(parameterId);
+		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
+		parameter.getAcceptedUOM().add(uom);
+	}
+
+	@RequestMapping(value = "{parameterId}/uoms/{uomId}", method = RequestMethod.DELETE)
+	public void removeUOM(@PathVariable Long parameterId, @PathVariable Long uomId) {
+		Parameter parameter = parameterService.get(parameterId);
+		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
+		parameter.getAcceptedUOM().remove(uom);
 	}
 
 

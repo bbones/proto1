@@ -62,7 +62,6 @@ public class BOMServiceBean extends BaseOrderServiceBean<BOM> implements BOMServ
 	 * @see org.proto1.services.order.BaseOrderService#get(java.lang.Long)
 	 */
 	public BOM get(Long orderId) {
-		// TODO Auto-generated method stub
 		return bomRepository.findOne(orderId);
 	}
 
@@ -70,8 +69,7 @@ public class BOMServiceBean extends BaseOrderServiceBean<BOM> implements BOMServ
 	 * @see org.proto1.services.order.BaseOrderService#save(org.proto1.domain.order.BaseOrder)
 	 */
 	public BOM save(BOM order) {
-		// TODO Auto-generated method stub
-		return null;
+		return bomRepository.save(order);
 	}
 
 

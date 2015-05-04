@@ -20,7 +20,11 @@ var IndexLib = (function(){
 							});
 						});
 					} else {
-						$("#test").panel('refresh', '/protofront/forms/' + node.id + '.html');
+						if (node.id == "uom") {
+							$.getScript("/protofront/scripts/" + node.module).done();
+						} else {
+							$("#test").panel('refresh', '/protofront/forms/' + node.id + '.html');
+						}
 					}
 				} 
 			}

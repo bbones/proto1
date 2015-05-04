@@ -1,0 +1,75 @@
+
+<div title="Unit of measurement"
+	data-options="iconCls:'icon-reload',selected:true" style="padding: 10px;">
+	<table id="edgUOMs" title="Unit of measurement" singleSelect="true"
+		style="width: 600px; height: auto"
+		data-options="iconCls: 'icon-edit', toolbar: '#tbuom', idField : 'uomId', method : 'GET'">
+		<thead>
+			<tr>
+				<th field='uomId' width=90>UOM Id</th>
+				<th field='uomShortName' width=250 editor='text'>UOM short name</th>
+				<th field='uomFullName' width=250 editor='text'>UOM full name</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+<div title="Translations"
+	data-options="iconCls:'icon-save',selected:false"
+	style="overflow: auto; padding: 10px;" >
+	<table id="edgNames" title="Translations" singleSelect="true"
+		style="width: 600px; height: auto" 
+		data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'uomNameId', method : 'GET'">
+		<thead>
+			<tr>
+				<th field='uomNameId' width=50>UOM Name Id</th>
+				<th
+					data-options="field:'languageId',width:100,
+                    			formatter:function(value,row){
+                        			return row.languageName;
+                    			},
+                   				editor:{
+                          			type:'combobox',
+		                          	options:{
+		                               valueField:'id',
+		                               textField:'name',
+		                               method:'get',
+		                               url:'/protofront/service/masterdata/languages',
+		                               required:true
+		                           }
+                    			}">Language</th>
+				<th field='uomShortName' width=250 editor="text">UOM short name</th>
+				<th field='uomFullName' width=250 editor="text">UOM full Name</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+<div id="tbuom" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="UOMLib.appendUOM()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="UOMLib.removeUOM()">Remove</a> 
+	<a href="javascript:void(0)"
+		class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="UOMLib.acceptUOM()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="UOMLib.rejectUOM()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
+<div id="tbn" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="UOMLib.appendName()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="UOMLib.removeName()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="UOMLib.acceptName()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="UOMLib.rejectName()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="UOMLib.getChanges()">GetChanges</a>
+</div>

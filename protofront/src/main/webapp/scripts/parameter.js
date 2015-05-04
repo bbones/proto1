@@ -7,6 +7,7 @@
  */
 
 var ParameterLib = (function(){
+	var initUOM = true;
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
@@ -26,15 +27,16 @@ var ParameterLib = (function(){
 						console.log(data);
 						var d = $('#dlUOM').datalist('getData').rows;
 						var l = d.length;
-						console.log(d);
-						debugger;
+						initUOM = true;
 						for ( var i=0; i<l; i++ ) {
 							var indx = data.indexOf(d[i].uomId);
 							if (indx != -1) {
-								console.log(indx);
 								$('#dlUOM').datagrid('checkRow', i);
+							} else {
+								$('#dlUOM').datagrid('uncheckRow', i);
 							}
 						};
+						initUOM = false;
 					});
 				}
 			} // OnSelect
@@ -48,7 +50,25 @@ var ParameterLib = (function(){
 	
 	function initUOMS() {
 		$('#dlUOM').datalist({
-		    url: '/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang()
+		    url: '/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
+		    onCheck : function(index, row) {
+		    	if (!initUOM) {
+		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;
+		    		$.post('/protofront/service/parameters/' + par + '/uoms',{
+		    			'uomId' : row.uomId
+		    		});
+		    	};
+		    },
+		    onUncheck : function(index, row) {
+		    	if (!initUOM) {
+		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;
+		    		$.ajax({
+		    			url : '/protofront/service/parameters/' + par + '/uoms/' + row.uomId,
+		    			method : 'DELETE'
+		    		});
+		    	};
+		    }
+
 		});
 	};
 	

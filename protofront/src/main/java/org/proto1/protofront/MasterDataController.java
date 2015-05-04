@@ -11,6 +11,7 @@ import java.util.Map;
 import org.dozer.Mapper;
 import org.proto1.dto.LanguageDTO;
 import org.proto1.services.MasterDataService;
+import org.proto1.services.UnitOfMeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,9 +36,5 @@ public class MasterDataController {
 		return langlist;
 	}
 
-	@RequestMapping(value = "uoms", method = RequestMethod.GET)
-	public @ResponseBody List<Map<String, Object>> getUOMList(@RequestParam Long languageId) {
-		return masterDataService.getUOMList(languageId);
-	}
-
+	
 }

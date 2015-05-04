@@ -44,8 +44,7 @@ public class ProductionOrderServiceBean extends BaseOrderServiceBean<ProductionO
 	 * @see org.proto1.services.order.BaseOrderService#get(java.lang.Long)
 	 */
 	public ProductionOrder get(Long orderId) {
-		// TODO Auto-generated method stub
-		return null;
+		return productionOrderRepository.findOne(orderId);
 	}
 
 }

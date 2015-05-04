@@ -24,7 +24,12 @@
 		    },{
 		        "id": "location",
 		        "text": "Location"
+		    },{
+		        "id": "uom",
+		        "text": "Unit of measurement",
+		        "module" : "uom.js"
 		    }
+		    
 		]
 	},
 	{
