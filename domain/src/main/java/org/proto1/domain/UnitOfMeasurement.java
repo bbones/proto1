@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -18,7 +19,7 @@ import javax.persistence.Table;
 public class UnitOfMeasurement extends AbstractEntity {
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="unitOfMeasurement", fetch=FetchType.EAGER)
-	private List<UnitOfMeasurementName> unitOfMeasurementNames;
+	private List<UnitOfMeasurementName> unitOfMeasurementNames = new ArrayList<UnitOfMeasurementName>();
 
 	public List<UnitOfMeasurementName> getUnitOfMeasurementNames() {
 		return unitOfMeasurementNames;

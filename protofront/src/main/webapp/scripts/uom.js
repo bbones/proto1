@@ -12,8 +12,8 @@ var UOMLib = (function(){
 	function initUOMGrid(){
 		$("#edgUOMs").edatagrid({
 			url : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
-			saveUrl : '/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
-			updateUrl : '/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
+			saveUrl : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
+			updateUrl : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
 			onSelect : function(index, row) {
 				console.log(row);
 				if (row.uomId != null) {
@@ -40,8 +40,27 @@ var UOMLib = (function(){
 					initTranslationGrid();
 				}
 			});
+		},
+		appendUOM : function() {
+			$("#edgUOMs").edatagrid('addRow');
+		},
+		removeUOM : function() {
+			$("#edgUOMs").edatagrid('destroyRow');
+		},
+		acceptUOM : function() {
+			$("#edgUOMs").edatagrid('saveRow');
+		},
+		// Names
+		appendName : function() {
+			$("#edgNames").edatagrid('addRow');
+		},
+		removeName : function() {
+			$("#edgNames").edatagrid('destroyRow');
+		},
+		acceptName : function() {
+			$("#edgNames").edatagrid('saveRow');
 		}
-	}	
+	};	
 })();
 
 UOMLib.init();

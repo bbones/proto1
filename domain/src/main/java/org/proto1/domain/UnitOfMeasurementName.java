@@ -10,12 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 @Entity
 @Table(name="UNIT_OF_MEASUREMENT_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"UNIT_OF_MEASUREMENT_ID", "LANGUAGE_ID"})) 
 public class UnitOfMeasurementName extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name="UNIT_OF_MEASUREMENT_ID")
+	@JsonIgnore
 	private UnitOfMeasurement unitOfMeasurement;
 	
 	@ManyToOne

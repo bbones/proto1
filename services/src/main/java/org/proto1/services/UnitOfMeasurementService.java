@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.UnitOfMeasurement;
+import org.proto1.domain.UnitOfMeasurementName;
 
 public interface UnitOfMeasurementService {
 	
@@ -14,5 +15,17 @@ public interface UnitOfMeasurementService {
 	UnitOfMeasurement save(UnitOfMeasurement uom);
 
 	void delete(Long id);
+
+	/**
+	 * @param nameId
+	 * @return
+	 */
+	void deleteName(Long nameId);
+
+	/**
+	 * @param uomName
+	 * @return 
+	 */
+	UnitOfMeasurementName saveName(UnitOfMeasurementName uomName);
 
 }

@@ -2,6 +2,23 @@
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 	<mapping>
+		<class-a>org.proto1.domain.UnitOfMeasurementName</class-a>
+		<class-b>org.proto1.dto.UnitOfMeasurementNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>uomNameId</b>
+		</field>
+		<field>
+			<a>unitOfMeasurement.id</a>
+			<b>uomId</b>
+		</field>
+		<field>
+			<a>language.id</a>
+			<b>languageId</b>			
+		</field>
+	</mapping>
+	
+	<mapping>
 		<class-a>org.proto1.domain.product.ProductTypeName</class-a>
 		<class-b>org.proto1.dto.ProductTypeNameDTO</class-b>
 		<field>

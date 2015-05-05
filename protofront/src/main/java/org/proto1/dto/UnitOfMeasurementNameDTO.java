@@ -6,8 +6,9 @@ public class UnitOfMeasurementNameDTO extends DTO {
 
 	private Long uomNameId;
 	private Long uomId;
-	private String uomShortName;
-	private String uomFullName;
+	private Long languageId;
+	private String shortName;
+	private String fullName;
 
 	public Long getUomNameId() {
 		return uomNameId;
@@ -25,20 +26,28 @@ public class UnitOfMeasurementNameDTO extends DTO {
 		this.uomId = uomId;
 	}
 
-	public String getUomShortName() {
-		return uomShortName;
+	public String getShortName() {
+		return shortName;
 	}
 
-	public void setUomShortName(String uomShortName) {
-		this.uomShortName = uomShortName;
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
 
-	public String getUomFullName() {
-		return uomFullName;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setUomFullName(String uomFullName) {
-		this.uomFullName = uomFullName;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+	public Long getLanguageId() {
+		return languageId;
+	}
+
+	public void setLanguageId(Long languageId) {
+		this.languageId = languageId;
 	}
 
 }

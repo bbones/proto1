@@ -396,19 +396,19 @@
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 					<property name="language" ref="english" />
 					<property name="shortName" value="(n/d)" />
-					<property name="fullName" value="metric tonn" />
+					<property name="fullName" value="Not defined" />
 				</bean>
 				<bean class="org.proto1.domain.UnitOfMeasurementName">
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 					<property name="language" ref="russian" />
 					<property name="shortName" value="(н.о.)" />
-					<property name="fullName" value="метрическая тонна" />
+					<property name="fullName" value="Не определено" />
 				</bean>
 				<bean class="org.proto1.domain.UnitOfMeasurementName">
 					<property name="unitOfMeasurement" ref="notDefinedUOM" />
 					<property name="language" ref="ukrainian" />
 					<property name="shortName" value="(н.в.)" />
-					<property name="fullName" value="метрична тона" />
+					<property name="fullName" value="Не визначено" />
 				</bean>
 			</list>
 		</property>

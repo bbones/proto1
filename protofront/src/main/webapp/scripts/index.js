@@ -7,6 +7,8 @@
  */
 
 var IndexLib = (function(){
+	var languageMap = new Object();
+	var languageList = null;
 	
 	function initMenu() {
 		$('#mainMenu').tree({
@@ -62,10 +64,29 @@ var IndexLib = (function(){
 		});
 	}
 	
+	function initLanguageList() {
+		$.ajax('/protofront/service/masterdata/languages').done(function(dataArray) {
+			console.log(dataArray);
+			languageList = dataArray;
+			$('#langSelector').combobox({
+    			valueField:'id',
+    			textField:'name',
+    			data : dataArray,
+    			onSelect : IndexLib.changeLanguage
+
+			});
+			var length = dataArray.length;
+			for(var i = 0; i < length; i++) {
+				languageMap[dataArray[i].id] = dataArray[i].name;
+			};
+		});
+	}
+	
 	return {
 		init : function() {
 			initMenu();
 			initEasyUIEditors();
+			initLanguageList();
 		},
 		lang : function() {
 			return $('#langSelector').combobox('getValue');
@@ -82,6 +103,9 @@ var IndexLib = (function(){
         dateFormatter : function(value) {
         	var d = new Date(value);
         	return d.toLocaleDateString();
+        },
+        languageFormatter : function(value, row) {
+        	return languageMap[value];
         },
         dateParser : function(s){
         	if (!isNaN(s))
@@ -100,7 +124,17 @@ var IndexLib = (function(){
         changeLanguage : function(rec) {
         	alert("main_menu_" + rec.locale + ".json");
         	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
-        }
+        },
+        languageEditor:{
+  			type:'combobox',
+          	options:{
+               valueField:'id',
+               textField:'name',
+               method:'get',
+               url:'/protofront/service/masterdata/languages',
+               required:true
+           }
+		}
 	};
 })();
 

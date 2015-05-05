@@ -22,24 +22,13 @@
 		data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'uomNameId', method : 'GET'">
 		<thead>
 			<tr>
-				<th field='uomNameId' width=50>UOM Name Id</th>
+				<th field='uomNameId' width=40>UOM Name Id</th>
 				<th
-					data-options="field:'languageId',width:100,
-                    			formatter:function(value,row){
-                        			return row.languageName;
-                    			},
-                   				editor:{
-                          			type:'combobox',
-		                          	options:{
-		                               valueField:'id',
-		                               textField:'name',
-		                               method:'get',
-		                               url:'/protofront/service/masterdata/languages',
-		                               required:true
-		                           }
-                    			}">Language</th>
-				<th field='uomShortName' width=250 editor="text">UOM short name</th>
-				<th field='uomFullName' width=250 editor="text">UOM full Name</th>
+					data-options="field:'languageId',width:80,
+                    			formatter: IndexLib.languageFormatter,
+                   				editor:IndexLib.languageEditor">Language</th>
+				<th field='shortName' width=100 editor="text">UOM short name</th>
+				<th field='fullName' width=250 editor="text">UOM full Name</th>
 			</tr>
 		</thead>
 	</table>

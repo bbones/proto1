@@ -1,12 +1,15 @@
 package org.proto1.protofront;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.dozer.Mapper;
 import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.UnitOfMeasurementName;
 import org.proto1.dto.UnitOfMeasurementDTO;
+import org.proto1.dto.UnitOfMeasurementNameDTO;
 import org.proto1.services.LanguageService;
 import org.proto1.services.UnitOfMeasurementService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +28,10 @@ public class UOMController {
 	
 	@Autowired
 	LanguageService languageService;
+	
+	@Autowired
+	Mapper mapper;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, Object>> getUOMList(@RequestParam Long languageId) {
@@ -55,5 +62,36 @@ public class UOMController {
 		unitOfMeasurementService.delete(id);
 	}
 
+	@RequestMapping(value = "{uomId}/names", method = RequestMethod.GET)
+	public @ResponseBody List<UnitOfMeasurementNameDTO> getNamesList(@PathVariable Long uomId) {
+		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
+		List<UnitOfMeasurementNameDTO> uomNameDTOs = new ArrayList<UnitOfMeasurementNameDTO>();
+		for (UnitOfMeasurementName uomName : uom.getUnitOfMeasurementNames()) {
+			UnitOfMeasurementNameDTO uomNameDTO = mapper.map(uomName, UnitOfMeasurementNameDTO.class);
+			uomNameDTOs.add(uomNameDTO);
+		}
+		return uomNameDTOs;
+	}
+
+	@RequestMapping(value = "{uomId}/names", method = RequestMethod.POST)
+	public @ResponseBody UnitOfMeasurementNameDTO saveName(@PathVariable Long uomId, UnitOfMeasurementNameDTO uomNameDTO) {
+		UnitOfMeasurementName uomName =  new UnitOfMeasurementName();
+		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
+		uomName.setUnitOfMeasurement(uom);
+
+		uomName.setShortName(uomNameDTO.getShortName());
+		uomName.setFullName(uomNameDTO.getFullName());
+		Language language = languageService.get(uomNameDTO.getLanguageId());
+		uomName.setLanguage(language);
+
+		uomName = unitOfMeasurementService.saveName(uomName);
+		uomNameDTO.setUomNameId(uomName.getId());
+		return uomNameDTO;
+	}
+
+	@RequestMapping(value = "{id}/names/{nameId}", method = RequestMethod.DELETE)
+	public void deleteName(@PathVariable Long id, @PathVariable Long nameId) {
+		unitOfMeasurementService.deleteName(nameId);
+	}
 
 }
