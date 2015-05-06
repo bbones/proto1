@@ -16,7 +16,6 @@ import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.dto.ParameterDTO;
 import org.proto1.dto.ParameterNameDTO;
-import org.proto1.dto.UnitOfMeasurementDTO;
 import org.proto1.services.LanguageService;
 import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.parameter.ParameterService;

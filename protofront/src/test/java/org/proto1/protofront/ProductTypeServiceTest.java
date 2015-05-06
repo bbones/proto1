@@ -43,7 +43,7 @@ public class ProductTypeServiceTest  extends AbstractTransactionalJUnit4SpringCo
 	@Transactional()
 	public void test() {
 		ProductType pt = new ProductType();
-		ProductType parent = pds.getNodeById(1L);
+		ProductType parent = pds.get(1L);
 		pt.setParentType(parent);
 		// pt = pds.save(pt);
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {

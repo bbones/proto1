@@ -5,6 +5,7 @@
 package org.proto1.domain.product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
@@ -24,13 +26,14 @@ public class Product extends AbstractEntity implements Serializable {
 	private static final long serialVersionUID = 5899772053294304505L;
 
 	@ManyToOne
+	@NotNull
 	private ProductType productType;
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product", fetch=FetchType.EAGER)
-	private List<ProductName> productNames;
+	private List<ProductName> productNames = new ArrayList<ProductName>();
 	
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="product")
-	private List<ProductParameter> productParameters;
+	private List<ProductParameter> productParameters = new ArrayList<ProductParameter>();
 
 	public ProductType getProductType() {
 		return productType;

@@ -6,22 +6,6 @@
 
 <div style="margin: 20px 0;"></div>
 <div class="easyui-panel" title="Product" style="width: 800px">
-	<div class="easyui-panel" style="padding: 5px;">
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.newProduct()">New</a>
-		<a href="javascript:void(0)" class="easyui-linkbutton"
-			data-options="iconCls:'icon-remove',plain:true"
-			onclick="removeProduct()">Remove</a> <a href="javascript:void(0)"
-			class="easyui-linkbutton"
-			data-options="iconCls:'icon-save',plain:true"
-			onclick="acceptProduct()">Accept</a> <a href="javascript:void(0)"
-			class="easyui-linkbutton"
-			data-options="iconCls:'icon-undo',plain:true"
-			onclick="rejectProduct()">Reject</a> <a href="javascript:void(0)"
-			class="easyui-linkbutton"
-			data-options="iconCls:'icon-search',plain:true"
-			onclick="searchProductType()">Search</a>
-	</div>
 	<div style="padding: 10px 30px 20px 30px">
 
 			<h3>Select product type</h3>
@@ -31,11 +15,11 @@
 								+ IndexLib.lang(), method:'GET'">
 
 			<table id="edgProducts" title="Products" singleSelect="true"
-				style="width: 700px; height: auto">
+				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'id'">
 				<thead>
 					<tr>
-						<th field='id' width=80>Product Id</th>
-						<th field='name' width=250">Product name</th>
+						<th field='productId' width=80>Product Id</th>
+						<th field='productName' width=250" editor="text">Product name</th>
 					</tr>
 				</thead>
 			</table>
@@ -51,21 +35,9 @@
 						<thead>
 							<tr>
 								<th field='nameId' width=80>Product Name Id</th>
-								<th
-									data-options="field:'languageId',width:100,
-                        			formatter:function(value,row){
-                            			return row.languageName;
-                        			},
-                       				editor:{
-		                            	type:'combobox',
-		                            	options:{
-			                                valueField:'id',
-			                                textField:'name',
-			                                method:'get',
-			                                url:'/protofront/service/masterdata/languages',
-			                                required:true
-			                            }
-                        			}">Language</th>
+								<th	data-options="field:'languageId',width:80,
+                    					formatter: IndexLib.languageFormatter,
+                   						editor:IndexLib.languageEditor">Language</th>
 								<th field='productName' width=250 editor="text">Product
 									Name</th>
 							</tr>
@@ -77,7 +49,7 @@
 					style="padding: 10px;">
 					<table id="edgParameters" title="Parameters" singleSelect="true"
 						style="width: 600px; height: auto"
-						data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'productParameterId'">
+						data-options="iconCls: 'icon-edit', toolbar: '#tbpar', idField : 'productParameterId'">
 						<thead>
 							<tr>
 								<th field='productParameterId' width=100>Product Parameter Id</th>
@@ -92,7 +64,7 @@
 			                                valueField:'parameterId',
 			                                textField:'parameterName',
 			                                method:'get',
-			                                url:'/protofront/service/parameter/parameterNamesByLanguageId/' + $('#langSelector').combobox('getValue'),
+			                                url:'/protofront/service/parameters/?languageId=' + $('#langSelector').combobox('getValue'),
 			                                required:true
 			                            }
                         			}">Parameter</th>
@@ -109,6 +81,20 @@
 	</div>
 </div>
 
+<div id="tbp" style="height: auto">
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.append()">Append</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.remove()">Remove</a> 
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.save()">Accept</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.reject()">Reject</a>
+	<a href="javascript:void(0)" class="easyui-linkbutton"
+		data-options="iconCls:'icon-search',plain:true"
+		onclick="getChanges()">GetChanges</a>
+</div>
+
 <div id="tbn" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendName()">Append</a>
@@ -123,7 +109,7 @@
 		onclick="getChanges()">GetChanges</a>
 </div>
 
-<div id="tbp" style="height: auto">
+<div id="tbpar" style="height: auto">
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendParameter()">Append</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"

@@ -17,20 +17,9 @@
 			<tr>
 				<th field='nameId' width = 250 >Product Type Name Id</th>
 				<th
-					data-options="field:'languageId',width:100,
-                        	formatter:function(value,row){
-                            return row.languageName;
-                        },
-                        editor:{
-                            type:'combobox',
-                            options:{
-                                valueField:'id',
-                                textField:'name',
-                                method:'get',
-                                url:'/protofront/service/masterdata/languages',
-                                required:true
-                            }
-                        }">Language</th>
+					data-options="field:'languageId',width:80,
+                    			formatter: IndexLib.languageFormatter,
+                   				editor:IndexLib.languageEditor">Language</th>
 				<th field='productTypeName' width = 250 editor="text">Product Type Name</th>
 			</tr>
 		</thead>

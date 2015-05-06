@@ -15,25 +15,30 @@ var ProductLib = (function(){
 				$("#edgProducts").edatagrid({
 					url : '/protofront/service/products/types?productTypeId='
 									+ record.id + '&languageId=' + IndexLib.lang(),
-					onSelect : function(index, row) {
-						console.log(row);
-						$("#edgNames").edatagrid({
-							url : '/protofront/service/products/'
-										+ row.id + '/names'
-						});
-
-						$("#edgParameters").edatagrid({
-							url : '/protofront/service/products/'+ row.id + 
-								'/parameters?languageId=' + IndexLib.lang(),
-						});
-					} // OnSelect
+					saveUrl : '/protofront/service/products/?typeId=' + record.id + '&languageId=' + IndexLib.lang()
 				}); // edatagrid
 			}// OnSelect
 		}); // Combotree
 	}
 	
 	function initProductGrid() {
-		$("#edgProducts").edatagrid({method : "GET"});
+		$("#edgProducts").edatagrid({
+			method : "GET",
+			onSelect : function(index, row) {
+				console.log(row);
+				if (row.productId != null) {
+					$("#edgNames").edatagrid({
+						url : '/protofront/service/products/'
+									+ row.productId + '/names'
+					});
+	
+					$("#edgParameters").edatagrid({
+						url : '/protofront/service/products/'+ row.productId + 
+							'/parameters?languageId=' + IndexLib.lang(),
+					});
+				}
+			} // OnSelect
+		});
 	}
 	
 	function  initNameGrid() {
@@ -55,7 +60,6 @@ var ProductLib = (function(){
 	}
 	
 	
-	
 	return {
 		init : function() {
 			initProductTypeTree();
@@ -63,38 +67,24 @@ var ProductLib = (function(){
 			initNameGrid();
 			initParameterGrid();
 		},
-		searchProductType : function() {
-			var t = $('#productType').combotree('getTree');
-			$('#productType').combotree('setValue', 3);
+		append : function() {
+			$("#edgProducts").edatagrid('addRow', {
+				row :{
+					productTypeId : $("#productType").combotree('getValue')
+				}
+			});
 		},
-	
-		newProduct: function () {
-			var ptId = $('#productType').combotree('getValue');
-			if (ptId) {
-				$.ajax({
-					type : 'POST',
-					url : '/protofront/service/products/getNewProduct',
-					data : {
-						productTypeId : ptId,
-						languageId : $('#langSelector')
-								.combobox('getValue')
-					},
-					success : function(respdata) {
-						$("#edgProducts").edatagrid('addRow', {
-							row : {
-								id : respdata['id'],
-								name : respdata['localizedProductName']
-							}
-						});
-					},
-					error : function(data, status, er) {
-						alert("error: " + data + " status: " + status
-								+ " er:" + er);
-					}
-			
-				}); 
-			} // if
-		}, 
+		save : function() {
+			$("#edgProducts").edatagrid('saveRow');
+		},
+		
+		appendName : function() {
+			$("#edgNames").edatagrid('addRow', {
+				row : {
+					productId : $("#edgProducts").edatagrid('getSelected').productId
+				}
+			});
+		},
 		
 		saveName : function() {
 			$("#edgNames").edatagrid('saveRow');

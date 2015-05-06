@@ -92,7 +92,7 @@ var OrderLib = (function(){
 			$.getScript(options.scriptURL);
 		},
         appendOrder : function() {
-        	// $("#edgOrder").edatagrid('addRow');
+        	$("#edgOrder").edatagrid('addRow');
         },
         acceptOrder : function() {
         	$("#edgOrder").edatagrid('saveRow');

@@ -1,16 +1,27 @@
 <div class="easyui-panel" title="Receipt" style="width: 800px">
 	<div style="padding: 10px 30px 20px 30px">
 
-		<table id="edgReceipt" title="Receipt" singleSelect="true"
+		<table id="edgContract" title="Receipt" singleSelect="true"
 			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
 			<thead>
 				<tr>
-					<th field='receiptId' width=80>Receipt Id</th>
-					<th field='receiptNo' width=250 editor="text">Receipt #</th>
-					<th field='productId' width=80>Product Id</th>
-					<th field='productName' width=250 editor="text">Product Name</th>
+					<th field='contractId' width=80>Contract Id</th>
+					<th field='documentNo' width=250 editor="text">Contract #</th>
+					<th field='issueDate' width=80>Issue date</th>
 				</tr>
 			</thead>
 		</table>
+		
+		<table id="edgSupplement" title="Contract supplements" singleSelect="true"
+			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
+			<thead>
+				<tr>
+					<th field='contractSupplementId' width=80>Contract Supplement Id</th>
+					<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
+					<th field='issueDate' width=80>Issue date</th>
+				</tr>
+			</thead>
+		</table>
+		
 	</div>
 </div>

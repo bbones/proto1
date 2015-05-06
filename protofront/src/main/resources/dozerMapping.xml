@@ -80,10 +80,6 @@
 			<b>languageId</b>
 		</field>
 		<field>
-			<a>language.name</a>
-			<b>languageName</b>
-		</field>
-		<field>
 			<a>name</a>
 			<b>productName</b>
 		</field>

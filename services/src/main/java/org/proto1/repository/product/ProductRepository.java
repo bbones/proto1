@@ -18,7 +18,7 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
 	@EntityGraph(value="Product.productNames", type=EntityGraphType.LOAD)
 	public Product getById(Long id);
 	
-	@Query("select new Map(p.id as id, p.productType.id as productTypeId , pn.name as name) " + 
+	@Query("select new Map(p.id as productId, p.productType.id as productTypeId , pn.name as productName) " + 
 			"from Product p join p.productNames pn " + 
 			"where p.productType.id = :pt_id and pn.language.id = :language_id")
 	public List<Map<String, Object>> getListByProdTypeIdByLanguageId(@Param("pt_id") Long productTypeId, @Param("language_id") Long languageId);

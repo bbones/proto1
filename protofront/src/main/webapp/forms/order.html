@@ -6,7 +6,7 @@
 			<thead>
 				<tr>
 					<th field='orderId' width=80>SO Id</th>
-					<th field='orderNo' width=250 editor="text">SO #</th>
+					<th field='documentNo' width=250 editor="text">SO #</th>
 					<th field='issueDate' width=250 formatter=IndexLib.dateFormatter 
 							editor="{
 								type:'datebox2', 
@@ -50,7 +50,7 @@
 				                                valueField:'uomId',
 				                                textField:'uomName',
 				                                method:'get',
-				                                url:'/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
+				                                url:'/protofront/service/uoms/?languageId=' + IndexLib.lang(),
 				                                required:true
 				                            }
 	                        			}">UOM</th>

@@ -28,8 +28,8 @@ public class ProductTypeServiceBean implements ProductTypeService {
 	@Autowired
 	private LanguageRepository languageRepository;
 
-	public ProductType getNodeById(Long id) {
-		return productTypeRepository.getById(id);
+	public ProductType get(Long id) {
+		return productTypeRepository.findOne(id);
 	}
 
 	public void setProductTypeRepository(
@@ -54,7 +54,7 @@ public class ProductTypeServiceBean implements ProductTypeService {
 	}
 
 	public List<ProductTypeName> getNames(Long id) {
-		return productTypeRepository.getById(id).getProductTypeNames();
+		return productTypeRepository.findOne(id).getProductTypeNames();
 	}
 
 	@Transactional

@@ -13,7 +13,7 @@ import org.proto1.repository.product.ProductTypeRepository;
 
 public interface ProductTypeService {
 
-	ProductType getNodeById(Long id);
+	ProductType get(Long id);
 	List<ProductType> getByParentTypeId(Long id);
 	List<Map<String, Object>> getByParentTypeIdByLanguageId(Long parentId, Long languageId);
 	

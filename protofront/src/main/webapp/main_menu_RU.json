@@ -38,7 +38,8 @@
 	    "children": [
 	    	{
 	        	"id": "contract",
-		        "text": "Контракты"
+		        "text": "Контракты",
+		        "module": "contract.js"
 	    	},
 	    	{
 		    	"id": "orders",

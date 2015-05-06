@@ -32,10 +32,10 @@ public class ProductTypeServiceTest extends AbstractJUnit4SpringContextTests  {
 	@Ignore
 	public void testGetTree() {
 		ProductTypeRepository ptrep = createMock(ProductTypeRepository.class);
-		expect(ptrep.getById(1L)).andReturn(ironProduct);
+		expect(ptrep.findOne(1L)).andReturn(ironProduct);
 		replay(ptrep);
 		pds.setProductTypeRepository(ptrep);
-		ProductType pt = pds.getNodeById(1L);
+		ProductType pt = pds.get(1L);
 		assertEquals(pt.getProductTypeNames().size(), 2);
 	}
 

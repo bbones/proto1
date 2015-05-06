@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.dozer.Mapper;
+import org.proto1.domain.Language;
 import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductParameter;
@@ -18,6 +19,7 @@ import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.dto.ProductDTO;
 import org.proto1.dto.ProductNameDTO;
 import org.proto1.dto.ProductParameterDTO;
+import org.proto1.services.LanguageService;
 import org.proto1.services.MasterDataService;
 import org.proto1.services.product.ProductService;
 import org.proto1.services.product.ProductTypeService;
@@ -44,6 +46,9 @@ public class ProductController {
 
 	@Autowired
 	ProductTypeService productTypeService;
+	
+	@Autowired
+	LanguageService languageService;
 
 	@Autowired
 	MasterDataService mds;
@@ -52,7 +57,7 @@ public class ProductController {
 	@RequestMapping(value = "types", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, Object>> getListByProductType(@RequestParam Long productTypeId,
 			@RequestParam Long languageId) {
-		List<Map<String, Object>> prodList = productService.getList(productTypeId, 1L);
+		List<Map<String, Object>> prodList = productService.getList(productTypeId, languageId);
 		return prodList;
 	}
 
@@ -69,13 +74,20 @@ public class ProductController {
 		return mapper.map(product, ProductDTO.class);
 	}
 
+	// Only for new Product with one name
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody ProductDTO submit(@RequestParam Long languageId, final ProductDTO productDTO) {
 		Product product = mapper.map(productDTO, Product.class);
+		ProductType productType = productTypeService.get(productDTO.getProductTypeId());
+		product.setProductType(productType);
+		ProductName productName = new ProductName();
+		productName.setProduct(product);
+		Language language = languageService.get(languageId);
+		productName.setLanguage(language);
+		productName.setName(productDTO.getProductName());
+		product.getProductNames().add(productName);
 		product = productService.save(product);
-		productService.saveProductName(productDTO.getId(), product.getId(), languageId, 
-				productDTO.getProductName(), productDTO.getVersion());
-		mapper.map(product, productDTO);
+		productDTO.setProductId(product.getId());
 		return productDTO;
 	}
 
@@ -135,7 +147,7 @@ public class ProductController {
 	public ProductDTO getNewProduct(@RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId) {
 		Product product = new Product();
 		product.setProductNames(new ArrayList<ProductName>());
-		ProductType pt = productTypeService.getNodeById(productTypeId);
+		ProductType pt = productTypeService.get(productTypeId);
 		product.setProductType(pt);
 		String nameForSend = "Not in list";
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productName")) {

@@ -50,7 +50,7 @@ var ParameterLib = (function(){
 	
 	function initUOMS() {
 		$('#dlUOM').datalist({
-		    url: '/protofront/service/masterdata/uoms?languageId=' + IndexLib.lang(),
+		    url: '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
 		    onCheck : function(index, row) {
 		    	if (!initUOM) {
 		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;

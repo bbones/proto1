@@ -9,9 +9,19 @@
  */
 
 var ContractLib = (function(){
+	function initContractGrid() {
+		$("#edgContract").edatagrid();
+	};
+	
+	function initSupplementGrid(){
+		$("#edgSupplement").edatagrid();
+		
+	};
+
 	return {
 		init : function() {
-			
+			initContractGrid();
+			initSupplementGrid();
 		}
 	}
 })();

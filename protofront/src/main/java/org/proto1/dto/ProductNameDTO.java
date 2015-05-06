@@ -13,16 +13,14 @@ public class ProductNameDTO extends DTO {
 	private Long nameId;
 	private Long productId;
 	private Long languageId;
-	private String languageName;
 	private String productName;
 	
 	public ProductNameDTO() {
 		
 	}
 	
-	public ProductNameDTO(Long languageId, String languageName, String productName) {
+	public ProductNameDTO(Long languageId, String productName) {
 		this.languageId = languageId;
-		this.languageName = languageName;
 		this.productName = productName;
 	}
 
@@ -30,7 +28,6 @@ public class ProductNameDTO extends DTO {
 	public ProductNameDTO(Long productId, Language language, String productName) {
 		this.setProductId(productId);
 		this.languageId = language.getId();
-		this.languageName = language.getName();
 		this.productName = productName;
 	}
 
@@ -41,14 +38,6 @@ public class ProductNameDTO extends DTO {
 
 	public void setLanguageId(Long languageId) {
 		this.languageId = languageId;
-	}
-
-	public String getLanguageName() {
-		return languageName;
-	}
-
-	public void setLanguageName(String languageName) {
-		this.languageName = languageName;
 	}
 
 	public String getProductName() {

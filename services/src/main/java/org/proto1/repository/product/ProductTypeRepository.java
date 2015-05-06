@@ -8,17 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.product.ProductType;
-import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 public interface ProductTypeRepository extends CrudRepository<ProductType, Long>{
 
-	@EntityGraph(value="ProductType.productTypeNames", type=EntityGraphType.LOAD)
-	public ProductType getById(Long id);
-	
 	public List<ProductType> getByParentTypeId(Long id);
 	
 	@Query("select new Map(pt.id as id, pt.parentType.id as parent_id, ptn.name as text) " +

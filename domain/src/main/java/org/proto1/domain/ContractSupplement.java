@@ -27,7 +27,6 @@ public class ContractSupplement extends Document {
 		return contract;
 	}
 
-
 	public void setContract(Contract contract) {
 		this.contract = contract;
 	}

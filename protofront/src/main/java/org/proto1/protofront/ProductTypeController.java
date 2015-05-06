@@ -47,15 +47,11 @@ public class ProductTypeController {
 		return ptList;
 	}
 	
-//	@RequestMapping(value = "getTree/{prodTypeId}&{languageId}", method = RequestMethod.POST)
-//	public List<Map<String, Object>> getTreeByProductTypeIdByLanguageId(@PathVariable Long prodTypeId, @PathVariable Long languageId) {
-//		return pts.getTreeByProductTypeIdByLanguageId(prodTypeId, languageId);
-//	}
-//
-	@RequestMapping(value = "new", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
 		ProductType pt = new ProductType();
-		ProductType parent = pts.getNodeById(parentId);
+		ProductType parent = pts.get(parentId);
 		pt.setParentType(parent);
 		String nameForSend = "Not in list";
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {
