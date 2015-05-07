@@ -2,23 +2,58 @@
 	<div style="padding: 10px 30px 20px 30px">
 
 		<table id="edgContract" title="Receipt" singleSelect="true"
-			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
+			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'id'">
 			<thead>
 				<tr>
-					<th field='contractId' width=80>Contract Id</th>
-					<th field='documentNo' width=250 editor="text">Contract #</th>
-					<th field='issueDate' width=80>Issue date</th>
+					<th field='id' width=80>Contract Id</th>
+					<th field='documentNo' width=250>Contract #</th>
+					<th field='issueDate' width=80 formatter=IndexLib.dateFormatter>Issue date</th>
 				</tr>
 			</thead>
 		</table>
+
+		<div id="p" class="easyui-panel" title="Contract details" 
+      		  style="width:700px;height:auto;padding:10px;background:#fafafa;"
+        		data-options="iconCls:'icon-save', collapsible:true">
+			 <form id="sof" action="form1_proc.php" method="post" enctype="multipart/form-data">
+		        <table>
+		            <tr>
+		                <td>Id:</td>
+		                <td><input name="id" class="f1 easyui-textbox"></input></td>
+		            </tr>
+		            <tr>
+		                <td>SO #:</td>
+		                <td><input name="documentNo" class="f1 easyui-textbox"></input></td>
+		            </tr>
+		            <tr>
+		                <td>Issue date:</td>
+		                <td><input name="issueDate" class="f1 easyui-textbox"></input></td>
+		            </tr>
+		            <tr>
+		                <td></td>
+		                <td><input type="submit" value="Submit"></input></td>
+		            </tr>
+		        </table>
+		    </form>
+			<table id="edgSides" title="Contract sides" singleSelect="true"
+				style="width: 600px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
+				<thead>
+					<tr>
+						<th field='supplementId' width=80>Contract Supplement Id</th>
+						<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
+						<th field='issueDate' width=80 formatter=IndexLib.dateFormatter>Issue date</th>
+					</tr>
+				</thead>
+			</table>
+		</div>
 		
 		<table id="edgSupplement" title="Contract supplements" singleSelect="true"
-			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'receiptId'">
+			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'supplementId'">
 			<thead>
 				<tr>
-					<th field='contractSupplementId' width=80>Contract Supplement Id</th>
+					<th field='supplementId' width=80>Contract Supplement Id</th>
 					<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
-					<th field='issueDate' width=80>Issue date</th>
+					<th field='issueDate' width=80 formatter=IndexLib.dateFormatter>Issue date</th>
 				</tr>
 			</thead>
 		</table>

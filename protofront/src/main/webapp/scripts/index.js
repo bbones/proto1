@@ -12,21 +12,23 @@ var IndexLib = (function(){
 	
 	function initMenu() {
 		$('#mainMenu').tree({
-			onClick : function(node) { 
-				if (node.id != "") {
-					if (node.id == "purchaseOrder") {
-						$.getScript("/protofront/scripts/order.js").done(function() {
-							OrderLib.init("#test", {
-								orderURL : "/protofront/service/purchaseorders/",
-								scriptURL : "/protofront/scripts/purchaseOrder.js"
-							});
-						});
-					} else {
-						if (node.id == "uom") {
-							$.getScript("/protofront/scripts/" + node.module).done();
-						} else {
+			onClick : function(node) {
+				if (node.module != null) {
+					$.getScript("/protofront/scripts/" + node.module).done();
+				} else {
+					if (node.id != "") {
+//					if (node.id == "purchaseOrder") {
+//						$.getScript("/protofront/scripts/order.js").done(function() {
+//							OrderLib.init("#test", {
+//								orderURL : "/protofront/service/purchaseorders/",
+//								scriptURL : "/protofront/scripts/purchaseOrder.js"
+//							});
+//						});
+//					} else {
+//						if (node.id == "uom") {
+//						} else {
 							$("#test").panel('refresh', '/protofront/forms/' + node.id + '.html');
-						}
+//						}
 					}
 				} 
 			}

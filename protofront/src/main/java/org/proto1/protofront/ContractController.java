@@ -4,6 +4,9 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
+import java.util.List;
+import java.util.Map;
+
 import org.dozer.Mapper;
 import org.proto1.domain.Contract;
 import org.proto1.dto.ContractDTO;
@@ -13,12 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-@RequestMapping("/contract")
+@RequestMapping("/contracts")
 public class ContractController {
 	@Autowired
 	ContractService contractService;
@@ -26,7 +29,13 @@ public class ContractController {
 	@Autowired
 	Mapper mapper;
 	
-	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json", consumes="application/json" )
+	@RequestMapping(value = "/", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getList() {
+		return contractService.getContracts();
+	}
+
+
+	@RequestMapping(value = "/", method = RequestMethod.POST )
 	public @ResponseBody ContractDTO submit(@RequestBody final ContractDTO contractDTO) {
 		Contract contract = mapper.map(contractDTO, Contract.class);
 		contract = contractService.save(contract);
@@ -34,22 +43,26 @@ public class ContractController {
 		return contractDTO;
 	}
 
-	@RequestMapping(value = "findByID/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody ContractDTO submit(@PathVariable String id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody ContractDTO get(@PathVariable Long id) {
 		Contract contract = contractService.getContractById(new Long(id));
 		return mapper.map(contract, ContractDTO.class);
 	}
 
-	@RequestMapping(value = "deleteByID/{id}", method = RequestMethod.POST, produces = "application/json")
-	public void delete(@PathVariable String id) {
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable Long id) {
 		contractService.delete(new Long(id));
 	}
 
-
-	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
-	public RedirectView findByURLID(@PathVariable String id) {
-		
-		return new RedirectView("/protofront/index.html#enterprise:"+id);
+	@RequestMapping(value = "/{contractId}/supplements", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getSupplements(@PathVariable Long contractId) {
+		return contractService.getSupplements(contractId);
 	}
 
+	@RequestMapping(value = "/{contractId}/sides", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getSides(@PathVariable Long contractId, @RequestParam Long languageId) {
+		return contractService.getSides(contractId, languageId);
+	}
+
+	
 }
