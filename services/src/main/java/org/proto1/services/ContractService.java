@@ -34,4 +34,10 @@ public interface ContractService {
 	 */
 	List<Map<String, Object>> getSides(Long contractId,Long languageId);
 
+	/**
+	 * @param languageId
+	 * @return
+	 */
+	List<Map<String, Object>> getRoles(Long languageId);
+
 }

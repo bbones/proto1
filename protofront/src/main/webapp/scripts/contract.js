@@ -25,30 +25,40 @@ var ContractLib = (function(){
 				    }
 				];
 	};
-		
+	
+	var roleMap = new Object();
+	
+	function getRoleMap () {
+		return roleMap;
+	}
 
 	function initContractGrid() {
+		$("#test").off();
 		var event = jQuery.Event( "contractSelected" );
 		$("#edgContract").edatagrid({
 			toolbar : edgmenu({ 
-				add : function(){$("#edgContract").edatagrid('addRow');},
-				save : function(){$("#edgContract").edatagrid('saveRow');}
+				add : function(){
+					$("#cf").form('clear');
+					$("#edgSides").edatagrid('loadData', []);
+					$("#edgSupplement").edatagrid('loadData', []);
+				},
+				save : function(){$("#cf").form('submit');}
 			}),
 			url : "/protofront/service/contracts/",
 			method : 'GET',
 			onSelect : function(index, row) {
-				event.contractId = row.id;
-				$(document).trigger(event);
+				$("#test").trigger(event,row.id);
 			} // OnSelect
 		});
 	};
 
 	function initSidesGrid(){
-		$(document).on("contractSelected", function(event){
+		$("#test").on("contractSelected", function(event, contractId){
 			$("#edgSides").edatagrid({
-				url : "/protofront/service/contracts/" + event.contractId + "/sides?languageId=" + IndexLib.lang()
+				url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + IndexLib.lang()
 			});
 		});
+		initRoleListAndMap();
 		$("#edgSides").edatagrid({
 			toolbar : edgmenu({
 					add : function(){console.log('add');},
@@ -60,9 +70,9 @@ var ContractLib = (function(){
 	};
 
 	function initSupplementGrid(){
-		$(document).on("contractSelected", function(event){
+		$("#test").on("contractSelected", function(event, contractId){
 			$("#edgSupplement").edatagrid({
-				url : "/protofront/service/contracts/" + event.contractId + "/supplements"
+				url : "/protofront/service/contracts/" + contractId + "/supplements"
 			});
 		});
 		$("#edgSupplement").edatagrid({
@@ -75,16 +85,47 @@ var ContractLib = (function(){
 		
 	};
 
+	function initRoleListAndMap() {
+		$.ajax('/protofront/service/contracts/roles?languageId=' + IndexLib.lang()).done(function(dataArray) {
+			var length = dataArray.length;
+			for(var i = 0; i < length; i++) {
+				roleMap[dataArray[i].srId] = dataArray[i].srName;
+			};
+			$("#edgSides").datagrid('getColumnOption', 'roleId').editor.options.data = dataArray;
+		});
+	};
+
+	function initContractForm() {
+		$("#test").on("contractSelected", function(event, contractId){
+			$("#cf").form('load', '/protofront/service/contracts/' + contractId);
+		});
+		$("#isdate").datebox();
+	};
+	
 	return {
 		init : function() {
 			$("#test").panel({
 				href : '/protofront/forms/contract.html', 
 				onLoad : function() {
 					initContractGrid();
+					initContractForm();
 					initSidesGrid();
 					initSupplementGrid();
 				}
 			});
+		},
+        roleFormatter : function(value, row, index) {
+        	return roleMap[value];
+        },
+        roleEditor: function() {
+        	return {
+	  			type:'combobox',
+	          	options:{
+	               valueField:'srId',
+	               textField:'srName',
+	               required:true
+	           }
+        	};
 		}
 	};
 })();

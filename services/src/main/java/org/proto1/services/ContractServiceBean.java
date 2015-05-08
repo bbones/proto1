@@ -13,6 +13,7 @@ import org.proto1.domain.Contract;
 import org.proto1.repository.ContractRepository;
 import org.proto1.repository.ContractSideRepository;
 import org.proto1.repository.ContractSupplementRepository;
+import org.proto1.repository.SideRoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,9 @@ public class ContractServiceBean implements ContractService {
 
 	@Autowired
 	ContractSideRepository contractSideRepository;
+	
+	@Autowired
+	SideRoleRepository sideRoleRepository;
 	
 	public void setContractRepository(ContractRepository contractRepository) {
 		this.contractRepository = contractRepository;
@@ -63,8 +67,14 @@ public class ContractServiceBean implements ContractService {
 	 * @see org.proto1.services.ContractService#getSides(java.lang.Long)
 	 */
 	public List<Map<String, Object>> getSides(Long contractId, Long languageId) {
-		// TODO Auto-generated method stub
 		return contractSideRepository.list(contractId, languageId);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.ContractService#getRoles(java.lang.Long)
+	 */
+	public List<Map<String, Object>> getRoles(Long languageId) {
+		return sideRoleRepository.getList(languageId);
 	}
 
 }

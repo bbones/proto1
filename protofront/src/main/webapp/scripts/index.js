@@ -64,6 +64,40 @@ var IndexLib = (function(){
 				}
 			}
 		});
+		
+		$.extend($.fn.datebox.defaults, {
+			getValue: function(target){
+				var opts = $(target).datebox('options');
+				var v = $(target).datebox('getValue');
+				return opts.parser.call(target,v).getTime();
+			},
+			setValue: function(target, value){
+				console.log('setValue');
+				var opts = $(target).datebox('options');
+				var d = new Date(parseInt(value));
+				var s = opts.formatter.call(target, d);
+				$(target).datebox('setValue', s);
+			},
+			formatter:function(t){
+				console.log('format ' + t);
+				date = new Date(t);
+				var d = date.getDate();
+				var m = date.getMonth();
+				var y = date.getFullYear();
+
+				return d+'.'+m+'.'+y;
+			},
+			parser:function(s){
+				console.log('parse ' + s);
+				if (!s){return new Date();}
+				var ss = s.split('.');
+				var d = parseInt(ss[0],10);
+				var m = parseInt(ss[1],10);
+				var y = parseInt(ss[2],10);
+				return new Date(y,m,d);
+			}
+
+		});
 	}
 	
 	function initLanguageList() {

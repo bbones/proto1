@@ -64,5 +64,11 @@ public class ContractController {
 		return contractService.getSides(contractId, languageId);
 	}
 
+	@RequestMapping(value = "roles", method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getRoleList(@RequestParam Long languageId) {
+		return contractService.getRoles(languageId);
+	}
+
+	
 	
 }
