@@ -5,9 +5,12 @@
 package org.proto1.services;
 
 import java.util.List;
+import java.util.Map;
+
 import org.proto1.domain.Language;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.LanguageRepository;
+import org.proto1.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +18,9 @@ import org.springframework.stereotype.Service;
 public class MasterDataServiceBean implements MasterDataService {
 	@Autowired
 	LanguageRepository languageRepository;
+	
+	@Autowired
+	PartyRepository partyRepository;
 	
 	public void setLanguageRepository(LanguageRepository languageRepository) {
 		this.languageRepository = languageRepository;
@@ -36,6 +42,13 @@ public class MasterDataServiceBean implements MasterDataService {
 
 	public List<LocalizedStringConstant> getRequiredLocalizedStringList(String key) {
 		return languageRepository.getRequiredLocalizedStringConstantList(key);
+	}
+
+	/* (non-Javadoc)
+	 * @see org.proto1.services.MasterDataService#getParyList(java.lang.Long)
+	 */
+	public List<Map<String, Object>> getParyList(Long languageId) {
+		return partyRepository.partyList(languageId);
 	}
 
 }

@@ -19,7 +19,7 @@
 		        <table>
 		            <tr>
 		                <td>Id:</td>
-		                <td><input name="id" class="easyui-numberbox" ></input></td>
+		                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
 		            </tr>
 		            <tr>
 		                <td>SO #:</td>
@@ -31,7 +31,7 @@
 		            </tr>
 		            <tr>
 		                <td>Version</td>
-		                <td><input name="version" class="easyui-numberbox"></input></td>
+		                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
 		                
 		            </tr>
 		        </table>
@@ -45,7 +45,8 @@
 							<th	data-options="field:'roleId',width:80,
 	                    			formatter: ContractLib.roleFormatter,
 	                   				editor:ContractLib.roleEditor()">Role</th>
-							<th field='name' width=150 >Name</th>
+							<th field='nameId' width=150 formatter = ContractLib.partyFormatter 
+									editor = ContractLib.partyEditor()>Name</th>
 						</tr>
 					</thead>
 				</table>

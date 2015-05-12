@@ -17,9 +17,7 @@ import org.proto1.domain.AbstractEntity;
 @Inheritance(
 		strategy = InheritanceType.JOINED
 ) 
-//@NamedQueries({
-//	@NamedQuery(name="partyList", query="select new Map(p.id as id, coalesce(p.name, p.lastName + ' ' + p.firstName) as name) from Party p")
-//})
+
 public abstract class  Party extends AbstractEntity {
 	@NotNull
 	private String address;
