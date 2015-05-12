@@ -9,23 +9,7 @@
  */
 
 var ContractLib = (function(){
-	var edgmenu = function(onClick) {
-		return [
-				    {
-				    	iconCls: 'icon-add',
-				    	handler: onClick.add,
-				    	plain : true,
-				    	text : 'New'
-				    }, 
-				    {
-				    	iconCls: 'icon-save',
-				    	handler: onClick.save,
-				    	plain : true,
-				    	text : 'Save'
-				    }
-				];
-	};
-	
+
 	var roleMap = new Object();
 	
 	function getRoleMap () {
@@ -36,7 +20,7 @@ var ContractLib = (function(){
 		$("#test").off();
 		var event = jQuery.Event( "contractSelected" );
 		$("#edgContract").edatagrid({
-			toolbar : edgmenu({ 
+			toolbar : IndexLib.edgmenu({ 
 				add : function(){
 					$("#cf").form('clear');
 					$("#edgSides").edatagrid('loadData', []);
@@ -60,7 +44,7 @@ var ContractLib = (function(){
 		});
 		initRoleListAndMap();
 		$("#edgSides").edatagrid({
-			toolbar : edgmenu({
+			toolbar : IndexLib.edgmenu({
 					add : function(){console.log('add');},
 					save : function(){console.log('save');}
 			}),
@@ -76,7 +60,7 @@ var ContractLib = (function(){
 			});
 		});
 		$("#edgSupplement").edatagrid({
-			toolbar : edgmenu({
+			toolbar : IndexLib.edgmenu({
 					add : function(){console.log('add');},
 					save : function(){console.log('save');}
 			}),
@@ -99,7 +83,30 @@ var ContractLib = (function(){
 		$("#test").on("contractSelected", function(event, contractId){
 			$("#cf").form('load', '/protofront/service/contracts/' + contractId);
 		});
-		$("#isdate").datebox();
+		$("#isdate").datebox({
+			
+			formatter:function(value){
+				console.log('format ' + value);
+				if (value){
+					var d = value.toLocaleDateString();
+					console.log(d);
+					return d;
+				}
+			},
+			parser:function(s){
+				console.log('parse ' + s);
+		      	if (!isNaN(s))
+		      	 	return new Date(s);
+
+				if (!s){return new Date();}
+				var ss = s.split('.');
+				var d = parseInt(ss[0],10);
+				var m = parseInt(ss[1],10);
+				var y = parseInt(ss[2],10);
+				return new Date(y,m-1,d);
+			}
+
+		});
 	};
 	
 	return {

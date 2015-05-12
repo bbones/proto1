@@ -1,7 +1,7 @@
-<div class="easyui-panel" title="Receipt" style="width: 800px">
+<div class="easyui-panel" title="Contract" style="width: 800px">
 	<div style="padding: 10px 30px 20px 30px">
 
-		<table id="edgContract" title="Receipt" singleSelect="true"
+		<table id="edgContract" title="Contract" singleSelect="true"
 			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'id'">
 			<thead>
 				<tr>
@@ -19,19 +19,19 @@
 		        <table>
 		            <tr>
 		                <td>Id:</td>
-		                <td><input name="id" class="easyui-numberbox" disabled="true"></input></td>
+		                <td><input name="id" class="easyui-numberbox" ></input></td>
 		            </tr>
 		            <tr>
 		                <td>SO #:</td>
-		                <td><input name="documentNo" class="easyui-textbox"></input></td>
+		                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
 		            </tr>
 		            <tr>
 		                <td>Issue date:</td>
-		                <td><input id="isdate" name="issueDate"></input></td>
+		                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
 		            </tr>
 		            <tr>
 		                <td>Version</td>
-		                <td><input name="version" class="easyui-numberbox" disabled="true"></input></td>
+		                <td><input name="version" class="easyui-numberbox"></input></td>
 		                
 		            </tr>
 		        </table>

@@ -51,8 +51,10 @@ public class ProductTypeController {
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public ProductTypeDTO getNewProductType(@RequestParam(required=false) Long parentId, @RequestParam(required=false) Long languageId) {
 		ProductType pt = new ProductType();
-		ProductType parent = pts.get(parentId);
-		pt.setParentType(parent);
+		if (parentId != null) {
+			ProductType parent = pts.get(parentId);
+			pt.setParentType(parent);
+		}
 		String nameForSend = "Not in list";
 		for (LocalizedStringConstant name : mds.getRequiredLocalizedStringList("productType")) {
 			ProductTypeName pdn = new ProductTypeName();

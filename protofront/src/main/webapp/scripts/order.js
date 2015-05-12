@@ -20,6 +20,18 @@ var OrderLib = (function(){
 			saveUrl : orderURL + '?languageId=' + IndexLib.lang(),
 			updateUrl : orderURL + '?languageId=' + IndexLib.lang(),
 			method:'GET',
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgOrder").edatagrid('addRow');
+				},
+				save : function(){
+					$("#edgOrder").edatagrid('addRow');
+				},
+				remove : function(){
+					$("#edgOrder").edatagrid('destroyRow');
+				}
+
+			}),
 			onSelect : function(index, row) {
 				if (row.orderId != null) {
 					$(this).trigger('orderRecordChanged');
@@ -43,6 +55,18 @@ var OrderLib = (function(){
 			method:'GET',
 			saveUrl : orderURL + 'lines?languageId=' + IndexLib.lang(),
 			updateUrl : orderURL + 'lines?languageId=' + IndexLib.lang(),
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgLines").edatagrid('addRow');
+				},
+				save : function(){
+					$("#edgLines").edatagrid('addRow');
+				},
+				remove : function(){
+					$("#edgLines").edatagrid('destroyRow');
+				}
+
+			}),
 			onSelect : function(index, row) {
 				console.log(row);
 				if (row.orderLineId != null) {
@@ -89,7 +113,6 @@ var OrderLib = (function(){
 					initLineParam();
 				}
 			});
-			$.getScript(options.scriptURL);
 		},
         appendOrder : function() {
         	$("#edgOrder").edatagrid('addRow');

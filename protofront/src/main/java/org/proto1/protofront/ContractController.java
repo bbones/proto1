@@ -4,6 +4,10 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
+import java.beans.PropertyEditorSupport;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +16,8 @@ import org.proto1.domain.Contract;
 import org.proto1.dto.ContractDTO;
 import org.proto1.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +42,7 @@ public class ContractController {
 
 
 	@RequestMapping(value = "/", method = RequestMethod.POST )
-	public @ResponseBody ContractDTO submit(@RequestBody final ContractDTO contractDTO) {
+	public @ResponseBody ContractDTO submit(ContractDTO contractDTO) {
 		Contract contract = mapper.map(contractDTO, Contract.class);
 		contract = contractService.save(contract);
 		mapper.map(contract, contractDTO);
@@ -68,7 +74,23 @@ public class ContractController {
 	public @ResponseBody List<Map<String, Object>> getRoleList(@RequestParam Long languageId) {
 		return contractService.getRoles(languageId);
 	}
+	
+	@InitBinder
+	public void binder(WebDataBinder binder) {
+		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
+		    public void setAsText(String value) {
+		        try {
+		            setValue(new SimpleDateFormat("dd.MM.yyyy").parse(value));
+		        } catch(ParseException e) {
+		            setValue(null);
+		        }
+		    }
 
-	
-	
+		    public String getAsText() {
+		        return new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
+		    }        
+
+		});	    // as shown above
+	}
+
 }

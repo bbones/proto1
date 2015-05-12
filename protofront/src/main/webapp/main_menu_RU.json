@@ -14,7 +14,8 @@
 	        	"text": "Периоды"
 	    	},{
 	        	"id": "productType",
-	        	"text": "Типы продукции"
+	        	"text": "Типы продукции",
+	        	"module" : "productType.js"
 	    	},{
 		        "id": "product",
 		        "text": "Продукция"
@@ -64,7 +65,8 @@
 			    	},
 			    	{
 			    		"id": "request",
-			    		"text" : "Запросы на снабжение"
+			    		"text" : "Запросы на снабжение",
+			    		"module": "request.js"
 			    	},
 			    	{
 			    		"id": "purchaseOrder",

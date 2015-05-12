@@ -61,9 +61,9 @@ var RequestLib = (function() {
 
 	return {
 		init : function() {
-			initRequestGrid();
-			initLinesGrid();
-			initLineParam();
+			$.getScript("/protofront/scripts/order.js").done(function() {
+				OrderLib.init("#test", {orderURL : "/protofront/service/requests/"})
+			});
 		},
 		button : function (value, row, index) {
             return '<input type="button" onclick="alert(' + row.olpId + ')" value="Add" class="GridButton"/>';
@@ -118,4 +118,6 @@ var RequestLib = (function() {
 
 	};
 })();
+
+RequestLib.init();
 

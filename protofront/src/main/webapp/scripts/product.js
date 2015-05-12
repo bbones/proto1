@@ -100,7 +100,12 @@ var ProductLib = (function(){
 
 		appendParameter : function () {
 			var pid = $("#edgProducts").edatagrid('getSelected').id;
-			$("#edgParameters").edatagrid('addRow', {row: {productId : pid, required :false}});
+			$("#edgParameters").edatagrid('addRow', {
+				row: {
+					productId : $("#edgProducts").edatagrid('getSelected').productId,
+					required :false
+				}
+			});
 		},
 	
 		acceptParameter : function () {

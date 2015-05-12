@@ -49,13 +49,19 @@ var ProductTypeLib = (function(){
 	 
 	return {
 		init : function() {
-			initTree();
-			initTranslationGrid();
+			$("#test").panel({
+				href : '/protofront/forms/productType.html', 
+				onLoad : function() {
+					initTree();
+					initTranslationGrid();
+				}
+			});
+
 		},
 		newRootNode : function() {
 			 $.ajax({
 				type : 'POST',
-				url : '/protofront/service/productTypes/new?languageId='+ IndexLib.lang(),
+				url : '/protofront/service/productTypes/?languageId='+ IndexLib.lang(),
 				success : function(respdata) {
 					var node = {
 						id : respdata['id'], 
@@ -76,7 +82,7 @@ var ProductTypeLib = (function(){
 			if (parentnode) {
 				$.ajax({
 					type : 'POST',
-					url : '/protofront/service/productTypes/new',
+					url : '/protofront/service/productTypes/',
 					data : {
 						parentId : parentnode['id'],
 						languageId : IndexLib.lang()
@@ -118,4 +124,6 @@ var ProductTypeLib = (function(){
 		}
 	};
 })();
+
+ProductTypeLib.init();
 

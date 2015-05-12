@@ -14,7 +14,8 @@
 	        	"text": "Period"
 	    	},{
 	        	"id": "productType",
-	        	"text": "Product Type"
+	        	"text": "Product Type",
+	        	"module" : "productType.js"
 	    	},{
 		        "id": "product",
 		        "text": "Product"
@@ -39,7 +40,8 @@
 	    "children": [
 	    	{
 	        	"id": "contract",
-		        "text": "Contract"
+		        "text": "Contract",
+		        "module": "contract.js"
 	    	},
 	    	{
 		    	"id": "orders",
@@ -64,7 +66,8 @@
 			    	},
 			    	{
 			    		"id": "request",
-			    		"text" : "Request"
+			    		"text" : "Request",
+			    		"module": "request.js"
 			    	},
 			    	{
 			    		"id": "purchaseOrder",

@@ -19,8 +19,14 @@ var PurchaseOrderLib = (function() {
 		});
 	};
 	
+	
 	return {
-		save : saveOrder
+		save : saveOrder,
+		init : function init() {
+			$.getScript("/protofront/scripts/order.js").done(function() {
+				alert("PO");
+			});
+		}
 	};
 })();
 
