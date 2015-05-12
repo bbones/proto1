@@ -18,7 +18,8 @@ import org.springframework.data.repository.query.Param;
  *
  */
 public interface PartyRepository extends JpaRepository<Party, Long> {
-	@Query("select p.id as id, coalesce(en.name, pn.lastName + ' ' + pn.firstName) as name "
+	@Query("select new Map(p.id as id, "
+			+ "coalesce(en.name, pn.lastName || ' ' ||  pn.firstName) as name) "
 			+ "from Party p "
 			+ "left join p.enterpriseNames en "
 			+ "left join p.personNames pn "

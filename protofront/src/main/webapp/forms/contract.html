@@ -45,8 +45,9 @@
 							<th	data-options="field:'roleId',width:80,
 	                    			formatter: ContractLib.roleFormatter,
 	                   				editor:ContractLib.roleEditor()">Role</th>
-							<th field='nameId' width=150 formatter = ContractLib.partyFormatter 
-									editor = ContractLib.partyEditor()>Name</th>
+							<th data-options="field:'partyId', width:150,
+									formatter : ContractLib.partyFormatter ,
+									editor : ContractLib.partyEditor()">Name</th>
 						</tr>
 					</thead>
 				</table>

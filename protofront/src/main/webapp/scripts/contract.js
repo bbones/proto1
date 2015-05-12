@@ -151,11 +151,21 @@ var ContractLib = (function(){
 		},
 		partyEditor : function() {
 			return {
-	  			type:'combobox',
+	  			type:'combogrid',
 	          	options:{
-//	               valueField:'srId',
-//	               textField:'name',
-//	               required:true
+	          		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
+	          		valueField:'id',
+	          		textField:'name',
+	          		method:'GET',
+	          		required:true,
+	          		panelWidth:450,
+	          	    delay: 500,
+	          	    mode: 'remote',
+	          	    pagination : true,
+	          		columns: [[
+	          		         {field:'id',title:'Code',width:120,sortable:true},
+	          		         {field:'name',title:'Name',width:400,sortable:true}
+	          		     ]]
 	           }
 			}
 		}
