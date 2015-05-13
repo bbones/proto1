@@ -15,6 +15,8 @@ import javax.persistence.PrimaryKeyJoinColumn;
 public class Enterprise extends Party {
 	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="enterprise")
 	private List<EnterpriseName> enterpriseNames;
+	
+	private Long eskId;
 
 	public List<EnterpriseName> getEnterpriseNames() {
 		return enterpriseNames;
@@ -22,6 +24,14 @@ public class Enterprise extends Party {
 
 	public void setEnterpriseNames(List<EnterpriseName> enterpriseNames) {
 		this.enterpriseNames = enterpriseNames;
+	}
+
+	public Long getEskId() {
+		return eskId;
+	}
+
+	public void setEskId(Long eskId) {
+		this.eskId = eskId;
 	}
 	
 }
