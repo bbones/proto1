@@ -21,7 +21,7 @@ public class EnterpriseMapperBean implements EnterpriseMapper {
 	 */
 	@Override
 	public EnterpriseDTO map(Enterprise enterprise) {
-		EnterpriseDTO enterpriseDTO = new EnterpriseDTO(enterprise.getId(), enterprise.getEskId());
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -8,6 +8,7 @@ public class EnterpriseNameDTO extends DTO {
 
 	private static final long serialVersionUID = -734027124860323418L;
 
+	@DTOMap(source="id", destination="id");
 	private Long enterpriseNameId;
 	private Long enterpriseId;
 	private String enterpriseName;
