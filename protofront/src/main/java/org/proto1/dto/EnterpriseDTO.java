@@ -4,6 +4,8 @@
  *******************************************************************************/
 package org.proto1.dto;
 
+import java.util.List;
+
 public class EnterpriseDTO extends DTO  {
 
 	private static final long serialVersionUID = -9062428108123912200L;
@@ -11,6 +13,8 @@ public class EnterpriseDTO extends DTO  {
 	private Long id;
 	private String name;
 	private String address;
+	private Long eskId;
+	private List<EnterpriseNameDTO> namesList;
 	
 	public EnterpriseDTO() {
 		
@@ -44,6 +48,22 @@ public class EnterpriseDTO extends DTO  {
 
 	public void setaddress(String address) {
 		this.address = address;
+	}
+
+	public Long getEskId() {
+		return eskId;
+	}
+
+	public void setEskId(Long eskId) {
+		this.eskId = eskId;
+	}
+
+	public List<EnterpriseNameDTO> getNamesList() {
+		return namesList;
+	}
+
+	public void setNamesList(List<EnterpriseNameDTO> namesList) {
+		this.namesList = namesList;
 	}
 
 }
