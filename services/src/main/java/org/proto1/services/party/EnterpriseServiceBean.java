@@ -22,7 +22,7 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	@Autowired
 	EnterpriseNameRepository enterpriseNameRepository;
 	
-	public Enterprise getEnterpriseById(Long id) {
+	public Enterprise get(Long id) {
 		return enterpriseRepository.findOne(id);
 	}
 

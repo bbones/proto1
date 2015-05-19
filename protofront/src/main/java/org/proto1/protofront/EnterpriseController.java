@@ -71,7 +71,7 @@ public class EnterpriseController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody EnterpriseDTO findByID(@PathVariable String id) {
-		Enterprise enterprise = enterpriseService.getEnterpriseById(new Long(id));
+		Enterprise enterprise = enterpriseService.get(new Long(id));
 		return mapper.map(enterprise, EnterpriseDTO.class);
 	}
 

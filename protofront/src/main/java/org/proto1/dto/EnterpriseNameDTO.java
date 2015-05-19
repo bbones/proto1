@@ -4,17 +4,19 @@
  *******************************************************************************/
 package org.proto1.dto;
 
+import org.proto1.dtotools.DTODecode;
+
 public class EnterpriseNameDTO extends DTO {
 
 	private static final long serialVersionUID = -734027124860323418L;
 
-	@DTOMap(source="id", destination="id");
 	private Long enterpriseNameId;
 	private Long enterpriseId;
 	private String enterpriseName;
 	private Long languageId;
 	private String languageName;
 
+	@DTODecode(destination="setId")
 	public Long getEnterpriseNameId() {
 		return enterpriseNameId;
 	}
@@ -23,6 +25,7 @@ public class EnterpriseNameDTO extends DTO {
 		this.enterpriseNameId = enterpriseNameId;
 	}
 
+	@DTODecode(destination="setEnterprise", service="org.proto1.services.party.EnterpriseService", method="get")
 	public Long getEnterpriseId() {
 		return enterpriseId;
 	}
@@ -31,6 +34,7 @@ public class EnterpriseNameDTO extends DTO {
 		this.enterpriseId = enterpriseId;
 	}
 
+	@DTODecode(destination="setName")
 	public String getEnterpriseName() {
 		return enterpriseName;
 	}
@@ -39,6 +43,7 @@ public class EnterpriseNameDTO extends DTO {
 		this.enterpriseName = enterpriseName;
 	}
 
+	@DTODecode(destination="setLanguage", service="org.proto1.services.LanguageService", method="get")
 	public Long getLanguageId() {
 		return languageId;
 	}

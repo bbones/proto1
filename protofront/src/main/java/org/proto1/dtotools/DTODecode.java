@@ -1,16 +1,18 @@
-package org.proto1.dto;
+package org.proto1.dtotools;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Target(value=ElementType.FIELD)
+@Target(value=ElementType.METHOD)
 @Retention(value= RetentionPolicy.RUNTIME)
-public @interface DTOMap {
-
-	String source();
+public @interface DTODecode {
 
 	String destination();
+
+	String service() default "";
+	
+	String method() default "";
 
 }

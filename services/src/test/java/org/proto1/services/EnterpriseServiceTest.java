@@ -20,7 +20,7 @@ import static org.easymock.EasyMock.*;
 @ContextConfiguration(locations={"classpath:/META-INF/domain.xml"})
 public class EnterpriseServiceTest extends AbstractJUnit4SpringContextTests {
 	
-	EnterpriseService enterpriseService = new EnterpriseServiceBean();
+	EnterpriseServiceBean enterpriseService = new EnterpriseServiceBean();
 	
 	@Autowired
 	private Enterprise isd;
@@ -31,7 +31,7 @@ public class EnterpriseServiceTest extends AbstractJUnit4SpringContextTests {
 		expect(erep.findOne(1L)).andReturn(isd);
 		replay(erep);
 		enterpriseService.setEnterpriseRepository(erep);
-		assertEquals(isd, enterpriseService.getEnterpriseById(1L));
+		assertEquals(isd, enterpriseService.get(1L));
 	}
 	
 	@Test
