@@ -19,15 +19,4 @@ import org.proto1.domain.AbstractEntity;
 ) 
 
 public abstract class  Party extends AbstractEntity {
-	@NotNull
-	private String address;
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 }

@@ -17,7 +17,6 @@ var ContractLib = (function(){
 	}
 
 	function initContractGrid() {
-		$("#test").off();
 		var event = jQuery.Event( "contractSelected" );
 		$("#edgContract").edatagrid({
 			toolbar : IndexLib.edgmenu({ 
@@ -123,6 +122,7 @@ var ContractLib = (function(){
 	
 	return {
 		init : function() {
+			$("#test").off();
 			$("#test").panel({
 				href : '/protofront/forms/contract.html', 
 				onLoad : function() {

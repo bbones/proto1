@@ -78,12 +78,13 @@ public class DTOAnnotationTest {
 	@Test
 	public void decodeTest() throws InstantiationException, IllegalAccessException, 
 			SecurityException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, BeansException, ClassNotFoundException {
-		EnterpriseName enterpriseName = admb.decode(dto, EnterpriseName.class);
-		assertNotNull(enterpriseName);
-		assertEquals(dto.getEnterpriseNameId(), enterpriseName.getId());
-		assertEquals(dto.getEnterpriseId(), enterpriseName.getEnterprise().getId());
-		assertEquals(dto.getLanguageId(), enterpriseName.getLanguage().getId());
-
+		for(int i = 0; i < 100; i++) {
+			EnterpriseName enterpriseName = admb.decode(dto, EnterpriseName.class);
+			assertNotNull(enterpriseName);
+			assertEquals(dto.getEnterpriseNameId(), enterpriseName.getId());
+			assertEquals(dto.getEnterpriseId(), enterpriseName.getEnterprise().getId());
+			assertEquals(dto.getLanguageId(), enterpriseName.getLanguage().getId());
+		}
 	}
 
 }

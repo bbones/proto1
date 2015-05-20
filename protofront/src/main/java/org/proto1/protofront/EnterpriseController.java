@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,10 @@ import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.dto.EnterpriseNameDTO;
+import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.LanguageService;
 import org.proto1.services.party.EnterpriseService;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +28,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/enterprise")
+@RequestMapping("/enterprises")
 public class EnterpriseController {
 	@Autowired
 	EnterpriseService enterpriseService;
@@ -34,7 +37,10 @@ public class EnterpriseController {
 	LanguageService languageService;
 	
 	@Autowired
-	Mapper mapper;
+	DTOMapper mapper;
+	
+	@Autowired
+	Mapper dozerMapper;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  enterpriseListByLanguage(@RequestParam Long languageId) {
@@ -42,22 +48,22 @@ public class EnterpriseController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST )
-	public @ResponseBody EnterpriseDTO save(EnterpriseDTO enterpriseDTO) {
-		Enterprise enterprise = mapper.map(enterpriseDTO, Enterprise.class);
-		if (enterpriseDTO.getNamesList() != null) {
+	public @ResponseBody EnterpriseDTO save(@RequestParam Long languageId, EnterpriseDTO enterpriseDTO) 
+			throws BeansException, InstantiationException, 
+				IllegalAccessException, SecurityException, IllegalArgumentException, 
+				InvocationTargetException, NoSuchMethodException, ClassNotFoundException {
+		Enterprise enterprise = mapper.decode(enterpriseDTO, Enterprise.class);
+		if (enterpriseDTO.getId() == null) {
+			EnterpriseName name = new EnterpriseName();
+			name.setEnterprise(enterprise);
+			name.setLanguage(languageService.get(languageId));
+			name.setName(enterpriseDTO.getName());
 			enterprise.setEnterpriseNames(new ArrayList<EnterpriseName>());
-			for (EnterpriseNameDTO eNameDTO : enterpriseDTO.getNamesList()) {
-				Language language = languageService.get(eNameDTO.getLanguageId());
-				EnterpriseName enterpriseName = new EnterpriseName();
-				if (eNameDTO.getEnterpriseId() != null)
-					enterpriseName.setEnterprise(enterprise);
-				enterpriseName.setLanguage(language);
-				enterpriseName.setName(eNameDTO.getEnterpriseName());
-				// enterprise.getEnterpriseNames.(new ArrayList<EnterpriseName>());
-			}
+			enterprise.getEnterpriseNames().add(name);
 		}
 		enterprise = enterpriseService.save(enterprise);
-		mapper.map(enterprise, enterpriseDTO);
+		enterpriseDTO.setId(enterprise.getId());
+		enterpriseDTO.setVersion(enterprise.getVersion());
 		return enterpriseDTO;
 	}
 
@@ -65,19 +71,19 @@ public class EnterpriseController {
 	public @ResponseBody List<EnterpriseNameDTO> getEntepriseNames(@PathVariable String id) {
 		List<EnterpriseNameDTO> enList = new ArrayList<EnterpriseNameDTO>();
 		for(EnterpriseName en : enterpriseService.getNamesList(new Long(id)))
-			enList.add(mapper.map(en, EnterpriseNameDTO.class));
+			enList.add(dozerMapper.map(en, EnterpriseNameDTO.class));
 		return enList;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody EnterpriseDTO findByID(@PathVariable String id) {
 		Enterprise enterprise = enterpriseService.get(new Long(id));
-		return mapper.map(enterprise, EnterpriseDTO.class);
+		return dozerMapper.map(enterprise, EnterpriseDTO.class);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable String id) {
-		enterpriseService.delete(new Long(id));
+	public void delete(@PathVariable Long id) {
+		enterpriseService.delete(id);
 	}
 
 

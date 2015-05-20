@@ -6,50 +6,43 @@ package org.proto1.dto;
 
 import java.util.List;
 
+import org.proto1.dtotools.DTODecode;
+
 public class EnterpriseDTO extends DTO  {
 
 	private static final long serialVersionUID = -9062428108123912200L;
 	
 	private Long id;
 	private String name;
-	private String address;
 	private Long eskId;
-	private List<EnterpriseNameDTO> namesList;
 	
 	public EnterpriseDTO() {
 		
 	}
 	
-	public EnterpriseDTO(Long id, String name, String address) {
+	public EnterpriseDTO(Long id, String name) {
 		this.id = id;
 		this.name = name;
-		this.address = address;
 	}
-	public Long getid() {
+
+	@DTODecode(destination="id")
+	public Long getId() {
 		return id;
 	}
-	public void setid(Long id) {
+
+	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getname() {
+
+	public String getName() {
 		return name;
 	}
-	public void setname(String name) {
+
+	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String toString() {
-		return "id:" + id + ";name:" + name+";address:" +address +";VERSION:" + version;
-	}
 
-	public String getaddress() {
-		return address;
-	}
-
-	public void setaddress(String address) {
-		this.address = address;
-	}
-
+	@DTODecode(destination="eskId")
 	public Long getEskId() {
 		return eskId;
 	}
@@ -58,12 +51,5 @@ public class EnterpriseDTO extends DTO  {
 		this.eskId = eskId;
 	}
 
-	public List<EnterpriseNameDTO> getNamesList() {
-		return namesList;
-	}
-
-	public void setNamesList(List<EnterpriseNameDTO> namesList) {
-		this.namesList = namesList;
-	}
-
+	
 }

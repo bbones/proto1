@@ -5,7 +5,8 @@
 	    "state": "closed",
 	    "children": [{
 	        "id": "enterprise",
-	        "text": "Enterprise"
+	        "text": "Enterprise",
+	        "module": "enterprise.js"
 	    	},{
 	        	"id": "person",
 	       		"text": "Person"

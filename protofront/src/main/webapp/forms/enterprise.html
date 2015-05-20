@@ -5,8 +5,8 @@
 				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbe', idField : 'enterpriseId'">
 				<thead>
 					<tr>
-						<th field='enterpriseId' width=80>Enterprise Id</th>
-						<th field='enterpriseName' width=250 editor="text">EnterpriseName name</th>
+						<th field='id' width=80>Enterprise Id</th>
+						<th field='name' width=250 editor="text">EnterpriseName name</th>
 					</tr>
 				</thead>
 			</table>
@@ -44,42 +44,29 @@
 				<div title="Enterprise data"
 					data-options="iconCls:'icon-reload',selected:false"
 					style="padding: 10px;">
+			 <form id="cf" action="/protofront/service/enterprises/" method="post" >
+		        <table>
+		            <tr>
+		                <td>Id:</td>
+		                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
+		            </tr>
+		            <tr>
+		                <td>SO #:</td>
+		                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
+		            </tr>
+		            <tr>
+		                <td>Issue date:</td>
+		                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
+		            </tr>
+		            <tr>
+		                <td>Version</td>
+		                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
+		                
+		            </tr>
+		        </table>
+		    </form>
 				</div>
 			</div> <!-- Accordion -->
 	</div>
 </div>
 
-<div id="tbn" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="EnterpriseLib.appendName()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="EnterpriseLib.removeName()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="EnterpriseLib.saveName()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="EnterpriseLib.rejectName()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<div id="tbe" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="EnterpriseLib.appendParameter()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="EnterpriseLib.removeParameter()">Remove</a> 
-	<a href="javascript:void(0)"
-		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="EnterpriseLib.acceptParameter()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="EnterpriseLib.rejectParameter()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<script>
-	$.getScript("/protofront/scripts/enterprise.js").done(function() {
-		EnterpriseLib.init();
-	});
-</script> 

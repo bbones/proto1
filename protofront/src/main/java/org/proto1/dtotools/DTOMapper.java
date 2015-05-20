@@ -3,7 +3,9 @@ package org.proto1.dtotools;
 import java.lang.reflect.InvocationTargetException;
 
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.party.Enterprise;
 import org.proto1.dto.DTO;
+import org.proto1.dto.EnterpriseDTO;
 import org.springframework.beans.BeansException;
 
 public interface DTOMapper {
