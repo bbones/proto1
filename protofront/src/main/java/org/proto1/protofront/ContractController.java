@@ -5,6 +5,7 @@
 package org.proto1.protofront;
 
 import java.beans.PropertyEditorSupport;
+import java.lang.reflect.InvocationTargetException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -19,6 +20,7 @@ import org.proto1.dto.ContractSideDTO;
 import org.proto1.dtotools.DTODecode;
 import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.ContractService;
+import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -73,7 +75,10 @@ public class ContractController {
 	}
 
 	@RequestMapping(value = "/sides", method = RequestMethod.POST )
-	public @ResponseBody ContractSideDTO submit(@RequestParam Long languageId, ContractSideDTO contractSideDTO) {
+	public @ResponseBody ContractSideDTO submit(@RequestParam Long languageId, ContractSideDTO contractSideDTO) 
+			throws BeansException, InstantiationException, IllegalAccessException, 
+				SecurityException, IllegalArgumentException, InvocationTargetException, 
+					NoSuchMethodException, ClassNotFoundException {
 		ContractSide contractSide = dtoMapper.decode(contractSideDTO, ContractSide.class);
 		contractSide = contractService.saveSide(contractSide);
 		return contractSideDTO;

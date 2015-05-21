@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.transaction.Transactional;
 
 import org.proto1.domain.Contract;
+import org.proto1.domain.ContractSide;
 import org.proto1.repository.ContractRepository;
 import org.proto1.repository.ContractSideRepository;
 import org.proto1.repository.ContractSupplementRepository;
@@ -75,6 +76,11 @@ public class ContractServiceBean implements ContractService {
 	 */
 	public List<Map<String, Object>> getRoles(Long languageId) {
 		return sideRoleRepository.getList(languageId);
+	}
+
+	public ContractSide saveSide(ContractSide contractSide) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
