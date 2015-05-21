@@ -27,7 +27,7 @@ var OrderLib = (function(){
 				save : function(){
 					$("#edgOrder").edatagrid('saveRow');
 				},
-				remove : function(){
+				destroy : function(){
 					$("#edgOrder").edatagrid('destroyRow');
 				}
 
@@ -62,7 +62,7 @@ var OrderLib = (function(){
 				save : function(){
 					$("#edgLines").edatagrid('saveRow');
 				},
-				remove : function(){
+				destroy : function(){
 					$("#edgLines").edatagrid('destroyRow');
 				}
 

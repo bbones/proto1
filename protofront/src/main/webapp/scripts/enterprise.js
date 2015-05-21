@@ -18,7 +18,11 @@ var EnterpriseLib = (function() {
 					$("#cf").form('clear');
 				},
 				save : function(){
-					$("#edgEnterprise").edatagrid('addRow');
+					$("#edgEnterprise").edatagrid('saveRow');
+				},
+				destroy : function() {
+					$("#edgEnterprise").edatagrid('destroyRow');
+					
 				}
 			}),
 
@@ -35,7 +39,13 @@ var EnterpriseLib = (function() {
 						url : '/protofront/service/enterprises/' + row.id +'/names'
 					});
 				}
-			} // OnSelect
+			}, // OnSelect
+			onDestroy : function(index, row) {
+	    		$.ajax({
+	    			url : '/protofront/service/enterprises/' + row.id,
+	    			method : 'DELETE'
+	    		});
+			}
 		});
 	};
 	
@@ -48,8 +58,21 @@ var EnterpriseLib = (function() {
 				},
 				save : function(){
 					$("#edgNames").edatagrid('saveRow');
+				},
+				destroy : function() {
+					$("#edgNames").edatagrid('destroyRow');
+					
 				}
-			})
+			}),
+			url : "/protofront/service/enterprises/names",
+			saveUrl : "/protofront/service/enterprises/names",
+			updateUrl : "/protofront/service/enterprises/names",
+			onDestroy : function(index, row) {
+			   		$.ajax({
+			   			url : '/protofront/service/enterprises/names/' + row.id,
+			   			method : 'DELETE'
+			   		});
+			}
 		});
 	}
 

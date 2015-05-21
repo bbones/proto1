@@ -84,6 +84,19 @@ var IndexLib = (function(){
 		lang : function() {
 			return $('#langSelector').combobox('getValue');
 		},
+        languageFormatter : function(value, row) {
+        	return languageMap[value];
+        },
+        languageEditor:{
+  			type:'combobox',
+          	options:{
+               valueField:'id',
+               textField:'name',
+               method:'get',
+               url:'/protofront/service/masterdata/languages',
+               required:true
+           }
+		},
 		getRootProductType : function() {
 			return 5;
 		},
@@ -96,9 +109,6 @@ var IndexLib = (function(){
         dateFormatter : function(value) {
         	var d = new Date(value);
         	return d.toLocaleDateString();
-        },
-        languageFormatter : function(value, row) {
-        	return languageMap[value];
         },
         dateParser : function(s){
         	if (!isNaN(s))
@@ -118,17 +128,7 @@ var IndexLib = (function(){
         	alert("main_menu_" + rec.locale + ".json");
         	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
         },
-        languageEditor:{
-  			type:'combobox',
-          	options:{
-               valueField:'id',
-               textField:'name',
-               method:'get',
-               url:'/protofront/service/masterdata/languages',
-               required:true
-           }
-		},
-		edgmenu : function(onClick) {
+ 		edgmenu : function(onClick) {
 			return [
 			    {
 			    	iconCls: 'icon-add',
@@ -144,9 +144,9 @@ var IndexLib = (function(){
 			    }, 
 			    {
 			    	iconCls: 'icon-remove',
-			    	handler: onClick.remove,
+			    	handler: onClick.destroy,
 			    	plain : true,
-			    	text : 'Remove'
+			    	text : 'Delete'
 			    }
 			];
 		}

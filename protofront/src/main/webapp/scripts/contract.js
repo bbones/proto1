@@ -28,7 +28,6 @@ var ContractLib = (function(){
 				},
 				save : function(){$("#cf").form('submit', {
 				    success:function(data){
-				    	debugger;
 				    	var row = $("#edgContract").edatagrid('getSelected');
 				    	var index = $("#edgContract").edatagrid('getRowIndex', row);
 				    	console.log(index);
@@ -37,28 +36,50 @@ var ContractLib = (function(){
 				    	$("#edgContract").edatagrid('updateRow', {
 				    		index : index,
 				    		row : JSON.parse(data)});
-				    }
-				});}
+				    } // Success
+				})},
+				destroy : function() {
+					$("#edgContract").edatagrid('destroyRow');
+				}	
+				
 			}),
 			url : "/protofront/service/contracts/",
 			method : 'GET',
 			onSelect : function(index, row) {
 				$("#test").trigger(event,row.id);
-			} // OnSelect
+			}, // OnSelect
+			onDestroy : function(index, row) {
+				console.log(row);
+	    		$.ajax({
+	    			url : '/protofront/service/contracts/' + row.id,
+	    			method : 'DELETE'
+	    		});
+			}
+
 		});
 	};
 
 	function initSidesGrid(){
 		$("#test").on("contractSelected", function(event, contractId){
 			$("#edgSides").edatagrid({
-				url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + IndexLib.lang()
+				url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + IndexLib.lang(),
+				saveUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
+				updateUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
+				onDestroy : function(index, row) {
+					console.log(row);
+		    		$.ajax({
+		    			url : '/protofront/service/contracts/sides/' + row.id,
+		    			method : 'DELETE'
+		    		});
+				}
 			});
 		});
 		initRoleListAndMap();
 		$("#edgSides").edatagrid({
 			toolbar : IndexLib.edgmenu({
 					add : function(){$("#edgSides").edatagrid('addRow');},
-					save : function(){$("#edgSides").edatagrid('saveRow');}
+					save : function(){$("#edgSides").edatagrid('saveRow');},
+					destroy : function(){$("#edgSides").edatagrid('destroyRow');}
 			}),
 			method : 'GET'
 		});
@@ -97,25 +118,9 @@ var ContractLib = (function(){
 		});
 		$("#isdate").datebox({
 			
-			formatter:function(value){
-				console.log('format ' + value);
-				if (value){
-					var d = value.toLocaleDateString();
-					return d;
-				}
-			},
-			parser:function(s){
-				console.log('parse ' + s);
-		      	if (!isNaN(s))
-		      	 	return new Date(s);
-
-				if (!s){return new Date();}
-				var ss = s.split('.');
-				var d = parseInt(ss[0],10);
-				var m = parseInt(ss[1],10);
-				var y = parseInt(ss[2],10);
-				return new Date(y,m-1,d);
-			}
+			formatter:IndexLib.dateFormatter,
+			
+			parser:IndexLib.dateParser
 
 		});
 	};

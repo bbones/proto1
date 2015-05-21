@@ -155,7 +155,6 @@
 			</list>
 		</property>
 		<property name="passportNo" value="123123123" />
-		<property name="address" value="Artema 100" />
 	</bean>
 
 	<bean id="mark" class="org.proto1.domain.party.Person">
@@ -185,7 +184,6 @@
 			</list>
 		</property>
 		<property name="passportNo" value="322323" />
-		<property name="address" value="Artema 100" />
 	</bean>
 
 	<bean id="gleb" class="org.proto1.domain.party.Person">
@@ -215,7 +213,6 @@
 			</list>
 		</property>
 		<property name="passportNo" value="45323423" />
-		<property name="address" value="Artema 100" />
 	</bean>
 	
 	<bean id="isd" class="org.proto1.domain.party.Enterprise">
@@ -238,7 +235,6 @@
 	    		</bean>
 	    	</list>
 	    </property>
-		<property name="address" value="Shorsa 48" />
 	</bean>
 
 	<bean id="amk" class="org.proto1.domain.party.Enterprise">
@@ -265,7 +261,6 @@
 	    		</bean>
 	    	</list>
 	    </property>
-		<property name="address" value="Shorsa 48" />
 	</bean>
 
 	<bean id="duferco" class="org.proto1.domain.party.Enterprise">
@@ -292,7 +287,6 @@
 	    		</bean>
 	    	</list>
 	    </property>
-		<property name="address" value="Shorsa 48" />
 	</bean>
 
 	<bean id="contract_sell" class="org.proto1.domain.Contract">

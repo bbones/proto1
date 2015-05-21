@@ -13,7 +13,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
 public class Enterprise extends Party {
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="enterprise")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise")
 	private List<EnterpriseName> enterpriseNames;
 	
 	private Long eskId;

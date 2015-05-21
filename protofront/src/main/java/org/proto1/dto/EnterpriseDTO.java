@@ -25,7 +25,7 @@ public class EnterpriseDTO extends DTO  {
 		this.name = name;
 	}
 
-	@DTODecode(destination="id")
+	@DTODecode(destination="setId")
 	public Long getId() {
 		return id;
 	}
@@ -42,7 +42,7 @@ public class EnterpriseDTO extends DTO  {
 		this.name = name;
 	}
 
-	@DTODecode(destination="eskId")
+	@DTODecode(destination="setEskId")
 	public Long getEskId() {
 		return eskId;
 	}

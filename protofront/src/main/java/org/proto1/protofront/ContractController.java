@@ -13,7 +13,11 @@ import java.util.Map;
 
 import org.dozer.Mapper;
 import org.proto1.domain.Contract;
+import org.proto1.domain.ContractSide;
 import org.proto1.dto.ContractDTO;
+import org.proto1.dto.ContractSideDTO;
+import org.proto1.dtotools.DTODecode;
+import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
@@ -31,6 +35,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContractController {
 	@Autowired
 	ContractService contractService;
+	
+	@Autowired
+	DTOMapper dtoMapper;
 	
 	@Autowired
 	Mapper mapper;
@@ -63,6 +70,13 @@ public class ContractController {
 	@RequestMapping(value = "/{contractId}/supplements", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, Object>> getSupplements(@PathVariable Long contractId) {
 		return contractService.getSupplements(contractId);
+	}
+
+	@RequestMapping(value = "/sides", method = RequestMethod.POST )
+	public @ResponseBody ContractSideDTO submit(@RequestParam Long languageId, ContractSideDTO contractSideDTO) {
+		ContractSide contractSide = dtoMapper.decode(contractSideDTO, ContractSide.class);
+		contractSide = contractService.saveSide(contractSide);
+		return contractSideDTO;
 	}
 
 	@RequestMapping(value = "/{contractId}/sides", method = RequestMethod.GET)

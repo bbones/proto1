@@ -11,6 +11,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Inheritance(
 		strategy = InheritanceType.JOINED
@@ -19,6 +21,7 @@ public class Document extends AbstractEntity {
 	@NotNull
 	private String documentNo;
 
+	@DateTimeFormat(pattern = "DD.MM.YY")
 	private Date issueDate;
 	
 	public String getDocumentNo() {

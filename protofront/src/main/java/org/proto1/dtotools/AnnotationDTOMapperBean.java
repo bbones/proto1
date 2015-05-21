@@ -28,7 +28,7 @@ public class AnnotationDTOMapperBean implements DTOMapper {
 		Method[] methods = source.getClass().getDeclaredMethods();
 		for (Method method : methods ) {
 			for (DTODecode annotation :method.getAnnotationsByType(DTODecode.class) ) {
-				logger.debug(annotation.destination());
+				// logger.debug(annotation.destination());
 				Method m;
 				Object sourceValue = method.invoke(source, new Object[]{});
 				if (sourceValue != null) {

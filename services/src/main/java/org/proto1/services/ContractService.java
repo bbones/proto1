@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.Contract;
+import org.proto1.domain.ContractSide;
 import org.proto1.repository.ContractRepository;
 
 public interface ContractService {
@@ -39,5 +40,7 @@ public interface ContractService {
 	 * @return
 	 */
 	List<Map<String, Object>> getRoles(Long languageId);
+
+	ContractSide saveSide(ContractSide contractSide);
 
 }
