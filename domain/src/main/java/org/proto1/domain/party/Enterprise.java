@@ -7,13 +7,16 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.proto1.domain.Language;
 
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
 public class Enterprise extends Party {
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise")
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="enterprise")
 	private List<EnterpriseName> enterpriseNames;
 	
 	private Long eskId;
@@ -32,6 +35,15 @@ public class Enterprise extends Party {
 
 	public void setEskId(Long eskId) {
 		this.eskId = eskId;
+	}
+
+	@Override
+	public	String getName(Language language) {
+		for (EnterpriseName name : enterpriseNames) {
+			if(name.getLanguage().equals(language))
+				return name.getName();
+		}
+		return null;
 	}
 	
 }

@@ -8,14 +8,17 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+
+import org.proto1.domain.Language;
 
 @Entity
 @PrimaryKeyJoinColumn(name="PERSON_ID")
 public class Person extends Party {
 	
-	@OneToMany(cascade=CascadeType.PERSIST, mappedBy="person")
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, mappedBy="person")
 	private List<PersonName> personNames;
 	
 	private String personIdCode;
@@ -44,6 +47,15 @@ public class Person extends Party {
 
 	public void setPersonNames(List<PersonName> personNames) {
 		this.personNames = personNames;
+	}
+
+	@Override
+	public String getName(Language language) {
+		for (PersonName name : personNames) {
+			if(name.getLanguage().equals(language))
+				return name.getLastName() + ' ' + name.getFirstName() + ' ' + name.getMiddleName() ;
+		}
+		return null;
 	}
 	
 }

@@ -20,6 +20,7 @@ import org.proto1.dto.ContractSideDTO;
 import org.proto1.dtotools.DTODecode;
 import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.ContractService;
+import org.proto1.services.LanguageService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
@@ -37,6 +38,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContractController {
 	@Autowired
 	ContractService contractService;
+	
+	@Autowired
+	LanguageService languageService;
 	
 	@Autowired
 	DTOMapper dtoMapper;
@@ -60,7 +64,7 @@ public class ContractController {
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody ContractDTO get(@PathVariable Long id) {
-		Contract contract = contractService.getContractById(new Long(id));
+		Contract contract = contractService.getContract(new Long(id));
 		return mapper.map(contract, ContractDTO.class);
 	}
 
@@ -81,7 +85,14 @@ public class ContractController {
 					NoSuchMethodException, ClassNotFoundException {
 		ContractSide contractSide = dtoMapper.decode(contractSideDTO, ContractSide.class);
 		contractSide = contractService.saveSide(contractSide);
+		contractSideDTO.setCsId(contractSide.getId());
+		contractSideDTO.setPartyName(contractSide.getParty().getName(languageService.get(languageId)));
 		return contractSideDTO;
+	}
+
+	@RequestMapping(value = "/sides/{id}", method = RequestMethod.DELETE )
+	public void deleteSide(@PathVariable Long id) {
+		contractService.deleteSide(id);
 	}
 
 	@RequestMapping(value = "/{contractId}/sides", method = RequestMethod.GET)

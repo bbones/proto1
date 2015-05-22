@@ -12,6 +12,7 @@ import javax.persistence.InheritanceType;
 import javax.validation.constraints.NotNull;
 
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.Language;
 
 @Entity
 @Inheritance(
@@ -19,4 +20,5 @@ import org.proto1.domain.AbstractEntity;
 ) 
 
 public abstract class  Party extends AbstractEntity {
+	public abstract String getName(Language language);
 }

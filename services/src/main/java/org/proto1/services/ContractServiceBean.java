@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
+import org.proto1.domain.SideRole;
 import org.proto1.repository.ContractRepository;
 import org.proto1.repository.ContractSideRepository;
 import org.proto1.repository.ContractSupplementRepository;
@@ -37,7 +38,7 @@ public class ContractServiceBean implements ContractService {
 		
 	}
 
-	public Contract getContractById(Long id) {
+	public Contract getContract(Long id) {
 		return contractRepository.findOne(id);
 	}
 
@@ -79,8 +80,16 @@ public class ContractServiceBean implements ContractService {
 	}
 
 	public ContractSide saveSide(ContractSide contractSide) {
-		// TODO Auto-generated method stub
-		return null;
+		return contractSideRepository.save(contractSide);
+	}
+
+	public SideRole getRole(Long id) {
+		return sideRoleRepository.findOne(id);
+	}
+
+	public void deleteSide(Long id) {
+		contractSideRepository.delete(id);
+		
 	}
 
 }

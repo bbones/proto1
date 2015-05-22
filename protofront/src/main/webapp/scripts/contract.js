@@ -11,6 +11,7 @@
 var ContractLib = (function(){
 
 	var roleMap = new Object();
+	var currentContractId = {};
 	
 	function getRoleMap () {
 		return roleMap;
@@ -47,6 +48,7 @@ var ContractLib = (function(){
 			method : 'GET',
 			onSelect : function(index, row) {
 				$("#test").trigger(event,row.id);
+				currentContractId = row.id;
 			}, // OnSelect
 			onDestroy : function(index, row) {
 				console.log(row);
@@ -68,7 +70,7 @@ var ContractLib = (function(){
 				onDestroy : function(index, row) {
 					console.log(row);
 		    		$.ajax({
-		    			url : '/protofront/service/contracts/sides/' + row.id,
+		    			url : '/protofront/service/contracts/sides/' + row.csId,
 		    			method : 'DELETE'
 		    		});
 				}
@@ -77,8 +79,12 @@ var ContractLib = (function(){
 		initRoleListAndMap();
 		$("#edgSides").edatagrid({
 			toolbar : IndexLib.edgmenu({
-					add : function(){$("#edgSides").edatagrid('addRow');},
-					save : function(){$("#edgSides").edatagrid('saveRow');},
+					add : function(){
+						$("#edgSides").edatagrid('addRow', {row : {contractId : currentContractId}});
+					},
+					save : function(){
+						$("#edgSides").edatagrid('getSelected').contractId = currentContractId;
+						$("#edgSides").edatagrid('saveRow');},
 					destroy : function(){$("#edgSides").edatagrid('destroyRow');}
 			}),
 			method : 'GET'
@@ -152,14 +158,27 @@ var ContractLib = (function(){
         	};
 		},
 		partyFormatter : function (value, row, index) {
-			return row.name;
+			return row.partyName;
+		},
+        party1Editor: function() {
+        	return {
+	  			type:'combobox',
+	          	options:{
+	          		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
+	          		method:'GET',
+	               valueField:'id',
+	               textField:'name',
+	               required:true
+	           }
+        	};
 		},
 		partyEditor : function() {
 			return {
 	  			type:'combogrid',
 	          	options:{
 	          		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
-	          		valueField:'id',
+	          		// idField : 'partyId',
+	          		valueField:'partyId',
 	          		textField:'name',
 	          		method:'GET',
 	          		required:true,

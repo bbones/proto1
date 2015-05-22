@@ -30,7 +30,7 @@ public class ContractServiceTest extends AbstractJUnit4SpringContextTests {
 		expect(crep.findOne(1L)).andReturn(contract);
 		replay(crep);
 		contractService.setContractRepository(crep);
-		assertEquals(contract, contractService.getContractById(1L));
+		assertEquals(contract, contractService.getContract(1L));
 	}
 	
 	@Test

@@ -19,7 +19,7 @@ public interface ContractSideRepository extends CrudRepository<ContractSide, Lon
 	 * @return
 	 */
 	@Query("select new Map(cs.id as csId, sr.id as roleId, cs.party.id as partyId, "
-			+ "coalesce(en.name, pn.lastName || ' ' || pn.firstName) as name) "
+			+ "coalesce(en.name, pn.lastName || ' ' || pn.firstName) as partyName) "
 			+ "from ContractSide cs join cs.sideRole sr " 
 			+ "left join cs.party.enterpriseNames en "
 			+ "left join cs.party.personNames pn "
