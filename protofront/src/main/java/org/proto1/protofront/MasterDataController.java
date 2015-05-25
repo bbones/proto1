@@ -36,8 +36,8 @@ public class MasterDataController {
 	}
 
 	@RequestMapping(value = "parties", method = RequestMethod.GET)
-	public @ResponseBody List<Map<String, Object>> getPartyList(@RequestParam Long languageId) {
-		return masterDataService.getParyList(languageId);
+	public @ResponseBody List<Map<String, Object>> getPartyList(@RequestParam Long languageId, @RequestParam String q) {
+		return masterDataService.getParyList(languageId, q);
 	}
 
 }

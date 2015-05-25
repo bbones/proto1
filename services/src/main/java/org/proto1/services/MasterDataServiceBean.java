@@ -44,11 +44,10 @@ public class MasterDataServiceBean implements MasterDataService {
 		return languageRepository.getRequiredLocalizedStringConstantList(key);
 	}
 
-	/* (non-Javadoc)
-	 * @see org.proto1.services.MasterDataService#getParyList(java.lang.Long)
-	 */
-	public List<Map<String, Object>> getParyList(Long languageId) {
-		return partyRepository.partyList(languageId);
+	public List<Map<String, Object>> getParyList(Long languageId,
+			String searchStr) {
+		return partyRepository.partyList(languageId, searchStr);
 	}
+
 
 }

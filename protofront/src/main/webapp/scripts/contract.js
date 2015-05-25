@@ -177,9 +177,9 @@ var ContractLib = (function(){
 	  			type:'combogrid',
 	          	options:{
 	          		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
-	          		// idField : 'partyId',
-	          		valueField:'partyId',
-	          		textField:'name',
+	          		idField : 'partyId',
+	          		// valueField:'partyId',
+	          		textField:'partyName',
 	          		method:'GET',
 	          		required:true,
 	          		panelWidth:450,
@@ -187,8 +187,8 @@ var ContractLib = (function(){
 	          	    mode: 'remote',
 	          	    pagination : true,
 	          		columns: [[
-	          		         {field:'id',title:'Code',width:120,sortable:true},
-	          		         {field:'name',title:'Name',width:400,sortable:true}
+	          		         {field:'partyId',title:'Code',width:120,sortable:true},
+	          		         {field:'partyName',title:'Name',width:400,sortable:true}
 	          		     ]]
 	           }
 			}

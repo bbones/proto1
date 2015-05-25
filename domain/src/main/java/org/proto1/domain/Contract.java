@@ -15,10 +15,10 @@ import javax.persistence.PrimaryKeyJoinColumn;
 @Entity
 @PrimaryKeyJoinColumn(name="CONTRACT_ID")
 public class Contract extends Document {
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, mappedBy="contract")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="contract")
 	private List<ContractSide> contractSides;
 
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST, mappedBy="contract")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="contract")
 	private List<ContractSupplement> contractSupplements;
 
 	public List<ContractSide> getContractSides() {

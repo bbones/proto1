@@ -24,9 +24,9 @@ public interface MasterDataService {
 	List<LocalizedStringConstant> getRequiredLocalizedStringList(String key);
 
 	/**
-	 * @param languageId
+	 * @param languageId, searchStr
 	 * @return
 	 */
-	List<Map<String, Object>> getParyList(Long languageId);
+	List<Map<String, Object>> getParyList(Long languageId, String searchStr);
 
 }
