@@ -10,6 +10,7 @@ import java.util.Map;
 import org.proto1.domain.Language;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.LanguageRepository;
+import org.springframework.data.domain.Pageable;
 
 public interface MasterDataService {
 
@@ -27,6 +28,6 @@ public interface MasterDataService {
 	 * @param languageId, searchStr
 	 * @return
 	 */
-	List<Map<String, Object>> getParyList(Long languageId, String searchStr);
+	List<Map<String, Object>> getParyList(Long languageId, String searchStr, Pageable p);
 
 }

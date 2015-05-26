@@ -16,7 +16,7 @@
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean"
     	  p:dataSource-ref="dataSource"
     	  p:persistenceXmlLocation="classpath:META-INF/persistence.xml"
-          p:persistenceUnitName="proto2">
+          p:persistenceUnitName="proto1">
         <property name="packagesToScan">
         	<list>
         		<value>org.proto1.domain</value>

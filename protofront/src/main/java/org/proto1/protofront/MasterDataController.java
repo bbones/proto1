@@ -12,6 +12,8 @@ import org.dozer.Mapper;
 import org.proto1.dto.LanguageDTO;
 import org.proto1.services.MasterDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,8 +38,10 @@ public class MasterDataController {
 	}
 
 	@RequestMapping(value = "parties", method = RequestMethod.GET)
-	public @ResponseBody List<Map<String, Object>> getPartyList(@RequestParam Long languageId, @RequestParam String q) {
-		return masterDataService.getParyList(languageId, q);
+	public @ResponseBody List<Map<String, Object>> getPartyList(@RequestParam Long languageId, @RequestParam String q, 
+			@RequestParam int page, @RequestParam int rows) {
+		Pageable p = new PageRequest(page, rows);
+		return masterDataService.getParyList(languageId, q+"%", p);
 	}
 
 }

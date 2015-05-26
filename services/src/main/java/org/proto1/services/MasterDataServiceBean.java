@@ -12,6 +12,7 @@ import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,8 +46,8 @@ public class MasterDataServiceBean implements MasterDataService {
 	}
 
 	public List<Map<String, Object>> getParyList(Long languageId,
-			String searchStr) {
-		return partyRepository.partyList(languageId, searchStr);
+			String searchStr, Pageable p) {
+		return partyRepository.partyList(languageId, searchStr, p);
 	}
 
 
