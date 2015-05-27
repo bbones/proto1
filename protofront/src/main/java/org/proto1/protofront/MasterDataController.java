@@ -41,7 +41,7 @@ public class MasterDataController {
 	@RequestMapping(value = "parties", method = RequestMethod.GET)
 	public @ResponseBody PagedDTO<Map<String, Object>> getPartyList(@RequestParam Long languageId, @RequestParam String q, 
 			@RequestParam int page, @RequestParam int rows) {
-		Pageable p = new PageRequest(page, rows);
+		Pageable p = new PageRequest(page-1, rows);
 		return new PagedDTO<Map<String, Object>>(masterDataService.getParyListCounter(languageId, "%" + q + "%"), masterDataService.getParyList(languageId, "%" + q + "%", p));
 	}
 

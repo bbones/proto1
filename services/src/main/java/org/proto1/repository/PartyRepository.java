@@ -36,3 +36,12 @@ public interface PartyRepository extends PagingAndSortingRepository<Party, Long>
 	public Long getPartyCounter(@Param("language_id") Long languageId, @Param("srch") String searchStr);
 
 }
+
+	//select new Map(p.id as partyId, 
+	//coalesce(en.name, pn.lastName || ' ' ||  pn.firstName) as partyName) 
+	//from Party p 
+	//left outer join p.enterpriseNames en 
+	//left outer join p.personNames pn
+	//where (en.language.id=:language_id or pn.language.id=:language_id) and 
+	//(pn.lastName like :srch or en.name like :srch)
+
