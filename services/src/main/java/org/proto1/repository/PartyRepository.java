@@ -23,8 +23,16 @@ public interface PartyRepository extends PagingAndSortingRepository<Party, Long>
 	@Query("select new Map(p.id as partyId, "
 			+ "coalesce(en.name, pn.lastName || ' ' ||  pn.firstName) as partyName) "
 			+ "from Party p "
+			+ "left outer join p.enterpriseNames en "
+			+ "left outer join p.personNames pn "
+			+ "where (en.language.id=:language_id or pn.language.id=:language_id) and (pn.lastName like :srch or en.name like :srch)")
+	public List<Map<String, Object>> partyList(@Param("language_id") Long languageId, @Param("srch") String searchStr, Pageable p);
+
+	@Query("select count(p)"
+			+ "from Party p "
 			+ "left join p.enterpriseNames en "
 			+ "left join p.personNames pn "
-			+ "where (en.language.id=:language_id or pn.language.id=:language_id) and (pn.lastName like %:srch% or en.name like %:srch%)")
-	public List<Map<String, Object>> partyList(@Param("language_id") Long languageId, @Param("srch") String searchStr, Pageable p);
+			+ "where (en.language.id=:language_id or pn.language.id=:language_id) and (pn.lastName like :srch or en.name like :srch)")
+	public Long getPartyCounter(@Param("language_id") Long languageId, @Param("srch") String searchStr);
+
 }

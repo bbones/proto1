@@ -29,5 +29,7 @@ public interface MasterDataService {
 	 * @return
 	 */
 	List<Map<String, Object>> getParyList(Long languageId, String searchStr, Pageable p);
+	
+	Long getParyListCounter(Long languageId, String searchStr);
 
 }
