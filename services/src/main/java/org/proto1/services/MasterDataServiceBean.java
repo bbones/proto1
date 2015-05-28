@@ -51,7 +51,6 @@ public class MasterDataServiceBean implements MasterDataService {
 
 	public List<Map<String, Object>> getParyList(Long languageId,
 			String searchStr, Pageable p) {
-		logger.debug("lang:" + languageId + "search:" + searchStr);
 		return partyRepository.partyList(languageId, searchStr, p);
 	}
 

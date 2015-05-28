@@ -18,7 +18,7 @@ import org.springframework.data.repository.query.Param;
  *
  */
 public interface ContractSupplementRepository extends CrudRepository<ContractSupplement, Long> {
-	@Query("select new Map( cs.id as supplementId, cs.documentNo as documentNo, cs.issueDate as issueDate, cur.charCode as currencyCode) " 
+	@Query("select new Map( cs.id as supplementId, cs.documentNo as documentNo, cs.issueDate as issueDate, cur.numCode as numCode, cur.charCode as currencyCode) " 
 			+ "from ContractSupplement cs join cs.currency cur "
 			+ "where cs.contract.id=:contract_id")
 	public List<Map<String, Object>> list(@Param("contract_id") Long contractId);

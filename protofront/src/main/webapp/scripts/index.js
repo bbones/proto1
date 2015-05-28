@@ -9,6 +9,8 @@
 var IndexLib = (function(){
 	var languageMap = new Object();
 	var languageList = null;
+	var currencyMap = new Object();
+	var currencyList = null;
 	
 	
 	function initMenu() {
@@ -74,12 +76,24 @@ var IndexLib = (function(){
 			};
 		});
 	}
-	
+
+	function initCurrencyList() {
+		$.ajax('/protofront/service/masterdata/currencies?languageId=' + IndexLib.lang()).done(function(dataArray) {
+			console.log(dataArray);
+			currencyList = dataArray;
+			var length = dataArray.length;
+			for(var i = 0; i < length; i++) {
+				currencyMap[dataArray[i].numCode] = dataArray[i].charCode;
+			};
+		});
+	}
+
 	return {
 		init : function() {
 			initMenu();
 			initEasyUIEditors();
 			initLanguageList();
+			initCurrencyList();
 		},
 		lang : function() {
 			return $('#langSelector').combobox('getValue');
@@ -88,6 +102,19 @@ var IndexLib = (function(){
         	return languageMap[value];
         },
         languageEditor:{
+  			type:'combobox',
+          	options:{
+               valueField:'id',
+               textField:'name',
+               method:'get',
+               url:'/protofront/service/masterdata/languages',
+               required:true
+           }
+		},
+        currencyFormatter : function(value, row) {
+        	return currencyMap[value];
+        },
+        currencyEditor:{
   			type:'combobox',
           	options:{
                valueField:'id',
@@ -127,6 +154,7 @@ var IndexLib = (function(){
         changeLanguage : function(rec) {
         	alert("main_menu_" + rec.locale + ".json");
         	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
+        	initCurrencyList();
         },
  		edgmenu : function(onClick) {
 			return [

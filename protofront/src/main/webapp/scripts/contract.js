@@ -84,7 +84,8 @@ var ContractLib = (function(){
 					},
 					save : function(){
 						$("#edgSides").edatagrid('getSelected').contractId = currentContractId;
-						$("#edgSides").edatagrid('saveRow');},
+						$("#edgSides").edatagrid('saveRow');
+					},
 					destroy : function(){$("#edgSides").edatagrid('destroyRow');}
 			}),
 			method : 'GET'
@@ -100,8 +101,15 @@ var ContractLib = (function(){
 		});
 		$("#edgSupplement").edatagrid({
 			toolbar : IndexLib.edgmenu({
-					add : function(){console.log('add');},
-					save : function(){console.log('save');}
+					add : function(){
+						$("#edgSupplement").edatagrid('addRow');
+					},
+					save : function(){
+						$("#edgSupplement").edatagrid('getSelected').contractId = currentContractId;
+						$("#edgSupplement").edatagrid('saveRow');
+					},
+					destroy : function(){$("#edgSupplement").edatagrid('destroyRow');}
+
 			}),
 			method : 'GET'
 		});
@@ -159,18 +167,6 @@ var ContractLib = (function(){
 		},
 		partyFormatter : function (value, row, index) {
 			return row.partyName;
-		},
-        party1Editor: function() {
-        	return {
-	  			type:'combobox',
-	          	options:{
-	          		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
-	          		method:'GET',
-	               valueField:'id',
-	               textField:'name',
-	               required:true
-	           }
-        	};
 		},
 		partyEditor : function() {
 			return {

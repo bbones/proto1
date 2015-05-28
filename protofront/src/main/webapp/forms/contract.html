@@ -22,7 +22,7 @@
 		                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
 		            </tr>
 		            <tr>
-		                <td>SO #:</td>
+		                <td>Contract #:</td>
 		                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
 		            </tr>
 		            <tr>
@@ -54,16 +54,50 @@
 			</div>
 		</div>
 		
-		<table id="edgSupplement" title="Contract supplements" singleSelect="true"
-			style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'supplementId'">
-			<thead>
-				<tr>
-					<th field='supplementId' width=80>Contract Supplement Id</th>
-					<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
-					<th field='issueDate' width=80 formatter=IndexLib.dateFormatter>Issue date</th>
-				</tr>
-			</thead>
-		</table>
+		<div id="cs" class="easyui-panel" title="Contract supplements" 
+      		  style="width:700px;height:auto;padding:10px;background:#fafafa;"
+        		data-options="iconCls:'icon-save', collapsible:true">
+			<table id="edgSupplement" title="Contract supplements" singleSelect="true"
+				style="width: 600px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'supplementId'">
+				<thead>
+					<tr>
+						<th field='supplementId' width=80>Contract Supplement Id</th>
+						<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
+						<th field='numCode' width=80 formatter=IndexLib.currencyFormatter editor=IndexLib.currencyEditor>Currency</th>
+						<th field='issueDate' width=80 formatter=IndexLib.dateFormatter editor=IndexLib.dateEditor>Issue date</th>
+						
+					</tr>
+				</thead>
+			</table>
+			<div style="padding:10px">
+				<form id="csf" action="/protofront/service/contracts/supplements" method="post" >
+			        <table>
+			            <tr>
+			                <td>Id:</td>
+			                <td><input name="supplementId" class="easyui-numberbox" editable="false"></input></td>
+			            </tr>
+			            <tr>
+			                <td>Supplement #:</td>
+			                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
+			            </tr>
+			            <tr>
+			                <td>Issue date:</td>
+			                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
+			            </tr>
+			            <tr>
+			                <td>Currency:</td>
+			                <td><input id="currencyId" name="numCode" class="easyui-textbox"></input></td>
+			            </tr>
+			            
+			            <tr>
+			                <td>Version</td>
+			                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
+			                
+			            </tr>
+			        </table>
+			    </form>
+			</div>
+		</div>
 		
 	</div>
 </div>
