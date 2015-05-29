@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
+import org.proto1.domain.Currency;
 import org.proto1.dto.LanguageDTO;
 import org.proto1.dto.PagedDTO;
 import org.proto1.services.MasterDataService;
@@ -37,6 +38,12 @@ public class MasterDataController {
 		mapper.map(masterDataService.getLanguageList(), langlist);
 		return langlist;
 	}
+
+	@RequestMapping(value = "currencies", method = RequestMethod.GET)
+	public @ResponseBody List<Currency> getCurrencyList() {
+		return masterDataService.getCurrencyList();
+	}
+
 
 	@RequestMapping(value = "parties", method = RequestMethod.GET)
 	public @ResponseBody PagedDTO<Map<String, Object>> getPartyList(@RequestParam Long languageId, @RequestParam String q, 

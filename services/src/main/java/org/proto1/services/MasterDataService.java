@@ -7,6 +7,7 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
+import org.proto1.domain.Currency;
 import org.proto1.domain.Language;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.LanguageRepository;
@@ -31,5 +32,7 @@ public interface MasterDataService {
 	List<Map<String, Object>> getParyList(Long languageId, String searchStr, Pageable p);
 	
 	Long getParyListCounter(Long languageId, String searchStr);
+	
+	List<Currency> getCurrencyList();
 
 }

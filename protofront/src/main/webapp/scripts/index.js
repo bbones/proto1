@@ -70,6 +70,7 @@ var IndexLib = (function(){
     			onSelect : IndexLib.changeLanguage
 
 			});
+			initCurrencyList();
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				languageMap[dataArray[i].id] = dataArray[i].name;
@@ -93,7 +94,6 @@ var IndexLib = (function(){
 			initMenu();
 			initEasyUIEditors();
 			initLanguageList();
-			initCurrencyList();
 		},
 		lang : function() {
 			return $('#langSelector').combobox('getValue');

@@ -9,8 +9,10 @@ import java.util.Map;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.proto1.domain.Currency;
 import org.proto1.domain.Language;
 import org.proto1.domain.utility.LocalizedStringConstant;
+import org.proto1.repository.CurrencyRepository;
 import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,10 @@ public class MasterDataServiceBean implements MasterDataService {
 	
 	@Autowired
 	PartyRepository partyRepository;
-	
+
+	@Autowired
+	CurrencyRepository currencyRepository;
+
 	public void setLanguageRepository(LanguageRepository languageRepository) {
 		this.languageRepository = languageRepository;
 		
@@ -56,6 +61,10 @@ public class MasterDataServiceBean implements MasterDataService {
 
 	public Long getParyListCounter(Long languageId, String searchStr) {
 		return partyRepository.getPartyCounter(languageId, searchStr);
+	}
+
+	public List<Currency> getCurrencyList() {
+		return (List<Currency>) currencyRepository.findAll();
 	}
 
 }

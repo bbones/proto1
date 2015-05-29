@@ -86,7 +86,20 @@
 			            </tr>
 			            <tr>
 			                <td>Currency:</td>
-			                <td><input id="currencyId" name="numCode" class="easyui-textbox"></input></td>
+			                <td><select id="currencyId" name="numCode" class="easyui-combogrid" style="width:250px" data-options="
+						            panelWidth: 500,
+						            idField: 'currencyCode',
+						            textField: 'currencyCode',
+						            url: 'datagrid_data1.json',
+						            method: 'get',
+						            columns: [[
+						                {field:'numCode',title:'Code',width:80},
+						                {field:'charCode',title:'Char code',width:120},
+						                {field:'sign',title:'Sign',width:80,align:'right'}
+						            ]],
+						            fitColumns: true
+						        ">
+        					</select></td>
 			            </tr>
 			            
 			            <tr>

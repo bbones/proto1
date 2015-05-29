@@ -17,6 +17,7 @@ import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
 import org.proto1.dto.ContractDTO;
 import org.proto1.dto.ContractSideDTO;
+import org.proto1.dto.ContractSupplementDTO;
 import org.proto1.dtotools.DTODecode;
 import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.ContractService;
@@ -103,6 +104,11 @@ public class ContractController {
 	@RequestMapping(value = "roles", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, Object>> getRoleList(@RequestParam Long languageId) {
 		return contractService.getRoles(languageId);
+	}
+	
+	@RequestMapping(value = "/supplements/{supplementId}", method = RequestMethod.GET)
+	public @ResponseBody ContractSupplementDTO getSupplement(@PathVariable Long supplementId) {
+		return contractService.getSupplement(supplementId);
 	}
 	
 	@InitBinder
