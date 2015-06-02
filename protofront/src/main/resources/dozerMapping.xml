@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+	<configuration>
+		<custom-converters>
+			<converter type="org.proto1.mapper.CurrencyConverter">
+				<class-a>java.lang.Integer</class-a>
+				<class-b>org.proto1.domain.Currency</class-b>
+			</converter>
+		</custom-converters>
+	</configuration>
+
+
 	<mapping>
 		<class-a>org.proto1.domain.UnitOfMeasurementName</class-a>
 		<class-b>org.proto1.dto.UnitOfMeasurementNameDTO</class-b>

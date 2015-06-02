@@ -23,6 +23,13 @@
 				<value>dozerMapping.xml</value>
 			</list>
 		</property>
+		
+		<property name="customConverters">
+        	<list>
+            	<bean class="org.proto1.mapper.CurrencyConverter"/>
+        	</list>
+    	</property>
+		
 	</bean>
 
 </beans>

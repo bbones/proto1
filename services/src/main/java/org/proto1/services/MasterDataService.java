@@ -35,4 +35,6 @@ public interface MasterDataService {
 	
 	List<Currency> getCurrencyList();
 
+	Currency getCurrency(Integer numCode);
+
 }

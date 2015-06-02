@@ -67,4 +67,8 @@ public class MasterDataServiceBean implements MasterDataService {
 		return (List<Currency>) currencyRepository.findAll();
 	}
 
+	public Currency getCurrency(Integer numCode) {
+		return currencyRepository.findOne(numCode);
+	}
+
 }
