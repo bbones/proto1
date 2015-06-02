@@ -1,3 +1,6 @@
+// TODO Debug instantiation - call stack
+
+
 package org.proto1.protofront;
 
 import java.util.List;
@@ -27,6 +30,9 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 
 	@Autowired
 	ApplicationContext ac;
+	
+	@Autowired
+	CurrencyConverter currencyConverter;
 
 	@Test
 	public void test() {
@@ -43,11 +49,25 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 			logger.debug(name);
 		}
 		
-		Currency cur = mapper.map(980, Currency.class);
+		logger.debug(mapper.getClass().getName());
+		
+		for(CustomConverter cc : ((org.dozer.DozerBeanMapper)mapper).getCustomConverters()) {
+			logger.debug("CC->" + cc.getClass().getName());
+		}
+		
+		Currency cur = new Currency();
+		cur = currencyConverter.convertTo(980, cur);
+		
 		logger.debug(cur.getNumCode());
 		logger.debug(cur.getCharCode());
 		logger.debug(cur.getSign());
+		
+		cur = mapper.map(840, Currency.class);
 
+		logger.debug(cur.getNumCode());
+		logger.debug(cur.getCharCode());
+		logger.debug(cur.getSign());
+		
 	}
 
 }

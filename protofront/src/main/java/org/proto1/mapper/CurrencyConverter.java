@@ -7,10 +7,11 @@ import org.dozer.DozerConverter;
 import org.proto1.domain.Currency;
 import org.proto1.services.MasterDataService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component("currencyConverter")
 public class CurrencyConverter extends DozerConverter<Integer, Currency> {
 	protected final Log logger = LogFactory.getLog(getClass());
 	
@@ -20,7 +21,6 @@ public class CurrencyConverter extends DozerConverter<Integer, Currency> {
 	public CurrencyConverter() {
 		super(Integer.class, Currency.class);
 		logger.debug("Instance of CC");
-		logger.debug(masterDataService);
 	}
 
 	@Override
@@ -32,6 +32,5 @@ public class CurrencyConverter extends DozerConverter<Integer, Currency> {
 	public Currency convertTo(Integer source, Currency destination) {
 		return masterDataService.getCurrency(source);
 	}
-
 
 }

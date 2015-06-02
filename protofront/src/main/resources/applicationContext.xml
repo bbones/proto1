@@ -17,7 +17,7 @@
 
 	<jpa:repositories base-package="org.proto1.repository" />
 
-	<bean id="mapper" class="org.dozer.DozerBeanMapper">
+	<bean id="mapper" class="org.dozer.DozerBeanMapper" scope="singleton">
 		<property name="mappingFiles">
 			<list>
 				<value>dozerMapping.xml</value>
@@ -26,7 +26,7 @@
 		
 		<property name="customConverters">
         	<list>
-            	<bean class="org.proto1.mapper.CurrencyConverter"/>
+            	<ref bean="currencyConverter"/>
         	</list>
     	</property>
 		
