@@ -1,5 +1,7 @@
 package org.proto1.dto;
 
+import org.proto1.dtotools.DTODecode;
+
 public class ContractSupplementDTO extends DocumentDTO {
 
 	private static final long serialVersionUID = 8245373285664597984L;
@@ -7,6 +9,7 @@ public class ContractSupplementDTO extends DocumentDTO {
 	private Long contractId;
 	private Long currencyId;
 
+	@DTODecode(destination="setContract",service="ContractService", method="get")
 	public Long getContractId() {
 		return contractId;
 	}
@@ -15,6 +18,7 @@ public class ContractSupplementDTO extends DocumentDTO {
 		this.contractId = contractId;
 	}
 
+	@DTODecode(destination="setCurrency", service="MasterDataService", method="getCurrency")
 	public Long getCurrencyId() {
 		return currencyId;
 	}

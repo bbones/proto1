@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
+import org.proto1.domain.ContractSupplement;
 import org.proto1.domain.SideRole;
 import org.proto1.repository.ContractRepository;
 
@@ -47,5 +48,7 @@ public interface ContractService {
 	ContractSide saveSide(ContractSide contractSide);
 
 	void deleteSide(Long id);
+
+	ContractSupplement getSupplement(Long supplementId);
 
 }

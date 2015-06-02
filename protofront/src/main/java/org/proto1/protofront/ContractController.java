@@ -15,6 +15,7 @@ import java.util.Map;
 import org.dozer.Mapper;
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
+import org.proto1.domain.ContractSupplement;
 import org.proto1.dto.ContractDTO;
 import org.proto1.dto.ContractSideDTO;
 import org.proto1.dto.ContractSupplementDTO;
@@ -108,7 +109,9 @@ public class ContractController {
 	
 	@RequestMapping(value = "/supplements/{supplementId}", method = RequestMethod.GET)
 	public @ResponseBody ContractSupplementDTO getSupplement(@PathVariable Long supplementId) {
-		return contractService.getSupplement(supplementId);
+		ContractSupplement contractSupplement = contractService.getSupplement(supplementId);
+		ContractSupplementDTO result = null;
+		return result;
 	}
 	
 	@InitBinder

@@ -51,4 +51,17 @@ public class AnnotationDTOMapperBean implements DTOMapper {
 		return entity;
 	}
 
+	@Override
+	public <T extends DTO, S extends AbstractEntity> T encode(S source,
+			Class<T> clazz) throws InstantiationException, IllegalAccessException  {
+		T entity = clazz.newInstance();
+		Method[] methods = source.getClass().getDeclaredMethods();
+		for (Method method : methods ) {
+			for (DTOEncode annotation :method.getAnnotationsByType(DTOEncode.class) ) {
+				
+			}
+		}
+		return null;
+	}
+
 }
