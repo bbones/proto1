@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 	<configuration>
 		<custom-converters>
-			<converter type="org.proto1.mapper.CurrencyConverter">
+			<converter type="org.proto1.mapper.CurrencyConverter1">
 				<class-a>java.lang.Integer</class-a>
 				<class-b>org.proto1.domain.Currency</class-b>
 			</converter>

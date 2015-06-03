@@ -17,18 +17,12 @@
 
 	<jpa:repositories base-package="org.proto1.repository" />
 
-	<bean id="mapper" class="org.dozer.DozerBeanMapper" scope="singleton">
+	<bean class="org.dozer.spring.DozerBeanMapperFactoryBean" scope="singleton">
 		<property name="mappingFiles">
 			<list>
-				<value>dozerMapping.xml</value>
+				<value>classpath:META-INF/dozerMapping.xml</value>
 			</list>
 		</property>
-		
-		<property name="customConverters">
-        	<list>
-            	<ref bean="currencyConverter"/>
-        	</list>
-    	</property>
 		
 	</bean>
 

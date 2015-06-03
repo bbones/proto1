@@ -3,18 +3,15 @@
 
 package org.proto1.protofront;
 
-import java.util.List;
-import java.util.Map;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dozer.CustomConverter;
+import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.junit.Test;
 import org.proto1.domain.Currency;
 import org.proto1.mapper.CurrencyConverter;
 import org.proto1.services.MasterDataService;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
@@ -26,16 +23,18 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 	protected final Log logger = LogFactory.getLog(getClass());
 	
 	@Autowired
-	org.dozer.Mapper mapper;
+	Mapper dozerBeanMapper;
 
 	@Autowired
 	ApplicationContext ac;
 	
 	@Autowired
-	CurrencyConverter currencyConverter;
+	CurrencyConverter cc;
 
 	@Test
 	public void test() {
+		
+		DozerBeanMapper mapper= (org.dozer.DozerBeanMapper)dozerBeanMapper;
 		
 		String[] beanList =	ac.getBeanNamesForType(MasterDataService.class);
 		
@@ -43,7 +42,7 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 			logger.debug(name);
 		}
 		
-		beanList =	ac.getBeanNamesForType(CurrencyConverter.class);
+		beanList =	ac.getBeanNamesForType(CustomConverter.class);
 		
 		for(String name : beanList) {
 			logger.debug(name);
@@ -55,14 +54,9 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 			logger.debug("CC->" + cc.getClass().getName());
 		}
 		
-		Currency cur = new Currency();
-		cur = currencyConverter.convertTo(980, cur);
+		logger.debug("MDS->" + cc.getMasterDataService());
 		
-		logger.debug(cur.getNumCode());
-		logger.debug(cur.getCharCode());
-		logger.debug(cur.getSign());
-		
-		cur = mapper.map(840, Currency.class);
+		Currency cur = mapper.map(840, Currency.class);
 
 		logger.debug(cur.getNumCode());
 		logger.debug(cur.getCharCode());

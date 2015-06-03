@@ -7,9 +7,7 @@ import org.dozer.DozerConverter;
 import org.proto1.domain.Currency;
 import org.proto1.services.MasterDataService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 @Component("currencyConverter")
 public class CurrencyConverter extends DozerConverter<Integer, Currency> {
@@ -33,4 +31,13 @@ public class CurrencyConverter extends DozerConverter<Integer, Currency> {
 		return masterDataService.getCurrency(source);
 	}
 
+	public MasterDataService getMasterDataService() {
+		return masterDataService;
+	}
+
+	public void setMasterDataService(MasterDataService masterDataService) {
+		this.masterDataService = masterDataService;
+	}
+
+	
 }
