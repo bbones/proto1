@@ -7,7 +7,6 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.AbstractEntity;
 import org.proto1.dto.DTO;
-import org.proto1.dto.EnterpriseNameDTO;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;

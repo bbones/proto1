@@ -97,4 +97,8 @@ public class ContractServiceBean implements ContractService {
 		return contractSupplementRepository.findOne(supplementId);
 	}
 
+	public ContractSupplement saveSupplement(ContractSupplement cs) {
+		return contractSupplementRepository.save(cs);
+	}
+
 }

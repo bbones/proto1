@@ -20,7 +20,10 @@
 	<bean class="org.dozer.spring.DozerBeanMapperFactoryBean" scope="singleton">
 		<property name="mappingFiles">
 			<list>
+				<value>classpath:META-INF/customConverters.xml</value>
 				<value>classpath:META-INF/dozerMapping.xml</value>
+				<value>classpath:META-INF/contractMapping.xml</value>
+				<value>classpath:META-INF/orderMapping.xml</value>
 			</list>
 		</property>
 		

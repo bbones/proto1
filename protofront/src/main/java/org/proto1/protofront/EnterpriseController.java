@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
-import org.proto1.domain.Language;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;

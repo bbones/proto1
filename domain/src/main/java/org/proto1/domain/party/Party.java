@@ -9,8 +9,6 @@ package org.proto1.domain.party;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.validation.constraints.NotNull;
-
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
 

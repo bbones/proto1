@@ -9,7 +9,6 @@ import java.util.Map;
 
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
-import org.proto1.repository.EnterpriseRepository;
 
 public interface EnterpriseService {
 

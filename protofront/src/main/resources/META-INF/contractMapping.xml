@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>org.proto1.domain.Contract</class-a>
+		<class-b>org.proto1.dto.ContractDTO</class-b>
+	</mapping>
+
+	<mapping>
+		<class-a>org.proto1.domain.ContractSupplement</class-a>
+		<class-b>org.proto1.dto.ContractSupplementDTO</class-b>
+		<field>
+			<a>contract.id</a>
+			<b>contractId</b>
+		</field>
+		
+		<field>
+			<a>currency.numCode</a>
+			<b>currencyId</b>
+		</field>
+		
+	</mapping>
+	
+	<mapping>
+		<class-a>org.proto1.domain.ContractSide</class-a>
+		<class-b>org.proto1.dto.ContractSideDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>csId</b>
+		</field>
+		
+		<field>
+			<a>contract.id</a>
+			<b>contractId</b>
+		</field>
+		
+		<field>
+			<a>sideRole.id</a>
+			<b>roleId</b>
+		</field>
+		
+		<field>
+			<a>party.id</a>
+			<b>partyId</b>
+		</field>
+	</mapping>
+	
+</mappings>

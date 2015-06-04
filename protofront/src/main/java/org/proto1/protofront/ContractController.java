@@ -19,7 +19,6 @@ import org.proto1.domain.ContractSupplement;
 import org.proto1.dto.ContractDTO;
 import org.proto1.dto.ContractSideDTO;
 import org.proto1.dto.ContractSupplementDTO;
-import org.proto1.dtotools.DTODecode;
 import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.ContractService;
 import org.proto1.services.LanguageService;
@@ -28,7 +27,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -37,15 +35,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/contracts")
-public class ContractController {
+public class ContractController extends BaseController {
 	@Autowired
 	ContractService contractService;
 	
 	@Autowired
 	LanguageService languageService;
-	
-	@Autowired
-	DTOMapper dtoMapper;
 	
 	@Autowired
 	Mapper mapper;
@@ -85,7 +80,7 @@ public class ContractController {
 			throws BeansException, InstantiationException, IllegalAccessException, 
 				SecurityException, IllegalArgumentException, InvocationTargetException, 
 					NoSuchMethodException, ClassNotFoundException {
-		ContractSide contractSide = dtoMapper.decode(contractSideDTO, ContractSide.class);
+		ContractSide contractSide = mapper.map(contractSideDTO, ContractSide.class);
 		contractSide = contractService.saveSide(contractSide);
 		contractSideDTO.setCsId(contractSide.getId());
 		contractSideDTO.setPartyName(contractSide.getParty().getName(languageService.get(languageId)));
@@ -110,26 +105,22 @@ public class ContractController {
 	@RequestMapping(value = "/supplements/{supplementId}", method = RequestMethod.GET)
 	public @ResponseBody ContractSupplementDTO getSupplement(@PathVariable Long supplementId) {
 		ContractSupplement contractSupplement = contractService.getSupplement(supplementId);
-		ContractSupplementDTO result = null;
+		ContractSupplementDTO result = mapper.map(contractSupplement, ContractSupplementDTO.class);
 		return result;
 	}
 	
-	@InitBinder
-	public void binder(WebDataBinder binder) {
-		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
-		    public void setAsText(String value) {
-		        try {
-		            setValue(new SimpleDateFormat("dd.MM.yyyy").parse(value));
-		        } catch(ParseException e) {
-		            setValue(null);
-		        }
-		    }
+	@RequestMapping(value = "/supplements", method = RequestMethod.POST)
+	public @ResponseBody ContractSupplementDTO submitSupplement(ContractSupplementDTO contractSupplementDTO) {
+		ContractSupplement contractSupplement = mapper.map(contractSupplementDTO, ContractSupplement.class);
+		ContractSupplement cs = mapper.map(contractSupplement, ContractSupplement.class);
+		cs = contractService.saveSupplement(cs);
+		contractSupplementDTO.setId(cs.getId());
+		return contractSupplementDTO;
+	}
 
-		    public String getAsText() {
-		        return new SimpleDateFormat("dd.MM.yyyy").format((Date) getValue());
-		    }        
-
-		});	    // as shown above
+	@RequestMapping(value = "/supplements/{supplementId}", method = RequestMethod.DELETE)
+	public void deleteSupplement(@PathVariable Long supplementId) {
+		contractService.delete(supplementId);
 	}
 
 }

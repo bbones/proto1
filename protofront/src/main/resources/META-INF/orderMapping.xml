@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>org.proto1.domain.order.BaseOrder</class-a>
+		<class-b>org.proto1.dto.order.OrderDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>orderId</b>
+		</field>
+		<field>
+			<a>documentNo</a>
+			<b>documentNo</b>
+		</field>
+		<field>
+			<a>lines</a>
+			<b>orderLines</b>
+		</field>
+	</mapping>
+
+	<mapping>
+		<class-a>org.proto1.domain.order.OrderLine</class-a>
+		<class-b>org.proto1.dto.order.OrderLineDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>orderLineId</b>
+		</field>
+		<field>
+			<a>product.id</a>
+			<b>productId</b>
+		</field>
+		<field>
+			<a>qnty</a>
+			<b>qnty</b>
+		</field>
+		<field>
+			<a>qnty</a>
+			<b>qnty</b>
+		</field>
+		<field>
+			<a>unitOfMeasurement.id</a>
+			<b>uomId</b>
+		</field>
+	</mapping>
+
+
+</mappings>

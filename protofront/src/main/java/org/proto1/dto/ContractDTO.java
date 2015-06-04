@@ -4,8 +4,6 @@
  *******************************************************************************/
 package org.proto1.dto;
 
-import java.util.Date;
-
 public class ContractDTO extends DTO {
 
 	private static final long serialVersionUID = 6354957597593307563L;

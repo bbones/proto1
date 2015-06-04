@@ -51,4 +51,6 @@ public interface ContractService {
 
 	ContractSupplement getSupplement(Long supplementId);
 
+	ContractSupplement saveSupplement(ContractSupplement cs);
+
 }

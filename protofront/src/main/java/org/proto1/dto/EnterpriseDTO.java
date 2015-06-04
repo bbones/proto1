@@ -4,8 +4,6 @@
  *******************************************************************************/
 package org.proto1.dto;
 
-import java.util.List;
-
 import org.proto1.dtotools.DTODecode;
 
 public class EnterpriseDTO extends DTO  {

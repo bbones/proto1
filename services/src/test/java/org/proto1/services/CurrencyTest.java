@@ -1,7 +1,5 @@
 package org.proto1.services;
 
-import static org.junit.Assert.*;
-
 import java.util.Currency;
 import java.util.Locale;
 
