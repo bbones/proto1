@@ -4,8 +4,29 @@
 
 
 	<mapping>
+		<class-a>org.proto1.domain.AbstractEntity</class-a>
+		<class-b>org.proto1.dto.DocumentDTO</class-b>
+		<field>
+			<a>version</a>
+			<b>version</b>
+		</field>
+	</mapping>
+
+	<mapping>
 		<class-a>org.proto1.domain.Document</class-a>
 		<class-b>org.proto1.dto.DocumentDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>documentNo</a>
+			<b>documentNo</b>
+		</field>
+		<field>
+			<a>issueDate</a>
+			<b>issueDate</b>
+		</field>
 	</mapping>
 
 	<mapping>

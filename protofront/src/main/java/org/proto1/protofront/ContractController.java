@@ -120,7 +120,7 @@ public class ContractController extends BaseController {
 
 	@RequestMapping(value = "/supplements/{supplementId}", method = RequestMethod.DELETE)
 	public void deleteSupplement(@PathVariable Long supplementId) {
-		contractService.delete(supplementId);
+		contractService.deleteSupplement(supplementId);
 	}
 
 }

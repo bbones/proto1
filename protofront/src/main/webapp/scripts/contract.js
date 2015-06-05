@@ -11,6 +11,7 @@
 var ContractLib = (function(){
 
 	var roleMap = new Object();
+	var currencyMap = new Object();
 	var currentContractId = {};
 	
 	function getRoleMap () {
@@ -47,6 +48,7 @@ var ContractLib = (function(){
 			url : "/protofront/service/contracts/",
 			method : 'GET',
 			onSelect : function(index, row) {
+				console.log("triggering contractSelect");
 				$("#test").trigger(event,row.id);
 				currentContractId = row.id;
 			}, // OnSelect
@@ -94,6 +96,8 @@ var ContractLib = (function(){
 	};
 
 	function initSupplementGrid(){
+		var supevent = jQuery.Event( "contractSupplementSelected" );
+
 		$("#test").on("contractSelected", function(event, contractId){
 			$("#edgSupplement").edatagrid({
 				url : "/protofront/service/contracts/" + contractId + "/supplements"
@@ -103,15 +107,32 @@ var ContractLib = (function(){
 			toolbar : IndexLib.edgmenu({
 					add : function(){
 						$("#edgSupplement").edatagrid('addRow');
+						$("#csf").form('clear');
 					},
 					save : function(){
-						$("#edgSupplement").edatagrid('getSelected').contractId = currentContractId;
-						$("#edgSupplement").edatagrid('saveRow');
+						
+						$("#scf").form('submit', {
+						    success:function(data){
+						    	var row = $("#edgSupplement").edatagrid('getSelected');
+						    	var index = $("#edgSupplement").edatagrid('getRowIndex', row);
+						    	console.log(index);
+						    	
+						    	$("#csf").form('load', JSON.parse(data));
+						    	$("#edgSupplement").edatagrid('updateRow', {
+						    		index : index,
+						    		row : JSON.parse(data)});
+						    } // Success
+						})
 					},
 					destroy : function(){$("#edgSupplement").edatagrid('destroyRow');}
 
 			}),
-			method : 'GET'
+			method : 'GET',
+			onSelect : function(index, row) {
+				console.log("triggering contractSupplementSelected" + row.supplementId);
+				$("#test").trigger(supevent,row.supplementId);
+
+			}
 		});
 		
 	};
@@ -128,9 +149,24 @@ var ContractLib = (function(){
 
 	function initContractForm() {
 		$("#test").on("contractSelected", function(event, contractId){
+			console.log("onEvent");
 			$("#cf").form('load', '/protofront/service/contracts/' + contractId);
 		});
 		$("#isdate").datebox({
+			
+			formatter:IndexLib.dateFormatter,
+			
+			parser:IndexLib.dateParser
+
+		});
+	};
+	
+	function initContractSupplementForm() {
+		$("#test").on("contractSupplementSelected", function(event, contractSupplementId){
+			console.log("onEvent contractSupplementSelected");
+			$("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
+		});
+		$("#supisdate").datebox({
 			
 			formatter:IndexLib.dateFormatter,
 			
@@ -149,6 +185,7 @@ var ContractLib = (function(){
 					initContractForm();
 					initSidesGrid();
 					initSupplementGrid();
+					initContractSupplementForm();
 				}
 			});
 		},

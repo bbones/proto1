@@ -14,8 +14,10 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSupplement;
 import org.proto1.domain.Currency;
+import org.proto1.dto.ContractDTO;
 import org.proto1.dto.ContractSupplementDTO;
 import org.proto1.mapper.CurrencyConverter;
 import org.proto1.services.MasterDataService;
@@ -83,4 +85,11 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 		
 	}
 
+	@Test
+	public void testInheritance() {
+		Contract contract = new Contract();
+		contract.setDocumentNo("DOCNO");
+		ContractDTO cDTO = mapper.map(contract, ContractDTO.class);
+		assertEquals(contract.getDocumentNo(), cDTO.getDocumentNo());
+	}
 }

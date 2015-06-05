@@ -4,7 +4,7 @@
  *******************************************************************************/
 package org.proto1.dto;
 
-public class ContractDTO extends DTO {
+public class ContractDTO extends DocumentDTO {
 
 	private static final long serialVersionUID = 6354957597593307563L;
 

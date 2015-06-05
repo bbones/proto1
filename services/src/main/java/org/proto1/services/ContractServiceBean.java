@@ -54,7 +54,6 @@ public class ContractServiceBean implements ContractService {
 	/* (non-Javadoc)
 	 * @see org.proto1.services.ContractService#getContracts()
 	 */
-	@Transactional
 	public List<Map<String, Object>> getContracts() {
 		return contractRepository.list();
 	}
@@ -99,6 +98,10 @@ public class ContractServiceBean implements ContractService {
 
 	public ContractSupplement saveSupplement(ContractSupplement cs) {
 		return contractSupplementRepository.save(cs);
+	}
+
+	public void deleteSupplement(Long supplementId) {
+		contractSupplementRepository.delete(supplementId);
 	}
 
 }

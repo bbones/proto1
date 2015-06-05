@@ -9,7 +9,8 @@
 	        "module": "enterprise.js"
 	    	},{
 	        	"id": "person",
-	       		"text": "Person"
+	       		"text": "Person",
+		        "module": "person.js"
 	    	},{
 	        	"id": "period",
 	        	"text": "Period"

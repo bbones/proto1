@@ -53,4 +53,6 @@ public interface ContractService {
 
 	ContractSupplement saveSupplement(ContractSupplement cs);
 
+	void deleteSupplement(Long supplementId);
+
 }

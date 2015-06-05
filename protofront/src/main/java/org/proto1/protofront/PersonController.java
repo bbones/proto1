@@ -19,12 +19,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/persons")
 public class PersonController {
 	@Autowired
 	PersonService personService;
@@ -32,43 +33,38 @@ public class PersonController {
 	@Autowired
 	Mapper mapper;
 	
-	@RequestMapping(value = "listbylang/{languageId}", method = RequestMethod.POST )
-	public @ResponseBody List<Map<String, Object>>  personListByLanguage(@PathVariable Long languageId) {
+	@RequestMapping(value = "/", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  personListByLanguage(@RequestParam Long languageId) {
 		return personService.getPersonList(languageId);
 	}
 	
-	@RequestMapping(value = "names/{id}", method = RequestMethod.POST)
-	public @ResponseBody List<PersonNameDTO> getEntepriseNames(@PathVariable String id) {
+	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
+	public @ResponseBody List<PersonNameDTO> getEntepriseNames(@PathVariable Long id) {
 		List<PersonNameDTO> enList = new ArrayList<PersonNameDTO>();
-		for(PersonName en : personService.getNamesList(new Long(id)))
+		for(PersonName en : personService.getNamesList(id))
 			enList.add(mapper.map(en, PersonNameDTO.class));
 		return enList;
 	}
 	
-	@RequestMapping(value = "submit", method = RequestMethod.POST, produces = "application/json", consumes="application/json" )
-	public @ResponseBody PersonDTO submit(@RequestBody final PersonDTO personDTO) {
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public @ResponseBody PersonDTO submit(PersonDTO personDTO) {
 		Person Person = mapper.map(personDTO, Person.class);
 		Person = personService.save(Person);
 		mapper.map(Person, personDTO);
 		return personDTO;
 	}
 
-	@RequestMapping(value = "findByID/{id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody PersonDTO findByID(@PathVariable String id) {
-		Person Person = personService.getById(new Long(id));
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody PersonDTO get(@PathVariable Long id) {
+		Person Person = personService.getById(id);
 		return mapper.map(Person, PersonDTO.class);
 	}
 
-	@RequestMapping(value = "deleteByID/{id}", method = RequestMethod.POST, produces = "application/json")
-	public void delete(@PathVariable String id) {
-		personService.delete(new Long(id));
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable Long id) {
+		personService.delete(id);
 	}
 
 
-	@RequestMapping(value = "id/{id}", method = RequestMethod.GET)
-	public RedirectView findByURLID(@PathVariable String id) {
-		
-		return new RedirectView("/protofront/index.html#Person:"+id);
-	}
 
 }

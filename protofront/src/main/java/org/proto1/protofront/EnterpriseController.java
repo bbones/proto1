@@ -67,16 +67,16 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
-	public @ResponseBody List<EnterpriseNameDTO> getEntepriseNames(@PathVariable String id) {
+	public @ResponseBody List<EnterpriseNameDTO> getEntepriseNames(@PathVariable Long id) {
 		List<EnterpriseNameDTO> enList = new ArrayList<EnterpriseNameDTO>();
-		for(EnterpriseName en : enterpriseService.getNamesList(new Long(id)))
+		for(EnterpriseName en : enterpriseService.getNamesList(id))
 			enList.add(dozerMapper.map(en, EnterpriseNameDTO.class));
 		return enList;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public @ResponseBody EnterpriseDTO findByID(@PathVariable String id) {
-		Enterprise enterprise = enterpriseService.get(new Long(id));
+	public @ResponseBody EnterpriseDTO findByID(@PathVariable Long id) {
+		Enterprise enterprise = enterpriseService.get(id);
 		return dozerMapper.map(enterprise, EnterpriseDTO.class);
 	}
 

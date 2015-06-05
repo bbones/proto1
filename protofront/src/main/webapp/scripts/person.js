@@ -10,12 +10,13 @@ var PersonLib = (function() {
 	
 	function initPersonGrid() {
 		$("#edgPerson").edatagrid({
-			url : "/protofront/service/person/listbylang/" +
-				$('#langSelector').combobox('getValue'),
+			url : "/protofront/service/persons/?languageId=" +	IndexLib.lang(),
+			method : 'GET',
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgNames").edatagrid({
-					url : '/protofront/service/person/names/' + row.personId
+					method : 'GET',
+					url : '/protofront/service/persons/' + row.personId +'/names'
 				});
 			} // OnSelect
 		});
@@ -27,8 +28,15 @@ var PersonLib = (function() {
 
 	return {
 		init : function() {
-			initPersonGrid();
-			initNameGrid();
+			$("#test").panel({
+				href : '/protofront/forms/person.html', 
+				onLoad : function() {
+					initPersonGrid();
+					initNameGrid();
+				}
+			});
 		}
 	}
 })();
+
+PersonLib.init();

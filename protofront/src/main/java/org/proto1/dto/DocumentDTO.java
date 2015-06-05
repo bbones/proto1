@@ -16,27 +16,22 @@ public class DocumentDTO extends DTO {
 		return id;
 	}
 
-	@DTOEncode(sourceMethod="getId")
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@DTODecode(destination="setDocumentNo")
 	public String getDocumentNo() {
 		return documentNo;
 	}
 
-	@DTOEncode(sourceMethod="getDocumentNo")
 	public void setDocumentNo(String documentNo) {
 		this.documentNo = documentNo;
 	}
 
-	@DTODecode(destination="setIssueDate")
 	public Date getIssueDate() {
 		return issueDate;
 	}
 
-	@DTOEncode(sourceMethod="getIssueDate")
 	public void setIssueDate(Date issueDate) {
 		this.issueDate = issueDate;
 	}

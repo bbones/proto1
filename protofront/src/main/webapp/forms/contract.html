@@ -63,8 +63,8 @@
 					<tr>
 						<th field='supplementId' width=80>Contract Supplement Id</th>
 						<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
-						<th field='numCode' width=80 formatter=IndexLib.currencyFormatter editor=IndexLib.currencyEditor>Currency</th>
-						<th field='issueDate' width=80 formatter=IndexLib.dateFormatter editor=IndexLib.dateEditor>Issue date</th>
+						<th field='numCode' width=80 formatter=IndexLib.currencyFormatter >Currency</th>
+						<th field='issueDate' width=80 formatter=IndexLib.dateFormatter >Issue date</th>
 						
 					</tr>
 				</thead>
@@ -78,11 +78,11 @@
 			            </tr>
 			            <tr>
 			                <td>Supplement #:</td>
-			                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
+			                <td><input id="supdocno" name="documentNo" class="easyui-textbox"></input></td>
 			            </tr>
 			            <tr>
 			                <td>Issue date:</td>
-			                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
+			                <td><input id="supisdate" name="issueDate" class="easyui-datebox"></input></td>
 			            </tr>
 			            <tr>
 			                <td>Currency:</td>
@@ -90,7 +90,7 @@
 						            panelWidth: 500,
 						            idField: 'currencyCode',
 						            textField: 'currencyCode',
-						            url: 'datagrid_data1.json',
+						            url: '/protofront/service/masterdata/currencies',
 						            method: 'get',
 						            columns: [[
 						                {field:'numCode',title:'Code',width:80},
