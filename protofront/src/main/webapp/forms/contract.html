@@ -61,7 +61,7 @@
 				style="width: 600px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'supplementId'">
 				<thead>
 					<tr>
-						<th field='supplementId' width=80>Contract Supplement Id</th>
+						<th field='id' width=80>Contract Supplement Id</th>
 						<th field='documentNo' width=250 editor="text">Contract Supplement #</th>
 						<th field='numCode' width=80 formatter=IndexLib.currencyFormatter >Currency</th>
 						<th field='issueDate' width=80 formatter=IndexLib.dateFormatter >Issue date</th>
@@ -74,7 +74,7 @@
 			        <table>
 			            <tr>
 			                <td>Id:</td>
-			                <td><input name="supplementId" class="easyui-numberbox" editable="false"></input></td>
+			                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
 			            </tr>
 			            <tr>
 			                <td>Supplement #:</td>
@@ -86,20 +86,7 @@
 			            </tr>
 			            <tr>
 			                <td>Currency:</td>
-			                <td><select id="currencyId" name="numCode" class="easyui-combogrid" style="width:250px" data-options="
-						            panelWidth: 500,
-						            idField: 'currencyCode',
-						            textField: 'currencyCode',
-						            url: '/protofront/service/masterdata/currencies',
-						            method: 'get',
-						            columns: [[
-						                {field:'numCode',title:'Code',width:80},
-						                {field:'charCode',title:'Char code',width:120},
-						                {field:'sign',title:'Sign',width:80,align:'right'}
-						            ]],
-						            fitColumns: true
-						        ">
-        					</select></td>
+			                <td><select id="currencyId" name="currencyId" class="easyui-combogrid" style="width:250px" ></select></td>
 			            </tr>
 			            
 			            <tr>

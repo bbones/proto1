@@ -32,7 +32,6 @@ var ContractLib = (function(){
 				    success:function(data){
 				    	var row = $("#edgContract").edatagrid('getSelected');
 				    	var index = $("#edgContract").edatagrid('getRowIndex', row);
-				    	console.log(index);
 				    	
 				    	$("#cf").form('load', JSON.parse(data));
 				    	$("#edgContract").edatagrid('updateRow', {
@@ -48,12 +47,10 @@ var ContractLib = (function(){
 			url : "/protofront/service/contracts/",
 			method : 'GET',
 			onSelect : function(index, row) {
-				console.log("triggering contractSelect");
 				$("#test").trigger(event,row.id);
 				currentContractId = row.id;
 			}, // OnSelect
 			onDestroy : function(index, row) {
-				console.log(row);
 	    		$.ajax({
 	    			url : '/protofront/service/contracts/' + row.id,
 	    			method : 'DELETE'
@@ -70,7 +67,6 @@ var ContractLib = (function(){
 				saveUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
 				updateUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
 				onDestroy : function(index, row) {
-					console.log(row);
 		    		$.ajax({
 		    			url : '/protofront/service/contracts/sides/' + row.csId,
 		    			method : 'DELETE'
@@ -115,7 +111,6 @@ var ContractLib = (function(){
 						    success:function(data){
 						    	var row = $("#edgSupplement").edatagrid('getSelected');
 						    	var index = $("#edgSupplement").edatagrid('getRowIndex', row);
-						    	console.log(index);
 						    	
 						    	$("#csf").form('load', JSON.parse(data));
 						    	$("#edgSupplement").edatagrid('updateRow', {
@@ -129,8 +124,7 @@ var ContractLib = (function(){
 			}),
 			method : 'GET',
 			onSelect : function(index, row) {
-				console.log("triggering contractSupplementSelected" + row.supplementId);
-				$("#test").trigger(supevent,row.supplementId);
+				$("#test").trigger(supevent,row.id);
 
 			}
 		});
@@ -149,7 +143,6 @@ var ContractLib = (function(){
 
 	function initContractForm() {
 		$("#test").on("contractSelected", function(event, contractId){
-			console.log("onEvent");
 			$("#cf").form('load', '/protofront/service/contracts/' + contractId);
 		});
 		$("#isdate").datebox({
@@ -163,7 +156,6 @@ var ContractLib = (function(){
 	
 	function initContractSupplementForm() {
 		$("#test").on("contractSupplementSelected", function(event, contractSupplementId){
-			console.log("onEvent contractSupplementSelected");
 			$("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
 		});
 		$("#supisdate").datebox({
@@ -172,6 +164,19 @@ var ContractLib = (function(){
 			
 			parser:IndexLib.dateParser
 
+		});
+		$("#currencyId").combogrid({
+			panelWidth: 500,
+            idField: 'currencyCode',
+            textField: 'currencyCode',
+            url: '/protofront/service/masterdata/currencies',
+            method: 'get',
+            columns: [[
+                {field:'numCode',title:'Code',width:80},
+                {field:'charCode',title:'Char code',width:120},
+                {field:'sign',title:'Sign',width:80,align:'right'}
+            ]],
+            fitColumns: true
 		});
 	};
 	
