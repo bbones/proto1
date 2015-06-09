@@ -80,6 +80,8 @@ public class DozerCustomConverterTest extends AbstractJUnit4SpringContextTests {
 		
 		assertEquals(csDTO.getId(), cs.getId());
 		assertEquals(csDTO.getCurrencyId(), cs.getCurrency().getNumCode());
+		assertEquals("USD", cs.getCurrency().getCharCode());
+		
 		assertEquals(csDTO.getContractId(), cs.getContract().getId());
 		assertEquals(csDTO.getIssueDate(), cs.getIssueDate());
 		

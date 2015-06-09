@@ -11,15 +11,15 @@
 		<class-a>org.proto1.domain.ContractSupplement</class-a>
 		<class-b>org.proto1.dto.ContractSupplementDTO</class-b>
 		<field>
-			<a>contract.id</a>
+			<a>contract</a>
 			<b>contractId</b>
 		</field>
 		
 		<field>
-			<a>currency.numCode</a>
+			<a>currency</a>
 			<b>currencyId</b>
 		</field>
-		
+
 	</mapping>
 	
 	<mapping>
@@ -31,17 +31,17 @@
 		</field>
 		
 		<field>
-			<a>contract.id</a>
+			<a>contract</a>
 			<b>contractId</b>
 		</field>
 		
 		<field>
-			<a>sideRole.id</a>
+			<a>sideRole</a>
 			<b>roleId</b>
 		</field>
 		
 		<field>
-			<a>party.id</a>
+			<a>party</a>
 			<b>partyId</b>
 		</field>
 	</mapping>

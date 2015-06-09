@@ -4,23 +4,28 @@
 
 	<configuration>
 		<custom-converters>
-			
+
 			<converter type="org.proto1.mapper.CurrencyConverter">
 				<class-a>java.lang.Integer</class-a>
 				<class-b>org.proto1.domain.Currency</class-b>
 			</converter>
-			
+
 			<converter type="org.proto1.mapper.LongContractConverter">
 				<class-a>java.lang.Long</class-a>
 				<class-b>org.proto1.domain.Contract</class-b>
 			</converter>
-			
+
 			<converter type="org.proto1.mapper.LongPartyConverter">
 				<class-a>java.lang.Long</class-a>
 				<class-b>org.proto1.domain.party.Party</class-b>
 			</converter>
-			
+
+			<converter type="org.proto1.mapper.LongSideRoleConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.SideRole</class-b>
+			</converter>
+
 		</custom-converters>
 	</configuration>
-	
+
 </mappings>

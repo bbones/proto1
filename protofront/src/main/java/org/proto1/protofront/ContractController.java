@@ -76,10 +76,7 @@ public class ContractController extends BaseController {
 	}
 
 	@RequestMapping(value = "/sides", method = RequestMethod.POST )
-	public @ResponseBody ContractSideDTO submit(@RequestParam Long languageId, ContractSideDTO contractSideDTO) 
-			throws BeansException, InstantiationException, IllegalAccessException, 
-				SecurityException, IllegalArgumentException, InvocationTargetException, 
-					NoSuchMethodException, ClassNotFoundException {
+	public @ResponseBody ContractSideDTO submit(@RequestParam Long languageId, ContractSideDTO contractSideDTO) {
 		ContractSide contractSide = mapper.map(contractSideDTO, ContractSide.class);
 		contractSide = contractService.saveSide(contractSide);
 		contractSideDTO.setCsId(contractSide.getId());
@@ -112,9 +109,8 @@ public class ContractController extends BaseController {
 	@RequestMapping(value = "/supplements", method = RequestMethod.POST)
 	public @ResponseBody ContractSupplementDTO submitSupplement(ContractSupplementDTO contractSupplementDTO) {
 		ContractSupplement contractSupplement = mapper.map(contractSupplementDTO, ContractSupplement.class);
-		ContractSupplement cs = mapper.map(contractSupplement, ContractSupplement.class);
-		cs = contractService.saveSupplement(cs);
-		contractSupplementDTO.setId(cs.getId());
+		contractSupplement = contractService.saveSupplement(contractSupplement);
+		contractSupplementDTO.setId(contractSupplement.getId());
 		return contractSupplementDTO;
 	}
 
