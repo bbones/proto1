@@ -113,7 +113,7 @@ var RequestLib = (function() {
 			return row.productName;
 		},
 		uomFormatter : function(value,row){
-			return row.uomName;
+			return row.uomShortName;
 		}
 
 	};
