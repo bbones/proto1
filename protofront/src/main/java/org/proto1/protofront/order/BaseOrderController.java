@@ -10,6 +10,7 @@ import java.util.Map;
 
 import javax.transaction.Transactional;
 
+import org.dozer.Mapper;
 import org.proto1.domain.Language;
 import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
@@ -37,7 +38,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 	T baseOrderService;
 	
 	@Autowired
-	BaseOrderMapper mapper;
+	Mapper mapper;
 	
 	@Autowired
 	LanguageService languageService;
@@ -59,9 +60,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 	@Transactional
 	public @ResponseBody OrderLineDTO  saveOrderLine(@RequestParam Long languageId,
 			OrderLineDTO orderLineDTO) {
-		OrderLine ol = new OrderLine();
-		BaseOrder order = baseOrderService.get(orderLineDTO.getOrderId());
-		mapper.mapOrderLine(orderLineDTO, ol, order);
+		OrderLine ol = mapper.map(orderLineDTO, OrderLine.class);
 		ol = baseOrderService.saveOrderLine(ol);
 		orderLineDTO.setOrderLineId(ol.getId());
 		Language language = languageService.get(languageId);
@@ -86,12 +85,10 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 	@RequestMapping(value = "/lines/lineparameters", method = RequestMethod.POST )
 	public @ResponseBody OrderLineParameterDTO  saveOrderLineParameter(@RequestParam Long languageId,
 			OrderLineParameterDTO orderLineParameterDTO) {
-		OrderLineParameter olp = new OrderLineParameter();
-		OrderLine ol = baseOrderService.getOrderLine(orderLineParameterDTO.getOrderLineId());
-		mapper.mapOrderLineParameter(orderLineParameterDTO, olp, ol);
+		OrderLineParameter olp = mapper.map(orderLineParameterDTO, OrderLineParameter.class);
 		olp = baseOrderService.saveOrderLineParameter(olp);
 		orderLineParameterDTO.setOrderLineParameterId(olp.getId());
-		orderLineParameterDTO.setVersion(ol.getVersion());
+		orderLineParameterDTO.setVersion(olp.getVersion());
 		return orderLineParameterDTO;
 	}
 

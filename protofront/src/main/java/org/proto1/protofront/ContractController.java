@@ -4,11 +4,6 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
-import java.beans.PropertyEditorSupport;
-import java.lang.reflect.InvocationTargetException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -19,13 +14,9 @@ import org.proto1.domain.ContractSupplement;
 import org.proto1.dto.ContractDTO;
 import org.proto1.dto.ContractSideDTO;
 import org.proto1.dto.ContractSupplementDTO;
-import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.ContractService;
 import org.proto1.services.LanguageService;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

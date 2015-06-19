@@ -7,15 +7,11 @@
 		<class-b>org.proto1.dto.order.OrderDTO</class-b>
 		<field>
 			<a>id</a>
-			<b>orderId</b>
+			<b>id</b>
 		</field>
 		<field>
 			<a>documentNo</a>
 			<b>documentNo</b>
-		</field>
-		<field>
-			<a>lines</a>
-			<b>orderLines</b>
 		</field>
 	</mapping>
 

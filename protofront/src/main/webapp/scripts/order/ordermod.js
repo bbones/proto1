@@ -102,8 +102,7 @@ var OrderMod = (function() {
 		});
 	};
 
-
-	Order.prototype.load  = function(orderUrl) {
+	Order.prototype.load  = function(orderUrl, onLoad) {
 		console.log('OrderMod.load');
 		$("#test").panel({
 			href : '/protofront/forms/order.html', 
@@ -112,6 +111,7 @@ var OrderMod = (function() {
 				initOrderGrid();
 				initLinesGrid();
 				initLineParam();
+				onLoad();
 			}
 		});
 	};

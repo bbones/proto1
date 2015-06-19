@@ -7,8 +7,6 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
-import javax.transaction.Transactional;
-
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
 import org.proto1.domain.ContractSupplement;

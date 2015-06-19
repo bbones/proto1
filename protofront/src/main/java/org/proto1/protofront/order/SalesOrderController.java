@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
+import org.proto1.dto.order.SalesOrderDTO;
 import org.proto1.services.order.SalesOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,11 @@ public class SalesOrderController {
 	@RequestMapping(value = "/", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  salesOrderListByLanguage(@RequestParam Long languageId) {
 		return salesOrderService.getOrderList(languageId);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET )
+	public @ResponseBody SalesOrderDTO  salesOrderListByLanguage(@PathVariable Long id, @RequestParam Long languageId) {
+		return mapper.map(salesOrderService.get(id), SalesOrderDTO.class);
 	}
 	
 

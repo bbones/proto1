@@ -2,9 +2,6 @@ package org.proto1.dto;
 
 import java.util.Date;
 
-import org.proto1.dtotools.DTODecode;
-import org.proto1.dtotools.DTOEncode;
-
 @SuppressWarnings("serial")
 public class DocumentDTO extends DTO {
 

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.dozer.Mapper;
 import org.proto1.domain.order.PurchaseOrder;
 import org.proto1.dto.order.PurchaseOrderDTO;
 import org.proto1.services.ContractSupplementService;
@@ -34,7 +35,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PurchaseOrderController extends BaseOrderController <PurchaseOrderService>{
 	
 	@Autowired
-	BaseOrderMapper mapper;
+	Mapper mapper;
 	
 	@Autowired
 	ContractSupplementService contractSupplementService;

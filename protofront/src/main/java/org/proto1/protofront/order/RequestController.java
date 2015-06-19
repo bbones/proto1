@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.dozer.Mapper;
 import org.proto1.domain.order.Request;
 import org.proto1.dto.order.RequestDTO;
 import org.proto1.services.order.RequestService;
@@ -30,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class RequestController extends BaseOrderController<RequestService> {
 	
 	@Autowired
-	BaseOrderMapper mapper;
+	Mapper mapper;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  getList(@RequestParam Long languageId) {
