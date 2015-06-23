@@ -48,7 +48,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 
 	@Autowired
 	ProductService productService;
-
+	
 	// Request lines
 	@RequestMapping(value = "/{orderId}/lines", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  getOrderLines(@PathVariable Long orderId, 
@@ -61,6 +61,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 	public @ResponseBody OrderLineDTO  saveOrderLine(@RequestParam Long languageId,
 			OrderLineDTO orderLineDTO) {
 		OrderLine ol = mapper.map(orderLineDTO, OrderLine.class);
+		ol.setOrder(baseOrderService.get(orderLineDTO.getOrderId()));
 		ol = baseOrderService.saveOrderLine(ol);
 		orderLineDTO.setOrderLineId(ol.getId());
 		Language language = languageService.get(languageId);

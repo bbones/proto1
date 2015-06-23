@@ -6,6 +6,8 @@
 
 var OrderMod = (function() {
 	var orderURL = null;
+	var currentOrderId = null;
+	var currentOrderLineId = null;
 
 	function Order() {
 	};
@@ -31,6 +33,7 @@ var OrderMod = (function() {
 			}),
 			onSelect : function(index, row) {
 				if (row.id != null) {
+					currentOrderId  = row.id;
 					var event = jQuery.Event( 'orderSelected' );
 					$("#test").trigger(event, row.id);
 				} // if
@@ -61,7 +64,7 @@ var OrderMod = (function() {
 			updateUrl : orderURL + 'lines?languageId=' + IndexLib.lang(),
 			toolbar : IndexLib.edgmenu({
 				add : function(){
-					$("#edgLines").edatagrid('addRow');
+					$("#edgLines").edatagrid('addRow', {row : {orderId : currentOrderId}});
 				},
 				save : function(){
 					$("#edgLines").edatagrid('saveRow');
@@ -73,6 +76,7 @@ var OrderMod = (function() {
 			}),
 			onSelect : function(index, row) {
 				if (row.orderLineId != null) {
+					currentOrderLineId = row.orderLineId;
 					var event = jQuery.Event( 'orderLineSelected' );
 					$("#test").trigger(event, row.orderLineId);
 				} // if
@@ -87,6 +91,16 @@ var OrderMod = (function() {
 		});
 	};
 	
+	function fillParameterTemplate() {
+		console.log("Fill Parameter Template");
+		$.ajax({
+			url : orderURL + '/lines/fillparameters',
+			method : "POST",
+			data : {
+				orderLineId : currentOrderLineId				
+			}
+		});
+	}
 	
 	function initLineParam() {
 		$("#test").on('orderLineSelected', 
@@ -98,12 +112,37 @@ var OrderMod = (function() {
 			}
 		);
 		$("#edgLineParameters").edatagrid({
-			method:'GET'
+			method:'GET',
+			saveUrl : orderURL + 'lines/lineparameters?languageId=' + IndexLib.lang(),
+			updateUrl : orderURL + 'lines/lineparameters?languageId=' + IndexLib.lang(),
+			toolbar : IndexLib.edgmenu({
+					add : function(){
+						$("#edgLineParameters").edatagrid('addRow', {row : {orderLineId : currentOrderLineId}});
+					},
+					save : function(){
+						$("#edgLineParameters").edatagrid('saveRow');
+					},
+					destroy : function(){
+						$("#edgLineParameters").edatagrid('destroyRow');
+					}
+
+				}).concat([{iconCls: 'icon-add',
+			    	handler: fillParameterTemplate,
+			    	plain : true,
+			    	text : 'Fill template'}]), // toolbar
+			onDestroy : function(index,row){
+				$.ajax({
+					url : orderURL + 'lines/lineparameters' + row.olpId,
+					method : "DELETE"
+				});
+			}
+
 		});
 	};
 
 	Order.prototype.load  = function(orderUrl, onLoad) {
 		console.log('OrderMod.load');
+		$("#test").unbind();
 		$("#test").panel({
 			href : '/protofront/forms/order.html', 
 			onLoad : function(){

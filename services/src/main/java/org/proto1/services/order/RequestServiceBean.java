@@ -43,11 +43,4 @@ public class RequestServiceBean extends BaseOrderServiceBean<Request>  implement
 	public Request get(Long orderId) {
 		return requestRepository.findOne(orderId);
 	}
-	public OrderLine getOrderLine(Long orderLineId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	/* (non-Javadoc)
-	 * @see org.proto1.services.order.BaseOrderService#save(org.proto1.domain.order.BaseOrder)
-	 */
 }

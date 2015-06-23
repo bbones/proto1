@@ -23,7 +23,7 @@
 			<b>orderLineId</b>
 		</field>
 		<field>
-			<a>product.id</a>
+			<a>product</a>
 			<b>productId</b>
 		</field>
 		<field>
@@ -35,7 +35,7 @@
 			<b>qnty</b>
 		</field>
 		<field>
-			<a>unitOfMeasurement.id</a>
+			<a>unitOfMeasurement</a>
 			<b>uomId</b>
 		</field>
 	</mapping>

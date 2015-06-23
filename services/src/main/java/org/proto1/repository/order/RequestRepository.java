@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.Query;
  *
  */
 public interface RequestRepository extends BaseOrderRepository<Request> {
-	@Query("select new Map(req.id as orderId, req.documentNo as documentNo, req.issueDate as issueDate) "
+	@Query("select new Map(req.id as id, req.documentNo as documentNo, req.issueDate as issueDate) "
 			+ "from Request req")
 	public List<Map<String, Object>> getList();
 

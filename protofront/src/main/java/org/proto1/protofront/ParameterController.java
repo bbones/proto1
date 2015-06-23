@@ -103,6 +103,7 @@ public class ParameterController {
 		Parameter parameter = parameterService.get(parameterId);
 		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
 		parameter.getAcceptedUOM().add(uom);
+		parameterService.save(parameter);
 	}
 
 	@RequestMapping(value = "{parameterId}/uoms/{uomId}", method = RequestMethod.DELETE)
@@ -110,6 +111,7 @@ public class ParameterController {
 		Parameter parameter = parameterService.get(parameterId);
 		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
 		parameter.getAcceptedUOM().remove(uom);
+		parameterService.save(parameter);
 	}
 
 

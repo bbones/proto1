@@ -1,11 +1,11 @@
 /**
- * TODO Direct Repository call!!! Need different service
+ * TODO Access Rules!!!
  */
 package org.proto1.mapper;
 
 import org.dozer.DozerConverter;
 import org.proto1.domain.order.OrderLine;
-import org.proto1.repository.order.OrderLineRepository;
+import org.proto1.services.order.OrderLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class LongOrderLineConverter extends DozerConverter<Long, OrderLine> {
 
 	@Autowired
-	OrderLineRepository orderLineRepository;
+	OrderLineService orderLineService;
 	
 	public LongOrderLineConverter() {
 		super(Long.class, OrderLine.class);
@@ -21,7 +21,7 @@ public class LongOrderLineConverter extends DozerConverter<Long, OrderLine> {
 
 	@Override
 	public OrderLine convertTo(Long source, OrderLine destination) {
-		return orderLineRepository.findOne(source);
+		return orderLineService.get(source);
 	}
 
 	@Override

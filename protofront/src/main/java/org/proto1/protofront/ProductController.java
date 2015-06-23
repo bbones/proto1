@@ -77,6 +77,8 @@ public class ProductController {
 	// Only for new Product with one name
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody ProductDTO submit(@RequestParam Long languageId, final ProductDTO productDTO) {
+		// TODO Possible refactoring to DozerConverter
+		
 		Product product = mapper.map(productDTO, Product.class);
 		ProductType productType = productTypeService.get(productDTO.getProductTypeId());
 		product.setProductType(productType);

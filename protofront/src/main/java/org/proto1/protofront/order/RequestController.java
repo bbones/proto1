@@ -37,7 +37,12 @@ public class RequestController extends BaseOrderController<RequestService> {
 	public @ResponseBody List<Map<String, Object>>  getList(@RequestParam Long languageId) {
 		return baseOrderService.getOrderList(languageId);
 	}
-
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET )
+	public @ResponseBody RequestDTO  get(@PathVariable Long id, @RequestParam Long languageId) {
+		return mapper.map(baseOrderService.get(id), RequestDTO.class);
+	}
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST )
 	public @ResponseBody Map<String, Object> save(@RequestParam Long languageId,
 			RequestDTO requestDTO) 
