@@ -94,11 +94,8 @@ var OrderMod = (function() {
 	function fillParameterTemplate() {
 		console.log("Fill Parameter Template");
 		$.ajax({
-			url : orderURL + '/lines/fillparameters',
-			method : "POST",
-			data : {
-				orderLineId : currentOrderLineId				
-			}
+			url : orderURL + 'lines/' + currentOrderLineId + '/fillparameters',
+			method : "POST"
 		});
 	}
 	

@@ -8,8 +8,10 @@ import javax.transaction.Transactional;
 import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.OrderLineParameter;
+import org.proto1.domain.product.ProductParameter;
 import org.proto1.repository.order.OrderLineParameterRepository;
 import org.proto1.repository.order.OrderLineRepository;
+import org.proto1.repository.product.ProductParameterRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class BaseOrderServiceBean<T extends BaseOrder> implements BaseOrderService<T> {
@@ -19,6 +21,9 @@ public abstract class BaseOrderServiceBean<T extends BaseOrder> implements BaseO
 
 	@Autowired
 	OrderLineParameterRepository orderLineParameterRepository;
+	
+	@Autowired
+	ProductParameterRepository productParameterRepository;
 
 
 	public List<Map<String, Object>> getOrderLines(Long orderId,
@@ -52,4 +57,17 @@ public abstract class BaseOrderServiceBean<T extends BaseOrder> implements BaseO
 	public void deleteOrderLineParameter(Long orderLineParameterId) {
 		orderLineParameterRepository.delete(orderLineParameterId);
 	}
+	
+	public void fillParameters(Long orderLineId) {
+		OrderLine ol = orderLineRepository.findOne(orderLineId);
+		List<ProductParameter> ppl = productParameterRepository.findByProductId(ol.getProduct().getId());
+		for (ProductParameter pp : ppl) {
+			OrderLineParameter olp = new OrderLineParameter();
+			olp.setProductParameter(pp);
+			olp.setOrderLine(ol);
+			olp.setUnitOfMeasurement(pp.getDefaultUOM());
+			orderLineParameterRepository.save(olp);
+		}
+	}
+
 }

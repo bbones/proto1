@@ -60,32 +60,27 @@ var IndexLib = (function(){
 	}
 	
 	function initLanguageList() {
-		$.ajax('/protofront/service/masterdata/languages').done(function(dataArray) {
-			console.log(dataArray);
-			languageList = dataArray;
+		$("#test").on('RepoLoaded', function() {
+			console.log('RepoLoaded');
 			$('#langSelector').combobox({
     			valueField:'id',
     			textField:'name',
-    			data : dataArray,
+    			data : ClientRepo.getLanguageList(),
     			onSelect : IndexLib.changeLanguage
 
 			});
-			initCurrencyList();
-			var length = dataArray.length;
-			for(var i = 0; i < length; i++) {
-				languageMap[dataArray[i].id] = dataArray[i].name;
-			};
 		});
 	}
 
 	function initCurrencyList() {
-		$.ajax('/protofront/service/masterdata/currencies?languageId=' + IndexLib.lang()).done(function(dataArray) {
-			console.log(dataArray);
-			currencyList = dataArray;
-			var length = dataArray.length;
-			for(var i = 0; i < length; i++) {
-				currencyMap[dataArray[i].numCode] = dataArray[i].charCode;
-			};
+	}
+	
+	function initRepo() {
+		$.getScript("/protofront/scripts/clientrepo.js").done(function() {
+			ClientRepo.init(function() {
+				console.log("After Init");
+				console.log(ClientRepo.getLanguageMap());
+			});
 		});
 	}
 
@@ -94,6 +89,7 @@ var IndexLib = (function(){
 			initMenu();
 			initEasyUIEditors();
 			initLanguageList();
+			initRepo();
 		},
 		lang : function() {
 			return $('#langSelector').combobox('getValue');

@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
 
 import org.dozer.Mapper;
 import org.proto1.domain.Language;
-import org.proto1.domain.order.BaseOrder;
 import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.OrderLineParameter;
 import org.proto1.dto.order.OrderLineDTO;
@@ -76,7 +75,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 		baseOrderService.deleteOrderLine(id);
 	}
 
-	// Request Line Parameters
+	// Order Line Parameters
 	@RequestMapping(value = "/lines/{lineId}/lineparameters", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  getOrderLineParameters(@PathVariable Long lineId, 
 			@RequestParam Long languageId) {
@@ -91,6 +90,11 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 		orderLineParameterDTO.setOrderLineParameterId(olp.getId());
 		orderLineParameterDTO.setVersion(olp.getVersion());
 		return orderLineParameterDTO;
+	}
+
+	@RequestMapping(value = "/lines/{lineId}/fillparameters", method = RequestMethod.POST )
+	public void  fillParameters(@PathVariable Long lineId) {
+		baseOrderService.fillParameters(lineId);
 	}
 
 	@RequestMapping(value = "/lines/parameters/{id}", method = RequestMethod.DELETE )

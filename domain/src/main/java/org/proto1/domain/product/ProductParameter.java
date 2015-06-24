@@ -10,6 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.proto1.domain.AbstractEntity;
+import org.proto1.domain.UnitOfMeasurement;
 
 //	TODO : 
 //		Formatter for name from parameter values
@@ -27,6 +28,10 @@ public class ProductParameter extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name="PARAMETER_ID")
 	private Parameter parameter;
+	
+	@ManyToOne
+	@JoinColumn(name="DEFAULT_UOM_ID")
+	private UnitOfMeasurement defaultUOM;
 	
 	private boolean required;
 	
@@ -86,4 +91,13 @@ public class ProductParameter extends AbstractEntity {
 		this.masterParameter = masterParameter;
 	}
 
+	public UnitOfMeasurement getDefaultUOM() {
+		return defaultUOM;
+	}
+
+	public void setDefaultUOM(UnitOfMeasurement defaultUOM) {
+		this.defaultUOM = defaultUOM;
+	}
+
+	
 }
