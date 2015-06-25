@@ -14,6 +14,9 @@ var IndexLib = (function(){
 	
 	
 	function initMenu() {
+		$("#desktop").on('LanguageChanged', function(rec){
+        	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
+		});
 		$('#mainMenu').tree({
 			onClick : function(node) {
 				if (node.module != null) {
@@ -60,27 +63,25 @@ var IndexLib = (function(){
 	}
 	
 	function initLanguageList() {
-		$("#test").on('RepoLoaded', function() {
+		$("#desktop").on('RepoLoaded', function() {
 			console.log('RepoLoaded');
 			$('#langSelector').combobox({
     			valueField:'id',
     			textField:'name',
     			data : ClientRepo.getLanguageList(),
-    			onSelect : IndexLib.changeLanguage
+    			onSelect : function(rec) {
+    				console.log(rec);
+    				$("#desktop").trigger($.Event( 'LanguageChanged', rec));
+    			}
 
 			});
 		});
 	}
 
-	function initCurrencyList() {
-	}
-	
 	function initRepo() {
+		console.log("Init from init")
 		$.getScript("/protofront/scripts/clientrepo.js").done(function() {
-			ClientRepo.init(function() {
-				console.log("After Init");
-				console.log(ClientRepo.getLanguageMap());
-			});
+			ClientRepo.init();
 		});
 	}
 
@@ -93,32 +94,6 @@ var IndexLib = (function(){
 		},
 		lang : function() {
 			return $('#langSelector').combobox('getValue');
-		},
-        languageFormatter : function(value, row) {
-        	return languageMap[value];
-        },
-        languageEditor:{
-  			type:'combobox',
-          	options:{
-               valueField:'id',
-               textField:'name',
-               method:'get',
-               url:'/protofront/service/masterdata/languages',
-               required:true
-           }
-		},
-        currencyFormatter : function(value, row) {
-        	return currencyMap[value];
-        },
-        currencyEditor:{
-  			type:'combobox',
-          	options:{
-               valueField:'id',
-               textField:'name',
-               method:'get',
-               url:'/protofront/service/masterdata/languages',
-               required:true
-           }
 		},
 		getRootProductType : function() {
 			return 5;
@@ -146,11 +121,6 @@ var IndexLib = (function(){
             } else {
                 return new Date();
             }
-        },
-        changeLanguage : function(rec) {
-        	alert("main_menu_" + rec.locale + ".json");
-        	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
-        	initCurrencyList();
         },
  		edgmenu : function(onClick) {
 			return [

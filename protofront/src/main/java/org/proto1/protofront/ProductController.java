@@ -76,7 +76,7 @@ public class ProductController {
 
 	// Only for new Product with one name
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public @ResponseBody ProductDTO submit(@RequestParam Long languageId, final ProductDTO productDTO) {
+	public @ResponseBody ProductDTO submit(@RequestParam Long languageId, ProductDTO productDTO) {
 		// TODO Possible refactoring to DozerConverter
 		
 		Product product = mapper.map(productDTO, Product.class);
@@ -132,15 +132,15 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "parameters",  method = RequestMethod.POST)
-	public @ResponseBody ProductParameterDTO saveProductParameter(@ModelAttribute  ProductParameterDTO productParameter) {
+	public @ResponseBody ProductParameterDTO saveProductParameter(ProductParameterDTO productParameter) {
 		ProductParameter pp = productService.saveProductParameter(productParameter.getProductId(), 
 				productParameter.getParameterId(), productParameter.isRequired());
 		productParameter = mapper.map(pp, ProductParameterDTO.class);
 		return productParameter;
 	}
 
-	@RequestMapping(value = "parameters/{id}",  method = RequestMethod.DELETE)
-	public String deleteProductParameter(@RequestParam  Long id) {
+	@RequestMapping(value = "/parameters/{id}",  method = RequestMethod.DELETE)
+	public String deleteProductParameter(@PathVariable  Long id) {
 		productService.deleteProductParameter(id);
 		return "success";
 	}

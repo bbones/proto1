@@ -8,6 +8,7 @@
 
 var ProductLib = (function(){
 	
+	
 	function initProductTypeTree() {
 		$("#productType").combotree({
 			onSelect : function(record) {
@@ -24,6 +25,19 @@ var ProductLib = (function(){
 	function initProductGrid() {
 		$("#edgProducts").edatagrid({
 			method : "GET",
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgProducts").edatagrid('addRow', {row : {productTypeId : $("#productType").combotree('getValue')}});
+				},
+				save : function(){
+					$("#edgProducts").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgProducts").edatagrid('destroyRow');
+				}
+
+			}),
+
 			onSelect : function(index, row) {
 				console.log(row);
 				if (row.productId != null) {
@@ -37,7 +51,14 @@ var ProductLib = (function(){
 							'/parameters?languageId=' + IndexLib.lang(),
 					});
 				}
-			} // OnSelect
+			}, // OnSelect
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/products/' + row.productId,
+					method : "DELETE"
+				});
+			}
+
 		});
 	}
 	
@@ -46,16 +67,52 @@ var ProductLib = (function(){
 			method : 'GET',
 			saveUrl : '/protofront/service/products/names',
 			updateUrl : '/protofront/service/products/names',
-			destroyUrl : '/protofront/service/products/names'
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgNames").edatagrid('addRow', {row : {productId : $("#edgProducts").edatagrid('getSelected').productId}});
+				},
+				save : function(){
+					$("#edgNames").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgNames").edatagrid('destroyRow');
+				}
+
+			}),
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/products/names' + row.nameId,
+					method : "DELETE"
+				});
+			}
+
 		});
 	}
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
 			method : 'GET',
-			saveUrl : '/protofront/service/products/parameters',
-			updateUrl : '/protofront/service/products/parameters',
-			destroyUrl : '/protofront/service/products/parameters'
+			saveUrl : '/protofront/service/products/parameters' + '?languageId=' + IndexLib.lang(),
+			updateUrl : '/protofront/service/products/parameters' + '?languageId=' + IndexLib.lang(),
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgParameters").edatagrid('addRow', {row : {productId : $("#edgProducts").edatagrid('getSelected').productId}});
+				},
+				save : function(){
+					$("#edgParameters").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgParameters").edatagrid('destroyRow');
+				}
+
+			}),
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/products/parameters/' + row.productParameterId,
+					method : "DELETE"
+				});
+			}
+
 		});
 	}
 	

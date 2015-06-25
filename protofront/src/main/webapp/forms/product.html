@@ -36,8 +36,8 @@
 							<tr>
 								<th field='nameId' width=80>Product Name Id</th>
 								<th	data-options="field:'languageId',width:80,
-                    					formatter: IndexLib.languageFormatter,
-                   						editor:IndexLib.languageEditor">Language</th>
+                    					formatter: ClientRepo.languageFormatter,
+                   						editor:ClientRepo.languageEditor()">Language</th>
 								<th field='productName' width=250 editor="text">Product
 									Name</th>
 							</tr>
@@ -68,8 +68,11 @@
 			                                required:true
 			                            }
                         			}">Parameter</th>
+								<th data-options="field:'defaultUOMId',width:80,
+                    					formatter: ClientRepo.uomFormatter,
+                   						editor:ClientRepo.uomEditor()">Default UOM</th>
 								<th
-									data-options="field:'required',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Status</th>
+									data-options="field:'required',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Required</th>
 								<th field='valueProvider' width=150>Value Provider</th>
 								<th field='masterParameterId' width=150>Master Parameter ID</th>
 							</tr>
@@ -79,49 +82,6 @@
 
 			</div>
 	</div>
-</div>
-
-<div id="tbp" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.append()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.remove()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.save()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.reject()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<div id="tbn" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendName()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeName()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.saveName()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectName()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<div id="tbpar" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ProductLib.appendParameter()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ProductLib.removeParameter()">Remove</a> 
-	<a href="javascript:void(0)"
-		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ProductLib.acceptParameter()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ProductLib.rejectParameter()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
 </div>
 
 <script>

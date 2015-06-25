@@ -11,7 +11,6 @@
 var ContractLib = (function(){
 
 	var roleMap = new Object();
-	var currencyMap = new Object();
 	var currentContractId = {};
 	
 	function getRoleMap () {
@@ -185,8 +184,7 @@ var ContractLib = (function(){
 			panelWidth: 500,
             idField: 'numCode',
             textField: 'charCode',
-            url: '/protofront/service/masterdata/currencies',
-            method: 'get',
+            data : ClientRepo.getCurrencyList(),
             columns: [[
                 {field:'numCode',title:'Code',width:80},
                 {field:'charCode',title:'Char code',width:120},
