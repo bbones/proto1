@@ -12,6 +12,7 @@ public class ProductParameterDTO extends DTO {
 	private Long productId;
 	private Long parameterId;
 	private String parameterName;
+	private Long defaultUOMId;
 	private boolean required;
 
 	public Long getProductParameterId() {
@@ -56,6 +57,14 @@ public class ProductParameterDTO extends DTO {
 
 	public void setRequired(boolean required) {
 		this.required = required;
+	}
+
+	public Long getDefaultUOMId() {
+		return defaultUOMId;
+	}
+
+	public void setDefaultUOMId(Long defaultUOMId) {
+		this.defaultUOMId = defaultUOMId;
 	}
 
 }

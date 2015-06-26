@@ -79,7 +79,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 	@RequestMapping(value = "/lines/{lineId}/lineparameters", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  getOrderLineParameters(@PathVariable Long lineId, 
 			@RequestParam Long languageId) {
-		return baseOrderService.getOrderLines(lineId, languageId);
+		return baseOrderService.getOrderLineParameters(lineId, languageId);
 	}
 
 	@RequestMapping(value = "/lines/lineparameters", method = RequestMethod.POST )

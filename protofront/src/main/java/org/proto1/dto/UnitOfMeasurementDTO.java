@@ -4,32 +4,32 @@ public class UnitOfMeasurementDTO extends DTO {
 
 	private static final long serialVersionUID = 6376088966271169163L;
 
-	private Long uomId;
-	private String uomShortName;
-	private String uomFullName;
+	private Long id;
+	private String shortName;
+	private String fullName;
 
-	public Long getUomId() {
-		return uomId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUomId(Long uomId) {
-		this.uomId = uomId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getUomShortName() {
-		return uomShortName;
+	public String getShortName() {
+		return shortName;
 	}
 
-	public void setUomShortName(String uomShortName) {
-		this.uomShortName = uomShortName;
+	public void setShortName(String shortName) {
+		this.shortName = shortName;
 	}
 
-	public String getUomFullName() {
-		return uomFullName;
+	public String getFullName() {
+		return fullName;
 	}
 
-	public void setUomFullName(String uomFullName) {
-		this.uomFullName = uomFullName;
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
 	}
 
 }

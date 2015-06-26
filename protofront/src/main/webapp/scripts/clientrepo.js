@@ -94,16 +94,16 @@ var ClientRepo = (function() {
 			for(var i = 0; i < length; i++) {
 				uomMap[dataArray[i].uomId] = dataArray[i].uomShortName;
 			};
+			uomEditor = {
+		  			type:'combobox',
+		          	options:{
+		               valueField:'uomId',
+		               textField:'uomShortName',
+		               data : dataArray,
+		               required:true
+		           }
+				};
 		});
-		uomEditor = {
-  			type:'combobox',
-          	options:{
-               valueField:'uomId',
-               textField:'uomShortName',
-               data : uomList,
-               required:true
-           }
-		};
 		console.log(uomList);
 		checkCounter();
 		
@@ -144,6 +144,8 @@ var ClientRepo = (function() {
         	return uomMap[value];
         },
         uomEditor : function () {
+        	console.log('uomEditor:');
+        	console.log(uomEditor);
         	return uomEditor;
 		}
 

@@ -7,6 +7,7 @@ package org.proto1.protofront;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.dozer.Mapper;
@@ -16,6 +17,8 @@ import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.dto.ParameterDTO;
 import org.proto1.dto.ParameterNameDTO;
+import org.proto1.dto.UnitOfMeasurementDTO;
+import org.proto1.dto.UnitOfMeasurementNameDTO;
 import org.proto1.services.LanguageService;
 import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.parameter.ParameterService;
@@ -89,13 +92,24 @@ public class ParameterController {
 		return parameterNameDTO; 
 	}
 
-	@RequestMapping(value = "{id}/uoms", method = RequestMethod.GET)
+	@RequestMapping(value = "{id}/uoms/id", method = RequestMethod.GET)
 	public @ResponseBody List<Long> getParameterUOMsId(@PathVariable Long id) {
 		List<Long> uomIdList = new ArrayList<Long>();
 		Parameter parameter = parameterService.get(id);
 		for(UnitOfMeasurement uom : parameter.getAcceptedUOM()) 
 			uomIdList.add(uom.getId());
 		return uomIdList;
+	}
+
+	@RequestMapping(value = "{id}/uoms", method = RequestMethod.GET)
+	public @ResponseBody List<UnitOfMeasurementNameDTO> getParameterUOMs(@PathVariable Long id, @RequestParam Long languageId) {
+		Set<UnitOfMeasurement> uomSet = parameterService.get(id).getAcceptedUOM();
+		List<UnitOfMeasurementNameDTO> result = new ArrayList<UnitOfMeasurementNameDTO>();
+		Language language = mapper.map(languageId, Language.class);
+		for(UnitOfMeasurement uom : uomSet) 
+			result.add(mapper.map(uom.getTranslation(language), UnitOfMeasurementNameDTO.class));
+
+		return result;
 	}
 
 	@RequestMapping(value = "{parameterId}/uoms", method = RequestMethod.POST)

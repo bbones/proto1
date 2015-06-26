@@ -23,7 +23,7 @@ var ParameterLib = (function(){
 						updateUrl :'/protofront/service/parameters/' + row.parameterId + '/names'
 
 					});
-					$.ajax('/protofront/service/parameters/' + row.parameterId + '/uoms').done(function (data) {
+					$.ajax('/protofront/service/parameters/' + row.parameterId + '/uoms/id').done(function (data) {
 						console.log(data);
 						var d = $('#dlUOM').datalist('getData').rows;
 						var l = d.length;
@@ -63,7 +63,7 @@ var ParameterLib = (function(){
 		    	if (!initUOM) {
 		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;
 		    		$.ajax({
-		    			url : '/protofront/service/parameters/' + par + '/uoms/' + row.uomId,
+		    			url : '/protofront/service/parameters/' + par + '/uoms' + row.uomId,
 		    			method : 'DELETE'
 		    		});
 		    	};

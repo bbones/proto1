@@ -66,6 +66,7 @@ public abstract class BaseOrderServiceBean<T extends BaseOrder> implements BaseO
 			olp.setProductParameter(pp);
 			olp.setOrderLine(ol);
 			olp.setUnitOfMeasurement(pp.getDefaultUOM());
+			olp.setValue("ND");
 			orderLineParameterRepository.save(olp);
 		}
 	}

@@ -34,14 +34,14 @@
 		<class-b>org.proto1.dto.UnitOfMeasurementNameDTO</class-b>
 		<field>
 			<a>id</a>
-			<b>uomNameId</b>
+			<b>nameId</b>
 		</field>
 		<field>
 			<a>unitOfMeasurement.id</a>
-			<b>uomId</b>
+			<b>id</b>
 		</field>
 		<field>
-			<a>language.id</a>
+			<a>language</a>
 			<b>languageId</b>			
 		</field>
 	</mapping>
@@ -99,12 +99,12 @@
 		</field>
 
 		<field>
-			<a>product.id</a>
+			<a>product</a>
 			<b>productId</b>
 		</field>
 		
 		<field>
-			<a>language.id</a>
+			<a>language</a>
 			<b>languageId</b>
 		</field>
 		<field>
@@ -149,13 +149,18 @@
 		</field>
 
 		<field>
-			<a>parameter.id</a>
+			<a>parameter</a>
 			<b>parameterId</b>
 		</field>
 		
 		<field>
-			<a>product.id</a>
+			<a>product</a>
 			<b>productId</b>
+		</field>
+		
+		<field>
+			<a>defaultUOM</a>
+			<b>defaultUOMId</b>
 		</field>
 		
 		<field>

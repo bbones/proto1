@@ -97,12 +97,7 @@ public class ProductServiceBean implements ProductService {
 	}
 
 	@Transactional
-	public ProductParameter saveProductParameter(Long productId, Long parameterId, boolean required) {
-		ProductParameter productParameter = new ProductParameter();
-		productParameter.setProduct(productRepository.findOne(productId));
-		productParameter.setParameter(parameterRepository.findOne(parameterId));
-		productParameter.setRequired(required);
-		
+	public ProductParameter saveProductParameter(ProductParameter productParameter) {
 		return productParameterRepository.save(productParameter);
 	}
 

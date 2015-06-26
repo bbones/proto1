@@ -42,18 +42,18 @@ public class UOMController {
 	public @ResponseBody UnitOfMeasurementDTO save(@RequestParam Long languageId, 
 			UnitOfMeasurementDTO uomDTO) {
 		UnitOfMeasurement uom = new UnitOfMeasurement();
-		if (uomDTO.getUomId()!=null)
-			uom.setId(uomDTO.getUomId());
+		if (uomDTO.getId()!=null)
+			uom.setId(uomDTO.getId());
 		Language language = languageService.get(languageId);
 		
 		UnitOfMeasurementName uomName =  new UnitOfMeasurementName();
-		uomName.setShortName(uomDTO.getUomShortName());
-		uomName.setFullName(uomDTO.getUomFullName());
+		uomName.setShortName(uomDTO.getShortName());
+		uomName.setFullName(uomDTO.getFullName());
 		uomName.setLanguage(language);
 		uomName.setUnitOfMeasurement(uom);
 		uom.getUnitOfMeasurementNames().add(uomName);
 		uom = unitOfMeasurementService.save(uom);
-		uomDTO.setUomId(uom.getId());
+		uomDTO.setId(uom.getId());
 		return uomDTO;
 	}
 
@@ -85,7 +85,7 @@ public class UOMController {
 		uomName.setLanguage(language);
 
 		uomName = unitOfMeasurementService.saveName(uomName);
-		uomNameDTO.setUomNameId(uomName.getId());
+		uomNameDTO.setNameId(uomName.getId());
 		return uomNameDTO;
 	}
 

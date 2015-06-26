@@ -132,6 +132,19 @@ var OrderMod = (function() {
 					url : orderURL + 'lines/lineparameters' + row.olpId,
 					method : "DELETE"
 				});
+			},
+			onBeforeEdit : function(index, row) {
+				var col = $(this).treegrid('getColumnOption','uomId');
+				col.editor = {
+						type:'combobox',
+				      	options:{
+				           valueField:'id',
+				           textField:'name',
+				           method : 'GET',
+				           url : ''
+				           required:true
+				       }
+				};
 			}
 
 		});

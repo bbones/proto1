@@ -35,14 +35,19 @@
 				<class-b>org.proto1.domain.SideRole</class-b>
 			</converter>
 
-			<converter type="org.proto1.mapper.LongSalesOrderConverter">
+			<converter type="org.proto1.mapper.LongLanguageConverter">
 				<class-a>java.lang.Long</class-a>
-				<class-b>org.proto1.domain.order.SalesOrder</class-b>
+				<class-b>org.proto1.domain.Language</class-b>
 			</converter>
 
-			<converter type="org.proto1.mapper.LongRequestConverter">
+			<converter type="org.proto1.mapper.LongUOMConverter">
 				<class-a>java.lang.Long</class-a>
-				<class-b>org.proto1.domain.order.Request</class-b>
+				<class-b>org.proto1.domain.UnitOfMeasurement</class-b>
+			</converter>
+
+			<converter type="org.proto1.mapper.LongParameterConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.product.Parameter</class-b>
 			</converter>
 
 			<converter type="org.proto1.mapper.LongOrderLineConverter">

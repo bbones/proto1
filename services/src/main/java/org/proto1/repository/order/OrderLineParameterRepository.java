@@ -14,7 +14,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface OrderLineParameterRepository extends CrudRepository<OrderLineParameter, Long> {
 	
-	@Query("select new Map(olp.id as olpId, olp.value as olpValue, pp.id as paramId, olp.derivative as derivative, pn.name as paramName, uom.id as uomId, uomn.shortName as uomName) "
+	@Query("select new Map(olp.id as olpId, olp.value as olpValue, pp.id as prodParamId, pp.parameter.id as paramId, "
+			+ "olp.derivative as derivative, pn.name as paramName, uom.id as uomId, uomn.shortName as uomName) "
 			+ "from OrderLineParameter olp join olp.productParameter pp join pp.parameter.parameterNames pn "
 			+ "left join olp.unitOfMeasurement uom left join uom.unitOfMeasurementNames uomn "
 			+ "where olp.orderLine.id = :ol_id and pn.language.id = :language_id and (uomn.language.id = :language_id or uomn.language.id is null)")

@@ -40,7 +40,7 @@ public interface ProductService {
 	// ProductParameter methods
 	List<Map<String, java.lang.Object>> getParameterList(Long productId, Long languageId);
 
-	ProductParameter saveProductParameter(Long productId, Long parameterId, boolean required);
+	ProductParameter saveProductParameter(ProductParameter productParameter);
 
 	void deleteProductParameter(Long productId);
 	

@@ -132,11 +132,13 @@ public class ProductController {
 	}
 
 	@RequestMapping(value = "parameters",  method = RequestMethod.POST)
-	public @ResponseBody ProductParameterDTO saveProductParameter(ProductParameterDTO productParameter) {
-		ProductParameter pp = productService.saveProductParameter(productParameter.getProductId(), 
-				productParameter.getParameterId(), productParameter.isRequired());
-		productParameter = mapper.map(pp, ProductParameterDTO.class);
-		return productParameter;
+	public @ResponseBody ProductParameterDTO saveProductParameter(ProductParameterDTO productParameterDTO) {
+		
+		ProductParameter pp = mapper.map(productParameterDTO, ProductParameter.class); 
+		pp = productService.saveProductParameter(pp);
+		productParameterDTO.setProductParameterId(pp.getId());
+		productParameterDTO.setVersion(pp.getVersion());
+		return productParameterDTO;
 	}
 
 	@RequestMapping(value = "/parameters/{id}",  method = RequestMethod.DELETE)

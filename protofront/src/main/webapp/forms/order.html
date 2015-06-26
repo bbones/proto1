@@ -72,13 +72,14 @@
 						<tr>
 							<th field='olpId' width=60>OLP Id</th>
 	
-							<th field='paramId' width=60>Par Id</th>
+							<th field='prodParamId' width=60>Prod Param Id</th>
 							<th field='paramName' width=120>Parameter</th>
 							
 							<th field='olpValue' width=120 editor="text">Value</th>
 	
-							<th field='uomId' width=60>Par UOM ID</th>
-							<th field='uomName' width=80 editor="text">Par UOM Name</th>
+							<th data-options="field:'uomId',width:80,
+                    					formatter: ClientRepo.uomFormatter,
+                   						editor:ClientRepo.uomEditor()">Parameter UOM</th>
 							
 							<th	data-options="field:'button',width:60,align:'center',formatter:OrderMod.button">Status</th>
 							
