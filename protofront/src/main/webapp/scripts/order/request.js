@@ -35,11 +35,17 @@ var RequestMod = (function() {
 	
 	function initRequest () {
 		console.log("initRequest");
-		$.getScript("/protofront/scripts/order/ordermod.js").done(function() {
-			RequestOrder.prototype = OrderMod.getInstance();
-			var requestOrder = new RequestOrder();
-			requestOrder.load("/protofront/service/requests/", afterLoad);
-		});
+		$.getScript("/protofront/scripts/order/ordermod.js")
+			.done(function() {
+				console.log("OrderMod loaded");
+				RequestOrder.prototype = OrderMod.getInstance();
+				var requestOrder = new RequestOrder();
+				requestOrder.load("/protofront/service/requests/");
+			})
+			.fail(function( jqxhr, settings, exception ) {
+				debugger;
+				console.log(exception);
+			});
 	};
 	
 	return {

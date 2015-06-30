@@ -1,7 +1,12 @@
 package org.proto1.domain.party;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 import org.proto1.domain.AbstractEntity;
 
+@Entity
+@Table(name="ORGANIZATION_UNIT")
 public class OrganizationUnit extends AbstractEntity {
 	private OrganizationUnit parentUnit;
 

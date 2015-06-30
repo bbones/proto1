@@ -87,7 +87,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> {
 			OrderLineParameterDTO orderLineParameterDTO) {
 		OrderLineParameter olp = mapper.map(orderLineParameterDTO, OrderLineParameter.class);
 		olp = baseOrderService.saveOrderLineParameter(olp);
-		orderLineParameterDTO.setOrderLineParameterId(olp.getId());
+		orderLineParameterDTO.setOlpId(olp.getId());
 		orderLineParameterDTO.setVersion(olp.getVersion());
 		return orderLineParameterDTO;
 	}

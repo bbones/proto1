@@ -139,9 +139,9 @@ var OrderMod = (function() {
 						type:'combobox',
 				      	options:{
 				           valueField:'id',
-				           textField:'name',
+				           textField:'shortName',
 				           method : 'GET',
-				           url : ''
+				           url : '/protofront/service/parameters/' + row.paramId + '/uoms?languageId=' + IndexLib.lang(),
 				           required:true
 				       }
 				};
@@ -150,7 +150,7 @@ var OrderMod = (function() {
 		});
 	};
 
-	Order.prototype.load  = function(orderUrl, onLoad) {
+	Order.prototype.load  = function(orderUrl) {
 		console.log('OrderMod.load');
 		$("#test").unbind();
 		$("#test").panel({
@@ -160,13 +160,8 @@ var OrderMod = (function() {
 				initOrderGrid();
 				initLinesGrid();
 				initLineParam();
-				onLoad();
 			}
 		});
-	};
-
-	Order.prototype.m2  = function() {
-		this.m1();
 	};
 
 	return {

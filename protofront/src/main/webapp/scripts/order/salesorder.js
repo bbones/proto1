@@ -38,7 +38,7 @@ var SalesMod = (function() {
 		$.getScript("/protofront/scripts/order/ordermod.js").done(function() {
 			SalesOrder.prototype = OrderMod.getInstance();
 			var salesOrder = new SalesOrder();
-			salesOrder.load("/protofront/service/salesorders/", afterLoad);
+			salesOrder.load("/protofront/service/salesorders/");
 		});
 	};
 	

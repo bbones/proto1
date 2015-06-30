@@ -4,7 +4,9 @@ import org.dozer.DozerConverter;
 import org.proto1.domain.Language;
 import org.proto1.services.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LongLanguageConverter extends DozerConverter<Long, Language> {
 
 	@Autowired
