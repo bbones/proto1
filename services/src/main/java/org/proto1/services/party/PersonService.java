@@ -9,7 +9,7 @@ import java.util.Map;
 
 import org.proto1.domain.party.Person;
 import org.proto1.domain.party.PersonName;
-import org.proto1.repository.PersonRepository;
+import org.proto1.repository.party.PersonRepository;
 
 public interface PersonService {
 

@@ -1,7 +1,7 @@
 package org.proto1.services;
 
 import org.proto1.domain.party.Party;
-import org.proto1.repository.PartyRepository;
+import org.proto1.repository.party.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

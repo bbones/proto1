@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.proto1.domain.party.Enterprise;
-import org.proto1.repository.EnterpriseRepository;
+import org.proto1.repository.party.EnterpriseRepository;
 import org.proto1.services.party.EnterpriseServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;

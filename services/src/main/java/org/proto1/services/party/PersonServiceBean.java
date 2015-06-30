@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.proto1.domain.party.Person;
 import org.proto1.domain.party.PersonName;
-import org.proto1.repository.PersonNameRepository;
-import org.proto1.repository.PersonRepository;
+import org.proto1.repository.party.PersonNameRepository;
+import org.proto1.repository.party.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

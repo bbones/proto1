@@ -18,7 +18,7 @@ public class OrganizationUnitName extends AbstractEntity {
 	private OrganizationUnit organizationUnit;
 
 	@ManyToOne
-	@JoinColumn(name="language_id")
+	@JoinColumn(name="LANGUAGE_ID")
 	private Language language;
 
 	@NotNull

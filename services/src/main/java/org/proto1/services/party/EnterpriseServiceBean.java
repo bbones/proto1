@@ -9,8 +9,8 @@ import java.util.Map;
 
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
-import org.proto1.repository.EnterpriseNameRepository;
-import org.proto1.repository.EnterpriseRepository;
+import org.proto1.repository.party.EnterpriseNameRepository;
+import org.proto1.repository.party.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

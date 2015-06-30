@@ -14,7 +14,7 @@ import org.proto1.domain.Language;
 import org.proto1.domain.utility.LocalizedStringConstant;
 import org.proto1.repository.CurrencyRepository;
 import org.proto1.repository.LanguageRepository;
-import org.proto1.repository.PartyRepository;
+import org.proto1.repository.party.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

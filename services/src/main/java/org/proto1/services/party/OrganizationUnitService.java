@@ -1,0 +1,15 @@
+package org.proto1.services.party;
+
+import java.util.List;
+import java.util.Map;
+
+import org.proto1.domain.party.OrganizationUnit;
+
+public interface OrganizationUnitService {
+	
+	List<Map<String, Object>> getList(Long languageId);
+	OrganizationUnit get(Long organizatioUnitId);
+	OrganizationUnit save(OrganizationUnit organizationUnit);
+	void delete(Long organizatioUnitId);
+
+}

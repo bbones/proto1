@@ -1,6 +1,8 @@
 package org.proto1.domain.party;
 
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.proto1.domain.AbstractEntity;
@@ -8,8 +10,12 @@ import org.proto1.domain.AbstractEntity;
 @Entity
 @Table(name="ORGANIZATION_UNIT")
 public class OrganizationUnit extends AbstractEntity {
+	@ManyToOne
+	@JoinColumn(name="PARENT_UNIT_ID")
 	private OrganizationUnit parentUnit;
 
+	@ManyToOne
+	@JoinColumn(name="ENTERPRISE_ID")
 	private Enterprise enterprise;
 	
 	public OrganizationUnit getParentUnit() {

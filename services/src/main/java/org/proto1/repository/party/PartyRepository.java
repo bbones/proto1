@@ -3,7 +3,7 @@
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  * Created May 12, 2015
  */
-package org.proto1.repository;
+package org.proto1.repository.party;
 
 import java.util.List;
 import java.util.Map;
