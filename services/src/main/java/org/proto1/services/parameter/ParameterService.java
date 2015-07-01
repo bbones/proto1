@@ -6,9 +6,6 @@ package org.proto1.services.parameter;
 
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-
-import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 

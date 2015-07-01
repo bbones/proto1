@@ -6,10 +6,8 @@ import java.util.Map;
 
 import org.dozer.Mapper;
 import org.proto1.domain.Language;
-import org.proto1.domain.party.EnterpriseName;
 import org.proto1.domain.party.OrganizationUnit;
 import org.proto1.domain.party.OrganizationUnitName;
-import org.proto1.dto.EnterpriseNameDTO;
 import org.proto1.dto.OrganizationUnitDTO;
 import org.proto1.dto.OrganizationUnitNameDTO;
 import org.proto1.services.party.OrganizationUnitService;
