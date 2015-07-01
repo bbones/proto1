@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.party.OrganizationUnit;
+import org.proto1.domain.party.OrganizationUnitName;
 import org.proto1.repository.party.OrganizationUnitNameRepository;
 import org.proto1.repository.party.OrganizationUnitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class OrganizationUnitServiceBean implements OrganizationUnitService {
 
 	public void delete(Long organizatioUnitId) {
 		organizationUnitRepository.delete(organizatioUnitId);
+	}
+
+	public List<OrganizationUnitName> getNamesList(Long id) {
+		return organizationUnitNameRepository.getByOrganizationUnitId(id);
 	}
 
 }

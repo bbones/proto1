@@ -1,8 +1,13 @@
 package org.proto1.domain.party;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.proto1.domain.AbstractEntity;
@@ -11,21 +16,9 @@ import org.proto1.domain.AbstractEntity;
 @Table(name="ORGANIZATION_UNIT")
 public class OrganizationUnit extends AbstractEntity {
 	@ManyToOne
-	@JoinColumn(name="PARENT_UNIT_ID")
-	private OrganizationUnit parentUnit;
-
-	@ManyToOne
 	@JoinColumn(name="ENTERPRISE_ID")
 	private Enterprise enterprise;
 	
-	public OrganizationUnit getParentUnit() {
-		return parentUnit;
-	}
-
-	public void setParentUnit(OrganizationUnit parentUnit) {
-		this.parentUnit = parentUnit;
-	}
-
 	public Enterprise getEnterprise() {
 		return enterprise;
 	}
@@ -34,5 +27,16 @@ public class OrganizationUnit extends AbstractEntity {
 		this.enterprise = enterprise;
 	}
 
+	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="organizationUnit")
+	private List<OrganizationUnitName> names;
+
+	public List<OrganizationUnitName> getNames() {
+		return names;
+	}
+
+	public void setNames(List<OrganizationUnitName> names) {
+		this.names = names;
+	}
+	
 	
 }

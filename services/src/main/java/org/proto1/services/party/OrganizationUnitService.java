@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.proto1.domain.party.OrganizationUnit;
+import org.proto1.domain.party.OrganizationUnitName;
 
 public interface OrganizationUnitService {
 	
@@ -11,5 +12,6 @@ public interface OrganizationUnitService {
 	OrganizationUnit get(Long organizatioUnitId);
 	OrganizationUnit save(OrganizationUnit organizationUnit);
 	void delete(Long organizatioUnitId);
+	List<OrganizationUnitName> getNamesList(Long id);
 
 }

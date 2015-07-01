@@ -31,6 +31,10 @@
 		        "id": "uom",
 		        "text": "Unit of measurement",
 		        "module" : "uom.js"
+		    }, {
+		        "id": "orgUnit",
+		        "text": "Organization Unit",
+		        "module" : "orgunit.js"
 		    }
 		    
 		]

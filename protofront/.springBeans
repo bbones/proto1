@@ -9,8 +9,6 @@
 	<configs>
 		<config>src/main/webapp/WEB-INF/restdispatcher-servlet.xml</config>
 		<config>src/main/webapp/WEB-INF/web.xml</config>
-		<config>src/main/resources/META-INF/applicationContext.xml</config>
-		<config>src/main/resources/META-INF/infrastructure.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

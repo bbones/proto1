@@ -1,0 +1,63 @@
+<div class="easyui-panel" title="Organization Unit" style="width: 800px">
+	<div style="padding: 10px 30px 20px 30px">
+
+			<input id="enterprise" name="enterprise">
+			
+			<table id="edgMaster" title="Organization Unit" singleSelect="true"
+				style="width: 700px; height: 40%" data-options="iconCls: 'icon-edit', toolbar: '#tbe', idField : 'id'">
+				<thead>
+					<tr>
+						<th field='id' width=80>Organization Unit Id</th>
+						<th field='name' editor="text">Organization Unit Name</th>
+					</tr>
+				</thead>
+			</table>
+
+			<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+				<div title="Translations"
+					data-options="iconCls:'icon-save',selected:true"
+					style="overflow: auto; padding: 10px;" >
+					<table id="edgNames" title="Translations" singleSelect="true"
+						style="width: 600px; height: auto" 
+						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'enterpriseNameId'">
+						<thead>
+							<tr>
+								<th field='nameId' width=80>Enterprise Name Id</th>
+								<th
+									data-options="field:'languageId',width:100,
+                        			formatter:ClientRepo.languageFormatter,
+                       				editor:ClientRepo.getLanguageEditor">Language</th>
+								<th field='name' editor="text">Org Unit Name</th>
+							</tr>
+						</thead>
+					</table>
+				</div>
+				<div title="Org Unit data"
+					data-options="iconCls:'icon-reload',selected:false"
+					style="padding: 10px;">
+			 <form id="cf" action="/protofront/service/orgunits/" method="post" >
+		        <table>
+		            <tr>
+		                <td>Id:</td>
+		                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
+		            </tr>
+		            <tr>
+		                <td>SO #:</td>
+		                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
+		            </tr>
+		            <tr>
+		                <td>Issue date:</td>
+		                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
+		            </tr>
+		            <tr>
+		                <td>Version</td>
+		                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
+		                
+		            </tr>
+		        </table>
+		    </form>
+				</div>
+			</div> <!-- Accordion -->
+	</div>
+</div>
+

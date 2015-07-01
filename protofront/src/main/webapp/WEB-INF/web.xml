@@ -1,36 +1,44 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
+<?xml version="1.0" encoding="UTF-8"?> 
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
 
-	<display-name>Proto Web Front</display-name>
-	<welcome-file-list>
+  <!--
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    xsi:schemaLocation="
+      http://java.sun.com/xml/ns/javaee
+      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+    id="WebApp_ID" version="3.0">
+-->    
+    <display-name>Spring MVC Application</display-name>
+    <welcome-file-list>
 		<welcome-file>index.html</welcome-file>
 	</welcome-file-list>
-
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:security-context.xml</param-value>
-	</context-param>
-
-	<!-- Servlets -->
-
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:META-INF/applicationContext.xml</param-value>
-	</context-param>
-
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-
-	<servlet>
+	<!-- 
+     <session-config>
+        <session-timeout>1</session-timeout>
+    </session-config>
+    --> 
+    <!-- Spring root -->
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>
+         org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+      </param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>org.proto1.config</param-value>
+    </context-param>
+ 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+ 
+    <!-- Spring child -->
+    <servlet>
 		<servlet-name>restdispatcher</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 	</servlet>
@@ -39,4 +47,6 @@
 		<servlet-name>restdispatcher</servlet-name>
 		<url-pattern>/service/*</url-pattern>
 	</servlet-mapping>
+  
+
 </web-app>
