@@ -12,10 +12,12 @@ import org.proto1.domain.party.EnterpriseName;
 import org.proto1.repository.party.EnterpriseNameRepository;
 import org.proto1.repository.party.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EnterpriseServiceBean implements EnterpriseService {
+	
 	@Autowired
 	EnterpriseRepository enterpriseRepository;
 	
@@ -44,6 +46,15 @@ public class EnterpriseServiceBean implements EnterpriseService {
 
 	public List<EnterpriseName> getNamesList(Long enterpriseId) {
 		return enterpriseNameRepository.getByEnterpriseId(enterpriseId);
+	}
+
+	public Long getEnterpriseListCounter(Long languageId, String searchStr) {
+		return enterpriseRepository.getEnterpriseCounter(languageId, searchStr);
+	}
+
+	public List<Map<String, Object>> getList(Long languageId, String searchStr,
+			Pageable p) {
+		return enterpriseRepository.partyList(languageId, searchStr, p);
 	}
 
 }

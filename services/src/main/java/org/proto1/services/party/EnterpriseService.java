@@ -9,6 +9,7 @@ import java.util.Map;
 
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
+import org.springframework.data.domain.Pageable;
 
 public interface EnterpriseService {
 
@@ -21,6 +22,10 @@ public interface EnterpriseService {
 	List<Map<String, Object>> getEnterpriseList(Long languageId);
 
 	List<EnterpriseName> getNamesList(Long enterpriseId);
+
+	Long getEnterpriseListCounter(Long languageId, String string);
+
+	List<Map<String, Object>> getList(Long languageId, String string, Pageable p);
 
 
 }

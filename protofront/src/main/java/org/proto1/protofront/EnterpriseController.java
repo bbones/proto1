@@ -14,11 +14,14 @@ import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.dto.EnterpriseNameDTO;
+import org.proto1.dto.PagedDTO;
 import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.LanguageService;
 import org.proto1.services.party.EnterpriseService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +49,13 @@ public class EnterpriseController {
 		return enterpriseService.getEnterpriseList(languageId);
 	}
 	
+	@RequestMapping(value = "search", method = RequestMethod.GET)
+	public @ResponseBody PagedDTO<Map<String, Object>> getList(@RequestParam Long languageId, @RequestParam String q, 
+			@RequestParam int page, @RequestParam int rows) {
+		Pageable p = new PageRequest(page-1, rows);
+		return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, "%" + q + "%"), enterpriseService.getList(languageId, "%" + q + "%", p));
+	}
+
 	@RequestMapping(value = "/", method = RequestMethod.POST )
 	public @ResponseBody EnterpriseDTO save(@RequestParam Long languageId, EnterpriseDTO enterpriseDTO) 
 			throws BeansException, InstantiationException, 

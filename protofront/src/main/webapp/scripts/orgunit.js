@@ -7,13 +7,13 @@
  */
 
 var OrgUnitLib = (function() {
+	var currentPartyId = null;
 	
 	function initEnterpriseSelector() {
 		$('#enterprise').combogrid({
-      		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
-      		idField : 'partyId',
-      		// valueField:'partyId',
-      		textField:'partyName',
+      		url : '/protofront/service/enterprises/search?languageId=' + IndexLib.lang(),
+      		idField : 'enterpriseId',
+      		textField:'name',
       		method:'GET',
       		required:true,
       		panelWidth:450,
@@ -23,17 +23,22 @@ var OrgUnitLib = (function() {
       		columns: [[
       		         {field:'partyId',title:'Code',width:120,sortable:true},
       		         {field:'partyName',title:'Name',width:400,sortable:true}
-      		     ]]
+      		     ]],
+      		onSelect : function(index, row) {
+      			console.log(row);
+      			currentPartyId = row.partyId;
+      			var event = jQuery.Event( "partySelected" );
+      			$("#test").tigger(event, row.partyId);
+      		}
 		});
 	}
 	
 	function initMasterGrid() {
-		var event = jQuery.Event( "orgUnitSelected" );
 
 		$("#edgMaster").edatagrid({
 			toolbar : IndexLib.edgmenu({ 
 				add : function(){
-					$("#edgMaster").edatagrid('addRow');
+					$("#edgMaster").edatagrid('addRow', {row : {enterpriseId : currentPartyId}});
 					$("#cf").form('clear');
 				},
 				save : function(){
@@ -55,6 +60,8 @@ var OrgUnitLib = (function() {
 			onSelect : function(index, row) {
 				if (row.id) {
 					if (typeof row.id != 'undefined') {
+						var event = jQuery.Event( "orgUnitSelected" );
+						$("#test").trigger(event, row.id);
 						$("#edgNames").edatagrid({
 							url : '/protofront/service/orgunits/' + row.id +'/names'
 						});
