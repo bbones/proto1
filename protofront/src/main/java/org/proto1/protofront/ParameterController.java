@@ -52,7 +52,7 @@ public class ParameterController {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	public ParameterDTO getParameterList(@RequestParam Long languageId, ParameterDTO parameterDTO) {
+	public @ResponseBody ParameterDTO getParameterList(@RequestParam Long languageId, ParameterDTO parameterDTO) {
 		Parameter parameter = new Parameter();
 		if (parameterDTO.getParameterId() != null)
 			parameter.setId(parameterDTO.getParameterId());
@@ -67,6 +67,11 @@ public class ParameterController {
 		return parameterDTO;
 	}
 	
+	@RequestMapping(value = "/{parameterId}", method = RequestMethod.DELETE)
+	public void deleteParameter(@PathVariable Long parameterId) {
+		parameterService.deleteParameter(parameterId);
+	}
+	
 	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
 	public @ResponseBody List<ParameterNameDTO> getParameterNames(@PathVariable Long id) {
 		List<ParameterNameDTO> pnList = new ArrayList<ParameterNameDTO>();
@@ -75,19 +80,12 @@ public class ParameterController {
 		return pnList;
 	}
 
-	@RequestMapping(value = "{id}/names", method = RequestMethod.POST)
-	public ParameterNameDTO saveParameterName(@PathVariable Long id, ParameterNameDTO parameterNameDTO) {
-		ParameterName parameterName = new ParameterName();
-		if (parameterNameDTO.getParameterNameId() != null) {
-			parameterName.setId(parameterNameDTO.getParameterNameId());
-		}
-		parameterName.setName(parameterNameDTO.getParameterName());
-		parameterName.setParameter(parameterService.get(id));
-		Language language = languageService.get(parameterNameDTO.getLanguageId());
-		parameterName.setLanguage(language);
+	@RequestMapping(value = "names", method = RequestMethod.POST)
+	public ParameterNameDTO saveParameterName(ParameterNameDTO parameterNameDTO) {
+		ParameterName parameterName = mapper.map(parameterNameDTO, ParameterName.class);
 		parameterName = parameterService.saveParameterName(parameterName);
 		parameterNameDTO.setParameterNameId(parameterName.getId());
-		parameterNameDTO.setLanguageName(language.getName());
+		parameterNameDTO.setLanguageName(parameterName.getLanguage().getName());
 		return parameterNameDTO; 
 	}
 

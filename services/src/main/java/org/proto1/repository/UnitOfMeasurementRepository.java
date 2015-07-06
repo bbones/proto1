@@ -14,8 +14,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface UnitOfMeasurementRepository extends CrudRepository<UnitOfMeasurement, Long> {
 
-	@Query("select new Map(uom.id as uomId, uomn.shortName as uomShortName,"
-			+ "uomn.fullName as uomFullName) " + 
+	@Query("select new Map(uom.id as id, uomn.shortName as shortName,"
+			+ "uomn.fullName as fullName, uomn.version as version) " + 
 			"from UnitOfMeasurement uom join uom.unitOfMeasurementNames uomn " + 
 			"where uomn.language.id = :language_id")
 	List<Map<String, Object>> getList(@Param("language_id") Long languageId);

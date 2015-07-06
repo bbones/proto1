@@ -2,13 +2,13 @@
 <div title="Unit of measurement"
 	data-options="iconCls:'icon-reload',selected:true" style="padding: 10px;">
 	<table id="edgUOMs" title="Unit of measurement" singleSelect="true"
-		style="width: 600px; height: auto"
+		style="width: 600px; height: 300px"
 		data-options="iconCls: 'icon-edit', toolbar: '#tbuom', idField : 'uomId', method : 'GET'">
 		<thead>
 			<tr>
-				<th field='uomId' width=90>UOM Id</th>
-				<th field='uomShortName' width=250 editor='text'>UOM short name</th>
-				<th field='uomFullName' width=250 editor='text'>UOM full name</th>
+				<th field='id' width=90>UOM Id</th>
+				<th field='shortName' width=250 editor='text'>UOM short name</th>
+				<th field='fullName' width=250 editor='text'>UOM full name</th>
 			</tr>
 		</thead>
 	</table>
@@ -32,33 +32,4 @@
 			</tr>
 		</thead>
 	</table>
-</div>
-
-<div id="tbuom" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="UOMLib.appendUOM()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="UOMLib.removeUOM()">Remove</a> 
-	<a href="javascript:void(0)"
-		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="UOMLib.acceptUOM()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="UOMLib.rejectUOM()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<div id="tbn" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="UOMLib.appendName()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="UOMLib.removeName()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="UOMLib.acceptName()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="UOMLib.rejectName()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="UOMLib.getChanges()">GetChanges</a>
 </div>

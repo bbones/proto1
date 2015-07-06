@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 
@@ -18,14 +19,15 @@ public class UnitOfMeasurementName extends AbstractEntity {
 
 	@ManyToOne
 	@JoinColumn(name="UNIT_OF_MEASUREMENT_ID")
-	@JsonIgnore
 	private UnitOfMeasurement unitOfMeasurement;
 	
 	@ManyToOne
 	@JoinColumn(name="language_id")
 	private Language language;
 
+	@NotNull
 	private String shortName;
+	@NotNull
 	private String fullName;
 
 	

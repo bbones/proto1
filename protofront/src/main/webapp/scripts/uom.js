@@ -9,26 +9,69 @@
  */
 
 var UOMLib = (function(){
+	
+	var currentUOMId = null; 
+	
 	function initUOMGrid(){
 		$("#edgUOMs").edatagrid({
 			url : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
 			saveUrl : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
 			updateUrl : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgUOMs").edatagrid('addRow');
+				},
+				save : function(){
+					$("#edgUOMs").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgUOMs").edatagrid('destroyRow');
+				}
+
+			}),
 			onSelect : function(index, row) {
 				console.log(row);
-				if (row.uomId != null) {
+				currentUOMId = row.id;
+				if (row.id != null) {
 					$("#edgNames").edatagrid({
-						url : '/protofront/service/uoms/' + row.uomId + '/names',
-						saveUrl : '/protofront/service/uoms/' + row.uomId + '/names',
-						updateUrl :'/protofront/service/uoms/' + row.uomId + '/names'
+						url : '/protofront/service/uoms/' + row.id + '/names',
+
 					});
 				}
+			},
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/uoms/' + row.id,
+					method : "DELETE"
+				});
 			}
+
 		});	
 	};
 	
 	function initTranslationGrid(){
-		$("#edgNames").edatagrid();		
+		$("#edgNames").edatagrid({
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/uoms/names/' + row.nameId,
+					method : "DELETE"
+				});
+			},
+			saveUrl : '/protofront/service/uoms/names',
+			updateUrl :'/protofront/service/uoms/names',
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgNames").edatagrid('addRow', {row : {uomId : currentUOMId}});
+				},
+				save : function(){
+					$("#edgNames").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgNames").edatagrid('destroyRow');
+				}
+
+			})
+		});		
 	};
 	
 	return {
@@ -40,25 +83,6 @@ var UOMLib = (function(){
 					initTranslationGrid();
 				}
 			});
-		},
-		appendUOM : function() {
-			$("#edgUOMs").edatagrid('addRow');
-		},
-		removeUOM : function() {
-			$("#edgUOMs").edatagrid('destroyRow');
-		},
-		acceptUOM : function() {
-			$("#edgUOMs").edatagrid('saveRow');
-		},
-		// Names
-		appendName : function() {
-			$("#edgNames").edatagrid('addRow');
-		},
-		removeName : function() {
-			$("#edgNames").edatagrid('destroyRow');
-		},
-		acceptName : function() {
-			$("#edgNames").edatagrid('saveRow');
 		}
 	};	
 })();

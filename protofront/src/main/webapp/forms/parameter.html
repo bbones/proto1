@@ -44,22 +44,11 @@
 		data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'nameId', method : 'GET'">
 		<thead>
 			<tr>
-				<th field='parameterNameId' width=50 editor='text'>Product Name Id</th>
+				<th field='parameterNameId' width=50>Product Name Id</th>
 				<th
 					data-options="field:'languageId',width:100,
-                    			formatter:function(value,row){
-                        			return row.languageName;
-                    			},
-                   				editor:{
-                          			type:'combobox',
-		                          	options:{
-		                               valueField:'id',
-		                               textField:'name',
-		                               method:'get',
-		                               url:'/protofront/service/masterdata/languages',
-		                               required:true
-		                           }
-                    			}">Language</th>
+                    			formatter:ClientRepo.languageFormatter,
+                   				editor:ClientRepo.languageEditor()">Language</th>
 				<th field='parameterName' width=250 editor="text">Parameter Name</th>
 			</tr>
 		</thead>
@@ -77,51 +66,7 @@
 				lines : true,
 	            idField : 'uomId',
 	            valueField : 'uomId',
-	            textField : 'uomShortName'
+	            textField : 'shortName'
 	"></div>
 </div>
 
-<div id="tbp" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ParameterLib.appendParameter()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ParameterLib.removeParameter()">Remove</a> 
-	<a href="javascript:void(0)"
-		class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.acceptParameter()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectParameter()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="getChanges()">GetChanges</a>
-</div>
-
-<div id="tbn" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-add',plain:true" onclick="ParameterLib.appendName()">Append</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-remove',plain:true"	onclick="ParameterLib.removeName()">Remove</a> 
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.acceptName()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectName()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="ParameterLib.getChanges()">GetChanges</a>
-</div>
-
-<div id="tbuom" style="height: auto">
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-save',plain:true" onclick="ParameterLib.acceptUOM()">Accept</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-undo',plain:true" onclick="ParameterLib.rejectName()">Reject</a>
-	<a href="javascript:void(0)" class="easyui-linkbutton"
-		data-options="iconCls:'icon-search',plain:true"
-		onclick="ParameterLib.getChanges()">GetChanges</a>
-</div>
-
-<script>
-	$.getScript("/protofront/scripts/parameter.js").done(function() {
-		ParameterLib.init();
-	});
-</script>

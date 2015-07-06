@@ -73,24 +73,16 @@ public class UOMController {
 		return uomNameDTOs;
 	}
 
-	@RequestMapping(value = "{uomId}/names", method = RequestMethod.POST)
-	public @ResponseBody UnitOfMeasurementNameDTO saveName(@PathVariable Long uomId, UnitOfMeasurementNameDTO uomNameDTO) {
-		UnitOfMeasurementName uomName =  new UnitOfMeasurementName();
-		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
-		uomName.setUnitOfMeasurement(uom);
-
-		uomName.setShortName(uomNameDTO.getShortName());
-		uomName.setFullName(uomNameDTO.getFullName());
-		Language language = languageService.get(uomNameDTO.getLanguageId());
-		uomName.setLanguage(language);
-
+	@RequestMapping(value = "names", method = RequestMethod.POST)
+	public @ResponseBody UnitOfMeasurementNameDTO saveName(UnitOfMeasurementNameDTO uomNameDTO) {
+		UnitOfMeasurementName uomName= mapper.map(uomNameDTO, UnitOfMeasurementName.class);
 		uomName = unitOfMeasurementService.saveName(uomName);
 		uomNameDTO.setNameId(uomName.getId());
 		return uomNameDTO;
 	}
 
-	@RequestMapping(value = "{id}/names/{nameId}", method = RequestMethod.DELETE)
-	public void deleteName(@PathVariable Long id, @PathVariable Long nameId) {
+	@RequestMapping(value = "names/{nameId}", method = RequestMethod.DELETE)
+	public void deleteName(@PathVariable Long nameId) {
 		unitOfMeasurementService.deleteName(nameId);
 	}
 

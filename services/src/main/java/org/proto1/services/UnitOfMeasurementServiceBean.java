@@ -17,7 +17,7 @@ public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 	UnitOfMeasurementRepository uomRepository;
 	
 	@Autowired
-	UnitOfMeasurementNameRepository unitOfMeasurementNameRepository;
+	UnitOfMeasurementNameRepository uomNameRepository;
 	
 	public UnitOfMeasurement get(Long id) {
 		return uomRepository.findOne(id);
@@ -39,14 +39,14 @@ public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 	 * @see org.proto1.services.UnitOfMeasurementService#deleteName(java.lang.Long)
 	 */
 	public void deleteName(Long nameId) {
-		unitOfMeasurementNameRepository.delete(nameId);
+		uomNameRepository.delete(nameId);
 	}
 
 	/* (non-Javadoc)
 	 * @see org.proto1.services.UnitOfMeasurementService#saveName(org.proto1.domain.UnitOfMeasurementName)
 	 */
 	public UnitOfMeasurementName saveName(UnitOfMeasurementName uomName) {
-		return unitOfMeasurementNameRepository.save(uomName);
+		return uomNameRepository.save(uomName);
 	}
 
 }

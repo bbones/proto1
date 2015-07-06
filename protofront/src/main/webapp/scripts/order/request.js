@@ -43,7 +43,6 @@ var RequestMod = (function() {
 				requestOrder.load("/protofront/service/requests/");
 			})
 			.fail(function( jqxhr, settings, exception ) {
-				debugger;
 				console.log(exception);
 			});
 	};

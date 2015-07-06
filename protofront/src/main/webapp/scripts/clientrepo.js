@@ -97,8 +97,8 @@ var ClientRepo = (function() {
 			uomEditor = {
 		  			type:'combobox',
 		          	options:{
-		               valueField:'uomId',
-		               textField:'uomShortName',
+		               valueField:'id',
+		               textField:'shortName',
 		               data : dataArray,
 		               required:true
 		           }

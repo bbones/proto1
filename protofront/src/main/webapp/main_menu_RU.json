@@ -23,7 +23,8 @@
 		        "text": "Продукция"
 		    },{
 		        "id": "parameter",
-		        "text": "Параметры"
+		        "text": "Параметры",
+	        	"module" : "parameter.js"
 		    },{
 		        "id": "location",
 		        "text": "Расположения"

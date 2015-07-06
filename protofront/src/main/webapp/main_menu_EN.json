@@ -23,7 +23,8 @@
 		        "text": "Product"
 		    },{
 		        "id": "parameter",
-		        "text": "Parameter"
+		        "text": "Parameter",
+	        	"module" : "parameter.js"
 		    },{
 		        "id": "location",
 		        "text": "Location"

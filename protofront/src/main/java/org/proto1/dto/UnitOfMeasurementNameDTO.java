@@ -5,7 +5,7 @@ public class UnitOfMeasurementNameDTO extends DTO {
 	private static final long serialVersionUID = -3596609762108126966L;
 
 	private Long nameId;
-	private Long id;
+	private Long uomId;
 	private Long languageId;
 	private String shortName;
 	private String fullName;
@@ -17,14 +17,6 @@ public class UnitOfMeasurementNameDTO extends DTO {
 
 	public void setNameId(Long nameId) {
 		this.nameId = nameId;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getShortName() {
@@ -49,6 +41,14 @@ public class UnitOfMeasurementNameDTO extends DTO {
 
 	public void setLanguageId(Long languageId) {
 		this.languageId = languageId;
+	}
+
+	public Long getUomId() {
+		return uomId;
+	}
+
+	public void setUomId(Long uomId) {
+		this.uomId = uomId;
 	}
 
 }

@@ -8,28 +8,43 @@
 
 var ParameterLib = (function(){
 	var initUOM = true;
+	var currentParameterId = null; 
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
 			url : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
 			saveUrl : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
 			updateUrl : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgParameters").edatagrid('addRow');
+				},
+				save : function(){
+					$("#edgParameters").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgParameters").edatagrid('destroyRow');
+				}
+
+			}),
+
 			onSelect : function(index, row) {
 				console.log(row);
 				if (row.parameterId != null) {
+					currentParameterId = row.parameterId;
 					$("#edgNames").edatagrid({
-						url : '/protofront/service/parameters/' + row.parameterId + '/names',
-						saveUrl : '/protofront/service/parameters/' + row.parameterId + '/names',
-						updateUrl :'/protofront/service/parameters/' + row.parameterId + '/names'
+						url : '/protofront/service/parameters/' + row.parameterId + '/names'
 
 					});
 					$.ajax('/protofront/service/parameters/' + row.parameterId + '/uoms/id').done(function (data) {
+						console.log("=========");
 						console.log(data);
 						var d = $('#dlUOM').datalist('getData').rows;
+						console.log(d);
 						var l = d.length;
 						initUOM = true;
 						for ( var i=0; i<l; i++ ) {
-							var indx = data.indexOf(d[i].uomId);
+							var indx = data.indexOf(d[i].id);
 							if (indx != -1) {
 								$('#dlUOM').datagrid('checkRow', i);
 							} else {
@@ -39,13 +54,42 @@ var ParameterLib = (function(){
 						initUOM = false;
 					});
 				}
-			} // OnSelect
+			}, // OnSelect
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/parameters/' + row.parameterId,
+					method : "DELETE"
+				});
+			}
+
 		});
 		
 	};
 	
 	function initNamesGrid() {
-		$("#edgNames").edatagrid();
+		$("#edgNames").edatagrid({
+			saveUrl : '/protofront/service/parameters/names',
+			updateUrl :'/protofront/service/parameters/names',
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgNames").edatagrid('addRow', {row : {parameterId : currentParameterId}});
+				},
+				save : function(){
+					$("#edgNames").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgNames").edatagrid('destroyRow');
+				}
+
+			}),
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/parameters/names/' + row.parameterNameId,
+					method : "DELETE"
+				});
+			}
+
+		});
 	};
 	
 	function initUOMS() {
@@ -55,7 +99,7 @@ var ParameterLib = (function(){
 		    	if (!initUOM) {
 		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;
 		    		$.post('/protofront/service/parameters/' + par + '/uoms',{
-		    			'uomId' : row.uomId
+		    			'uomId' : row.id
 		    		});
 		    	};
 		    },
@@ -63,7 +107,7 @@ var ParameterLib = (function(){
 		    	if (!initUOM) {
 		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;
 		    		$.ajax({
-		    			url : '/protofront/service/parameters/' + par + '/uoms' + row.uomId,
+		    			url : '/protofront/service/parameters/' + par + '/uoms' + row.id,
 		    			method : 'DELETE'
 		    		});
 		    	};
@@ -74,33 +118,17 @@ var ParameterLib = (function(){
 	
 	return {
 		init : function() {
-			initParameterGrid();
-			initNamesGrid();
-			initUOMS();
-		},
-		appendParameter : function() {
-			$("#edgParameters").edatagrid('addRow');
-		},
-		removeParameter :  function() {
-			$("#edgParameters").edatagrid('destroyRow');
-		},
-		acceptParameter : function() {
-			$("#edgParameters").edatagrid('saveRow');
-		},
-		appendName : function() {
-			$("#edgNames").edatagrid('addRow');
-		},
-		removeName :  function() {
-			$("#edgNames").edatagrid('destroyRow');
-		},
-		acceptName : function() {
-			$("#edgNames").edatagrid('saveRow');
-		},
-		getChanges : function() {
-			console.log($('#dlUOM').datagrid('getSelections'));
-		},
-		acceptUOM : function() {
-			console.log($('#dlUOM').datagrid('getChecked'));
+			$("#test").off();
+			$("#test").panel({
+				href : '/protofront/forms/parameter.html', 
+				onLoad : function() {
+					initParameterGrid();
+					initNamesGrid();
+					initUOMS();
+				}
+			});
 		}
 	};
 })();
+
+ParameterLib.init();

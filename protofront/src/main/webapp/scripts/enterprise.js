@@ -3,7 +3,7 @@
  * All rights reserved. 
  *******************************************************************************/
 /**
- * TODO CRUD
+ * TODO Delete Name request doesn't work
  */
 
 var EnterpriseLib = (function() {

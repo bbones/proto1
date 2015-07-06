@@ -3,7 +3,7 @@
  * All rights reserved. 
  *******************************************************************************/
 /**
- * 
+ * TODO Delete Name request doesn't work
  */
 
 var ProductLib = (function(){
@@ -15,8 +15,7 @@ var ProductLib = (function(){
 				console.log(record);
 				$("#edgProducts").edatagrid({
 					url : '/protofront/service/products/types?productTypeId='
-									+ record.id + '&languageId=' + IndexLib.lang(),
-					saveUrl : '/protofront/service/products/?typeId=' + record.id + '&languageId=' + IndexLib.lang()
+									+ record.id + '&languageId=' + IndexLib.lang()
 				}); // edatagrid
 			}// OnSelect
 		}); // Combotree
@@ -24,6 +23,8 @@ var ProductLib = (function(){
 	
 	function initProductGrid() {
 		$("#edgProducts").edatagrid({
+			saveUrl : '/protofront/service/products/?languageId=' + IndexLib.lang(),
+			updateUrl : '/protofront/service/products/?languageId=' + IndexLib.lang(),
 			method : "GET",
 			toolbar : IndexLib.edgmenu({
 				add : function(){
@@ -81,7 +82,7 @@ var ProductLib = (function(){
 			}),
 			onDestroy : function(index,row){
 				$.ajax({
-					url : '/protofront/service/products/names' + row.nameId,
+					url : '/protofront/service/products/names/' + row.nameId,
 					method : "DELETE"
 				});
 			}
@@ -123,51 +124,6 @@ var ProductLib = (function(){
 			initProductGrid();
 			initNameGrid();
 			initParameterGrid();
-		},
-		append : function() {
-			$("#edgProducts").edatagrid('addRow', {
-				row :{
-					productTypeId : $("#productType").combotree('getValue')
-				}
-			});
-		},
-		save : function() {
-			$("#edgProducts").edatagrid('saveRow');
-		},
-		
-		appendName : function() {
-			$("#edgNames").edatagrid('addRow', {
-				row : {
-					productId : $("#edgProducts").edatagrid('getSelected').productId
-				}
-			});
-		},
-		
-		saveName : function() {
-			$("#edgNames").edatagrid('saveRow');
-		},
-	
-		removeName : function () {
-			$("#edgNames").edatagrid('destroyRow');
-		},
-	
-		removeParameter: function () {
-			$("#edgParameters").edatagrid('destroyRow');
-		},
-
-		appendParameter : function () {
-			var pid = $("#edgProducts").edatagrid('getSelected').id;
-			$("#edgParameters").edatagrid('addRow', {
-				row: {
-					productId : $("#edgProducts").edatagrid('getSelected').productId,
-					required :false
-				}
-			});
-		},
-	
-		acceptParameter : function () {
-			console.log($("#edgParameters").edatagrid('getSelected'));
-			$("#edgParameters").edatagrid('saveRow');
 		}
 	}  //return
 })();

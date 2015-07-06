@@ -35,6 +35,11 @@ public class ParameterServiceBean implements ParameterService {
 		return parameterRepository.findOne(id);
 	}
 
+	public void deleteParameter(Long parameterId) {
+		parameterRepository.delete(parameterId);
+		
+	}
+
 	/* (non-Javadoc)
 	 * @see org.proto1.services.parameter.ParameterService#save(org.proto1.domain.product.Parameter)
 	 */
