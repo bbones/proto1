@@ -16,7 +16,7 @@ import org.proto1.domain.party.Enterprise;
 public interface EnterpriseRepository extends CrudRepository<Enterprise, Long> {
 
 	@Query("select new Map(e.id as id, en.name as name) " + 
-			"from Enterprise e join e.enterpriseNames en  " + 
+			"from Enterprise e left outer join e.enterpriseNames en  " + 
 			"where en.language.id = :language_id")
 	public List<Map<String, Object>> getListByLanguageId(@Param("language_id") Long languageId);
 

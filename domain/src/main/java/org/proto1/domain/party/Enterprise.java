@@ -16,7 +16,7 @@ import org.proto1.domain.Language;
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
 public class Enterprise extends Party {
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="enterprise")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise")
 	private List<EnterpriseName> enterpriseNames;
 	
 	private Long eskId;

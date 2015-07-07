@@ -27,5 +27,9 @@ public interface EnterpriseService {
 
 	List<Map<String, Object>> getList(Long languageId, String string, Pageable p);
 
+	EnterpriseName saveName(EnterpriseName enterpriseName);
+
+	void deleteName(Long id);
+
 
 }

@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
+import org.proto1.domain.Language;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;
@@ -39,10 +40,7 @@ public class EnterpriseController {
 	LanguageService languageService;
 	
 	@Autowired
-	DTOMapper mapper;
-	
-	@Autowired
-	Mapper dozerMapper;
+	Mapper mapper;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  enterpriseListByLanguage(@RequestParam Long languageId) {
@@ -57,42 +55,51 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "/", method = RequestMethod.POST )
-	public @ResponseBody EnterpriseDTO save(@RequestParam Long languageId, EnterpriseDTO enterpriseDTO) 
-			throws BeansException, InstantiationException, 
-				IllegalAccessException, SecurityException, IllegalArgumentException, 
-				InvocationTargetException, NoSuchMethodException, ClassNotFoundException {
-		Enterprise enterprise = mapper.decode(enterpriseDTO, Enterprise.class);
-		if (enterpriseDTO.getId() == null) {
-			EnterpriseName name = new EnterpriseName();
-			name.setEnterprise(enterprise);
-			name.setLanguage(languageService.get(languageId));
-			name.setName(enterpriseDTO.getName());
-			enterprise.setEnterpriseNames(new ArrayList<EnterpriseName>());
-			enterprise.getEnterpriseNames().add(name);
-		}
+	public @ResponseBody EnterpriseDTO save(@RequestParam Long languageId, EnterpriseDTO enterpriseDTO) {
+		Enterprise enterprise = mapper.map(enterpriseDTO, Enterprise.class);
+		EnterpriseName en = new EnterpriseName();
+		en.setEnterprise(enterprise);
+		en.setLanguage(mapper.map(languageId, Language.class));
+		en.setName(enterpriseDTO.getName());
+		enterprise.setEnterpriseNames(new ArrayList<EnterpriseName>());
+		enterprise.getEnterpriseNames().add(en);
 		enterprise = enterpriseService.save(enterprise);
 		enterpriseDTO.setId(enterprise.getId());
 		enterpriseDTO.setVersion(enterprise.getVersion());
 		return enterpriseDTO;
 	}
 
+	@RequestMapping(value = "names", method = RequestMethod.POST )
+	public @ResponseBody EnterpriseNameDTO saveName(EnterpriseNameDTO enterpriseNameDTO) {
+		EnterpriseName enterpriseName = mapper.map(enterpriseNameDTO, EnterpriseName.class);
+		enterpriseName = enterpriseService.saveName(enterpriseName);
+		enterpriseNameDTO.setEnterpriseId(enterpriseName.getId());
+		enterpriseNameDTO.setVersion(enterpriseName.getVersion());
+		return enterpriseNameDTO;
+	}
+
 	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
 	public @ResponseBody List<EnterpriseNameDTO> getEntepriseNames(@PathVariable Long id) {
 		List<EnterpriseNameDTO> enList = new ArrayList<EnterpriseNameDTO>();
 		for(EnterpriseName en : enterpriseService.getNamesList(id))
-			enList.add(dozerMapper.map(en, EnterpriseNameDTO.class));
+			enList.add(mapper.map(en, EnterpriseNameDTO.class));
 		return enList;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public @ResponseBody EnterpriseDTO findByID(@PathVariable Long id) {
 		Enterprise enterprise = enterpriseService.get(id);
-		return dozerMapper.map(enterprise, EnterpriseDTO.class);
+		return mapper.map(enterprise, EnterpriseDTO.class);
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public void delete(@PathVariable Long id) {
 		enterpriseService.delete(id);
+	}
+
+	@RequestMapping(value = "names/{id}", method = RequestMethod.DELETE)
+	public void deleteName(@PathVariable Long id) {
+		enterpriseService.deleteName(id);
 	}
 
 

@@ -18,11 +18,11 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 public class UnitOfMeasurementName extends AbstractEntity {
 
 	@ManyToOne
-	@JoinColumn(name="UNIT_OF_MEASUREMENT_ID")
+	@JoinColumn(name="UNIT_OF_MEASUREMENT_ID",nullable=false)
 	private UnitOfMeasurement unitOfMeasurement;
 	
 	@ManyToOne
-	@JoinColumn(name="language_id")
+	@JoinColumn(name="language_id",nullable=false)
 	private Language language;
 
 	@NotNull

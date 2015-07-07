@@ -99,12 +99,11 @@ public class ParameterController {
 	}
 
 	@RequestMapping(value = "{id}/uoms", method = RequestMethod.GET)
-	public @ResponseBody List<UnitOfMeasurementNameDTO> getParameterUOMs(@PathVariable Long id, @RequestParam Long languageId) {
+	public @ResponseBody List<Long> getParameterUOMs(@PathVariable Long id) {
 		Set<UnitOfMeasurement> uomSet = parameterService.get(id).getAcceptedUOM();
-		List<UnitOfMeasurementNameDTO> result = new ArrayList<UnitOfMeasurementNameDTO>();
-		Language language = mapper.map(languageId, Language.class);
+		List<Long> result = new ArrayList<Long>();
 		for(UnitOfMeasurement uom : uomSet) 
-			result.add(mapper.map(uom.getTranslation(language), UnitOfMeasurementNameDTO.class));
+			result.add(uom.getId());
 
 		return result;
 	}

@@ -57,4 +57,13 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		return enterpriseRepository.partyList(languageId, searchStr, p);
 	}
 
+	public EnterpriseName saveName(EnterpriseName enterpriseName) {
+		return enterpriseNameRepository.save(enterpriseName);
+	}
+
+	public void deleteName(Long id) {
+		enterpriseNameRepository.delete(id);
+		
+	}
+
 }

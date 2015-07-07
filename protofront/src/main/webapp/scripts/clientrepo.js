@@ -92,7 +92,7 @@ var ClientRepo = (function() {
 			uomList = dataArray;
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
-				uomMap[dataArray[i].uomId] = dataArray[i].uomShortName;
+				uomMap[dataArray[i].id] = dataArray[i].shortName;
 			};
 			uomEditor = {
 		  			type:'combobox',
@@ -104,7 +104,6 @@ var ClientRepo = (function() {
 		           }
 				};
 		});
-		console.log(uomList);
 		checkCounter();
 		
 	}
@@ -140,12 +139,13 @@ var ClientRepo = (function() {
            }
 		},
 	    getUOMList : getUOMList,
+	    getUOMMap : function() {
+	    	return uomMap;
+	    },
         uomFormatter : function(value, row) {
         	return uomMap[value];
         },
         uomEditor : function () {
-        	console.log('uomEditor:');
-        	console.log(uomEditor);
         	return uomEditor;
 		}
 

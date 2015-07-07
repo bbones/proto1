@@ -43,17 +43,9 @@
 				                                required:true
 				                            }
 	                        			}">Product</th>
-							<th field='uomId' width=50 formatter=IndexLib.uomFormatter 
-									editor="{
-			                            	type:'combobox',
-			                            	options:{
-				                                valueField:'uomId',
-				                                textField:'uomShortName',
-				                                method:'get',
-				                                url:'/protofront/service/uoms/?languageId=' + IndexLib.lang(),
-				                                required:true
-				                            }
-	                        			}">UOM</th>
+							<th data-options="field:'uomId',width:80,
+                    					formatter: ClientRepo.uomFormatter,
+                   						editor:ClientRepo.uomEditor()">UOM</th>
 							<th field='qnty' width=80 editor="{type:'numberbox'}">Qnty</th>
 							<th field='price' width=80 editor="{type:'numberbox',options:{precision:2}}">Price</th>
 							<th field='amount' width=80 editor="{type:'numberbox',options:{precision:2}}">Amount</th>
@@ -77,9 +69,9 @@
 							
 							<th field='olpValue' width=120 editor="text">Value</th>
 	
-							<th data-options="field:'uomId',width:80,
+								<th data-options="field:'uomId',width:80,
                     					formatter: ClientRepo.uomFormatter,
-                   						editor:ClientRepo.uomEditor()">Parameter UOM</th>
+                   						editor:ClientRepo.uomEditor()">UOM</th>
 							
 							<th	data-options="field:'button',width:60,align:'center',formatter:OrderMod.button">Status</th>
 							

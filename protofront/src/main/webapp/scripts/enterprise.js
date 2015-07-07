@@ -2,9 +2,6 @@
  * Copyright (c) 2015 Valentin Pogrebinsky
  * All rights reserved. 
  *******************************************************************************/
-/**
- * TODO Delete Name request doesn't work
- */
 
 var EnterpriseLib = (function() {
 	
@@ -69,7 +66,7 @@ var EnterpriseLib = (function() {
 			updateUrl : "/protofront/service/enterprises/names",
 			onDestroy : function(index, row) {
 			   		$.ajax({
-			   			url : '/protofront/service/enterprises/names/' + row.id,
+			   			url : '/protofront/service/enterprises/names/' + row.enterpriseNameId,
 			   			method : 'DELETE'
 			   		});
 			}

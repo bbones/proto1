@@ -134,17 +134,33 @@ var OrderMod = (function() {
 				});
 			},
 			onBeforeEdit : function(index, row) {
-				var col = $(this).treegrid('getColumnOption','uomId');
-				col.editor = {
-						type:'combobox',
-				      	options:{
-				           valueField:'id',
-				           textField:'shortName',
-				           method : 'GET',
-				           url : '/protofront/service/parameters/' + row.paramId + '/uoms?languageId=' + IndexLib.lang(),
-				           required:true
-				       }
-				};
+				$.ajax({
+					url : '/protofront/service/parameters/' + row.paramId + '/uoms',
+					method : "GET",
+					success : function(data) {
+						var uoms = [];
+						var length = data.length;
+						for (var i = 0; i < length; i++) {
+							uoms.push({
+								id : data[i],
+								shortName : ClientRepo.getUOMMap()[data[i]]
+							});
+						}
+						var col = $("#edgLineParameters").datagrid('getColumnOption','uomId');
+						console.log(col);
+						col.editor = {
+								type:'combobox',
+						      	options:{
+						           valueField:'id',
+						           textField:'shortName',
+						           data : uoms,
+						           required:true
+						       }
+						};
+						console.log(col);
+					}
+				});
+				
 			}
 
 		});
@@ -171,7 +187,6 @@ var OrderMod = (function() {
 		button : function (value, row, index) {
             return '<input type="button" onclick="alert(' + row.olpId + ')" value="Add" class="GridButton"/>';
         }
-
 	};
 })();
 
