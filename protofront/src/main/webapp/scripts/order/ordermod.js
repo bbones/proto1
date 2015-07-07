@@ -135,6 +135,7 @@ var OrderMod = (function() {
 			},
 			onBeforeEdit : function(index, row) {
 				$.ajax({
+					async : false,
 					url : '/protofront/service/parameters/' + row.paramId + '/uoms',
 					method : "GET",
 					success : function(data) {
@@ -147,7 +148,6 @@ var OrderMod = (function() {
 							});
 						}
 						var col = $("#edgLineParameters").datagrid('getColumnOption','uomId');
-						console.log(col);
 						col.editor = {
 								type:'combobox',
 						      	options:{
@@ -157,7 +157,6 @@ var OrderMod = (function() {
 						           required:true
 						       }
 						};
-						console.log(col);
 					}
 				});
 				
