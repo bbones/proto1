@@ -6,9 +6,11 @@ package org.proto1.services.parameter;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
+import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.repository.ParameterNameRepository;
@@ -64,6 +66,11 @@ public class ParameterServiceBean implements ParameterService {
 	@Transactional
 	public Parameter getEagerly(Long id) {
 		return parameterRepository.getEagerly(id);
+	}
+
+	@Transactional
+	public Set<UnitOfMeasurement> getAcceptedUOMs(Long id) {
+		return parameterRepository.getEagerly(id).getAcceptedUOM();
 	}
 
 }
