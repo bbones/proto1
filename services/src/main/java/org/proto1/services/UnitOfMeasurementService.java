@@ -28,4 +28,6 @@ public interface UnitOfMeasurementService {
 	 */
 	UnitOfMeasurementName saveName(UnitOfMeasurementName uomName);
 
+	List<UnitOfMeasurementName> getUOMNamesList(Long uomId);
+
 }

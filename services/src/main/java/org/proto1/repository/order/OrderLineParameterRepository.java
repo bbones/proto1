@@ -14,7 +14,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface OrderLineParameterRepository extends CrudRepository<OrderLineParameter, Long> {
 	
-	@Query("select new Map(olp.id as olpId, olp.value as olpValue, pp.id as prodParamId, pp.parameter.id as paramId, "
+	@Query("select new Map(olp.id as olpId, olp.value as olpValue, olp.orderLine.id as olId, olp.version as version, "
+			+ "pp.id as prodParamId, pp.parameter.id as paramId, "
 			+ "olp.derivative as derivative, pn.name as paramName, uom.id as uomId, uomn.shortName as uomName) "
 			+ "from OrderLineParameter olp join olp.productParameter pp join pp.parameter.parameterNames pn "
 			+ "left join olp.unitOfMeasurement uom left join uom.unitOfMeasurementNames uomn "
@@ -27,7 +28,8 @@ public interface OrderLineParameterRepository extends CrudRepository<OrderLinePa
  * getOrderLineParameters
  */
 /*
-select olp.id as olpId, olp.value as olpValue, pp.id as prodParamId, olp.derivative as derivative, 
+select olp.id as olpId, olp.value as olpValue,  olp.orderLine.id as olId, olp.version as version, 
+	pp.id as prodParamId, olp.derivative as derivative, 
 	pn.name as paramName, uom.id as uomId, uomn.shortName as uomName	
 from OrderLineParameter olp join olp.productParameter pp join pp.parameter.parameterNames pn
 	left join olp.unitOfMeasurement uom left join uom.unitOfMeasurementNames uomn 

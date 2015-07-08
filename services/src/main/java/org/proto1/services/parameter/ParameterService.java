@@ -14,6 +14,8 @@ public interface ParameterService {
 
 	Parameter get(Long id);
 	
+	Parameter getEagerly(Long id);
+	
 	List<Map<String, Object>> getParameterList(Long languageId);
 
 	List<ParameterName>  getNames(Long parameterId);
@@ -31,5 +33,8 @@ public interface ParameterService {
 	ParameterName saveParameterName(ParameterName parameterName);
 
 	void deleteParameter(Long parameterId);
+
+	void deleteParameterName(Long parameterNameId);
+
 
 }

@@ -64,13 +64,12 @@ public class UOMController {
 
 	@RequestMapping(value = "{uomId}/names", method = RequestMethod.GET)
 	public @ResponseBody List<UnitOfMeasurementNameDTO> getNamesList(@PathVariable Long uomId) {
-		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
-		List<UnitOfMeasurementNameDTO> uomNameDTOs = new ArrayList<UnitOfMeasurementNameDTO>();
-		for (UnitOfMeasurementName uomName : uom.getUnitOfMeasurementNames()) {
-			UnitOfMeasurementNameDTO uomNameDTO = mapper.map(uomName, UnitOfMeasurementNameDTO.class);
-			uomNameDTOs.add(uomNameDTO);
-		}
-		return uomNameDTOs;
+		List<UnitOfMeasurementNameDTO> uomNamesDTO = new ArrayList<UnitOfMeasurementNameDTO>();
+		
+		List<UnitOfMeasurementName> uomNamesList = unitOfMeasurementService.getUOMNamesList(uomId);
+		for(UnitOfMeasurementName uomn : uomNamesList) 
+			uomNamesDTO.add(mapper.map(uomn, UnitOfMeasurementNameDTO.class)); 
+		return uomNamesDTO;
 	}
 
 	@RequestMapping(value = "names", method = RequestMethod.POST)

@@ -7,6 +7,8 @@ package org.proto1.services.parameter;
 import java.util.List;
 import java.util.Map;
 
+import javax.transaction.Transactional;
+
 import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.repository.ParameterNameRepository;
@@ -52,6 +54,16 @@ public class ParameterServiceBean implements ParameterService {
 	 */
 	public ParameterName saveParameterName(ParameterName parameterName) {
 		return parameterNameRepository.save(parameterName);
+	}
+
+	public void deleteParameterName(Long parameterNameId) {
+		parameterNameRepository.delete(parameterNameId);
+		
+	}
+
+	@Transactional
+	public Parameter getEagerly(Long id) {
+		return parameterRepository.getEagerly(id);
 	}
 
 }

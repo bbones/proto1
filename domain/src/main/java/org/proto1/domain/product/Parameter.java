@@ -35,11 +35,11 @@ public class Parameter extends AbstractEntity {
 	@Enumerated(EnumType.STRING)
 	private Type type;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="parameter")
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL, mappedBy="parameter")
 	@JsonIgnore
 	private List<ParameterName> parameterNames = new ArrayList<ParameterName>();
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private Set<UnitOfMeasurement> acceptedUOM = new HashSet<UnitOfMeasurement>();
 	
 	public Type getType() {

@@ -50,6 +50,11 @@
 				<class-b>org.proto1.domain.product.Parameter</class-b>
 			</converter>
 
+			<converter type="org.proto1.mapper.LongProductParameterConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.product.ProductParameter</class-b>
+			</converter>
+
 			<converter type="org.proto1.mapper.LongOrderLineConverter">
 				<class-a>java.lang.Long</class-a>
 				<class-b>org.proto1.domain.order.OrderLine</class-b>

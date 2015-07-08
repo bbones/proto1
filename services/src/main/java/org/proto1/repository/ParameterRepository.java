@@ -17,5 +17,8 @@ public interface ParameterRepository extends CrudRepository<Parameter, Long> {
 			"from Parameter p join p.parameterNames pn  " + 
 			"where pn.language.id = :language_id")
 	public List<Map<String, Object>> getList(@Param("language_id") Long languageId);
+
+	@Query("SELECT p FROM Parameter p JOIN FETCH p.acceptedUOM WHERE p.id = (:id)")
+	public Parameter getEagerly(@Param("id") Long id);
 	
 }

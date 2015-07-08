@@ -49,4 +49,8 @@ public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 		return uomNameRepository.save(uomName);
 	}
 
+	public List<UnitOfMeasurementName> getUOMNamesList(Long uomId) {
+		return uomNameRepository.findByUnitOfMeasurementId(uomId);
+	}
+
 }

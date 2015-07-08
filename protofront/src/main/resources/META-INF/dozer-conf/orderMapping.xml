@@ -40,5 +40,32 @@
 		</field>
 	</mapping>
 
-
+	<mapping>
+		<class-a>org.proto1.domain.order.OrderLineParameter</class-a>
+		<class-b>org.proto1.dto.order.OrderLineParameterDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>olpId</b>
+		</field>
+		<field>
+			<a>orderLine</a>
+			<b>olId</b>
+		</field>
+		<field>
+			<a>productParameter</a>
+			<b>prodParamId</b>
+		</field>
+		<field>
+			<a>unitOfMeasurement</a>
+			<b>uomId</b>
+		</field>
+		<field>
+			<a>value</a>
+			<b>olpValue</b>
+		</field>
+		<field>
+			<a>derivative</a>
+			<b>derivative</b>
+		</field>
+	</mapping>
 </mappings>
