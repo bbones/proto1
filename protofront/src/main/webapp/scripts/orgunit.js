@@ -8,6 +8,7 @@
 
 var OrgUnitLib = (function() {
 	var currentPartyId = null;
+	var currentOUId = null;
 	
 	function initEnterpriseSelector() {
 		$('#enterprise').combogrid({
@@ -21,19 +22,25 @@ var OrgUnitLib = (function() {
       	    mode: 'remote',
       	    pagination : true,
       		columns: [[
-      		         {field:'partyId',title:'Code',width:120,sortable:true},
-      		         {field:'partyName',title:'Name',width:400,sortable:true}
+      		         {field:'id',title:'Code',width:120,sortable:true},
+      		         {field:'name',title:'Name',width:400,sortable:true}
       		     ]],
       		onSelect : function(index, row) {
       			console.log(row);
-      			currentPartyId = row.partyId;
-      			var event = jQuery.Event( "partySelected" );
-      			$("#test").tigger(event, row.partyId);
+      			currentPartyId = row.id;
+      			var event = jQuery.Event( "enterpriseSelected" );
+      			$("#test").trigger(event, row.id);
       		}
 		});
 	}
 	
 	function initMasterGrid() {
+		$("#test").on("enterpriseSelected", function(event, enterpriseId){
+			$("#edgMaster").edatagrid({
+				url : '/protofront/service/orgunits/enterprise/' + enterpriseId + '?languageId=' + IndexLib.lang()
+			}); 
+		});
+			
 
 		$("#edgMaster").edatagrid({
 			toolbar : IndexLib.edgmenu({ 
@@ -60,6 +67,7 @@ var OrgUnitLib = (function() {
 			onSelect : function(index, row) {
 				if (row.id) {
 					if (typeof row.id != 'undefined') {
+						currentOUId = row.id;
 						var event = jQuery.Event( "orgUnitSelected" );
 						$("#test").trigger(event, row.id);
 						$("#edgNames").edatagrid({
@@ -82,7 +90,7 @@ var OrgUnitLib = (function() {
 			method : 'GET',
 			toolbar : IndexLib.edgmenu({ 
 				add : function(){
-					$("#edgNames").edatagrid('addRow');
+					$("#edgNames").edatagrid('addRow', {row : {ouId : currentOUId}});
 				},
 				save : function(){
 					$("#edgNames").edatagrid('saveRow');

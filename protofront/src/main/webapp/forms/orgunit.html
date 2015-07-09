@@ -22,11 +22,11 @@
 						data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'enterpriseNameId'">
 						<thead>
 							<tr>
-								<th field='nameId' width=80>Enterprise Name Id</th>
+								<th field='ounId' width=80>Name Id</th>
 								<th
 									data-options="field:'languageId',width:100,
                         			formatter:ClientRepo.languageFormatter,
-                       				editor:ClientRepo.getLanguageEditor">Language</th>
+                       				editor:ClientRepo.languageEditor()">Language</th>
 								<th field='name' editor="text">Org Unit Name</th>
 							</tr>
 						</thead>

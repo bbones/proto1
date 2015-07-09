@@ -13,7 +13,7 @@ import org.proto1.domain.Language;
 @Table(name="ORGANIZATION_UNIT_NAME")
 public class OrganizationUnitName extends AbstractEntity {
 	
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name="ORGANIZATION_UNIT_ID")
 	private OrganizationUnit organizationUnit;
 

@@ -25,6 +25,16 @@
 				<class-b>org.proto1.domain.party.Party</class-b>
 			</converter>
 
+			<converter type="org.proto1.mapper.LongOrganizationUnitConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.party.OrganizationUnit</class-b>
+			</converter>
+
+			<converter type="org.proto1.mapper.LongEnterpriseConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.party.Enterprise</class-b>
+			</converter>
+
 			<converter type="org.proto1.mapper.LongProductConverter">
 				<class-a>java.lang.Long</class-a>
 				<class-b>org.proto1.domain.product.Product</class-b>

@@ -20,7 +20,7 @@ public interface EnterpriseRepository extends CrudRepository<Enterprise, Long> {
 			"where en.language.id = :language_id")
 	public List<Map<String, Object>> getListByLanguageId(@Param("language_id") Long languageId);
 
-	@Query("select count(p)"
+	@Query("select count(e)"
 			+ "from Enterprise e join e.enterpriseNames en  "
 			+ "where (en.language.id=:language_id) and (en.name like :srch)")
 	public Long getEnterpriseCounter(@Param("language_id") Long languageId, @Param("srch") String searchStr);

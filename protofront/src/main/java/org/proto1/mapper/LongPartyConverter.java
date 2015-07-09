@@ -4,7 +4,10 @@ import org.dozer.DozerConverter;
 import org.proto1.domain.party.Party;
 import org.proto1.services.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+
+@Component
 public class LongPartyConverter extends DozerConverter<Long, Party> {
 	
 	@Autowired

@@ -105,7 +105,7 @@ public class ParameterController {
 
 	@RequestMapping(value = "{id}/uoms", method = RequestMethod.GET)
 	public @ResponseBody List<Long> getParameterUOMs(@PathVariable Long id) {
-		Set<UnitOfMeasurement> uomSet = parameterService.getEagerly(id).getAcceptedUOM();
+		Set<UnitOfMeasurement> uomSet = parameterService.getAcceptedUOMs(id);
 		List<Long> result = new ArrayList<Long>();
 		for(UnitOfMeasurement uom : uomSet) 
 			result.add(uom.getId());
@@ -115,7 +115,7 @@ public class ParameterController {
 
 	@RequestMapping(value = "{parameterId}/uoms", method = RequestMethod.POST)
 	public void addUOM(@PathVariable Long parameterId, @RequestParam Long uomId) {
-		Parameter parameter = parameterService.get(parameterId);
+		Parameter parameter = parameterService.getEagerly(parameterId);
 		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
 		parameter.getAcceptedUOM().add(uom);
 		parameterService.save(parameter);
@@ -123,7 +123,7 @@ public class ParameterController {
 
 	@RequestMapping(value = "{parameterId}/uoms/{uomId}", method = RequestMethod.DELETE)
 	public void removeUOM(@PathVariable Long parameterId, @PathVariable Long uomId) {
-		Parameter parameter = parameterService.get(parameterId);
+		Parameter parameter = parameterService.getEagerly(parameterId);
 		UnitOfMeasurement uom = unitOfMeasurementService.get(uomId);
 		parameter.getAcceptedUOM().remove(uom);
 		parameterService.save(parameter);

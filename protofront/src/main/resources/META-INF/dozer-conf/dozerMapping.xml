@@ -216,10 +216,6 @@
 			<b>languageId</b>
 		</field>
 		<field>
-			<a>language.name</a>
-			<b>languageName</b>
-		</field>
-		<field>
 			<a>lastName</a>
 			<b>lastName</b>
 		</field>
@@ -232,5 +228,41 @@
 			<b>middleName</b>
 		</field>
 	</mapping>
+	
+	<mapping>
+		<class-a>org.proto1.domain.party.OrganizationUnit</class-a>
+		<class-b>org.proto1.dto.OrganizationUnitDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>enterprise</a>
+			<b>enterpriseId</b>
+		</field>
+		
+	</mapping>
+	
+	<mapping>
+		<class-a>org.proto1.domain.party.OrganizationUnitName</class-a>
+		<class-b>org.proto1.dto.OrganizationUnitNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>ounId</b>
+		</field>
+		<field>
+			<a>organizationUnit</a>
+			<b>ouId</b>
+		</field>
+		<field>
+			<a>language</a>
+			<b>languageId</b>
+		</field>
+		<field>
+			<a>unitName</a>
+			<b>name</b>
+		</field>
+	</mapping>
+	
 	
 </mappings>

@@ -19,10 +19,6 @@ public class OrganizationUnitServiceBean implements OrganizationUnitService {
 	@Autowired
 	OrganizationUnitNameRepository organizationUnitNameRepository;
 
-	public List<Map<String, Object>> getList(Long languageId) {
-		return organizationUnitRepository.getList(languageId);
-	}
-
 	public OrganizationUnit get(Long organizatioUnitId) {
 		return organizationUnitRepository.findOne(organizatioUnitId);
 	}
@@ -39,4 +35,15 @@ public class OrganizationUnitServiceBean implements OrganizationUnitService {
 		return organizationUnitNameRepository.getByOrganizationUnitId(id);
 	}
 
+	public List<Map<String, Object>> getList(Long enterpriseId, Long languageId) {
+		return organizationUnitRepository.getList(enterpriseId, languageId);
+	}
+
+	public OrganizationUnitName saveName(OrganizationUnitName oun) {
+		return organizationUnitNameRepository.save(oun);
+	}
+
+	public void deleteName(Long id) {
+		organizationUnitNameRepository.delete(id);
+	}
 }

@@ -15,7 +15,7 @@ import org.proto1.domain.AbstractEntity;
 @Entity
 @Table(name="ORGANIZATION_UNIT")
 public class OrganizationUnit extends AbstractEntity {
-	@ManyToOne
+	@ManyToOne(optional=false)
 	@JoinColumn(name="ENTERPRISE_ID")
 	private Enterprise enterprise;
 	

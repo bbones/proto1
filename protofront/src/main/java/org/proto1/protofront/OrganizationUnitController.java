@@ -28,9 +28,9 @@ public class OrganizationUnitController extends BaseController {
 	@Autowired
 	Mapper mapper;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET )
-	public @ResponseBody List<Map<String, Object>>  getList(@RequestParam Long languageId) {
-		return organizationUnitService.getList(languageId);
+	@RequestMapping(value = "/enterprise/{enterpriseId}", method = RequestMethod.GET )
+	public @ResponseBody List<Map<String, Object>>  getList(@PathVariable Long enterpriseId, @RequestParam Long languageId) {
+		return organizationUnitService.getList(enterpriseId, languageId);
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST )
@@ -40,10 +40,17 @@ public class OrganizationUnitController extends BaseController {
 		oun.setLanguage(mapper.map(languageId,  Language.class));
 		oun.setOrganizationUnit(ou);
 		oun.setUnitName(organizationUnitDTO.getName());
+		if (ou.getNames() == null)
+			ou.setNames(new ArrayList<OrganizationUnitName>());
 		ou.getNames().add(oun);
 		organizationUnitService.save(ou);
 		return organizationUnitDTO;
 		
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	public void delete(@PathVariable Long id) {
+		organizationUnitService.delete(id);
 	}
 
 	@RequestMapping(value = "{id}/names", method = RequestMethod.GET)
@@ -54,9 +61,17 @@ public class OrganizationUnitController extends BaseController {
 		return ounList;
 	}
 	
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-	public void delete(@PathVariable Long id) {
-		organizationUnitService.delete(id);
+	@RequestMapping(value = "names", method = RequestMethod.POST)
+	public @ResponseBody OrganizationUnitNameDTO saveName(OrganizationUnitNameDTO ounDTO) {
+		OrganizationUnitName oun = mapper.map(ounDTO, OrganizationUnitName.class);
+		oun = organizationUnitService.saveName(oun);
+		ounDTO.setOuId(oun.getId());
+		return ounDTO;
+	}
+	
+	@RequestMapping(value = "names/{id}", method = RequestMethod.DELETE)
+	public void deleteName(@PathVariable Long id) {
+		organizationUnitService.deleteName(id);
 	}
 
 
