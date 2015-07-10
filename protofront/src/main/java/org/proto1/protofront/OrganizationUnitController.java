@@ -44,6 +44,7 @@ public class OrganizationUnitController extends BaseController {
 			ou.setNames(new ArrayList<OrganizationUnitName>());
 		ou.getNames().add(oun);
 		organizationUnitService.save(ou);
+		organizationUnitDTO.setId(ou.getId());
 		return organizationUnitDTO;
 		
 	}
@@ -65,7 +66,7 @@ public class OrganizationUnitController extends BaseController {
 	public @ResponseBody OrganizationUnitNameDTO saveName(OrganizationUnitNameDTO ounDTO) {
 		OrganizationUnitName oun = mapper.map(ounDTO, OrganizationUnitName.class);
 		oun = organizationUnitService.saveName(oun);
-		ounDTO.setOuId(oun.getId());
+		ounDTO.setOunId(oun.getId());
 		return ounDTO;
 	}
 	
