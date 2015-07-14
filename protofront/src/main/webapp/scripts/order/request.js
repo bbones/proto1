@@ -15,12 +15,13 @@ var RequestMod = (function() {
 			.done(function() {
 				console.log("OrderMod loaded");
 				RequestOrder.prototype = OrderMod.getInstance();
-				RequestOrder.protorype.load = function() {
+				RequestOrder.prototype.load = function(orderURL) {
 					console.log('RequestOrder.load');
-					OrderMod.getOrder.prototype.load(call, this);
+					OrderMod.getOrder().prototype.load.call(this,orderURL);
 					$("#orderDetails").panel({
 						href : '/protofront/forms/requestOrder.html',
 						onLoad : function() {
+							debugger;
 							$("#test").on("orderSelected", function(event, orderId){
 								if (typeof orderId !== 'undefined') {
 									$("#req").form('load', '/protofront/service/requests/' + orderId + '?languageId=' +  IndexLib.lang());
