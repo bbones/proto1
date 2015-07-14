@@ -166,7 +166,7 @@ var OrderMod = (function() {
 	};
 
 	Order.prototype.load  = function(orderUrl) {
-		console.log('OrderMod.load');
+		console.log('Order.load');
 		$("#test").unbind();
 		$("#test").panel({
 			href : '/protofront/forms/order.html', 

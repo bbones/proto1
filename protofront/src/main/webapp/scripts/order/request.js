@@ -9,34 +9,38 @@ var RequestMod = (function() {
 		
 	};
 	
-	$("#orderDetails").panel({
-		href : '/protofront/forms/requestOrder.html',
-		onLoad : function() {
-			$("#test").on("orderSelected", function(event, orderId){
-				if (typeof orderId !== 'undefined') {
-					$("#req").form('load', '/protofront/service/requests/' + orderId + '?languageId=' +  IndexLib.lang());
-				}
-			});
-			$("#isdate").datebox({
-				
-				formatter:IndexLib.dateFormatter,
-				
-				parser:IndexLib.dateParser
-
-			});
-		},
-		onLoadError : function(msg) {
-			console.log('Error');
-			console.log(msg);
-		}
-	});
-
 	function initRequest () {
 		console.log("initRequest");
 		$.getScript("/protofront/scripts/order/ordermod.js")
 			.done(function() {
 				console.log("OrderMod loaded");
 				RequestOrder.prototype = OrderMod.getInstance();
+				RequestOrder.protorype.load = function() {
+					console.log('RequestOrder.load');
+					OrderMod.getOrder.prototype.load(call, this);
+					$("#orderDetails").panel({
+						href : '/protofront/forms/requestOrder.html',
+						onLoad : function() {
+							$("#test").on("orderSelected", function(event, orderId){
+								if (typeof orderId !== 'undefined') {
+									$("#req").form('load', '/protofront/service/requests/' + orderId + '?languageId=' +  IndexLib.lang());
+								}
+							});
+							$("#isdate").datebox({
+								
+								formatter:IndexLib.dateFormatter,
+								
+								parser:IndexLib.dateParser
+
+							});
+						},
+						onLoadError : function(msg) {
+							console.log('Error');
+							console.log(msg);
+						}
+					});
+
+				}
 				var requestOrder = new RequestOrder();
 				requestOrder.load("/protofront/service/requests/");
 			})
