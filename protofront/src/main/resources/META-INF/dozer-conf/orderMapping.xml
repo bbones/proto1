@@ -68,4 +68,12 @@
 			<b>derivative</b>
 		</field>
 	</mapping>
+	
+	<mapping>
+		<class-a>org.proto1.domain.order.Request</class-a>
+		<class-b>org.proto1.dto.order.RequestDTO</class-b>
+		<field>
+			<a>organizationUnit</a>
+		</field>
+	</mapping>
 </mappings>

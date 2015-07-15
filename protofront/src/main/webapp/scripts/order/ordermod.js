@@ -8,10 +8,8 @@ var OrderMod = (function() {
 	var orderURL = null;
 	var currentOrderId = null;
 	var currentOrderLineId = null;
-
-	function Order() {
-	};
-
+	var options = null;
+	
 	function initOrderGrid() {
 		console.log(orderURL);
 		$("#edgOrder").edatagrid({
@@ -165,7 +163,7 @@ var OrderMod = (function() {
 		});
 	};
 
-	Order.prototype.load  = function(orderUrl) {
+	function load(orderUrl) {
 		console.log('Order.load');
 		$("#test").unbind();
 		$("#test").panel({
@@ -175,14 +173,18 @@ var OrderMod = (function() {
 				initOrderGrid();
 				initLinesGrid();
 				initLineParam();
+				if (typeof options.onLoad != 'undefined') {
+					options.onLoad();
+				}
 			}
 		});
 	};
 
 	return {
-		init : function() {},
-		getInstance : function() { return new Order();},
-		getOrder : function() { return Order },
+		init : function(opt) {
+			options = opt;
+			load(options.url);
+		},
 		button : function (value, row, index) {
             return '<input type="button" onclick="alert(' + row.olpId + ')" value="Add" class="GridButton"/>';
         }

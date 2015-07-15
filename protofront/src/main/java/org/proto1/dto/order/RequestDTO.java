@@ -12,5 +12,15 @@ package org.proto1.dto.order;
 public class RequestDTO extends OrderDTO {
 
 	private static final long serialVersionUID = 3696315588089558839L;
+	
+	private Long orgUnitId;
+
+	public Long getOrgUnitId() {
+		return orgUnitId;
+	}
+
+	public void setOrgUnitId(Long orgUnitId) {
+		this.orgUnitId = orgUnitId;
+	}
 
 }
