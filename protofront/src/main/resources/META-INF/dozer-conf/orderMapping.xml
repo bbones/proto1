@@ -74,6 +74,7 @@
 		<class-b>org.proto1.dto.order.RequestDTO</class-b>
 		<field>
 			<a>organizationUnit</a>
+			<b>orgUnitId</b>
 		</field>
 	</mapping>
 </mappings>
