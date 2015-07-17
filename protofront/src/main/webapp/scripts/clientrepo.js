@@ -17,6 +17,8 @@ var ClientRepo = (function() {
 	var uomList = null;
 	var uomMap = new Object;
 	var uomEditor = null;
+	var orgUnitList = [];
+	var orgUnitMap = {};
 	var afterInit = null;
 	
 	var counter = 0;
@@ -29,7 +31,7 @@ var ClientRepo = (function() {
 	
 	function checkCounter() {
 		counter++;
-		if (counter === 3) {
+		if (counter === 4) {
 			var event = $.Event( 'RepoLoaded' );
 			$("#desktop").trigger(event);
 		}
@@ -63,6 +65,18 @@ var ClientRepo = (function() {
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				currencyMap[dataArray[i].numCode] = dataArray[i].charCode;
+			};
+		});
+
+		checkCounter();
+	};
+	
+	function loadUrgUnits() {
+		$.ajax('/protofront/service/orgunits/enterprise/' + 45 +'?languageId=' + IndexLib.lang()).done(function(dataArray) {
+			orgUnitList = dataArray;
+			var length = dataArray.length;
+			for(var i = 0; i < length; i++) {
+				orgUnitMap[dataArray[i].id] = dataArray[i].name;
 			};
 		});
 
@@ -114,6 +128,7 @@ var ClientRepo = (function() {
 		loadLanguages();
 		loadCurrencies();
 		loadUoms();
+		loadUrgUnits();
 	}
 	return {
 		init : init,
@@ -147,8 +162,16 @@ var ClientRepo = (function() {
         },
         uomEditor : function () {
         	return uomEditor;
+		},
+        orgUnitFormatter : function(value, row) {
+        	return uomMap[value];
+        },
+        orgUnitEditor : function () {
+        	return uomEditor;
+		},
+		getOrgUnitList : function() {
+			return orgUnitList;
 		}
-
 	}
 })();
 

@@ -33,6 +33,11 @@ var RequestMod = (function() {
 									parser:IndexLib.dateParser
 
 								});
+								$("#orgUnit").combobox({
+									data : ClientRepo.getOrgUnitList(),
+									valueField : 'id',
+									textField : 'name'
+								});
 							},
 							onLoadError : function(msg) {
 								console.log('Error');
