@@ -20,9 +20,13 @@ var OrderMod = (function() {
 			toolbar : IndexLib.edgmenu({
 				add : function(){
 					$("#edgOrder").edatagrid('addRow');
+					var addPressed = jQuery.Event('addPressed');
+					$("#test").trigger(addPressed);
 				},
 				save : function(){
-					$("#edgOrder").edatagrid('saveRow');
+					var savePressed = jQuery.Event('savePressed');
+					$("#test").trigger(savePressed);
+					// $("#edgOrder").edatagrid('saveRow');
 				},
 				destroy : function(){
 					$("#edgOrder").edatagrid('destroyRow');

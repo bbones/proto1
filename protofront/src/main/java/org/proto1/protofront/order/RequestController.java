@@ -44,16 +44,11 @@ public class RequestController extends BaseOrderController<RequestService> {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST )
-	public @ResponseBody Map<String, Object> save(@RequestParam Long languageId,
-			RequestDTO requestDTO) 
-			throws InstantiationException, IllegalAccessException, ParseException {
+	public @ResponseBody RequestDTO save(RequestDTO requestDTO) {
 		Request po = mapper.map(requestDTO, Request.class);
 		po = baseOrderService.save(po);
-		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("orderId", po.getId());
-		result.put("orderNo", po.getDocumentNo());
-		result.put("issueDate", po.getIssueDate());
-		return result;
+		requestDTO.setId(po.getId());
+		return requestDTO;
 	}
 	
 	@RequestMapping(value = "/{requestId}", method = RequestMethod.DELETE)

@@ -22,10 +22,18 @@ var RequestMod = (function() {
 						$("#orderDetails").panel({
 							href : '/protofront/forms/requestOrder.html',
 							onLoad : function() {
+								 
 								$("#test").on("orderSelected", function(event, orderId){
 									if (typeof orderId !== 'undefined') {
 										$("#req").form('load', '/protofront/service/requests/' + orderId + '?languageId=' +  IndexLib.lang());
 									}
+								});
+								
+								$("#test").on("savePressed", function(event) {
+									$("#req").form('submit', {url : "/protofront/service/requests/?languageId=" + IndexLib.lang()});
+								});
+								$("#test").on("addPressed", function(event) {
+									$("#req").form('clear');
 								});
 								$("#isdate").datebox({
 									

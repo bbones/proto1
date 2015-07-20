@@ -30,6 +30,7 @@ var ContractLib = (function(){
 				save : function(){
 					$("#cf").form('submit', {
 					    success:function(data){
+					    	debugger;
 					    	var row = $("#edgContract").edatagrid('getSelected');
 					    	var index = $("#edgContract").edatagrid('getRowIndex', row);
 					    	

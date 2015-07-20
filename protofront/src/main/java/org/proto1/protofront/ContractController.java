@@ -17,6 +17,7 @@ import org.proto1.dto.ContractSupplementDTO;
 import org.proto1.services.ContractService;
 import org.proto1.services.LanguageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,7 +43,7 @@ public class ContractController extends BaseController {
 	}
 
 
-	@RequestMapping(value = "/", method = RequestMethod.POST )
+	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE, headers = "Accept=*" )
 	public @ResponseBody ContractDTO submit(ContractDTO contractDTO) {
 		Contract contract = mapper.map(contractDTO, Contract.class);
 		contract = contractService.save(contract);
