@@ -2,44 +2,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
 <title>Ajax demo with HowToDoInJava.com</title>
-<script src="scripts/jquery-2.1.1.js"></script>
-<script src="scripts/i18next-1.7.4.js"></script>
-<script src="scripts/protoscript.js"></script>
+
+<link rel="stylesheet" type="text/css"	href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"	href="easyui/themes/default/demo.css">
+<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
+
+<script type="text/javascript" src="easyui/jquery.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
+<script type="text/javascript" src="easyui/jquery.edatagrid.js"></script>
 
 
 </head>
 <body>
-	<p>Call server</p>
+	 <form id="cf" action="/protofront/service/contracts/" method="post">
+        <table>
+            <tr>
+                <td>Id:</td>
+                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
+            </tr>
+            <tr>
+                <td>Contract #:</td>
+                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
+            </tr>
+            <tr>
+                <td>Issue date:</td>
+                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
+            </tr>
+            <tr>
+                <td>Version</td>
+                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
+                
+            </tr>
+        </table>
+    </form>
 
-	<br />
-	<input type="button" value="Test"
-		onclick='jQueryRequest("/protofront/service/greeting/test/Vlya")' />
-	<br />
-	<br /> Message from server ::
-	<span id="message"></span>
-
-	<ul class="nav">
-		<li><a href="#" data-i18n="nav.home">Test</a></li>
-		<li><a href="#" data-i18n="nav.page1"></a></li>
-		<li><a href="#" data-i18n="nav.page2"></a></li>
-	</ul>
-	<br />
-
-	<input type="button" value="Test submit"
-		onclick='submitBtnAction("/protofront/service/greeting/test/Vlya")' />
-	<br />
-	
-	<script>
-		var options = {
-			lng : "ua",
-			resGetPath : './locales/__lng__/__ns__.json'
-		};
-		i18n.init(options, function(t) {
-			$(".nav").i18n();
-		});
+    <div style="text-align:center;padding:5px">
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">Submit</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" onclick="clearForm()">Clear</a>
+    </div>
+    
+   	<script>
+	    $('#cf').form({
+	    	ajax : true,
+	        success:function(data){
+	            $.messager.alert('Info', data, 'info');
+	        }
+	    });
+	    function submitForm(){
+	        $('#cf').form('submit');
+	    }
+	    function clearForm(){
+	        $('#cf').form('clear');
+	    }
 	</script>
+    
 
 </body>
 </html>

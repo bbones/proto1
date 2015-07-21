@@ -20,6 +20,8 @@ import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter.XFrameOptionsMode;
 
 @Configuration
 @EnableWebSecurity
@@ -67,6 +69,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 						statelessAuthenticationFilter(),
 						UsernamePasswordAuthenticationFilter.class)
 				.servletApi().and().headers().cacheControl();
+		http.headers().defaultsDisabled().addHeaderWriter(
+				new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN));
 
 	}
 

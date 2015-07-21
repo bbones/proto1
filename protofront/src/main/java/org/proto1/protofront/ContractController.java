@@ -43,12 +43,14 @@ public class ContractController extends BaseController {
 	}
 
 
-	@RequestMapping(value = "/", method = RequestMethod.POST )
-	public @ResponseBody ContractDTO submit(ContractDTO contractDTO) {
+	@RequestMapping(value = "/", method = RequestMethod.POST, produces=MediaType.TEXT_HTML_VALUE)
+	public @ResponseBody String submit(ContractDTO contractDTO) {
 		Contract contract = mapper.map(contractDTO, Contract.class);
 		contract = contractService.save(contract);
 		mapper.map(contract, contractDTO);
-		return contractDTO;
+		return "<body>" +
+			"<textarea>{'id':'12','documentNo':'docno'}</textarea>"+
+			"</body>";
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
