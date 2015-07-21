@@ -11,9 +11,7 @@
     <module>domain</module>
     <module>generator</module>
     <module>tools</module>
-  <module>services</module>
-    <module>gwt</module>
-    <module>webfront</module>
+    <module>services</module>
     <module>protofront</module>
   </modules>
 </project>

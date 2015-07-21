@@ -24,22 +24,13 @@ var ContractLib = (function(){
 				add : function(){
 					$("#edgContract").edatagrid('addRow');
 					$("#cf").form('clear');
+					$("#cf").form('load', { documentNo : "DOCNO", issueDate : new Date()});
 					$("#edgSides").edatagrid('loadData', []);
 					$("#edgSupplement").edatagrid('loadData', []);
 				},
 				save : function(){
-					$("#cf").form('submit', {
-					    success:function(data){
-					    	debugger;
-					    	var row = $("#edgContract").edatagrid('getSelected');
-					    	var index = $("#edgContract").edatagrid('getRowIndex', row);
-					    	
-					    	$("#cf").form('load', JSON.parse(data));
-					    	$("#edgContract").edatagrid('updateRow', {
-					    		index : index,
-					    		row : JSON.parse(data)});
-					    } // Success
-					});
+					$("#cf").submit();
+					// $("#edgContract").edatagrid('saveRow');
 				},
 				destroy : function() {
 					$("#edgContract").edatagrid('destroyRow');
@@ -64,17 +55,19 @@ var ContractLib = (function(){
 
 	function initSidesGrid(){
 		$("#test").on("contractSelected", function(event, contractId){
-			$("#edgSides").edatagrid({
-				url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + IndexLib.lang(),
-				saveUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
-				updateUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
-				onDestroy : function(index, row) {
-		    		$.ajax({
-		    			url : '/protofront/service/contracts/sides/' + row.csId,
-		    			method : 'DELETE'
-		    		});
-				}
-			});
+			if ((typeof contractId) != 'undefined') {
+				$("#edgSides").edatagrid({
+					url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + IndexLib.lang(),
+					saveUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
+					updateUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
+					onDestroy : function(index, row) {
+			    		$.ajax({
+			    			url : '/protofront/service/contracts/sides/' + row.csId,
+			    			method : 'DELETE'
+			    		});
+					}
+				});
+			}
 		});
 		initRoleListAndMap();
 		$("#edgSides").edatagrid({
@@ -97,9 +90,11 @@ var ContractLib = (function(){
 		var supevent = jQuery.Event( "contractSupplementSelected" );
 
 		$("#test").on("contractSelected", function(event, contractId){
-			$("#edgSupplement").edatagrid({
-				url : "/protofront/service/contracts/" + contractId + "/supplements"
-			});
+			if ((typeof contractId) != 'undefined') {
+				$("#edgSupplement").edatagrid({
+					url : "/protofront/service/contracts/" + contractId + "/supplements"
+				});
+			}
 		});
 		$("#edgSupplement").edatagrid({
 			toolbar : IndexLib.edgmenu({
@@ -159,6 +154,21 @@ var ContractLib = (function(){
 				$("#cf").form('load', '/protofront/service/contracts/' + contractId);
 			}
 		});
+		$("#cf").form({
+			url : "/protofront/service/contracts/", 
+			ajax : true,
+		    success:function(data){
+		    	alert(data);
+//		    	var row = $("#edgContract").edatagrid('getSelected');
+//		    	var index = $("#edgContract").edatagrid('getRowIndex', row);
+//		    	
+//		    	$("#cf").form('load', JSON.parse(data));
+//		    	$("#edgContract").edatagrid('updateRow', {
+//		    		index : index,
+//		    		row : JSON.parse(data)});
+		    } // Success
+		});
+
 		$("#isdate").datebox({
 			
 			formatter:IndexLib.dateFormatter,

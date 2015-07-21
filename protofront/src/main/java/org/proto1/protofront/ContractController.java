@@ -43,7 +43,7 @@ public class ContractController extends BaseController {
 	}
 
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE, headers = "Accept=*" )
+	@RequestMapping(value = "/", method = RequestMethod.POST )
 	public @ResponseBody ContractDTO submit(ContractDTO contractDTO) {
 		Contract contract = mapper.map(contractDTO, Contract.class);
 		contract = contractService.save(contract);

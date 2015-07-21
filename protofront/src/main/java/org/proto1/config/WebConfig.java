@@ -1,5 +1,6 @@
 package org.proto1.config;
  
+import java.util.Arrays;
 import java.util.List;
 
 import javax.xml.transform.Source;
@@ -7,6 +8,7 @@ import javax.xml.transform.Source;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.ByteArrayHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.ResourceHttpMessageConverter;
@@ -51,6 +53,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MappingJackson2HttpMessageConverter jackson2Converter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        // MediaType[] arr = new  MediaType[] { MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN, MediaType.TEXT_HTML };
+        // converter.setSupportedMediaTypes(Arrays.asList(arr));
         converter.setObjectMapper(objectMapper());
         return converter;
     }
