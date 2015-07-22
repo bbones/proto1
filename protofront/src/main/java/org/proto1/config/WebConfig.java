@@ -53,8 +53,8 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public MappingJackson2HttpMessageConverter jackson2Converter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
-        // MediaType[] arr = new  MediaType[] { MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN, MediaType.TEXT_HTML };
-        // converter.setSupportedMediaTypes(Arrays.asList(arr));
+        MediaType[] arr = new  MediaType[] { MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN, MediaType.TEXT_HTML };
+        converter.setSupportedMediaTypes(Arrays.asList(arr));
         converter.setObjectMapper(objectMapper());
         return converter;
     }
