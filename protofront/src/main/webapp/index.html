@@ -4,8 +4,10 @@
 <meta charset="UTF-8">
 <title>Proto One Home Page</title>
 
-<link rel="stylesheet" type="text/css"	href="easyui/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css"	href="easyui/themes/default/demo.css">
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css"
+	href="easyui/themes/default/demo.css">
 <link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
 
 <script type="text/javascript" src="easyui/jquery.min.js"></script>
@@ -13,22 +15,22 @@
 <script type="text/javascript" src="easyui/jquery.edatagrid.js"></script>
 <script src="scripts/protoscript.js"></script>
 <script src="scripts/index.js"></script>
-
 </head>
 
 <body id="desktop" class="easyui-layout">
 	<div data-options="region:'north',title:'Proto 1',split:true"
 		style="height: 75px;">
-		<div
-			style="background: #fafafa; padding: 5px;  border: 1px solid #ccc">
+		<div style="background: #fafafa; padding: 5px; border: 1px solid #ccc">
 			<a href="#" class="easyui-menubutton" menu="#mm1" iconCls="icon-man">File</a>
 			<a href="#" class="easyui-menubutton" menu="#mm2" iconCls="icon-edit">Edit</a>
 			<a href="#" class="easyui-menubutton" menu="#mm3" iconCls="icon-help">Help</a>
-			<input id="langSelector" class="easyui-combobox" name="language" value=3>
+			<input id="langSelector" class="easyui-combobox" name="language"
+				value=3>
 		</div>
 		<div id="mm1" style="width: 150px;">
-			<div iconCls="icon-lock">Log In</div>
-			<div iconCls="icon-lock">Log Out</div>
+			<div iconCls="icon-lock" id="miLogin">Log
+				In</div>
+			<div iconCls="icon-lock" id="miLogout">Log Out</div>
 			<div class="menu-sep"></div>
 			<div iconCls="icon-filesave">Save URL</div>
 		</div>
@@ -57,15 +59,20 @@
 		style="width: 300px;">
 		<div style="margin: 20px 0;"></div>
 		<div class="easyui-panel" style="padding: 5px">
-			<ul id="mainMenu" class="easyui-tree" data-options="url:'main_menu_RU.json', method : 'GET'"></ul>
+			<ul id="mainMenu" class="easyui-tree"
+				data-options="url:'main_menu_RU.json', method : 'GET'"></ul>
 		</div>
 	</div>
-	<div id="test" data-options="region:'center',title:'Document'" style="padding: 5px; background: #eee;">
-	</div>
+	<div id="test" data-options="region:'center',title:'Document'"
+		style="padding: 5px; background: #eee;"></div>
+
+	
+
 
 	<script>
 		IndexLib.init();
 	</script>
 
 </body>
+</html>
 </html>

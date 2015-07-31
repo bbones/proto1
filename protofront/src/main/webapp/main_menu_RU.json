@@ -95,5 +95,17 @@
 		        "text": "Склад"
 	    	}
 	    ]
+	    
 	}
+	,
+	{
+	    "id": "activiti",
+	    "text": "Задачи",
+	    "state": "closed",
+	    "children": [{
+	        "id": "myOpenTask",
+	        "text": "Незавершенные задачи",
+	        "module": "activiti/myTask.js"
+	    	}]
+	}	
 ]

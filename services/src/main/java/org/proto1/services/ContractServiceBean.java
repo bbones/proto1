@@ -15,26 +15,30 @@ import org.proto1.repository.ContractRepository;
 import org.proto1.repository.ContractSideRepository;
 import org.proto1.repository.ContractSupplementRepository;
 import org.proto1.repository.SideRoleRepository;
+import org.proto1.workflow.ApproveDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ContractServiceBean implements ContractService {
 	@Autowired
 	ContractRepository contractRepository;
-	
+
 	@Autowired
 	ContractSupplementRepository contractSupplementRepository;
 
 	@Autowired
 	ContractSideRepository contractSideRepository;
-	
+
 	@Autowired
 	SideRoleRepository sideRoleRepository;
-	
+	@Autowired 
+	ApproveDocumentService approveDocumentServiceBean;
+
 	public void setContractRepository(ContractRepository contractRepository) {
 		this.contractRepository = contractRepository;
-		
+
 	}
 
 	public Contract getContract(Long id) {
@@ -42,35 +46,47 @@ public class ContractServiceBean implements ContractService {
 	}
 
 	public Contract save(Contract contract) {
-		return contractRepository.save(contract);
+		Contract result = contractRepository.save(contract);
+		// TODO: Пример запуска workFlow. Продумать, где передавать тип approve
+		approveDocumentServiceBean.startApprove(result.getId(), 256l);
+		return result;
 	}
 
 	public void delete(Long id) {
 		contractRepository.delete(id);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.proto1.services.ContractService#getContracts()
 	 */
 	public List<Map<String, Object>> getContracts() {
 		return contractRepository.list();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.proto1.services.ContractService#getSupplements(java.lang.Long)
 	 */
+	@Secured("ROLE_SUPERUSER")
 	public List<Map<String, Object>> getSupplements(Long contractId) {
 		return contractSupplementRepository.list(contractId);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.proto1.services.ContractService#getSides(java.lang.Long)
 	 */
 	public List<Map<String, Object>> getSides(Long contractId, Long languageId) {
 		return contractSideRepository.list(contractId, languageId);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see org.proto1.services.ContractService#getRoles(java.lang.Long)
 	 */
 	public List<Map<String, Object>> getRoles(Long languageId) {
@@ -87,7 +103,7 @@ public class ContractServiceBean implements ContractService {
 
 	public void deleteSide(Long id) {
 		contractSideRepository.delete(id);
-		
+
 	}
 
 	public ContractSupplement getSupplement(Long supplementId) {

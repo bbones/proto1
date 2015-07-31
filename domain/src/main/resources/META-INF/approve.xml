@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="contractApproveType" class="org.proto1.domain.ApproveType">
+		<property name="name" value="Утверждение договора" />
+		<property name="description" value="Утверждение договора" />
+		<property name="approves">
+			<list>
+				<ref bean="contractApprove2013" />
+				<ref bean="contractApprove2014-2015" />
+			</list>
+
+		</property>
+	</bean>
+
+	<bean id="contractApprove2013" class="org.proto1.domain.Approve">
+		<property name="approveType" ref="contractApproveType" />
+		<property name="name" value="Старая редакция утверждения договора" />
+		<property name="processDefinitionKey" value="oldHelloworldProcess" />
+		<property name="beginDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2013-01-01" />
+			</bean>
+		</property>
+		<property name="endDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2014-01-01" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="contractApprove2014-2015" class="org.proto1.domain.Approve">
+		<property name="approveType" ref="contractApproveType" />
+		<property name="name" value="Новая редакция утверждения договора" />
+		<property name="processDefinitionKey" value="newHelloworldProcess" />
+		<property name="beginDate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2014-01-01" />
+			</bean>
+		</property>
+	</bean>
+	
+</beans>

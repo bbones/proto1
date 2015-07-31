@@ -35,7 +35,7 @@ public class TokenAuthenticationService {
 
 	public Authentication getAuthentication(HttpServletRequest request) {		
 		final String token = request.getHeader(AUTH_HEADER_NAME);
-		logger.debug("TokenAuthenticationService.getAuthentication token = "+token);
+		logger.debug("TokenAuthenticationService.getAuthentication token = "+token+" requestURI: "+request.getRequestURI());
 		if (token != null) {
 			final UserData userData = tokenHandler.parseUserDataFromToken(token);
 			if (userData != null) {

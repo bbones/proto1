@@ -97,4 +97,14 @@
 	    	}
 	    ]
 	}
+	{
+	    "id": "activiti",
+	    "text": "Tasks",
+	    "state": "closed",
+	    "children": [{
+	        "id": "myOpenTask",
+	        "text": "Open tasks",
+	        "module": "activiti/myTask.js"
+	    	}]
+	}	
 ]

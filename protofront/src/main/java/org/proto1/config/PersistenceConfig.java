@@ -3,6 +3,8 @@ package org.proto1.config;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +27,7 @@ public class PersistenceConfig
 	@Autowired
 	private Environment env;
  
+	private final Logger log = LoggerFactory.getLogger(PersistenceConfig.class);
 	
 	@Bean
 	public PlatformTransactionManager transactionManager()
@@ -43,7 +46,7 @@ public class PersistenceConfig
 		factory.setPersistenceUnitName("proto1");
 
 		HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
-		vendorAdapter.setShowSql(Boolean.TRUE);
+		vendorAdapter.setShowSql(Boolean.FALSE);
 		vendorAdapter.setGenerateDdl(Boolean.TRUE);
 		vendorAdapter.setDatabase(Database.POSTGRESQL);
 		factory.setJpaVendorAdapter(vendorAdapter);
@@ -67,12 +70,13 @@ public class PersistenceConfig
 	
 	@Bean
 	public DataSource dataSource()
-	{
+	{			
+	//    log.debug("PersistenceConfig.dataSource()");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres");
-		dataSource.setUsername(env.getProperty("bbones"));
-		dataSource.setPassword(env.getProperty("bb"));
+		dataSource.setUsername("bbones");
+		dataSource.setPassword("bb");
 		return dataSource;
 	}
 	

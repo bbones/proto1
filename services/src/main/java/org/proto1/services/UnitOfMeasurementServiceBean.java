@@ -10,6 +10,10 @@ import org.proto1.repository.UnitOfMeasurementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.activiti.engine.RuntimeService;
+import org.activiti.engine.runtime.ProcessInstance;
+
+
 @Service
 public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 
@@ -18,6 +22,9 @@ public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 	
 	@Autowired
 	UnitOfMeasurementNameRepository uomNameRepository;
+
+	@Autowired
+	RuntimeService runtimeService;
 	
 	public UnitOfMeasurement get(Long id) {
 		return uomRepository.findOne(id);
@@ -46,6 +53,7 @@ public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 	 * @see org.proto1.services.UnitOfMeasurementService#saveName(org.proto1.domain.UnitOfMeasurementName)
 	 */
 	public UnitOfMeasurementName saveName(UnitOfMeasurementName uomName) {
+		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey("helloworldProcess");
 		return uomNameRepository.save(uomName);
 	}
 

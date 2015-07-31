@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://activiti.org/bpmn20" id="definitions" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL                                   http://www.omg.org/spec/BPMN/2.0/20100501/BPMN20.xsd">
+  <process id="userWorkflow" name="User Workflow" isExecutable="true">
+    <startEvent id="theStart"></startEvent>
+    <sequenceFlow id="flow1" sourceRef="theStart" targetRef="create"></sequenceFlow>
+    <serviceTask id="create" name="Create" activiti:class="org.syncope.core.workflow.activiti.Create"></serviceTask>
+    <sequenceFlow id="flow2" sourceRef="create" targetRef="createGW"></sequenceFlow>
+    <exclusiveGateway id="createGW"></exclusiveGateway>
+    <sequenceFlow id="create2Activate" sourceRef="createGW" targetRef="activate">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!syncopeUser.getRoleIds().contains(9)}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="create2CreateApproval" sourceRef="createGW" targetRef="createApproval">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${syncopeUser.getRoleIds().contains(9)}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask id="createApproval" name="Create approval" activiti:candidateGroups="7" activiti:formKey="createApproval">
+      <extensionElements>
+        <activiti:formProperty id="username" name="Username" type="string" expression="${syncopeUser.username}" writable="false"></activiti:formProperty>
+        <activiti:formProperty id="approve" name="Approve?" type="boolean" variable="approve" required="true"></activiti:formProperty>
+        <activiti:formProperty id="rejectReason" name="Reason for rejecting" type="string" variable="rejectReason"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow3" sourceRef="createApproval" targetRef="createApprovalGW"></sequenceFlow>
+    <exclusiveGateway id="createApprovalGW"></exclusiveGateway>
+    <sequenceFlow id="createApproval2Activate" sourceRef="createApprovalGW" targetRef="activate">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${approve}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="createApproval2Reject" sourceRef="createApprovalGW" targetRef="reject">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!approve}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="activate" name="Activate" activiti:class="org.syncope.core.workflow.activiti.AutoActivate"></serviceTask>
+    <sequenceFlow id="flow4" sourceRef="activate" targetRef="active"></sequenceFlow>
+    <userTask id="active" name="Active"></userTask>
+    <sequenceFlow id="flow7" sourceRef="active" targetRef="activeGw"></sequenceFlow>
+    <exclusiveGateway id="activeGw"></exclusiveGateway>
+    <sequenceFlow id="active2Update" sourceRef="activeGw" targetRef="update">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${task == 'update'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="active2Suspend" sourceRef="activeGw" targetRef="suspend">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${task == 'suspend'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="active2Delete" sourceRef="activeGw" targetRef="delete">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${task == 'delete'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="update" name="Update" activiti:class="org.syncope.core.workflow.activiti.Update"></serviceTask>
+    <sequenceFlow id="flow8" sourceRef="update" targetRef="active"></sequenceFlow>
+    <serviceTask id="suspend" name="Suspend" activiti:class="org.syncope.core.workflow.activiti.Suspend"></serviceTask>
+    <sequenceFlow id="flow9" sourceRef="suspend" targetRef="suspended"></sequenceFlow>
+    <userTask id="suspended" name="Suspended"></userTask>
+    <sequenceFlow id="flow10" sourceRef="suspended" targetRef="suspendedGw"></sequenceFlow>
+    <exclusiveGateway id="suspendedGw"></exclusiveGateway>
+    <sequenceFlow id="suspended2Reactivate" sourceRef="suspendedGw" targetRef="reactivate">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${task == 'reactivate'}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="suspended2Delete" sourceRef="suspendedGw" targetRef="delete">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${task == 'delete'}]]></conditionExpression>
+    </sequenceFlow>
+    <serviceTask id="reactivate" name="Reactivate" activiti:class="org.syncope.core.workflow.activiti.Reactivate"></serviceTask>
+    <sequenceFlow id="flow11" sourceRef="reactivate" targetRef="active"></sequenceFlow>
+    <scriptTask id="reject" name="Reject" scriptFormat="groovy" activiti:autoStoreVariables="false">
+      <script>
+                def scriptVar = rejectReason
+            </script>
+    </scriptTask>
+    <sequenceFlow id="flow12" sourceRef="reject" targetRef="rejected"></sequenceFlow>
+    <userTask id="rejected" name="Rejected"></userTask>
+    <sequenceFlow id="flow13" sourceRef="rejected" targetRef="delete"></sequenceFlow>
+    <serviceTask id="delete" name="Delete" activiti:class="org.syncope.core.workflow.activiti.Delete"></serviceTask>
+    <sequenceFlow id="flow99" sourceRef="delete" targetRef="theEnd"></sequenceFlow>
+    <endEvent id="theEnd"></endEvent>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_userWorkflow">
+    <bpmndi:BPMNPlane bpmnElement="userWorkflow" id="BPMNPlane_userWorkflow">
+      <bpmndi:BPMNShape bpmnElement="theStart" id="BPMNShape_theStart">
+        <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="254.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="create" id="BPMNShape_create">
+        <omgdc:Bounds height="60.0" width="100.0" x="80.0" y="239.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="createGW" id="BPMNShape_createGW">
+        <omgdc:Bounds height="40.0" width="40.0" x="220.0" y="251.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="createApproval" id="BPMNShape_createApproval">
+        <omgdc:Bounds height="60.0" width="100.0" x="320.0" y="180.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="createApprovalGW" id="BPMNShape_createApprovalGW">
+        <omgdc:Bounds height="40.0" width="40.0" x="470.0" y="196.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="activate" id="BPMNShape_activate">
+        <omgdc:Bounds height="60.0" width="100.0" x="560.0" y="294.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="active" id="BPMNShape_active">
+        <omgdc:Bounds height="60.0" width="100.0" x="710.0" y="298.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="activeGw" id="BPMNShape_activeGw">
+        <omgdc:Bounds height="40.0" width="40.0" x="860.0" y="190.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="update" id="BPMNShape_update">
+        <omgdc:Bounds height="60.0" width="100.0" x="950.0" y="360.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="suspend" id="BPMNShape_suspend">
+        <omgdc:Bounds height="60.0" width="100.0" x="950.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="suspended" id="BPMNShape_suspended">
+        <omgdc:Bounds height="60.0" width="100.0" x="1100.0" y="245.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="suspendedGw" id="BPMNShape_suspendedGw">
+        <omgdc:Bounds height="40.0" width="40.0" x="1250.0" y="290.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="reactivate" id="BPMNShape_reactivate">
+        <omgdc:Bounds height="60.0" width="100.0" x="1340.0" y="340.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="reject" id="BPMNShape_reject">
+        <omgdc:Bounds height="60.0" width="100.0" x="560.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="rejected" id="BPMNShape_rejected">
+        <omgdc:Bounds height="60.0" width="100.0" x="710.0" y="79.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="delete" id="BPMNShape_delete">
+        <omgdc:Bounds height="60.0" width="100.0" x="1340.0" y="150.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="1490.0" y="165.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="35.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="80.0" y="269.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="180.0" y="269.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="269.0"></omgdi:waypoint>
+        <omgdi:waypoint x="192.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="220.0" y="271.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="create2Activate" id="BPMNEdge_create2Activate">
+        <omgdi:waypoint x="260.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="324.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="324.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="create2CreateApproval" id="BPMNEdge_create2CreateApproval">
+        <omgdi:waypoint x="260.0" y="271.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="272.0"></omgdi:waypoint>
+        <omgdi:waypoint x="282.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="420.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="432.0" y="216.0"></omgdi:waypoint>
+        <omgdi:waypoint x="470.0" y="216.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="createApproval2Activate" id="BPMNEdge_createApproval2Activate">
+        <omgdi:waypoint x="510.0" y="216.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="216.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="324.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="324.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="createApproval2Reject" id="BPMNEdge_createApproval2Reject">
+        <omgdi:waypoint x="510.0" y="216.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="216.0"></omgdi:waypoint>
+        <omgdi:waypoint x="522.0" y="162.0"></omgdi:waypoint>
+        <omgdi:waypoint x="560.0" y="162.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="660.0" y="324.0"></omgdi:waypoint>
+        <omgdi:waypoint x="672.0" y="324.0"></omgdi:waypoint>
+        <omgdi:waypoint x="672.0" y="328.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="328.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="810.0" y="328.0"></omgdi:waypoint>
+        <omgdi:waypoint x="822.0" y="311.0"></omgdi:waypoint>
+        <omgdi:waypoint x="822.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="860.0" y="210.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="active2Update" id="BPMNEdge_active2Update">
+        <omgdi:waypoint x="900.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="912.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="912.0" y="390.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="390.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="active2Suspend" id="BPMNEdge_active2Suspend">
+        <omgdi:waypoint x="900.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="914.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="914.0" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="950.0" y="230.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="active2Delete" id="BPMNEdge_active2Delete">
+        <omgdi:waypoint x="900.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="912.0" y="210.0"></omgdi:waypoint>
+        <omgdi:waypoint x="912.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1340.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="950.0" y="390.0"></omgdi:waypoint>
+        <omgdi:waypoint x="938.0" y="402.0"></omgdi:waypoint>
+        <omgdi:waypoint x="938.0" y="328.0"></omgdi:waypoint>
+        <omgdi:waypoint x="810.0" y="328.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="1050.0" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1062.0" y="230.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1062.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1100.0" y="275.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="1200.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1212.0" y="275.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1212.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1250.0" y="310.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="suspended2Reactivate" id="BPMNEdge_suspended2Reactivate">
+        <omgdi:waypoint x="1290.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1302.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1302.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1340.0" y="370.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="suspended2Delete" id="BPMNEdge_suspended2Delete">
+        <omgdi:waypoint x="1290.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1302.0" y="310.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1302.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1340.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="1340.0" y="370.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1328.0" y="382.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1328.0" y="328.0"></omgdi:waypoint>
+        <omgdi:waypoint x="810.0" y="328.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="660.0" y="162.0"></omgdi:waypoint>
+        <omgdi:waypoint x="672.0" y="162.0"></omgdi:waypoint>
+        <omgdi:waypoint x="672.0" y="109.0"></omgdi:waypoint>
+        <omgdi:waypoint x="710.0" y="109.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="810.0" y="109.0"></omgdi:waypoint>
+        <omgdi:waypoint x="822.0" y="109.0"></omgdi:waypoint>
+        <omgdi:waypoint x="822.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1340.0" y="180.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow99" id="BPMNEdge_flow99">
+        <omgdi:waypoint x="1440.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="1490.0" y="182.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -12,7 +12,18 @@ var IndexLib = (function(){
 	var currencyMap = new Object();
 	var currencyList = null;
 	
-	
+	function initMenuItem() {	
+		$.getScript("/protofront/scripts/auth.js").done(function() {
+	        $('#miLogout').click(function() {
+				AuthLib.logout();
+			});
+			$('#miLogin').click(function() {
+				AuthLib.showForm();
+			});
+	    });
+				
+	}
+	;	
 	function initMenu() {
 		$("#desktop").on('LanguageChanged', function(rec){
         	$("#mainMenu").tree({url : "main_menu_" + rec.locale + ".json", method : "GET"});
@@ -84,10 +95,22 @@ var IndexLib = (function(){
 			ClientRepo.init();
 		});
 	}
+	function setup() {
+	    $(document).ajaxError(function(event, jqXHR, ajaxSettings, thrownError) {
+		  if (jqXHR.status == 404) {
+              alert("Element "+ajaxSettings.url +" not found.");
+          } else {
+              alert("Error: " + thrownError+ "Response: " +jqXHR);
+          }
+		});
+
+	}
 
 	return {
 		init : function() {
+			setup();
 			initMenu();
+            initMenuItem();
 			initEasyUIEditors();
 			initLanguageList();
 			initRepo();
