@@ -25,6 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter {
 
 	private final TokenAuthenticationService tokenAuthenticationService;
+	@SuppressWarnings("unused")
 	private final UserDetailsService userDetailsService;
 	protected final Log logger = LogFactory.getLog(getClass());
 	public StatelessLoginFilter(String urlMapping, TokenAuthenticationService tokenAuthenticationService,

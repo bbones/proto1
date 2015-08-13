@@ -155,9 +155,9 @@ var ContractLib = (function(){
 			}
 		});
 		$("#cf").form({
-			url : "/protofront/service/contracts/", 
+			url : '/protofront/service/contracts/', 
 			ajax : true,
-		    success:function(data){
+			success:function(data){
 		    	var row = $("#edgContract").edatagrid('getSelected');
 		    	var index = $("#edgContract").edatagrid('getRowIndex', row);
 		    	

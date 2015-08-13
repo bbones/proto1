@@ -1,21 +1,16 @@
 package org.proto1.config;
  
+import java.util.Arrays;
 import java.util.List;
-
-import javax.xml.transform.Source;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.converter.ByteArrayHttpMessageConverter;
+import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
-import org.springframework.http.converter.ResourceHttpMessageConverter;
-import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
-import org.springframework.http.converter.support.AllEncompassingFormHttpMessageConverter;
-import org.springframework.http.converter.xml.SourceHttpMessageConverter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
@@ -30,28 +25,25 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 @Configuration
 @ComponentScan("org.proto1")
 /*@ImportResource({ "classpath:META-INF/applicationContext.xml" })*/
-@EnableWebMvc
-public class WebConfig extends WebMvcConfigurerAdapter {
+//@EnableWebMvc
+public class WebConfig extends WebMvcConfigurationSupport{//extends WebMvcConfigurerAdapter {
  
     public WebConfig() {
         super();
     }
     @Override
-    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
-        StringHttpMessageConverter stringConverter = new StringHttpMessageConverter();
-        stringConverter.setWriteAcceptCharset(false);
-        converters.add(new ByteArrayHttpMessageConverter());
-        converters.add(stringConverter);
-        converters.add(new ResourceHttpMessageConverter());
-        converters.add(new SourceHttpMessageConverter<Source>());
-        converters.add(new AllEncompassingFormHttpMessageConverter());
+    public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {      
+        addDefaultHttpMessageConverters(converters);
         converters.add(jackson2Converter());
     }
 
     @Bean
     public MappingJackson2HttpMessageConverter jackson2Converter() {
         MappingJackson2HttpMessageConverter converter = new MappingJackson2HttpMessageConverter();
+        MediaType[] arr = new  MediaType[] { MediaType.APPLICATION_JSON, MediaType.TEXT_PLAIN, MediaType.TEXT_HTML };
+        converter.setSupportedMediaTypes(Arrays.asList(arr)); 
         converter.setObjectMapper(objectMapper());
+        
         return converter;
     }
 
@@ -61,5 +53,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
         objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         return objectMapper;
     }
-
-}    
+    
+  
+  }

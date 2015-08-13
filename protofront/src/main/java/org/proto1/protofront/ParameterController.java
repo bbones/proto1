@@ -17,7 +17,6 @@ import org.proto1.domain.product.Parameter;
 import org.proto1.domain.product.ParameterName;
 import org.proto1.dto.ParameterDTO;
 import org.proto1.dto.ParameterNameDTO;
-import org.proto1.dto.UnitOfMeasurementNameDTO;
 import org.proto1.services.LanguageService;
 import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.parameter.ParameterService;
@@ -56,7 +55,7 @@ public class ParameterController {
 		Parameter parameter = new Parameter();
 		if (parameterDTO.getParameterId() != null)
 			parameter.setId(parameterDTO.getParameterId());
-		parameter.setType(Parameter.Type.valueOf(parameterDTO.getParameterType()));
+		parameter.setType(Parameter.Type.valueOf(Parameter.Type.class,parameterDTO.getParameterType()));
 		parameter.setVersion(parameterDTO.getVersion());
 		Language language = languageService.get(languageId);
 		parameter.getParameterNames().add(new ParameterName(parameter, parameterDTO.getParameterName(), language));

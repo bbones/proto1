@@ -19,10 +19,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
 import org.proto1.domain.AbstractEntity;
 import org.proto1.domain.Language;
 import org.proto1.domain.UnitOfMeasurement;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="PARAMETER")
