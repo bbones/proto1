@@ -11,6 +11,25 @@
 		<config>src/main/webapp/WEB-INF/web.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>java:org.proto1.security.RestAuthenticationSuccessHandler</config>
+		<config>java:org.proto1.mapper.LongSalesOrderConverter</config>
+		<config>java:org.proto1.security.RestAuthenticationFailureHandler</config>
+		<config>java:org.proto1.mapper.LongEnterpriseConverter</config>
+		<config>java:org.proto1.security.ActiveDirectoryGrantedAuthoritiesMapper</config>
+		<config>java:org.proto1.config.PersistenceConfig</config>
+		<config>java:org.proto1.mapper.LongLanguageConverter</config>
+		<config>java:org.proto1.mapper.LongPartyConverter</config>
+		<config>java:org.proto1.mapper.LongProductConverter</config>
+		<config>java:org.proto1.security.RestAuthenticationEntryPoint</config>
+		<config>java:org.proto1.mapper.LongUOMConverter</config>
+		<config>java:org.proto1.mapper.LongParameterConverter</config>
+		<config>java:org.proto1.mapper.CurrencyConverter</config>
+		<config>java:org.proto1.mapper.LongProductParameterConverter</config>
+		<config>java:org.proto1.mapper.LongOrganizationUnitConverter</config>
+		<config>java:org.proto1.mapper.LongOrderLineConverter</config>
+		<config>java:org.proto1.config.AppConfig</config>
+		<config>java:org.proto1.config.SecurityConfig</config>
+		<config>java:org.proto1.mapper.LongContractConverter</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
