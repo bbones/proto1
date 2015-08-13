@@ -27,6 +27,7 @@ public class PersistenceConfig
 	@Autowired
 	private Environment env;
  
+	@SuppressWarnings("unused")
 	private final Logger log = LoggerFactory.getLogger(PersistenceConfig.class);
 	
 	@Bean

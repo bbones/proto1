@@ -14,15 +14,16 @@ import javax.persistence.metamodel.EntityType;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.codehaus.jackson.JsonGenerationException;
-import org.codehaus.jackson.map.JsonMappingException;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.proto1.domain.Language;
 import org.proto1.repository.LanguageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JacksonTest {
 	@Autowired
@@ -42,39 +43,42 @@ public class JacksonTest {
 		List<Language> langlist = (List<Language>) langrep.findAll();
 		mapper.writeValue(new File("e:\\!!!\\lang.json"), langlist);
 	}
-	
-	@BeforeClass public static void setUp() {
+
+	@BeforeClass
+	public static void setUp() {
 		Map<String, String> properties = new HashMap<String, String>();
 		properties.put("javax.persistence.jdbc.user", "sa");
 		properties.put("javax.persistence.jdbc.password", "");
 		emf = Persistence.createEntityManagerFactory("proto1", properties);
 		em = emf.createEntityManager();
-		
+
 	}
 
 	@Test
 	@Ignore
-	public void testEntityList() throws JsonGenerationException, JsonMappingException, IOException {
+	public void testEntityList() throws JsonGenerationException,
+			JsonMappingException, IOException {
 
-
-		for(EntityType<?> et : emf.getMetamodel().getEntities()) {
+		for (EntityType<?> et : emf.getMetamodel().getEntities()) {
 			logger.debug(et.getName());
-			
-			
+
 			Query q = em.createQuery("from " + et.getName());
 			List<?> entlist = q.getResultList();
-			mapper.writeValue(new File("e:\\!!!\\" + et.getName()+ ".json"), entlist);
+			mapper.writeValue(new File("e:\\!!!\\" + et.getName() + ".json"),
+					entlist);
 		}
 	}
-	
+
 	@Test
-	public void testParameterJSON() throws JsonGenerationException, JsonMappingException, IOException {
-		
+	public void testParameterJSON() throws JsonGenerationException,
+			JsonMappingException, IOException {
+
 		ObjectMapper mapper = new ObjectMapper();
 		Query q = em.createQuery("from ParameterName");
 		List<?> entlist = q.getResultList();
-		mapper.writerWithDefaultPrettyPrinter().writeValue(new File("e:\\!!!\\ParameterName.json"), entlist);
-	
+		mapper.writerWithDefaultPrettyPrinter().writeValue(
+				new File("e:\\!!!\\ParameterName.json"), entlist);
+
 	}
 
 }

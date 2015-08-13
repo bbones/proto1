@@ -14,7 +14,8 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
-		<org.springframework.security.version>4.0.1.RELEASE</org.springframework.security.version>
+		<org.springframework.security.version>4.0.1.RELEASE</org.springframework.security.version>		
+		<com.fasterxml.jackson.core>2.6.1</com.fasterxml.jackson.core>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -97,22 +98,22 @@
 			<version>${org.springframework.security.version}</version>
 		</dependency>
 
-
+<!-- 
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>
 			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.9.13</version>
+			<version>${org.codehaus.jackson}</version>
 		</dependency>
-
+ -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
-			<version>2.5.3</version>
+			<version>${com.fasterxml.jackson.core}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
-			<version>2.5.3</version>
+			<version>${com.fasterxml.jackson.core}</version>
 		</dependency>
 		<dependency>
 			<groupId>net.sf.dozer</groupId>
