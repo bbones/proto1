@@ -1,6 +1,5 @@
 package org.proto1.security;
 
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.xml.bind.DatatypeConverter;
@@ -22,22 +21,27 @@ public class TokenAuthenticationService {
 
 	@Autowired
 	public TokenAuthenticationService(@Value("${token.secret}") String secret) {
-		tokenHandler = new TokenHandler(DatatypeConverter.parseBase64Binary(secret));
+		tokenHandler = new TokenHandler(
+				DatatypeConverter.parseBase64Binary(secret));
 	}
 
-	public void addAuthentication(HttpServletResponse response, UserAuthentication authentication) {
+	public void addAuthentication(HttpServletResponse response,
+			UserAuthentication authentication) {
 		logger.debug("TokenAuthenticationService.addAuthentication");
 		final UserData userData = authentication.getDetails();
 		userData.setExpires(System.currentTimeMillis() + TEN_DAYS);
-		response.addHeader(AUTH_HEADER_NAME, tokenHandler.createTokenForUser(userData));
-		logger.debug("authentication"+userData.getUsername());
+		response.addHeader(AUTH_HEADER_NAME,
+				tokenHandler.createTokenForUser(userData));
+		logger.debug("authentication" + userData.getUsername());
 	}
 
-	public Authentication getAuthentication(HttpServletRequest request) {		
-		final String token = request.getHeader(AUTH_HEADER_NAME);
-		logger.debug("TokenAuthenticationService.getAuthentication token = "+token+" requestURI: "+request.getRequestURI());
+	public Authentication getAuthentication(HttpServletRequest request) {
+		String token = request.getHeader(AUTH_HEADER_NAME);
+		logger.debug("TokenAuthenticationService.getAuthentication token = "
+				+ token + " requestURI: " + request.getRequestURI());
 		if (token != null) {
-			final UserData userData = tokenHandler.parseUserDataFromToken(token);
+			final UserData userData = tokenHandler
+					.parseUserDataFromToken(token);
 			if (userData != null) {
 				return new UserAuthentication(userData);
 			}
