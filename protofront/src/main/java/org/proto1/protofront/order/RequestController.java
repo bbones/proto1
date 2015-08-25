@@ -44,7 +44,7 @@ public class RequestController extends BaseOrderController<RequestService> {
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST )
-	public @ResponseBody RequestDTO save(RequestDTO requestDTO) {
+	public @ResponseBody RequestDTO save(@RequestParam Long languageId, RequestDTO requestDTO) {
 		Request po = mapper.map(requestDTO, Request.class);
 		po = baseOrderService.save(po);
 		requestDTO.setId(po.getId());

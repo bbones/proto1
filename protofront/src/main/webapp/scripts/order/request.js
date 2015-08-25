@@ -30,7 +30,7 @@ var RequestMod = (function() {
 								});
 								
 								$("#test").on("savePressed", function(event) {
-									$("#req").form('submit', {url : "/protofront/service/requests/?languageId=" + IndexLib.lang()});
+									$("#req").form('submitAjax', {url : "/protofront/service/requests/?languageId=" + IndexLib.lang()});
 								});
 								$("#test").on("addPressed", function(event) {
 									$("#req").form('clear');
