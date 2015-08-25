@@ -30,8 +30,6 @@ var ContractLib = (function(){
 				},
 				save : function(){
 					$('#cf').form('submitAjax');
-					//$("#cf").form.submitAjax();
-					// $("#edgContract").edatagrid('saveRow');
 				},
 				destroy : function() {
 					$("#edgContract").edatagrid('destroyRow');

@@ -72,7 +72,7 @@ public class PersistenceConfig
 	@Bean
 	public DataSource dataSource()
 	{			
-	//    log.debug("PersistenceConfig.dataSource()");
+		log.debug("PersistenceConfig.dataSource()");
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres");

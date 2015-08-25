@@ -18,7 +18,6 @@ public class CurrencyConverter extends DozerConverter<Integer, Currency> {
 
 	public CurrencyConverter() {
 		super(Integer.class, Currency.class);
-		logger.debug("Instance of CC");
 	}
 
 	@Override
