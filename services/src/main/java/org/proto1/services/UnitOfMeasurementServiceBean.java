@@ -53,7 +53,6 @@ public class UnitOfMeasurementServiceBean implements UnitOfMeasurementService {
 	 * @see org.proto1.services.UnitOfMeasurementService#saveName(org.proto1.domain.UnitOfMeasurementName)
 	 */
 	public UnitOfMeasurementName saveName(UnitOfMeasurementName uomName) {
-		ProcessInstance processInstance=runtimeService.startProcessInstanceByKey("helloworldProcess");
 		return uomNameRepository.save(uomName);
 	}
 

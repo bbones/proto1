@@ -30,7 +30,18 @@ var RequestMod = (function() {
 								});
 								
 								$("#test").on("savePressed", function(event) {
-									$("#req").form('submitAjax', {url : "/protofront/service/requests/?languageId=" + IndexLib.lang()});
+									$("#req").form('submitAjax', {
+										url : "/protofront/service/requests/?languageId=" + IndexLib.lang(),
+										success:function(data){
+									    	var row = $("#edgOrder").edatagrid('getSelected');
+									    	var index = $("#edgOrder").edatagrid('getRowIndex', row);
+									    	
+									    	$("#req").form('load', data);
+									    	$("#edgOrder").edatagrid('updateRow', {
+									    		index : index,
+									    		row : data});
+									    } // Success
+									});
 								});
 								$("#test").on("addPressed", function(event) {
 									$("#req").form('clear');

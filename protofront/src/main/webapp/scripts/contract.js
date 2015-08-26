@@ -160,11 +160,9 @@ var ContractLib = (function(){
 		    	var row = $("#edgContract").edatagrid('getSelected');
 		    	var index = $("#edgContract").edatagrid('getRowIndex', row);
 		    	
-		    	//$("#cf").form('load', JSON.parse(data));
 		    	$("#cf").form('load', data);
 		    	$("#edgContract").edatagrid('updateRow', {
 		    		index : index,
-//		    		row : JSON.parse(data)});
 		    		row : data});
 		    } // Success
 		});
