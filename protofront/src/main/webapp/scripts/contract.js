@@ -130,6 +130,7 @@ var ContractLib = (function(){
 	    		});
 			},
 			onSelect : function(index, row) {
+				console.log(row);
 				$("#test").trigger(supevent,row.id);
 
 			}
@@ -178,10 +179,12 @@ var ContractLib = (function(){
 	
 	function initContractSupplementForm() {
 		$("#test").on("contractSupplementSelected", function(event, contractSupplementId){
-			if (typeof contractSupplementId !== 'undefined') {
+			debugger;
+			if (contractSupplementId) {
 				$("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
 			}
 		});
+		
 		$("#supisdate").datebox({
 			
 			formatter:IndexLib.dateFormatter,
