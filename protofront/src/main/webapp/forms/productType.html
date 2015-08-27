@@ -11,20 +11,27 @@
 
 	<!-- table  title="Product Types" 
 			style="width: 700px; height: 300px"></table> -->
-	<ul id="productTypes" class="easyui-tree"></ul>
-	<table id="edg" title="Translations" singleSelect="true" style="width: 700px; height: auto"> 
-		<thead>
-			<tr>
-				<th field='nameId' width = 250 >Product Type Name Id</th>
-				<th
-					data-options="field:'languageId',width:80,
-                    			formatter: ClientRepo.languageFormatter,
-                   				editor:ClientRepo.languageEditor()">Language</th>
-				<th field='productTypeName' width = 250 editor="text">Product Type Name</th>
-			</tr>
-		</thead>
-	</table>
-
+	<div id="p" class="easyui-panel" title="Product Types" 
+        style="width:500px;height:300px;padding:10px;background:#fafafa;"
+        data-options="iconCls:'icon-save', maximizable:true">
+		<ul id="productTypes" class="easyui-tree"></ul>
+	</div>
+	<div id="p" class="easyui-panel" 
+        style="width:500px;height:auto;padding:10px;background:#fafafa;"
+        data-options="iconCls:'icon-save', maximizable:true">
+		<table id="edg" title="Translations" singleSelect="true" style="width: 400px; height: auto; padding:10px"> 
+			<thead>
+				<tr>
+					<th field='nameId' width = 50 >Product Type Name Id</th>
+					<th
+						data-options="field:'languageId',width:80,
+	                    			formatter: ClientRepo.languageFormatter,
+	                   				editor:ClientRepo.languageEditor()">Language</th>
+					<th field='productTypeName' width = 250 editor="text">Product Type Name</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
 
 </div>
 

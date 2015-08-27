@@ -19,7 +19,7 @@ import org.proto1.domain.Language;
 public class ProductTypeName extends AbstractEntity {
 	private static final long serialVersionUID = -2867768676169590444L;
 
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="PRODUCT_TYPE_ID")
 	private ProductType productType;
 

@@ -55,18 +55,13 @@
 			<b>nameId</b>
 		</field>
 		<field>
-			<a>productType.id</a>
+			<a>productType</a>
 			<b>productTypeId</b>
 		</field>
 		<field>
-			<a>language.id</a>
+			<a>language</a>
 			<b>languageId</b>
 		</field>
-		<field>
-			<a>language.name</a>
-			<b>languageName</b>
-		</field>
-		
 		<field>
 			<a>name</a>
 			<b>productTypeName</b>
@@ -81,13 +76,8 @@
 			<b>id</b>
 		</field>
 		<field>
-			<a>parentType.id</a>
+			<a>parentType</a>
 			<b>parentId</b>
-		</field>
-		
-		<field>
-			<a>productTypeNames</a>
-			<b>productTypeNames</b>
 		</field>
 	</mapping>
 	

@@ -89,9 +89,11 @@ public class ProductTypeController {
 	}
 
 	@RequestMapping(value = "names", method = RequestMethod.POST)
-	public void updateName(@RequestParam(required=false) Long nameId, @RequestParam(required=false) Long productTypeId, @RequestParam(required=false) Long languageId, 
-			@RequestParam(required=false) String productTypeName) {
-		pts.saveProductTypeName(nameId, productTypeId, languageId, productTypeName);
+	public ProductTypeNameDTO saveName(ProductTypeNameDTO productTypeNameDTO) {
+		ProductTypeName ptn = mapper.map(productTypeNameDTO, ProductTypeName.class);
+		ptn = pts.saveProductTypeName(ptn);
+		productTypeNameDTO = mapper.map(ptn, ProductTypeNameDTO.class); 
+		return productTypeNameDTO;
 	}
 
 }
