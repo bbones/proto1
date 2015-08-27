@@ -34,7 +34,7 @@ var ProductTypeLib = (function(){
 		});
 	};
 	
-
+ 
 	
 	function initTranslationGrid() {
 		$('#edg').edatagrid({
