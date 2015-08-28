@@ -5,14 +5,6 @@
 	<mapping>
 		<class-a>org.proto1.domain.order.BaseOrder</class-a>
 		<class-b>org.proto1.dto.order.OrderDTO</class-b>
-		<field>
-			<a>id</a>
-			<b>id</b>
-		</field>
-		<field>
-			<a>documentNo</a>
-			<b>documentNo</b>
-		</field>
 	</mapping>
 
 	<mapping>

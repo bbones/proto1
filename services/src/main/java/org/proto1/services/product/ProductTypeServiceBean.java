@@ -67,36 +67,8 @@ public class ProductTypeServiceBean implements ProductTypeService {
 		productTypeRepository.delete(id);
 	}
 
-	public void saveProductTypeName(Long id, Long productTypeId, Long languageId,
-			String productTypeName) {
-		ProductTypeName ptn;
-		if(id != null) { // Existing name
-			ptn = productTypeNameRepository.findOne(id);
-			if (ptn == null) // Wrong id
-				return;
-			if (!ptn.getProductType().getId().equals(productTypeId)) { //ProductType updated
-				ProductType pt = productTypeRepository.findOne(productTypeId);
-				ptn.setProductType(pt);
-				
-			}
-			if (!ptn.getLanguage().getId().equals(languageId)) { // Language updated
-				Language language = languageRepository.findOne(languageId);
-				ptn.setLanguage(language);
-				
-			}
-			if (!ptn.getName().equals(productTypeName)) { //Name updated
-				ptn.setName(productTypeName);
-			}
-		} else { // New name
-			ptn = new ProductTypeName();
-			ProductType pt = productTypeRepository.findOne(productTypeId);
-			ptn.setProductType(pt);
-			Language language = languageRepository.findOne(languageId);
-			ptn.setLanguage(language);
-			ptn.setName(productTypeName);
-		}
-		productTypeNameRepository.save(ptn);
-		
+	public ProductTypeName saveProductTypeName(ProductTypeName productTypeName) {
+		return productTypeNameRepository.save(productTypeName);
 	}
 /*
 	public List<Map<String, Object>> getTreeByProductTypeIdByLanguageId(

@@ -141,15 +141,15 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistPerson();
 		persistEnterprise();
 		persistSideRole();
-		persistContract();
+		persistContract(); // Error: need CascadeType.PERSIST for Contract
 		persistProductType();
 		persistParameters();
 		persistProduct();
 		persistReceipt();
 		persistLocalizedStringConstant();
 		
-		//persistOrder();
-		//persistInventoryLot();
+		persistOrder();
+		persistInventoryLot();
 		
 		persistStandard();
 

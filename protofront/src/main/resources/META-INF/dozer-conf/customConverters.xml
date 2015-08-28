@@ -35,6 +35,11 @@
 				<class-b>org.proto1.domain.party.Enterprise</class-b>
 			</converter>
 
+			<converter type="org.proto1.mapper.LongProductTypeConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.product.ProductType</class-b>
+			</converter>
+
 			<converter type="org.proto1.mapper.LongProductConverter">
 				<class-a>java.lang.Long</class-a>
 				<class-b>org.proto1.domain.product.Product</class-b>

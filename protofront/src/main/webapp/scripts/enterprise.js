@@ -61,7 +61,6 @@ var EnterpriseLib = (function() {
 					
 				}
 			}),
-			url : "/protofront/service/enterprises/names",
 			saveUrl : "/protofront/service/enterprises/names",
 			updateUrl : "/protofront/service/enterprises/names",
 			onDestroy : function(index, row) {

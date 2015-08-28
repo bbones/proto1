@@ -10,7 +10,7 @@
 var DemandLib = (function(){
 	
 	var currentProduct = function() {
-		return $("#dgProducts").datagrid('getSelected').id;
+		return $("#dgProducts").datagrid('getSelected').productId;
 	};
 	
 	var initParameterGrid = function () {
@@ -38,7 +38,7 @@ var DemandLib = (function(){
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#dgParameters").datagrid({
-					url : '/protofront/service/products/' + row.id + '/parameters?languageId=' + IndexLib.lang()
+					url : '/protofront/service/products/' + row.productId + '/parameters?languageId=' + IndexLib.lang()
 				});
 			} // OnSelect
 

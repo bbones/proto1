@@ -48,7 +48,7 @@ public class ContractServiceBean implements ContractService {
 	public Contract save(Contract contract) {
 		Contract result = contractRepository.save(contract);
 		// TODO: Пример запуска workFlow. Продумать, где передавать тип approve
-		approveDocumentServiceBean.startApprove(result.getId(), 256l);
+		approveDocumentServiceBean.startApprove(result.getId(), 312l);
 		return result;
 	}
 

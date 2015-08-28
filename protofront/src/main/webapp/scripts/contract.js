@@ -30,8 +30,6 @@ var ContractLib = (function(){
 				},
 				save : function(){
 					$('#cf').form('submitAjax');
-					//$("#cf").form.submitAjax();
-					// $("#edgContract").edatagrid('saveRow');
 				},
 				destroy : function() {
 					$("#edgContract").edatagrid('destroyRow');
@@ -132,6 +130,7 @@ var ContractLib = (function(){
 	    		});
 			},
 			onSelect : function(index, row) {
+				console.log(row);
 				$("#test").trigger(supevent,row.id);
 
 			}
@@ -162,11 +161,9 @@ var ContractLib = (function(){
 		    	var row = $("#edgContract").edatagrid('getSelected');
 		    	var index = $("#edgContract").edatagrid('getRowIndex', row);
 		    	
-		    	//$("#cf").form('load', JSON.parse(data));
 		    	$("#cf").form('load', data);
 		    	$("#edgContract").edatagrid('updateRow', {
 		    		index : index,
-//		    		row : JSON.parse(data)});
 		    		row : data});
 		    } // Success
 		});
@@ -182,10 +179,12 @@ var ContractLib = (function(){
 	
 	function initContractSupplementForm() {
 		$("#test").on("contractSupplementSelected", function(event, contractSupplementId){
-			if (typeof contractSupplementId !== 'undefined') {
+			debugger;
+			if (contractSupplementId) {
 				$("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
 			}
 		});
+		
 		$("#supisdate").datebox({
 			
 			formatter:IndexLib.dateFormatter,

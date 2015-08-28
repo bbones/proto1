@@ -19,7 +19,7 @@ var OrderMod = (function() {
 			method:'GET',
 			toolbar : IndexLib.edgmenu({
 				add : function(){
-					$("#edgOrder").edatagrid('addRow');
+					$("#edgOrder").edatagrid('addRow', {row : {documentNo : "DOC", issueDate : new Date()}});
 					var addPressed = jQuery.Event('addPressed');
 					$("#test").trigger(addPressed);
 				},
@@ -42,7 +42,7 @@ var OrderMod = (function() {
 			}, // OnSelect edgOrder
 			onDestroy : function(index,row){
 				$.ajax({
-					url : orderURL + row.orderId,
+					url : orderURL + row.id,
 					method : "DELETE"
 				});
 			}

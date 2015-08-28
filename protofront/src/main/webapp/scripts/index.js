@@ -115,6 +115,7 @@ var IndexLib = (function(){
 			initLanguageList();
 			initRepo();
 		},
+		// Att!!! lang() return string value
 		lang : function() {
 			return $('#langSelector').combobox('getValue');
 		},
@@ -164,7 +165,14 @@ var IndexLib = (function(){
 			    	handler: onClick.destroy,
 			    	plain : true,
 			    	text : 'Delete'
+			    },
+			    {
+			    	iconCls: 'icon-cancel',
+			    	handler: onClick.cancel,
+			    	plain : true,
+			    	text : 'Cancel'
 			    }
+
 			];
 		}
 	};

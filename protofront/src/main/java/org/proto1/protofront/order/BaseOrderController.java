@@ -16,6 +16,7 @@ import org.proto1.domain.order.OrderLine;
 import org.proto1.domain.order.OrderLineParameter;
 import org.proto1.dto.order.OrderLineDTO;
 import org.proto1.dto.order.OrderLineParameterDTO;
+import org.proto1.protofront.BaseController;
 import org.proto1.services.LanguageService;
 import org.proto1.services.UnitOfMeasurementService;
 import org.proto1.services.order.BaseOrderService;
@@ -32,7 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  *
  */
 
-public class BaseOrderController<T extends BaseOrderService<?>> {
+public class BaseOrderController<T extends BaseOrderService<?>> extends BaseController {
 	@Autowired
 	T baseOrderService;
 	

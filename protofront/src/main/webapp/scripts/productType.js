@@ -16,8 +16,6 @@ var ProductTypeLib = (function(){
 				console.log(data);
 				$('#edg').edatagrid({
 					url : '/protofront/service/productTypes/' + data['id'] + '/names/',
-	             	// destroyUrl: '/protofront/service/productTypes/deleteName/'
-	 
 				});
 			},
 			onDrop: function(targetNode, source, point){
@@ -36,13 +34,37 @@ var ProductTypeLib = (function(){
 		});
 	};
 	
-
+ 
 	
 	function initTranslationGrid() {
 		$('#edg').edatagrid({
 			method : 'GET',
 			saveUrl : '/protofront/service/productTypes/names',
-			updateUrl : '/protofront/service/productTypes/names'
+			updateUrl : '/protofront/service/productTypes/names',
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edg").edatagrid('addRow', {row : {productTypeId : $("#productTypes").tree('getSelected').id}});
+				},
+				save : function(){
+					$("#edg").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edg").edatagrid('destroyRow');
+				},
+				cancel : function() {
+					$("#edg").edatagrid('cancelRow');
+				}
+
+			}),
+			onSave : function(index,row) {
+				if (row.languageId == IndexLib.lang()) {
+					var node = $('#productTypes').tree('getSelected');
+					$('#productTypes').tree('update', {
+						target: node.target,
+						text: row.productTypeName
+					});
+				}
+			}
 		});
 	};
 	

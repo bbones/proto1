@@ -23,7 +23,7 @@ public class ProductType extends AbstractEntity {
 	@ManyToOne
 	private ProductType parentType;
 	
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.ALL, mappedBy="productType")
+	@OneToMany(fetch=FetchType.EAGER, mappedBy="productType")
 	private List<ProductTypeName> productTypeNames = new ArrayList<ProductTypeName>();
 	
 	@OneToMany(mappedBy="parentType")
