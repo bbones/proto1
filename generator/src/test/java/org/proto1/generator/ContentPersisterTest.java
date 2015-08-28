@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.proto1.domain.ApproveType;
 import org.proto1.domain.Contract;
 import org.proto1.domain.Currency;
+import org.proto1.domain.Railway;
 import org.proto1.domain.Language;
 import org.proto1.domain.SideRole;
 import org.proto1.domain.UnitOfMeasurement;
@@ -46,7 +47,8 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 		"classpath:/META-INF/utility.xml", 
 		"classpath:/META-INF/receipt.xml",
 		"classpath:/META-INF/valueprovider.xml",
-		"classpath:/META-INF/approve.xml"
+		"classpath:/META-INF/approve.xml",
+		"classpath:/META-INF/railway.xml"
 	})
 public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	
@@ -116,7 +118,10 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	GradeSteelStandard astm, gost;
 
 	@Autowired
-	ApproveType contractApproveType; 
+	ApproveType contractApproveType;
+	
+	@Autowired
+	Railway rw0, rw1, rw8, rw9, rw12, rw40, rw43, rw48;
 		
 	@Before
 	public void startUp () {
@@ -144,11 +149,13 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 		persistLocalizedStringConstant();
 		
 		//persistOrder();
-		persistInventoryLot();
+		//persistInventoryLot();
 		
 		persistStandard();
 
 		persistApproveType();
+		persistRailway();
+		
 		em.flush();
 		em.getTransaction().commit();
 
@@ -157,6 +164,17 @@ public class ContentPersisterTest extends AbstractJUnit4SpringContextTests{
 	private void persistStandard() {		
 		em.persist(gost);
 		em.persist(astm);
+	}
+	
+	private void persistRailway() {		
+		em.persist(rw0);
+		em.persist(rw1);
+		em.persist(rw8);
+		em.persist(rw9);
+		em.persist(rw12);
+		em.persist(rw40);
+		em.persist(rw43);
+		em.persist(rw48);
 	}
 
 	private void persistInventoryLot() {

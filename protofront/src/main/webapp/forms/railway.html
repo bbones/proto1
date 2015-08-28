@@ -1,0 +1,33 @@
+<div title="Railway"
+    data-options="iconCls:'icon-reload',selected:true" style="padding: 10px;">
+	<table id="edgRailways" title="Railway" singleSelect="true"
+		style="width: 600px; height: 300px"
+		data-options="iconCls: 'icon-edit', toolbar: '#tbrw', idField : 'id', method : 'GET'">
+		<thead>
+			<tr>
+				<th field='id' width=90>Railway Id</th>
+				<th field='railwayCode' width=250 editor='text'>Railway Code</th>
+			</tr>
+		</thead>
+	</table>
+</div>
+
+<div title="Translations"
+	data-options="iconCls:'icon-save',selected:false"
+	style="overflow: auto; padding: 10px;" >
+	<table id="edgNames" title="Translations" singleSelect="true"
+		style="width: 600px; height: auto" 
+		data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'uomNameId', method : 'GET'">
+		<thead>
+			<tr>
+				<th field='nameId' width=40>UOM Name Id</th>
+				<th
+					data-options="field:'languageId',width:80,
+                    			formatter: ClientRepo.languageFormatter,
+                   				editor:ClientRepo.languageEditor()">Language</th>
+				<th field='shortName' width=100 editor="text">UOM short name</th>
+				<th field='fullName' width=250 editor="text">UOM full Name</th>
+			</tr>
+		</thead>
+	</table>
+</div>

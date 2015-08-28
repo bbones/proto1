@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+
+	<bean id="rw0" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="0"/>
+	</bean>
+
+	<bean id="rw1" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="1"/>
+	</bean>
+
+	<bean id="rw8" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="8"/>
+	</bean>
+
+	<bean id="rw9" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="9"/>
+	</bean>
+
+	<bean id="rw12" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="12"/>
+	</bean>
+
+	<bean id="rw40" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="40"/>
+	</bean>
+
+	<bean id="rw43" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="43"/>
+	</bean>
+
+	<bean id="rw48" class="org.proto1.domain.Railway">
+	  <property name="railwayCode" value="48"/>
+	</bean>
+
+</beans>
+	

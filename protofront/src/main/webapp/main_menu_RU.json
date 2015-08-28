@@ -36,7 +36,12 @@
 		        "id": "orgUnit",
 		        "text": "Подразделения",
 		        "module" : "orgunit.js"
+		    },{
+		        "id": "railway",
+		        "text": "Железные дороги",
+		        "module" : "railway.js"
 		    }
+		    
 		]
 	},
 	{
