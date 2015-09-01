@@ -6,6 +6,7 @@ requirejs.config({
 		'easyui' : '../easyui/jquery.easyui.min',
 		'edatagrid' : '../easyui/jquery.edatagrid',
 		'app' : 'app',
+		'language' : 'language',
 		'clientRepo' : 'clientrepo'
 	},
 	shim : {
@@ -16,5 +17,5 @@ requirejs.config({
 });
 
 require([ 'jquery', 'easyui', 'app' ], function($, easyui, app) {
-	AppModule.init();
+	app.init();
 });

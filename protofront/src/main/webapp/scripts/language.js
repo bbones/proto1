@@ -4,6 +4,8 @@
  */
 
 define(['jquery'], function($) {
+	console.log("Language module");
+	
 	var languageList = [];
 	var languageMap = new Object();
 	
@@ -24,10 +26,19 @@ define(['jquery'], function($) {
 			           required:true
 			       }
 				};
-			checkCounter();
+			console.log('Trigger languageInited');
+			$('body').trigger($.Event( 'languageInited'));
 		});
-		
 	};
+
+	function getLanguageList() {
+		return languageList;
+	};
+	
+	function getLanguageMap() {
+		return languageMap;
+	}
+	
 	
 	function init() {
 		loadLanguages();
@@ -35,7 +46,7 @@ define(['jquery'], function($) {
 	
 	return {
 		init : init,
-		languageList : languageList
+		getLanguageList : getLanguageList
 	}
 	
 })
