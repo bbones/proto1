@@ -8,6 +8,7 @@ define(['jquery'], function($) {
 	
 	var languageList = [];
 	var languageMap = new Object();
+	var currentLanguage = 3; //Russian
 	
 	function loadLanguages() {
 		$.ajax('/protofront/service/masterdata/languages').done(function(dataArray) {
@@ -39,14 +40,22 @@ define(['jquery'], function($) {
 		return languageMap;
 	}
 	
+	function getCurrentLanguage() {
+		return currentLanguage;
+	}
+	
 	
 	function init() {
 		loadLanguages();
+		$("body").on("LanguageChanged", function(event) {
+			currentLanguage = event.id;
+		});
 	}
 	
 	return {
 		init : init,
-		getLanguageList : getLanguageList
+		getLanguageList : getLanguageList,
+		id : getCurrentLanguage
 	}
 	
 })

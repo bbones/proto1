@@ -7,7 +7,9 @@ requirejs.config({
 		'edatagrid' : '../easyui/jquery.edatagrid',
 		'app' : 'app',
 		'language' : 'language',
-		'clientRepo' : 'clientrepo'
+		'commonlib' : 'modules/commonlib',
+		'clientRepo' : 'clientrepo',
+		'enterprise' : 'modules/enterprise'
 	},
 	shim : {
 		easyui : {

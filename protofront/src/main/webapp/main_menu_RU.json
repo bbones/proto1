@@ -6,7 +6,7 @@
 	    "children": [{
 	        "id": "enterprise",
 	        "text": "Предприятия",
-	        "module": "enterprise.js"
+	        "module": "enterprise"
 	    	},{
 	        	"id": "person",
 	       		"text": "Люди",
