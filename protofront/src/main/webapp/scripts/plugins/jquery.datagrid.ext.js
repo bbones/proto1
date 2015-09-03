@@ -1,3 +1,5 @@
+// $('#edgNames').datagrid('getColumnOption',
+//                              'languageId').editor = getLangEditor();
 (function($) {
 
 	function addColumnProperies(target, columnsoptions) {
