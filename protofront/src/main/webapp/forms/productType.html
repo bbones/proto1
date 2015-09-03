@@ -1,12 +1,12 @@
 <div>
 
 	<div id="mm" class="easyui-menu" >
-		<div data-options="iconCls:'icon-add'" onclick="ProductTypeLib.newNode()">New
+		<div data-options="iconCls:'icon-add'" onclick="productType.newNode()">New
 			Node</div>
-		<div data-options="iconCls:'icon-add'" onclick="ProductTypeLib.newRootNode()">New
+		<div data-options="iconCls:'icon-add'" onclick="productType.newRootNode()">New
 			Root Node</div>
 		<div data-options="iconCls:'icon-remove'"
-			onclick="ProductTypeLib.removeNode()">Delete Node</div>
+			onclick="productType.removeNode()">Delete Node</div>
 	</div>
 
 	<!-- table  title="Product Types" 
@@ -25,8 +25,8 @@
 					<th field='nameId' width = 50 >Product Type Name Id</th>
 					<th
 						data-options="field:'languageId',width:80,
-	                    			formatter: ClientRepo.languageFormatter,
-	                   				editor:ClientRepo.languageEditor()">Language</th>
+	                    			formatter: language.languageFormatter,
+	                   				editor: language.languageEditor()">Language</th>
 					<th field='productTypeName' width = 250 editor="text">Product Type Name</th>
 				</tr>
 			</thead>

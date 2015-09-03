@@ -4,11 +4,11 @@
  * Copyright Valentin Pogrebinsky 
  */
 
-var ProductTypeLib = (function(){
+define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
 	function initTree() {
 		$('#productTypes').tree({
 			url : '/protofront/service/productTypes/parents/?languageId='
-					+ IndexLib.lang(),
+					+ language.id(),
 			method : "GET",
 			dnd : true,
 			animated : true,
@@ -41,7 +41,7 @@ var ProductTypeLib = (function(){
 			method : 'GET',
 			saveUrl : '/protofront/service/productTypes/names',
 			updateUrl : '/protofront/service/productTypes/names',
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edg").edatagrid('addRow', {row : {productTypeId : $("#productTypes").tree('getSelected').id}});
 				},
@@ -71,7 +71,9 @@ var ProductTypeLib = (function(){
 	 
 	return {
 		init : function() {
-			$("#test").panel({
+			window.location.hash = "#productTypes/"; 
+			$("#spa-cntr").off();
+			$("#spa-cntr").panel({
 				href : '/protofront/forms/productType.html', 
 				onLoad : function() {
 					initTree();
@@ -83,7 +85,7 @@ var ProductTypeLib = (function(){
 		newRootNode : function() {
 			 $.ajax({
 				type : 'POST',
-				url : '/protofront/service/productTypes/?languageId='+ IndexLib.lang(),
+				url : '/protofront/service/productTypes/?languageId='+ language.id(),
 				success : function(respdata) {
 					var node = {
 						id : respdata['id'], 
@@ -107,7 +109,7 @@ var ProductTypeLib = (function(){
 					url : '/protofront/service/productTypes/',
 					data : {
 						parentId : parentnode['id'],
-						languageId : IndexLib.lang()
+						languageId : language.id()
 					},
 					success : function(respdata) {
 						var node = {
@@ -145,7 +147,7 @@ var ProductTypeLib = (function(){
 			}
 		}
 	};
-})();
+});
 
-ProductTypeLib.init();
+
 

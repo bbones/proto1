@@ -74,7 +74,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 
 	return {
 		init: function () {
-			window.location.hash = "#enterprise/" 
+			window.location.hash = "#enterprise/";
 			$("#spa-cntr").off();
 			$("#spa-cntr").panel({
 				href : '/protofront/forms/enterprise.html', 

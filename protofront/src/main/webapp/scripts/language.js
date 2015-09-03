@@ -55,7 +55,14 @@ define(['jquery'], function($) {
 	return {
 		init : init,
 		getLanguageList : getLanguageList,
-		id : getCurrentLanguage
+		id : getCurrentLanguage,
+	    languageFormatter : function(value, row) {
+	    	return languageMap[value];
+	    },
+	    languageEditor : function () { 
+	    	return languageEditor; 
+	    }
+
 	}
 	
 })

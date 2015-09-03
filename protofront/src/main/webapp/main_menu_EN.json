@@ -6,36 +6,36 @@
 	    "children": [{
 	        "id": "enterprise",
 	        "text": "Enterprise",
-	        "module": "enterprise.js"
+	        "module": "enterprise"
 	    	},{
 	        	"id": "person",
 	       		"text": "Person",
-		        "module": "person.js"
+		        "module": "person"
 	    	},{
 	        	"id": "period",
 	        	"text": "Period"
 	    	},{
 	        	"id": "productType",
 	        	"text": "Product Type",
-	        	"module" : "productType.js"
+	        	"module" : "productType"
 	    	},{
 		        "id": "product",
 		        "text": "Product"
 		    },{
 		        "id": "parameter",
 		        "text": "Parameter",
-	        	"module" : "parameter.js"
+	        	"module" : "parameter"
 		    },{
 		        "id": "location",
 		        "text": "Location"
 		    },{
 		        "id": "uom",
 		        "text": "Unit of measurement",
-		        "module" : "uom.js"
+		        "module" : "uom"
 		    }, {
 		        "id": "orgUnit",
 		        "text": "Organization Unit",
-		        "module" : "orgunit.js"
+		        "module" : "orgunit"
 		    }
 		    
 		]

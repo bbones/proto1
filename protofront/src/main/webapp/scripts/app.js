@@ -6,7 +6,7 @@
  * File app.js Created 31.08.15
  */
 
-define([ "require", "language" ], function(require, language) {
+define([ "require", "language", "commonlib" ], function(require, language, commonlib) {
 	function initLanguageList() {
 		console.log('init listener');
 		$("body").on('languageInited', function() {

@@ -6,11 +6,11 @@
  * TODO CRUD
  */
 
-var PersonLib = (function() {
+define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
 	
 	function initPersonGrid() {
 		$("#edgPerson").edatagrid({
-			url : "/protofront/service/persons/?languageId=" +	IndexLib.lang(),
+			url : "/protofront/service/persons/?languageId=" +	language.id(),
 			method : 'GET',
 			onSelect : function(index, row) {
 				console.log(row);
@@ -28,7 +28,9 @@ var PersonLib = (function() {
 
 	return {
 		init : function() {
-			$("#test").panel({
+			window.location.hash = "#person/"; 
+			$("#spa-cntr").off();
+			$("#spa-cntr").panel({
 				href : '/protofront/forms/person.html', 
 				onLoad : function() {
 					initPersonGrid();
@@ -37,6 +39,5 @@ var PersonLib = (function() {
 			});
 		}
 	}
-})();
+});
 
-PersonLib.init();

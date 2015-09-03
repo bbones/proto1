@@ -10,14 +10,14 @@
 	    	},{
 	        	"id": "person",
 	       		"text": "Люди",
-		        "module": "person.js"
+		        "module": "person"
 	    	},{
 	        	"id": "period",
 	        	"text": "Периоды"
 	    	},{
 	        	"id": "productType",
 	        	"text": "Типы продукции",
-	        	"module" : "productType.js"
+	        	"module" : "productType"
 	    	},{
 		        "id": "product",
 		        "text": "Продукция"
