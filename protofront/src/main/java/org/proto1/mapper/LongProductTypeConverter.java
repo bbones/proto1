@@ -23,7 +23,7 @@ public class LongProductTypeConverter extends DozerConverter<Long, ProductType> 
 
 	@Override
 	public Long convertFrom(ProductType source, Long destination) {
-		return source.getId();
+		return source != null ? source.getId() : null;
 	}
 
 }
