@@ -4,8 +4,8 @@ requirejs.config({
 		'jquery' : '../easyui/jquery.min',
 		'easyui' : '../easyui/jquery.easyui.min',
 		'edatagrid' : '../easyui/jquery.edatagrid',
-		 'easyui.form.ext' : 'plugins/jquery.form.ext',
-		 'easyui.grid.ext' : 'plugins/jquery.grid.ext',
+		'easyui.form.ext' : 'plugins/jquery.form.ext',
+		'easyui.grid.ext' : 'plugins/jquery.grid.ext',
 		'app' : 'app',
 		'language' : 'language',
 		'commonlib' : 'modules/commonlib',
@@ -28,9 +28,8 @@ requirejs.config({
 			exports : 'jquery',
 			deps : [ 'jquery', 'easyui' ]
 		},
-		'easyui.grid.ext' : {
-			exports : 'jquery',
-			deps : [ 'jquery', 'easyui' ]
+		'productType' : {
+			exports : 'productType'
 		}
 	}
 });
