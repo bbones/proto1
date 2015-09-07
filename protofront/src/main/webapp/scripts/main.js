@@ -8,11 +8,13 @@ requirejs.config({
 		'easyui.grid.ext' : 'plugins/jquery.grid.ext',
 		'app' : 'app',
 		'language' : 'language',
+		'uomUtil' : 'modules/uom.util',
 		'commonlib' : 'modules/commonlib',
 		'clientRepo' : 'clientrepo',
 		'enterprise' : 'modules/enterprise',
+		'person' : 'modules/person',
 		'productType' : 'modules/productType',
-		'person' : 'modules/person'
+		'product' : 'modules/product'
 	},
 	shim : {
 		easyui : {

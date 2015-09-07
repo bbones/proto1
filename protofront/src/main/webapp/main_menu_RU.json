@@ -20,22 +20,23 @@
 	        	"module" : "productType"
 	    	},{
 		        "id": "product",
-		        "text": "Продукция"
+		        "text": "Продукция",
+	        	"module" : "product"
 		    },{
 		        "id": "parameter",
 		        "text": "Параметры",
-	        	"module" : "parameter.js"
+	        	"module" : "parameter"
 		    },{
 		        "id": "location",
 		        "text": "Расположения"
 		    },{
 		        "id": "uom",
 		        "text": "Единицы измерения",
-		        "module" : "uom.js"
+		        "module" : "uom"
 		    },{
 		        "id": "orgUnit",
 		        "text": "Подразделения",
-		        "module" : "orgunit.js"
+		        "module" : "orgunit"
 		    }
 		]
 	},

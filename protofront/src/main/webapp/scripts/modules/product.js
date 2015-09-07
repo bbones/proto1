@@ -6,7 +6,8 @@
  * TODO Delete Name request doesn't work
  */
 
-var ProductLib = (function(){
+define(["commonlib", "language", "uomUtil", "edatagrid"],function(commonlib, language, edatagrid, uomUtil){
+
 	
 	
 	function initProductTypeTree() {
@@ -15,7 +16,7 @@ var ProductLib = (function(){
 				console.log(record);
 				$("#edgProducts").edatagrid({
 					url : '/protofront/service/products/types?productTypeId='
-									+ record.id + '&languageId=' + IndexLib.lang()
+									+ record.id + '&languageId=' + language.id()
 				}); // edatagrid
 			}// OnSelect
 		}); // Combotree
@@ -23,10 +24,10 @@ var ProductLib = (function(){
 	
 	function initProductGrid() {
 		$("#edgProducts").edatagrid({
-			saveUrl : '/protofront/service/products/?languageId=' + IndexLib.lang(),
-			updateUrl : '/protofront/service/products/?languageId=' + IndexLib.lang(),
+			saveUrl : '/protofront/service/products/?languageId=' + + language.id(),
+			updateUrl : '/protofront/service/products/?languageId=' + + language.id(),
 			method : "GET",
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgProducts").edatagrid('addRow', {row : {productTypeId : $("#productType").combotree('getValue')}});
 				},
@@ -49,7 +50,7 @@ var ProductLib = (function(){
 	
 					$("#edgParameters").edatagrid({
 						url : '/protofront/service/products/'+ row.productId + 
-							'/parameters?languageId=' + IndexLib.lang(),
+							'/parameters?languageId=' + language.id(),
 					});
 				}
 			}, // OnSelect
@@ -68,7 +69,7 @@ var ProductLib = (function(){
 			method : 'GET',
 			saveUrl : '/protofront/service/products/names',
 			updateUrl : '/protofront/service/products/names',
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgNames").edatagrid('addRow', {row : {productId : $("#edgProducts").edatagrid('getSelected').productId}});
 				},
@@ -93,9 +94,9 @@ var ProductLib = (function(){
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
 			method : 'GET',
-			saveUrl : '/protofront/service/products/parameters' + '?languageId=' + IndexLib.lang(),
-			updateUrl : '/protofront/service/products/parameters' + '?languageId=' + IndexLib.lang(),
-			toolbar : IndexLib.edgmenu({
+			saveUrl : '/protofront/service/products/parameters' + '?languageId=' + language.id(),
+			updateUrl : '/protofront/service/products/parameters' + '?languageId=' + language.id(),
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgParameters").edatagrid('addRow', {row : {productId : $("#edgProducts").edatagrid('getSelected').productId}});
 				},
@@ -120,11 +121,19 @@ var ProductLib = (function(){
 	
 	return {
 		init : function() {
-			initProductTypeTree();
-			initProductGrid();
-			initNameGrid();
-			initParameterGrid();
+			window.location.hash = "#product/"; 
+			$("#spa-cntr").off();
+			$("#spa-cntr").panel({
+				href : '/protofront/forms/product.html', 
+				onLoad : function() {
+					initProductTypeTree();
+					initProductGrid();
+					initNameGrid();
+					initParameterGrid();
+				}
+			});
+
 		}
 	}  //return
-})();
+});
 

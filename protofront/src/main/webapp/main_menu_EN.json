@@ -20,7 +20,8 @@
 	        	"module" : "productType"
 	    	},{
 		        "id": "product",
-		        "text": "Product"
+		        "text": "Product",
+	        	"module" : "product"
 		    },{
 		        "id": "parameter",
 		        "text": "Parameter",
