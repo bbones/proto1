@@ -16,4 +16,3 @@ define(function(){
 	}
 });
 
-uom.util.init();
