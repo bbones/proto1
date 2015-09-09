@@ -70,7 +70,7 @@
                         			}">Parameter</th>
 								<th data-options="field:'defaultUOMId',width:80,
                     					formatter: uomUtil.uomFormatter,
-                   						editor: uomUtil.uomEditor()">Default UOM</th>
+                   						editor: uomUtil.getUomEditor()">Default UOM</th>
 								<th
 									data-options="field:'required',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Required</th>
 								<th field='valueProvider' width=150>Value Provider</th>
@@ -85,8 +85,9 @@
 </div>
 
 <script>
-	debugger;
+
 	var product=require('product');
 	var language=require('language');
-	var language=require('uomUtil');
+	var uomUtil=require('uomUtil');
+	
 </script> 

@@ -8,16 +8,16 @@
  * Created 04.05.15 
  */
 
-var UOMLib = (function(){
+define(['commonlib'], function(commonlib){
 	
 	var currentUOMId = null; 
 	
 	function initUOMGrid(){
 		$("#edgUOMs").edatagrid({
-			url : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
-			saveUrl : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
-			updateUrl : '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
-			toolbar : IndexLib.edgmenu({
+			url : '/protofront/service/uoms/?languageId=' + language.id(),
+			saveUrl : '/protofront/service/uoms/?languageId=' + language.id(),
+			updateUrl : '/protofront/service/uoms/?languageId=' + language.id(),
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgUOMs").edatagrid('addRow');
 				},
@@ -59,7 +59,7 @@ var UOMLib = (function(){
 			},
 			saveUrl : '/protofront/service/uoms/names',
 			updateUrl :'/protofront/service/uoms/names',
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgNames").edatagrid('addRow', {row : {uomId : currentUOMId}});
 				},
@@ -74,18 +74,24 @@ var UOMLib = (function(){
 		});		
 	};
 	
-	return {
-		init : function() {
-			$("#test").panel({
+	function init() {
+		window.location.hash = "#uom/"; 
+		$("#spa-cntr").off();
+		$.when(uomUtil.init(), language.init()).done(function() {
+			$("#spa-cntr").panel({
 				href : '/protofront/forms/uom.html', 
 				onLoad : function() {
 					initUOMGrid();
 					initTranslationGrid();
 				}
 			});
-		}
+		});
+	}
+	
+	return {
+		init : init
 	};	
-})();
+});
 
-UOMLib.init();
+
 

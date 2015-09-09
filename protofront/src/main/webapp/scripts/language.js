@@ -8,6 +8,7 @@ define([ 'jquery' ], function($) {
 	var languageList = [];
 	var languageMap = new Object();
 	var currentLanguage = 3; // Russian
+	var d = $.Deferred();
 
 	function loadLanguages() {
 		$.ajax('/protofront/service/masterdata/languages').done(
@@ -30,6 +31,7 @@ define([ 'jquery' ], function($) {
 					};
 					console.log('Trigger languageInited');
 					$('body').trigger($.Event('languageInited'));
+					d.resolve();
 				});
 	}
 	;
@@ -48,12 +50,12 @@ define([ 'jquery' ], function($) {
 	}
 
 	function init() {
-
 		loadLanguages();
 		$("body").on("LanguageChanged", function(event) {
 			currentLanguage = event.id;
 		});
 		window.language = this;
+		return d;
 
 	}
 

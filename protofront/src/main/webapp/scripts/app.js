@@ -6,9 +6,8 @@
  * File app.js Created 31.08.15
  */
 
-define([ "require", "language", "commonlib" ], function(require, language, commonlib) {
+define([ "jquery", "easyui", "require", "language", "commonlib" ], function($, easyui, require, language, commonlib) {
 	function initLanguageList() {
-		console.log('init listener');
 		$("body").on('languageInited', function() {
 			$('#langSelector').combobox({
 				valueField : 'id',

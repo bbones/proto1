@@ -6,7 +6,8 @@
  * TODO Delete Name request doesn't work
  */
 
-define(["commonlib", "language", "uomUtil", "edatagrid"],function(commonlib, language, edatagrid, uomUtil){
+define(["jquery", "commonlib", "language", "uomUtil", "edatagrid"],
+		function($, commonlib, language, uomUtil, edatagrid){
 
 	
 	
@@ -118,11 +119,10 @@ define(["commonlib", "language", "uomUtil", "edatagrid"],function(commonlib, lan
 		});
 	}
 	
-	
-	return {
-		init : function() {
-			window.location.hash = "#product/"; 
-			$("#spa-cntr").off();
+	function init() {
+		window.location.hash = "#product/"; 
+		$("#spa-cntr").off();
+		$.when(uomUtil.init(), language.init()).done(function() {
 			$("#spa-cntr").panel({
 				href : '/protofront/forms/product.html', 
 				onLoad : function() {
@@ -132,8 +132,12 @@ define(["commonlib", "language", "uomUtil", "edatagrid"],function(commonlib, lan
 					initParameterGrid();
 				}
 			});
-
-		}
+		});
+	
+	}
+	
+	return {
+		init : init
 	}  //return
 });
 

@@ -47,8 +47,8 @@
 				<th field='parameterNameId' width=50>Product Name Id</th>
 				<th
 					data-options="field:'languageId',width:100,
-                    			formatter:ClientRepo.languageFormatter,
-                   				editor:ClientRepo.languageEditor()">Language</th>
+                    			formatter:language.languageFormatter,
+                   				editor:language.languageEditor()">Language</th>
 				<th field='parameterName' width=250 editor="text">Parameter Name</th>
 			</tr>
 		</thead>
@@ -70,3 +70,10 @@
 	"></div>
 </div>
 
+<script type="text/javascript">
+
+	var parameter=require('parameter');
+	var language=require('language');
+	var uomUtil=require('uomUtil');
+
+</script>

@@ -10,14 +10,15 @@ requirejs.config({
 		'language' : 'language',
 		'uomUtil' : 'modules/uom.util',
 		'commonlib' : 'modules/commonlib',
-		'clientRepo' : 'clientrepo',
 		'enterprise' : 'modules/enterprise',
 		'person' : 'modules/person',
 		'productType' : 'modules/productType',
-		'product' : 'modules/product'
+		'product' : 'modules/product',
+		'parameter' : 'modules/parameter',
+		'uom' : 'modules/uom'
 	},
 	shim : {
-		easyui : {
+		'easyui' : {
 			deps : [ 'jquery' ],
 			exports : 'jquery'
 		},
@@ -29,13 +30,10 @@ requirejs.config({
 		'easyui.form.ext' : {
 			exports : 'jquery',
 			deps : [ 'jquery', 'easyui' ]
-		},
-		'productType' : {
-			exports : 'productType'
 		}
 	}
 });
 
-require([ 'jquery', 'easyui', 'app' ], function($, easyui, app) {
+var app = require([ 'app' ], function(app) {
 	app.init();
 });
