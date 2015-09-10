@@ -5,7 +5,6 @@
 /**
  * 
  */
-
 var IndexLib = (function(){
 	var languageMap = new Object();
 	var languageList = null;
@@ -171,6 +170,12 @@ var IndexLib = (function(){
 			    	handler: onClick.cancel,
 			    	plain : true,
 			    	text : 'Cancel'
+			    },
+			    {
+			    	iconCls: 'icon-save',
+			    	handler: onClick.saveToExcel,
+			    	plain : true,
+			    	text : 'Save to Excel'
 			    }
 
 			];

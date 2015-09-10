@@ -20,19 +20,23 @@ var currentRailwayId = null;
 				},
 				destroy : function(){
 					$("#edgRailways").edatagrid('destroyRow');
+				},
+				saveToExcel : function(){
+					$("#edgRailways").datagrid('toExcel','Railways');
 				}
 
 			}),
-			/*onSelect : function(index, row) {
-				console.log(row);
+			onSelect : function(index, row) {
+				//console.log("onSelectRailway");
+				//console.log(row);
 				currentRailwayId = row.id;
 				if (row.id != null) {
-					$("#edgNames").edatagrid({
+					$("#edgRailwayNames").edatagrid({
 						url : '/protofront/service/railways/' + row.id + '/names',
 
 					});
 				}
-			},*/
+			},
 			onDestroy : function(index,row){
 				$.ajax({
 					url : '/protofront/service/railways/' + row.id,
@@ -43,6 +47,34 @@ var currentRailwayId = null;
 		});	
 	};
 
+	function initNameGrid(){
+		$("#edgRailwayNames").edatagrid({
+			onDestroy : function(index,row){
+				$.ajax({
+					url : '/protofront/service/railways/names/' + row.id,
+					method : "DELETE"
+				});
+			},
+			saveUrl : '/protofront/service/railways/names',
+			updateUrl :'/protofront/service/railways/names',
+			toolbar : IndexLib.edgmenu({
+				add : function(){
+					$("#edgRailwayNames").edatagrid('addRow', {row : {railwayId : currentRailwayId}});
+				},
+				save : function(){
+					$("#edgRailwayNames").edatagrid('saveRow');
+				},
+				destroy : function(){
+					$("#edgRailwayNames").edatagrid('destroyRow');
+				},
+				saveToExcel : function(){
+					$("#edgRailwayNames").datagrid('toExcel','RailwayNames');
+				}
+
+			})
+		});		
+	};
+	
 	return {
 		init : function() {
 			//debugger;
@@ -50,11 +82,13 @@ var currentRailwayId = null;
 				href : '/protofront/forms/railway.html', 
 				onLoad : function() {
 					initRailwayGrid();
-					//initNameGrid();
+					initNameGrid();
 				}
 			});
 		}
 	}
-})();
+}
+
+)();
 
 RailwayLib.init();

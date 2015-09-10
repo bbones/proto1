@@ -253,6 +253,22 @@
 			<b>name</b>
 		</field>
 	</mapping>
-	
+
+	<mapping>
+		<class-a>org.proto1.domain.RailwayName</class-a>
+		<class-b>org.proto1.dto.RailwayNameDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>id</b>
+		</field>
+		<field>
+			<a>railway</a>
+			<b>railwayId</b>
+		</field>
+		<field>
+			<a>language</a>
+			<b>languageId</b>
+		</field>
+	</mapping>
 	
 </mappings>

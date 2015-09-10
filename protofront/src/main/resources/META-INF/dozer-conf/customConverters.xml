@@ -5,6 +5,11 @@
 	<configuration>
 		<custom-converters>
 
+			<converter type="org.proto1.mapper.LongRailwayConverter">
+				<class-a>java.lang.Long</class-a>
+				<class-b>org.proto1.domain.Railway</class-b>
+			</converter>
+
 			<converter type="org.proto1.mapper.LongUOMConverter">
 				<class-a>java.lang.Long</class-a>
 				<class-b>org.proto1.domain.UnitOfMeasurement</class-b>

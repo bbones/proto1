@@ -12,7 +12,8 @@ public interface RailwayRepository extends CrudRepository<Railway, Long> {
 
 	@Query("select new Map(rw.id as id, rw.railwayCode as railwayCode, " +
 			"rw.version as version) " +
-			"from Railway rw ")
+			"from Railway rw " +
+			"order by rw.railwayCode asc")
 	List<Map<String, Object>> getList();
 
 }

@@ -1,7 +1,7 @@
 package org.proto1.services;
 
 import static org.easymock.EasyMock.*;
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.proto1.domain.Railway;
