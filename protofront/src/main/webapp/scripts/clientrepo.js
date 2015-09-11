@@ -8,7 +8,6 @@
  */
 
 var ClientRepo = (function() {
-	
 	var languageMap = new Object();
 	var languageList = null;
 	var languageEditor = null;
@@ -71,7 +70,7 @@ var ClientRepo = (function() {
 		checkCounter();
 	};
 	
-	function loadUrgUnits() {
+	function loadOrgUnits() {
 		$.ajax('/protofront/service/orgunits/enterprise/' + 45 +'?languageId=' + IndexLib.lang()).done(function(dataArray) {
 			orgUnitList = dataArray;
 			var length = dataArray.length;
@@ -128,7 +127,7 @@ var ClientRepo = (function() {
 		loadLanguages();
 		loadCurrencies();
 		loadUoms();
-		loadUrgUnits();
+		loadOrgUnits();
 	}
 	return {
 		init : init,

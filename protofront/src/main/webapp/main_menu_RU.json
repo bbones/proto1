@@ -6,40 +6,41 @@
 	    "children": [{
 	        "id": "enterprise",
 	        "text": "Предприятия",
-	        "module": "enterprise.js"
+	        "module": "enterprise"
 	    	},{
 	        	"id": "person",
 	       		"text": "Люди",
-		        "module": "person.js"
+		        "module": "person"
 	    	},{
 	        	"id": "period",
 	        	"text": "Периоды"
 	    	},{
 	        	"id": "productType",
 	        	"text": "Типы продукции",
-	        	"module" : "productType.js"
+	        	"module" : "productType"
 	    	},{
 		        "id": "product",
-		        "text": "Продукция"
+		        "text": "Продукция",
+	        	"module" : "product"
 		    },{
 		        "id": "parameter",
 		        "text": "Параметры",
-	        	"module" : "parameter.js"
+	        	"module" : "parameter"
 		    },{
 		        "id": "location",
 		        "text": "Расположения"
 		    },{
 		        "id": "uom",
 		        "text": "Единицы измерения",
-		        "module" : "uom.js"
+		        "module" : "uom"
 		    },{
 		        "id": "orgUnit",
 		        "text": "Подразделения",
-		        "module" : "orgunit.js"
+		        "module" : "orgunit"
 		    },{
 		        "id": "railway",
 		        "text": "Железные дороги",
-		        "module" : "railway.js"
+		        "module" : "railway"
 		    }
 		    
 		]
@@ -100,9 +101,7 @@
 		        "text": "Склад"
 	    	}
 	    ]
-	    
-	}
-	,
+	},
 	{
 	    "id": "activiti",
 	    "text": "Задачи",

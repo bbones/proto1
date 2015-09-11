@@ -6,16 +6,16 @@
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  */
 
-var ParameterLib = (function(){
+define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatagrid){
 	var initUOM = true;
 	var currentParameterId = null; 
 	
 	function initParameterGrid() {
 		$("#edgParameters").edatagrid({
-			url : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
-			saveUrl : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
-			updateUrl : '/protofront/service/parameters/?languageId=' + IndexLib.lang(),
-			toolbar : IndexLib.edgmenu({
+			url : '/protofront/service/parameters/?languageId=' + language.id(),
+			saveUrl : '/protofront/service/parameters/?languageId=' + language.id(),
+			updateUrl : '/protofront/service/parameters/?languageId=' + language.id(),
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgParameters").edatagrid('addRow');
 				},
@@ -70,7 +70,7 @@ var ParameterLib = (function(){
 		$("#edgNames").edatagrid({
 			saveUrl : '/protofront/service/parameters/names',
 			updateUrl :'/protofront/service/parameters/names',
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgNames").edatagrid('addRow', {row : {parameterId : currentParameterId}});
 				},
@@ -94,7 +94,7 @@ var ParameterLib = (function(){
 	
 	function initUOMS() {
 		$('#dlUOM').datalist({
-		    url: '/protofront/service/uoms/?languageId=' + IndexLib.lang(),
+		    url: '/protofront/service/uoms/?languageId=' + language.id(),
 		    onCheck : function(index, row) {
 		    	if (!initUOM) {
 		    		var par = $("#edgParameters").edatagrid('getSelected').parameterId;
@@ -116,10 +116,11 @@ var ParameterLib = (function(){
 		});
 	};
 	
-	return {
-		init : function() {
-			$("#test").off();
-			$("#test").panel({
+	function init() {
+		window.location.hash = "#parameter/"; 
+		$("#spa-cntr").off();
+		$.when(uomUtil.init(), language.init()).done(function() {
+			$("#spa-cntr").panel({
 				href : '/protofront/forms/parameter.html', 
 				onLoad : function() {
 					initParameterGrid();
@@ -127,8 +128,10 @@ var ParameterLib = (function(){
 					initUOMS();
 				}
 			});
-		}
+		});
+	}
+	return {
+		init : init
 	};
-})();
+});
 
-ParameterLib.init();

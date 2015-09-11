@@ -4,8 +4,8 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+//import org.apache.commons.logging.Log;
+//import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.RailwayName;
 import org.proto1.repository.RailwayNameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class RailwayNameServiceBean implements RailwayNameService {
-	protected final Log logger = LogFactory.getLog(getClass());
+	//protected final Log logger = LogFactory.getLog(getClass());
 	
 	@Autowired
 	RailwayNameRepository railwayNameRepository;
@@ -27,12 +27,12 @@ public class RailwayNameServiceBean implements RailwayNameService {
 	}
 
 	public RailwayName save(RailwayName railwayName) {
-		logger.debug("railwayName.getId()=" + railwayName.getId());
-		logger.debug("railwayName.getShortName()=" + railwayName.getShortName());
-		logger.debug("railwayName.getFullName()=" + railwayName.getFullName());
-		logger.debug("railwayName.getVersion()=" + railwayName.getVersion());
-		logger.debug("railwayName.getLanguage()=" + railwayName.getLanguage().getId());
-		logger.debug("railwayName.getRailway()=" + railwayName.getRailway().getId());
+		//logger.debug("railwayName.getId()=" + railwayName.getId());
+		//logger.debug("railwayName.getShortName()=" + railwayName.getShortName());
+		//logger.debug("railwayName.getFullName()=" + railwayName.getFullName());
+		//logger.debug("railwayName.getVersion()=" + railwayName.getVersion());
+		//logger.debug("railwayName.getLanguage()=" + railwayName.getLanguage().getId());
+		//logger.debug("railwayName.getRailway()=" + railwayName.getRailway().getId());
 		return railwayNameRepository.save(railwayName);
 	}
 	

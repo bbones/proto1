@@ -12,7 +12,7 @@
 			<input id="productType" class="easyui-combotree" 
 				style="width: 600px;"
 				data-options="url:'/protofront/service/productTypes/parents/?languageId='
-								+ IndexLib.lang(), method:'GET'">
+								+ language.id(), method:'GET'">
 
 			<table id="edgProducts" title="Products" singleSelect="true"
 				style="width: 700px; height: auto" data-options="iconCls: 'icon-edit', toolbar: '#tbp', idField : 'id'">
@@ -36,8 +36,8 @@
 							<tr>
 								<th field='nameId' width=80>Product Name Id</th>
 								<th	data-options="field:'languageId',width:80,
-                    					formatter: ClientRepo.languageFormatter,
-                   						editor:ClientRepo.languageEditor()">Language</th>
+                    					formatter: language.languageFormatter,
+                   						editor:language.languageEditor()">Language</th>
 								<th field='productName' width=250 editor="text">Product
 									Name</th>
 							</tr>
@@ -64,13 +64,13 @@
 			                                valueField:'parameterId',
 			                                textField:'parameterName',
 			                                method:'get',
-			                                url:'/protofront/service/parameters/?languageId=' + $('#langSelector').combobox('getValue'),
+			                                url:'/protofront/service/parameters/?languageId=' + language.id(),
 			                                required:true
 			                            }
                         			}">Parameter</th>
 								<th data-options="field:'defaultUOMId',width:80,
-                    					formatter: ClientRepo.uomFormatter,
-                   						editor:ClientRepo.uomEditor()">Default UOM</th>
+                    					formatter: uomUtil.uomFormatter,
+                   						editor: uomUtil.getUomEditor()">Default UOM</th>
 								<th
 									data-options="field:'required',width:60,align:'center',editor:{type:'checkbox',options:{on:'true',off:'false'}}">Required</th>
 								<th field='valueProvider' width=150>Value Provider</th>
@@ -85,7 +85,9 @@
 </div>
 
 <script>
-	$.getScript("/protofront/scripts/product.js").done(function() {
-		ProductLib.init();
-	});
+
+	var product=require('product');
+	var language=require('language');
+	var uomUtil=require('uomUtil');
+	
 </script> 
