@@ -4,11 +4,11 @@
 			<input id="enterprise" name="enterprise">
 			
 			<table id="edgMaster" title="Organization Unit" singleSelect="true"
-				style="width: 700px; height: 40%" data-options="iconCls: 'icon-edit', toolbar: '#tbe', idField : 'id'">
+				style="width: 700px; height: 40%" data-options="iconCls: 'icon-edit', idField : 'id'">
 				<thead>
 					<tr>
 						<th field='id' width=80>Organization Unit Id</th>
-						<th field='name' editor="text">Organization Unit Name</th>
+						<th field='name' width=250 editor="text">Organization Unit Name</th>
 					</tr>
 				</thead>
 			</table>
@@ -25,8 +25,8 @@
 								<th field='ounId' width=80>Name Id</th>
 								<th
 									data-options="field:'languageId',width:100,
-                        			formatter:ClientRepo.languageFormatter,
-                       				editor:ClientRepo.languageEditor()">Language</th>
+                        			formatter:language.languageFormatter,
+                       				editor:language.languageEditor()">Language</th>
 								<th field='name' editor="text">Org Unit Name</th>
 							</tr>
 						</thead>
@@ -61,3 +61,7 @@
 	</div>
 </div>
 
+<script>
+	var language=require('language');
+	var commonlib=require('commonlib');
+</script>

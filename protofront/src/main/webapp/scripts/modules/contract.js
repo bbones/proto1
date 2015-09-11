@@ -8,7 +8,8 @@
  * 
  */
 
-var ContractLib = (function(){
+define (['currencyUtil', 'commonlib', 'edatagrid'], 
+		function(currencyUtil, commonlib, edatagrid){
 
 	var roleMap = new Object();
 	var currentContractId = {};
@@ -20,7 +21,7 @@ var ContractLib = (function(){
 	function initContractGrid() {
 		var event = jQuery.Event( "contractSelected" );
 		$("#edgContract").edatagrid({
-			toolbar : IndexLib.edgmenu({ 
+			toolbar : commonlib.edgmenu({ 
 				add : function(){
 					$("#edgContract").edatagrid('addRow');
 					$("#cf").form('clear');
@@ -56,9 +57,9 @@ var ContractLib = (function(){
 		$("#test").on("contractSelected", function(event, contractId){
 			if ((typeof contractId) != 'undefined') {
 				$("#edgSides").edatagrid({
-					url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + IndexLib.lang(),
-					saveUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
-					updateUrl : "/protofront/service/contracts/sides?languageId=" + IndexLib.lang(),
+					url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + language.id(),
+					saveUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),
+					updateUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),
 					onDestroy : function(index, row) {
 			    		$.ajax({
 			    			url : '/protofront/service/contracts/sides/' + row.csId,
@@ -70,7 +71,7 @@ var ContractLib = (function(){
 		});
 		initRoleListAndMap();
 		$("#edgSides").edatagrid({
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 					add : function(){
 						$("#edgSides").edatagrid('addRow', {row : {contractId : currentContractId}});
 					},
@@ -96,7 +97,7 @@ var ContractLib = (function(){
 			}
 		});
 		$("#edgSupplement").edatagrid({
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 					add : function(){
 						$("#edgSupplement").edatagrid('addRow');
 						$("#csf").form('clear');
@@ -139,7 +140,7 @@ var ContractLib = (function(){
 	};
 
 	function initRoleListAndMap() {
-		$.ajax('/protofront/service/contracts/roles?languageId=' + IndexLib.lang()).done(function(dataArray) {
+		$.ajax('/protofront/service/contracts/roles?languageId=' + language.id()).done(function(dataArray) {
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				roleMap[dataArray[i].srId] = dataArray[i].srName;
@@ -170,9 +171,9 @@ var ContractLib = (function(){
 
 		$("#isdate").datebox({
 			
-			formatter:IndexLib.dateFormatter,
+			formatter:commonlib.dateFormatter,
 			
-			parser:IndexLib.dateParser
+			parser:commonlib.dateParser
 
 		});
 	};
@@ -187,16 +188,16 @@ var ContractLib = (function(){
 		
 		$("#supisdate").datebox({
 			
-			formatter:IndexLib.dateFormatter,
+			formatter:commonlib.dateFormatter,
 			
-			parser:IndexLib.dateParser
+			parser:commonlib.dateParser
 
 		});
 		$("#currencyId").combogrid({
 			panelWidth: 500,
             idField: 'numCode',
             textField: 'charCode',
-            data : ClientRepo.getCurrencyList(),
+            data : currencyUtil.getCurrencyList(),
             columns: [[
                 {field:'numCode',title:'Code',width:80},
                 {field:'charCode',title:'Char code',width:120},
@@ -208,16 +209,19 @@ var ContractLib = (function(){
 	
 	return {
 		init : function() {
-			$("#test").off();
-			$("#test").panel({
-				href : '/protofront/forms/contract.html', 
-				onLoad : function() {
-					initContractGrid();
-					initContractForm();
-					initSidesGrid();
-					initSupplementGrid();
-					initContractSupplementForm();
-				}
+			window.location.hash = "#contract/"; 
+			$("#spa-cntr").off();
+			$.when(currencyUtil.init(), language.init()).done(function() {
+				$("#spa-cntr").panel({
+					href : '/protofront/forms/contract.html', 
+					onLoad : function() {
+						initContractGrid();
+						initContractForm();
+						initSidesGrid();
+						initSupplementGrid();
+						initContractSupplementForm();
+					}
+				});
 			});
 		},
         roleFormatter : function(value, row, index) {
@@ -240,7 +244,7 @@ var ContractLib = (function(){
 			return {
 	  			type:'combogrid',
 	          	options:{
-	          		url : '/protofront/service/masterdata/parties?languageId=' + IndexLib.lang(),
+	          		url : '/protofront/service/masterdata/parties?languageId=' + language.id(),
 	          		idField : 'partyId',
 	          		// valueField:'partyId',
 	          		textField:'partyName',
@@ -258,6 +262,4 @@ var ContractLib = (function(){
 			}
 		}
 	};
-})();
-
-ContractLib.init();
+});

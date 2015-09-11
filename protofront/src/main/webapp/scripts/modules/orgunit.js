@@ -6,13 +6,13 @@
  * TODO CRUD
  */
 
-var OrgUnitLib = (function() {
+define(['commonlib', 'language', 'edatagrid'], function(commonlib, language, edatagrid) {
 	var currentPartyId = null;
 	var currentOUId = null;
 	
 	function initEnterpriseSelector() {
 		$('#enterprise').combogrid({
-      		url : '/protofront/service/enterprises/search?languageId=' + IndexLib.lang(),
+      		url : '/protofront/service/enterprises/search?languageId=' + language.id(),
       		idField : 'enterpriseId',
       		textField:'name',
       		method:'GET',
@@ -29,21 +29,21 @@ var OrgUnitLib = (function() {
       			console.log(row);
       			currentPartyId = row.id;
       			var event = jQuery.Event( "enterpriseSelected" );
-      			$("#test").trigger(event, row.id);
+      			$("#spa-cntr").trigger(event, row.id);
       		}
 		});
 	}
 	
 	function initMasterGrid() {
-		$("#test").on("enterpriseSelected", function(event, enterpriseId){
+		$("#spa-cntr").on("enterpriseSelected", function(event, enterpriseId){
 			$("#edgMaster").edatagrid({
-				url : '/protofront/service/orgunits/enterprise/' + enterpriseId + '?languageId=' + IndexLib.lang()
+				url : '/protofront/service/orgunits/enterprise/' + enterpriseId + '?languageId=' + language.id()
 			}); 
 		});
 			
 
 		$("#edgMaster").edatagrid({
-			toolbar : IndexLib.edgmenu({ 
+			toolbar : commonlib.edgmenu({ 
 				add : function(){
 					$("#edgMaster").edatagrid('addRow', {row : {enterpriseId : currentPartyId}});
 					$("#cf").form('clear');
@@ -57,19 +57,16 @@ var OrgUnitLib = (function() {
 				}
 			}),
 
-			url : "/protofront/service/orgunits/?languageId=" +
-				IndexLib.lang(),
-			saveUrl : "/protofront/service/orgunits/?languageId=" +
-				IndexLib.lang(),
-			updateUrl : "/protofront/service/orgunits/?languageId=" +
-				IndexLib.lang(),
+			url : "/protofront/service/orgunits/?languageId=" + language.id(),
+			saveUrl : "/protofront/service/orgunits/?languageId=" + language.id(),
+			updateUrl : "/protofront/service/orgunits/?languageId=" + language.id(),
 			method : 'GET',
 			onSelect : function(index, row) {
 				if (row.id) {
 					if (typeof row.id != 'undefined') {
 						currentOUId = row.id;
 						var event = jQuery.Event( "orgUnitSelected" );
-						$("#test").trigger(event, row.id);
+						$("#spa-cntr").trigger(event, row.id);
 						$("#edgNames").edatagrid({
 							url : '/protofront/service/orgunits/' + row.id +'/names'
 						});
@@ -88,7 +85,7 @@ var OrgUnitLib = (function() {
 	function initNameGrid() {
 		$("#edgNames").edatagrid({
 			method : 'GET',
-			toolbar : IndexLib.edgmenu({ 
+			toolbar : commonlib.edgmenu({ 
 				add : function(){
 					$("#edgNames").edatagrid('addRow', {row : {ouId : currentOUId}});
 				},
@@ -110,11 +107,13 @@ var OrgUnitLib = (function() {
 			}
 		});
 	}
-
-	return {
-		init : function() {
-			$("#test").off();
-			$("#test").panel({
+	
+	function init() {
+		window.location.hash = "#orgunit/"; 
+		$("#spa-cntr").off();
+		$.when(language.init()).done(function() {
+			$("#spa-cntr").panel({
+	
 				href : '/protofront/forms/orgunit.html', 
 				onLoad : function() {
 					initEnterpriseSelector();
@@ -122,8 +121,10 @@ var OrgUnitLib = (function() {
 					initNameGrid();
 				}
 			});
-		}
+		});
 	}
-})();
 
-OrgUnitLib.init();
+	return {
+		init : init
+	}
+});
