@@ -1,7 +1,7 @@
 requirejs.config({
 	'baseUrl' : 'scripts',
 	'paths' : {
-		'jquery' : '../easyui/jquery.min',
+		'jquery' : '../lib/jquery-2.1.1',
 		'easyui' : '../easyui/jquery.easyui.min',
 		'edatagrid' : '../easyui/jquery.edatagrid',
 		'datagrid.excel' : '../easyui/jquery.datagrid.excel',
@@ -10,13 +10,16 @@ requirejs.config({
 		'app' : 'app',
 		'language' : 'language',
 		'uomUtil' : 'modules/uom.util',
+		'currencyUtil' : 'modules/currencyUtil',
 		'commonlib' : 'modules/commonlib',
 		'enterprise' : 'modules/enterprise',
 		'person' : 'modules/person',
 		'productType' : 'modules/productType',
 		'product' : 'modules/product',
 		'parameter' : 'modules/parameter',
+		'orgunit' : 'modules/orgunit',
 		'uom' : 'modules/uom',
+		'contract' : 'modules/contract',
 		'railway' : 'modules/railway'
 	},
 	shim : {

@@ -7,7 +7,7 @@
 				<tr>
 					<th field='id' width=80>Contract Id</th>
 					<th field='documentNo' width=250>Contract #</th>
-					<th field='issueDate' width=80 formatter=IndexLib.dateFormatter>Issue date</th>
+					<th field='issueDate' width=80 formatter=commonlib.dateFormatter>Issue date</th>
 				</tr>
 			</thead>
 		</table>
@@ -43,11 +43,11 @@
 						<tr>
 							<th field='csId' width=80>Contract Side Id</th>
 							<th	data-options="field:'roleId',width:80,
-	                    			formatter: ContractLib.roleFormatter,
-	                   				editor:ContractLib.roleEditor()">Role</th>
+	                    			formatter: contract.roleFormatter,
+	                   				editor:contract.roleEditor()">Role</th>
 							<th data-options="field:'partyId', width:150,
-									formatter : ContractLib.partyFormatter ,
-									editor : ContractLib.partyEditor()">Name</th>
+									formatter : contract.partyFormatter ,
+									editor : contract.partyEditor()">Name</th>
 						</tr>
 					</thead>
 				</table>
@@ -63,8 +63,8 @@
 					<tr>
 						<th field='id' width=80>Contract Supplement Id</th>
 						<th field='documentNo' width=250>Contract Supplement #</th>
-						<th field='numCode' width=80 formatter=ClientRepo.currencyFormatter >Currency</th>
-						<th field='issueDate' width=80 formatter=IndexLib.dateFormatter >Issue date</th>
+						<th field='numCode' width=80 formatter=currencyUtil.currencyFormatter >Currency</th>
+						<th field='issueDate' width=80 formatter=commonlib.dateFormatter >Issue date</th>
 						
 					</tr>
 				</thead>
@@ -101,3 +101,9 @@
 		
 	</div>
 </div>
+
+<script>
+	var contract=require('contract');
+	var currencyUtil = require('currencyUtil');
+	var commonlib = require('commonlib');
+</script>

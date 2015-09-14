@@ -53,7 +53,7 @@
 	    	{
 	        	"id": "contract",
 		        "text": "Contract",
-		        "module": "contract.js"
+		        "module": "contract"
 	    	},
 	    	{
 		    	"id": "orders",
