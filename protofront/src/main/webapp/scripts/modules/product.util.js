@@ -38,11 +38,11 @@ define(['jquery'], function($){
 		},
 
 		productFormatter : function(value, row) {
-        	return uomMap[value];
+        	return productMap[value];
         },
 
 		getProductEditor : function() {
-			return uomEditor
+			return productEditor
 		}
 	}
 });

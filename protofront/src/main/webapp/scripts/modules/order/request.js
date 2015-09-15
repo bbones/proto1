@@ -5,7 +5,8 @@
  * TODO form plugin post injection
  */
 
-define (["ordermod", "language", "uomUtil", "productUtil"], function(ordermod, language, uomUtil, productUtil) {
+define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil"], 
+		function(ordermod, language, uomUtil, productUtil, orgUnitUtil) {
 
 	function onLoad() {
 		 
@@ -40,7 +41,7 @@ define (["ordermod", "language", "uomUtil", "productUtil"], function(ordermod, l
 
 		});
 		$("#orgUnit").combobox({
-			data : ClientRepo.getOrgUnitList(),
+			data : orgUnitUtil.getOrgUnitList(),
 			valueField : 'id',
 			textField : 'name'
 		});

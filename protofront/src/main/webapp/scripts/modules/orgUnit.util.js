@@ -43,6 +43,9 @@ define(['jquery'], function($){
 
 		getOrgUnitEditor : function() {
 			return uomEditor
+		},
+		getOrgUnitList : function() {
+			return orgUnitList;
 		}
 	}
 });
