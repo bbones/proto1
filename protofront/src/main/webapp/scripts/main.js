@@ -10,17 +10,21 @@ requirejs.config({
 		'app' : 'app',
 		'language' : 'language',
 		'uomUtil' : 'modules/uom.util',
-		'currencyUtil' : 'modules/currencyUtil',
+		'currencyUtil' : 'modules/currency.util',
 		'commonlib' : 'modules/commonlib',
 		'enterprise' : 'modules/enterprise',
+		'orgUnitUtil' : 'modules/orgUnit.util',
 		'person' : 'modules/person',
 		'productType' : 'modules/productType',
 		'product' : 'modules/product',
+		'productUtil' : 'modules/product.util',
 		'parameter' : 'modules/parameter',
 		'orgunit' : 'modules/orgunit',
 		'uom' : 'modules/uom',
 		'contract' : 'modules/contract',
-		'railway' : 'modules/railway'
+		'railway' : 'modules/railway',
+		'ordermod' : 'modules/order/ordermod',
+		'request' : 'modules/order/request'
 	},
 	shim : {
 		'easyui' : {

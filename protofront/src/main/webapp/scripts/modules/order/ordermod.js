@@ -4,28 +4,28 @@
  * Author Valentin Pogrebinsky
  */
 
-var OrderMod = (function() {
-	var orderURL = null;
+define (['language', 'commonlib', 'edatagrid'], function(language, commonlib, edatagrid) {
+	var serviceURL = null;
 	var currentOrderId = null;
 	var currentOrderLineId = null;
 	var options = null;
 	
 	function initOrderGrid() {
-		console.log(orderURL);
+		console.log(options.serviceUrl);
 		$("#edgOrder").edatagrid({
-			url : orderURL + '?languageId=' + IndexLib.lang(),
-			saveUrl : orderURL + '?languageId=' + IndexLib.lang(),
-			updateUrl : orderURL + '?languageId=' + IndexLib.lang(),
+			url : options.serviceUrl + '?languageId=' + language.id(),
+			saveUrl : options.serviceUrl + '?languageId=' + language.id(),
+			updateUrl : options.serviceUrl + '?languageId=' + language.id(),
 			method:'GET',
-			toolbar : IndexLib.edgmenu({
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgOrder").edatagrid('addRow', {row : {documentNo : "DOC", issueDate : new Date()}});
 					var addPressed = jQuery.Event('addPressed');
-					$("#test").trigger(addPressed);
+					$("#spa-cntr").trigger(addPressed);
 				},
 				save : function(){
 					var savePressed = jQuery.Event('savePressed');
-					$("#test").trigger(savePressed);
+					$("#spa-cntr").trigger(savePressed);
 					// $("#edgOrder").edatagrid('saveRow');
 				},
 				destroy : function(){
@@ -37,12 +37,12 @@ var OrderMod = (function() {
 				if (row.id != null) {
 					currentOrderId  = row.id;
 					var event = jQuery.Event( 'orderSelected' );
-					$("#test").trigger(event, row.id);
+					$("#spa-cntr").trigger(event, row.id);
 				} // if
 			}, // OnSelect edgOrder
 			onDestroy : function(index,row){
 				$.ajax({
-					url : orderURL + row.id,
+					url : options.serviceUrl + row.id,
 					method : "DELETE"
 				});
 			}
@@ -50,21 +50,21 @@ var OrderMod = (function() {
 	};
 	
 	function initLinesGrid() {
-		$("#test").on('orderSelected', 
+		$("#spa-cntr").on('orderSelected', 
 			function(event, id) {
 				console.log("Order Selected ->" + id);
 				$("#edgLines").edatagrid({
-					url : orderURL  +  id + '/lines?languageId=' 
-							+ IndexLib.lang()
+					url : options.serviceUrl  +  id + '/lines?languageId=' 
+							+ language.id()
 				});
 			}
 		);
 		
 		$("#edgLines").edatagrid({
 			method:'GET',
-			saveUrl : orderURL + 'lines?languageId=' + IndexLib.lang(),
-			updateUrl : orderURL + 'lines?languageId=' + IndexLib.lang(),
-			toolbar : IndexLib.edgmenu({
+			saveUrl : options.serviceUrl + 'lines?languageId=' + language.id(),
+			updateUrl : options.serviceUrl + 'lines?languageId=' + language.id(),
+			toolbar : commonlib.edgmenu({
 				add : function(){
 					$("#edgLines").edatagrid('addRow', {row : {orderId : currentOrderId}});
 				},
@@ -80,13 +80,13 @@ var OrderMod = (function() {
 				if (row.orderLineId != null) {
 					currentOrderLineId = row.orderLineId;
 					var event = jQuery.Event( 'orderLineSelected' );
-					$("#test").trigger(event, row.orderLineId);
+					$("#spa-cntr").trigger(event, row.orderLineId);
 				} // if
 			}, // OnSelect edgLines
 
 			onDestroy : function(index,row){
 				$.ajax({
-					url : orderURL + 'lines/' + row.orderLineId,
+					url : options.serviceUrl + 'lines/' + row.orderLineId,
 					method : "DELETE"
 				});
 			}
@@ -96,25 +96,25 @@ var OrderMod = (function() {
 	function fillParameterTemplate() {
 		console.log("Fill Parameter Template");
 		$.ajax({
-			url : orderURL + 'lines/' + currentOrderLineId + '/fillparameters',
+			url : options.serviceUrl + 'lines/' + currentOrderLineId + '/fillparameters',
 			method : "POST"
 		});
 	}
 	
 	function initLineParam() {
-		$("#test").on('orderLineSelected', 
+		$("#spa-cntr").on('orderLineSelected', 
 			function(event, olId) {
 				$("#edgLineParameters").edatagrid({
-					url : orderURL + 'lines/'+ olId + 
-						'/lineparameters?languageId=' + IndexLib.lang()
+					url : options.serviceUrl + 'lines/'+ olId + 
+						'/lineparameters?languageId=' + language.id()
 				});
 			}
 		);
 		$("#edgLineParameters").edatagrid({
 			method:'GET',
-			saveUrl : orderURL + 'lines/lineparameters?languageId=' + IndexLib.lang(),
-			updateUrl : orderURL + 'lines/lineparameters?languageId=' + IndexLib.lang(),
-			toolbar : IndexLib.edgmenu({
+			saveUrl : options.serviceUrl + 'lines/lineparameters?languageId=' + language.id(),
+			updateUrl : options.serviceUrl + 'lines/lineparameters?languageId=' + language.id(),
+			toolbar : commonlib.edgmenu({
 					add : function(){
 						$("#edgLineParameters").edatagrid('addRow', {row : {orderLineId : currentOrderLineId}});
 					},
@@ -131,7 +131,7 @@ var OrderMod = (function() {
 			    	text : 'Fill template'}]), // toolbar
 			onDestroy : function(index,row){
 				$.ajax({
-					url : orderURL + 'lines/lineparameters' + row.olpId,
+					url : options.serviceUrl + 'lines/lineparameters' + row.olpId,
 					method : "DELETE"
 				});
 			},
@@ -167,13 +167,12 @@ var OrderMod = (function() {
 		});
 	};
 
-	function load(orderUrl) {
+	function load() {
 		console.log('Order.load');
-		$("#test").unbind();
-		$("#test").panel({
+		$("#spa-cntr").off();
+		$("#spa-cntr").panel({
 			href : '/protofront/forms/order.html', 
 			onLoad : function(){
-				orderURL = orderUrl;
 				initOrderGrid();
 				initLinesGrid();
 				initLineParam();
@@ -187,11 +186,12 @@ var OrderMod = (function() {
 	return {
 		init : function(opt) {
 			options = opt;
-			load(options.url);
+			window.location.hash = "#" + options.type + "/";
+			load();
 		},
 		button : function (value, row, index) {
             return '<input type="button" onclick="alert(' + row.olpId + ')" value="Add" class="GridButton"/>';
         }
 	};
-})();
+});
 

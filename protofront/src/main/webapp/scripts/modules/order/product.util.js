@@ -1,27 +1,26 @@
 /**
  * File uom.util.js
- * Created 07.09.15
+ * Created 15.09.15
  * @author Valentin Pogrebinsky
- * 
  */
 
 define(['jquery'], function($){
-	var uomList = null;
-	var uomMap = new Object;
+	var productList = null;
+	var productMap = new Object;
 	var d = $.Deferred();
-	var uomEditor = null;
-	function loadUoms () {
-		$.ajax('/protofront/service/uoms/?languageId=' + language.id()).done(function(dataArray) {
-			uomList = dataArray;
+	var productEditor = null;
+	function loadProducts () {
+		$.ajax('/protofront/service/products/?languageId=' + language.id()).done(function(dataArray) {
+			productList = dataArray;
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
-				uomMap[dataArray[i].id] = dataArray[i].shortName;
+				productMap[dataArray[i].id] = dataArray[i].name;
 			};
-			uomEditor = {
+			productEditor = {
 		  			type:'combobox',
 		          	options:{
 		               valueField:'id',
-		               textField:'shortName',
+		               textField:'name',
 		               data : dataArray,
 		               required:true
 		           }
@@ -33,18 +32,17 @@ define(['jquery'], function($){
 	
 	return {
 		init : function() {
-			console.log("uom.util");
-			loadUoms();
+			console.log("product.util");
+			loadProducts();
 			return d.promise();
 		},
 
-		uomFormatter : function(value, row) {
+		productFormatter : function(value, row) {
         	return uomMap[value];
         },
 
-		getUomEditor : function() {
+		getProductEditor : function() {
 			return uomEditor
 		}
 	}
 });
-

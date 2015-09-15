@@ -63,7 +63,7 @@
 		        	{
 		        		"id": "salesOrder",
 			        	"text": "Заказы на продажу",
-			    		"module": "order/salesorder.js"
+			    		"module": "salesorder"
 			    	},
 			    	{
 		        		"id": "demand",
@@ -80,7 +80,7 @@
 			    	{
 			    		"id": "request",
 			    		"text" : "Запросы на снабжение",
-			    		"module": "order/request.js"
+			    		"module": "request"
 			    	},
 			    	{
 			    		"id": "purchaseOrder",
