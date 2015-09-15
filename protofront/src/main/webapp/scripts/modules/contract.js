@@ -40,7 +40,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 			url : "/protofront/service/contracts/",
 			method : 'GET',
 			onSelect : function(index, row) {
-				$("#test").trigger(event,row.id);
+				$("#spa-cntr").trigger(event,row.id);
 				currentContractId = row.id;
 			}, // OnSelect
 			onDestroy : function(index, row) {
@@ -54,7 +54,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 	};
 
 	function initSidesGrid(){
-		$("#test").on("contractSelected", function(event, contractId){
+		$("#spa-cntr").on("contractSelected", function(event, contractId){
 			if ((typeof contractId) != 'undefined') {
 				$("#edgSides").edatagrid({
 					url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + language.id(),
@@ -89,7 +89,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 	function initSupplementGrid(){
 		var supevent = jQuery.Event( "contractSupplementSelected" );
 
-		$("#test").on("contractSelected", function(event, contractId){
+		$("#spa-cntr").on("contractSelected", function(event, contractId){
 			if ((typeof contractId) != 'undefined') {
 				$("#edgSupplement").edatagrid({
 					url : "/protofront/service/contracts/" + contractId + "/supplements"
@@ -132,7 +132,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 			},
 			onSelect : function(index, row) {
 				console.log(row);
-				$("#test").trigger(supevent,row.id);
+				$("#spa-cntr").trigger(supevent,row.id);
 
 			}
 		});
@@ -150,7 +150,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 	};
 
 	function initContractForm() {
-		$("#test").on("contractSelected", function(event, contractId){
+		$("#spa-cntr").on("contractSelected", function(event, contractId){
 			if (typeof contractId !== 'undefined') {
 				$("#cf").form('load', '/protofront/service/contracts/' + contractId);
 			}
@@ -179,7 +179,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 	};
 	
 	function initContractSupplementForm() {
-		$("#test").on("contractSupplementSelected", function(event, contractSupplementId){
+		$("#spa-cntr").on("contractSupplementSelected", function(event, contractSupplementId){
 			debugger;
 			if (contractSupplementId) {
 				$("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
