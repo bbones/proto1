@@ -7,22 +7,22 @@
  * TODO External Receipt Search
  */
 
-var ReceiptLib = (function() {
+define (["language", "edatagrid"], function(language, edatagrid) {
 	var initReceiptGrid = function() {
 		$("#edgReceipt").edatagrid({
-			url : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
-			saveUrl : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
-			updateUrl : "/protofront/service/receipts/?languageId="  + IndexLib.lang(),
+			url : "/protofront/service/receipts/?languageId="  + language.id(),
+			saveUrl : "/protofront/service/receipts/?languageId="  + language.id(),
+			updateUrl : "/protofront/service/receipts/?languageId="  + language.id(),
 			method : "GET",
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#edgIngredients").edatagrid({
-					url : '/protofront/service/receipts/'+ row.receiptId + '/ingredients?languageId=' + IndexLib.lang(), 
-					saveUrl : "/protofront/service/receipts/" + row.receiptId + "/ingredients?languageId="  + IndexLib.lang(),
-					updateUrl : "/protofront/service/receipts/" + row.receiptId + "/ingredients?languageId="  + IndexLib.lang()			
+					url : '/protofront/service/receipts/'+ row.receiptId + '/ingredients?languageId=' + language.id(), 
+					saveUrl : "/protofront/service/receipts/" + row.receiptId + "/ingredients?languageId="  + language.id(),
+					updateUrl : "/protofront/service/receipts/" + row.receiptId + "/ingredients?languageId="  + language.id()			
 				});
 				$("#edgByproducts").edatagrid({
-					url : '/protofront/service/receipts/'+ row.receiptId + '/byproducts?languageId=' + IndexLib.lang()
+					url : '/protofront/service/receipts/'+ row.receiptId + '/byproducts?languageId=' + language.id()
 				});
 			} // onSelect
 		});
@@ -62,4 +62,4 @@ var ReceiptLib = (function() {
 		}
 	};
 	
-})();
+});

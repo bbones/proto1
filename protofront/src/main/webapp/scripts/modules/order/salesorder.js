@@ -1,86 +1,60 @@
 /**
  * File salesorder.js
  * Created 12/06/15
- * Author Valentin Pogrebinsky
+ * @author Valentin Pogrebinsky
  */
 
-var SalesMod = (function() {
-	function SalesOrder() {
-		
-	};
+define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commonlib"], 
+		function(ordermod, language, uomUtil, productUtil, orgUnitUtil, commonlib) {
 	
 	var sales = null; 
 	
-	function afterLoad() {
+	function onLoad() {
 		$("#orderDetails").panel({
 			href : '/protofront/forms/salesOrder.html',
 			onLoad : function() {
-				$("#test").on("orderSelected", function(event, orderId){
+				 
+				$("#spa-cntr").on("orderSelected", function(event, orderId){
 					if (typeof orderId !== 'undefined') {
-						$("#sof").form('load', '/protofront/service/salesorders/' + orderId + '?languageId=' +  IndexLib.lang());
+						$("#sof").form('load', '/protofront/service/salesorders/' + orderId + '?languageId=' +  language.id());
 					}
+				});
+				
+				$("#spa-cntr").on("savePressed", function(event) {
+					$("#req").form('submit', {url : "/protofront/service/salesorders/?languageId=" + language.id()});
+				});
+				$("#spa-cntr").on("addPressed", function(event) {
+					$("#req").form('clear');
 				});
 				$("#isdate").datebox({
 					
-					formatter:IndexLib.dateFormatter,
+					formatter:commonlib.dateFormatter,
 					
-					parser:IndexLib.dateParser
+					parser:commonlib.dateParser
 
 				});
+			},
+			onLoadError : function(msg) {
+				console.log('Error');
+				console.log(msg);
 			}
 		});
-
 	}
-	
-	
-	function initSales () {
-		console.log("initSales");
-		$.getScript("/protofront/scripts/order/ordermod.js").done(function() {
-			console.log("OrderMod loaded");
-			OrderMod.init({
-				url : '/protofront/service/salesorders/',
-				onLoad : function() {
-					$("#orderDetails").panel({
-						href : '/protofront/forms/salesOrder.html',
-						onLoad : function() {
-							 
-							$("#test").on("orderSelected", function(event, orderId){
-								if (typeof orderId !== 'undefined') {
-									$("#sof").form('load', '/protofront/service/salesorders/' + orderId + '?languageId=' +  IndexLib.lang());
-								}
-							});
-							
-							$("#test").on("savePressed", function(event) {
-								$("#req").form('submit', {url : "/protofront/service/salesorders/?languageId=" + IndexLib.lang()});
-							});
-							$("#test").on("addPressed", function(event) {
-								$("#req").form('clear');
-							});
-							$("#isdate").datebox({
-								
-								formatter:IndexLib.dateFormatter,
-								
-								parser:IndexLib.dateParser
 
-							});
-						},
-						onLoadError : function(msg) {
-							console.log('Error');
-							console.log(msg);
-						}
-					});
-				}
-			});
-		})
-		.fail(function( jqxhr, settings, exception ) {
-			console.log(exception);
+	function initSales () {
+		console.log("OrderMod loaded");
+		ordermod.init({
+			type : 'salesorder',
+			serviceUrl : '/protofront/service/salesorders/',
+			formUrl : '/protofront/forms/salesOrder.html',
+			onLoad : onLoad
 		});
 	};
 	
 	return {
 		init : initSales
 	};
-})();
+});
 
-SalesMod.init();
+
 

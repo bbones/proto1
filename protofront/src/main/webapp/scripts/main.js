@@ -8,7 +8,7 @@ requirejs.config({
 		'easyui.form.ext' : 'plugins/jquery.form.ext',
 		'easyui.grid.ext' : 'plugins/jquery.grid.ext',
 		'app' : 'app',
-		'language' : 'language',
+		'language' : 'modules/language',
 		'uomUtil' : 'modules/uom.util',
 		'currencyUtil' : 'modules/currency.util',
 		'commonlib' : 'modules/commonlib',
@@ -25,7 +25,8 @@ requirejs.config({
 		'contract' : 'modules/contract',
 		'railway' : 'modules/railway',
 		'ordermod' : 'modules/order/ordermod',
-		'request' : 'modules/order/request'
+		'request' : 'modules/order/request',
+		'salesorder' : 'modules/order/salesorder'
 	},
 	shim : {
 		'easyui' : {
