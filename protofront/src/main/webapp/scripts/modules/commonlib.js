@@ -52,12 +52,6 @@ define(function(){
 			    	handler: onClick.cancel,
 			    	plain : true,
 			    	text : 'Cancel'
-			    },
-			    {
-			    	iconCls: 'icon-save',
-			    	handler: onClick.saveToExcel,
-			    	plain : true,
-			    	text : 'Save to Excel'
 			    }
 
 			];
