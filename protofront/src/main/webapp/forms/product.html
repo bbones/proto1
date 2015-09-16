@@ -53,21 +53,9 @@
 						<thead>
 							<tr>
 								<th field='productParameterId' width=100>Product Parameter Id</th>
-								<th
-									data-options="field:'parameterId',width:100,
-                        			formatter:function(value,row){
-                            			return row.parameterName;
-                        			},
-                       				editor:{
-		                            	type:'combobox',
-		                            	options:{
-			                                valueField:'parameterId',
-			                                textField:'parameterName',
-			                                method:'get',
-			                                url:'/protofront/service/parameters/?languageId=' + language.id(),
-			                                required:true
-			                            }
-                        			}">Parameter</th>
+								<th data-options="field:'parameterId',width:100,
+                        				formatter:parameterUtil.parameterFormatter,
+                       					editor:parameterUtil.getParameterEditor()">Parameter</th>
 								<th data-options="field:'defaultUOMId',width:80,
                     					formatter: uomUtil.uomFormatter,
                    						editor: uomUtil.getUomEditor()">Default UOM</th>
@@ -89,5 +77,6 @@
 	var product=require('product');
 	var language=require('language');
 	var uomUtil=require('uomUtil');
+	var parameterUtil=require('parameterUtil');
 	
 </script> 

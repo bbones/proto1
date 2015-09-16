@@ -19,6 +19,7 @@ requirejs.config({
 		'product' : 'modules/product',
 		'productUtil' : 'modules/product.util',
 		'parameter' : 'modules/parameter',
+		'parameterUtil' : 'modules/parameter.util',
 		'orgunit' : 'modules/orgunit',
 		'uom' : 'modules/uom',
 		'contract' : 'modules/contract',

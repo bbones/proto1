@@ -14,13 +14,13 @@ define(['jquery'], function($){
 			productList = dataArray;
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
-				productMap[dataArray[i].id] = dataArray[i].name;
+				productMap[dataArray[i].productId] = dataArray[i].productName;
 			};
 			productEditor = {
 		  			type:'combobox',
 		          	options:{
-		               valueField:'id',
-		               textField:'name',
+		               valueField:'productId',
+		               textField:'productName',
 		               data : dataArray,
 		               required:true
 		           }

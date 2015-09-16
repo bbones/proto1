@@ -25,17 +25,9 @@
 					<thead>
 						<tr>
 							<th field='orderLineId' width=80>Line Id</th>
-							<th field='productId' width=250 formatter=productUtil.productFormatter 
-									editor="{
-			                            	type:'combobox',
-			                            	options:{
-				                                valueField:'productId',
-				                                textField:'productName',
-				                                method:'get',
-				                                url:'/protofront/service/products/?languageId=' + language.id(),
-				                                required:true
-				                            }
-	                        			}">Product</th>
+							<th data-options="field:'productId',width:180,
+                    					formatter: productUtil.productFormatter,
+                   						editor:productUtil.getProductEditor()">Product</th>
 							<th data-options="field:'uomId',width:80,
                     					formatter: uomUtil.uomFormatter,
                    						editor:uomUtil.getUomEditor()">UOM</th>

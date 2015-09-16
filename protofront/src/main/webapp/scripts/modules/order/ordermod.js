@@ -4,7 +4,7 @@
  * Author Valentin Pogrebinsky
  */
 
-define (['language', 'commonlib', 'edatagrid'], function(language, commonlib, edatagrid) {
+define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], function(language, commonlib, edatagrid, uomUtil, productUtil) {
 	var serviceURL = null;
 	var currentOrderId = null;
 	var currentOrderLineId = null;
@@ -167,19 +167,29 @@ define (['language', 'commonlib', 'edatagrid'], function(language, commonlib, ed
 		});
 	};
 
+	function initForm() {
+		$("#orderDetails").panel({
+			href: options.formUrl,
+			onLoad : options.onLoad
+		});
+	};
+	
 	function load() {
 		console.log('Order.load');
 		$("#spa-cntr").off();
-		$("#spa-cntr").panel({
-			href : '/protofront/forms/order.html', 
-			onLoad : function(){
-				initOrderGrid();
-				initLinesGrid();
-				initLineParam();
-				if (typeof options.onLoad != 'undefined') {
-					options.onLoad();
+		$.when(uomUtil.init(), language.init(), productUtil.init()).done(function() {
+			$("#spa-cntr").panel({
+				href : '/protofront/forms/order.html', 
+				onLoad : function(){
+					initOrderGrid();
+					initLinesGrid();
+					initLineParam();
+					initForm();
+					if (typeof options.onLoad != 'undefined') {
+						options.onLoad();
+					}
 				}
-			}
+			});
 		});
 	};
 

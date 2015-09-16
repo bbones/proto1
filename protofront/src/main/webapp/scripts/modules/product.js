@@ -6,8 +6,8 @@
  * TODO Delete Name request doesn't work
  */
 
-define(["jquery", "commonlib", "language", "uomUtil", "edatagrid"],
-		function($, commonlib, language, uomUtil, edatagrid){
+define(["jquery", "commonlib", "language", "uomUtil", "edatagrid", "parameterUtil"],
+		function($, commonlib, language, uomUtil, edatagrid, parameterUtil){
 
 	
 	
@@ -122,7 +122,7 @@ define(["jquery", "commonlib", "language", "uomUtil", "edatagrid"],
 	function init() {
 		window.location.hash = "#product/"; 
 		$("#spa-cntr").off();
-		$.when(uomUtil.init(), language.init()).done(function() {
+		$.when(uomUtil.init(), language.init(),parameterUtil.init()).done(function() {
 			$("#spa-cntr").panel({
 				href : '/protofront/forms/product.html', 
 				onLoad : function() {
