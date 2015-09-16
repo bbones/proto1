@@ -38,5 +38,7 @@ public interface BaseOrderService<T extends BaseOrder> {
 	OrderLineParameter saveOrderLineParameter(OrderLineParameter olp);
 	
 	void fillParameters(Long orderLineId);
+	
+	void deleteOrderLineParameter(Long olParameterId);
 
 }

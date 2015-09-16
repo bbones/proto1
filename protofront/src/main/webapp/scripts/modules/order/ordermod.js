@@ -97,7 +97,10 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 		console.log("Fill Parameter Template");
 		$.ajax({
 			url : options.serviceUrl + 'lines/' + currentOrderLineId + '/fillparameters',
-			method : "POST"
+			method : "POST",
+			success : function() {
+				$("#edgLineParameters").edatagrid('reload');
+			}
 		});
 	}
 	
@@ -112,8 +115,8 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 		);
 		$("#edgLineParameters").edatagrid({
 			method:'GET',
-			saveUrl : options.serviceUrl + 'lines/lineparameters?languageId=' + language.id(),
-			updateUrl : options.serviceUrl + 'lines/lineparameters?languageId=' + language.id(),
+			saveUrl : options.serviceUrl + 'lines/parameters?languageId=' + language.id(),
+			updateUrl : options.serviceUrl + 'lines/parameters?languageId=' + language.id(),
 			toolbar : commonlib.edgmenu({
 					add : function(){
 						$("#edgLineParameters").edatagrid('addRow', {row : {orderLineId : currentOrderLineId}});
@@ -131,13 +134,12 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 			    	text : 'Fill template'}]), // toolbar
 			onDestroy : function(index,row){
 				$.ajax({
-					url : options.serviceUrl + 'lines/lineparameters' + row.olpId,
+					url : options.serviceUrl + 'lines/parameters/' + row.olpId,
 					method : "DELETE"
 				});
 			},
 			onBeforeEdit : function(index, row) {
 				$.ajax({
-					async : false,
 					url : '/protofront/service/parameters/' + row.paramId + '/uoms',
 					method : "GET",
 					success : function(data) {
@@ -146,7 +148,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 						for (var i = 0; i < length; i++) {
 							uoms.push({
 								id : data[i],
-								shortName : ClientRepo.getUOMMap()[data[i]]
+								shortName : uomUtil.getUomMap()[data[i]]
 							});
 						}
 						var col = $("#edgLineParameters").datagrid('getColumnOption','uomId');
