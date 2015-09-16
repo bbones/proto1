@@ -24,9 +24,12 @@ requirejs.config({
 		'uom' : 'modules/uom',
 		'contract' : 'modules/contract',
 		'railway' : 'modules/railway',
+		'ordermodel' : 'modules/order/ordermodel',
 		'ordermod' : 'modules/order/ordermod',
 		'request' : 'modules/order/request',
-		'salesorder' : 'modules/order/salesorder'
+		'salesorder' : 'modules/order/salesorder',
+		'demand' : 'modules/order/demand'
+
 	},
 	shim : {
 		'easyui' : {

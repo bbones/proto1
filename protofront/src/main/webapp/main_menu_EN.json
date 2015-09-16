@@ -67,7 +67,9 @@
 			    	},
 			    	{
 		        		"id": "demand",
-		        		"text": "Demand Planning"
+		        		"text": "Demand Planning",
+		        		"module" : "demand"
+		        		
 		    		},
 		    		{
 		        		"id": "prodOrder",

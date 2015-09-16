@@ -1,8 +1,7 @@
 /**
  * File request.js
  * Created 12/06/15
- * Author Valentin Pogrebinsky
- * TODO form plugin post injection
+ * @author Valentin Pogrebinsky
  */
 
 define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil"], 
