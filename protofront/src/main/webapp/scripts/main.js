@@ -28,7 +28,10 @@ requirejs.config({
 		'ordermod' : 'modules/order/ordermod',
 		'request' : 'modules/order/request',
 		'salesorder' : 'modules/order/salesorder',
-		'demand' : 'modules/order/demand'
+		'demand' : 'modules/order/demand',
+		'prodorder' : 'modules/order/prodorder',
+		'purchaseorder' : 'modules/order/purchaseorder',
+		'bom' : 'modules/order/bom'
 
 	},
 	shim : {

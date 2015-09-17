@@ -72,11 +72,13 @@
 		    		},
 		    		{
 		        		"id": "prodOrder",
-			        	"text": "Заказы на производство"
+			        	"text": "Заказы на производство",
+			        	"module" : "prodorder"
 			    	},
 			    	{
 			    		"id": "bom",
-			    		"text" : "Производственные спецификации"
+			    		"text" : "Производственные спецификации",
+			        	"module" : "bom"
 			    	},
 			    	{
 			    		"id": "request",
@@ -85,13 +87,15 @@
 			    	},
 			    	{
 			    		"id": "purchaseOrder",
-			    		"text" : "Заказы на закупку"
+			    		"text" : "Заказы на закупку",
+			        	"module" : "purchaseorder"
 			    	}
 		    	]
 		    },
 	    	{
 	       		"id": "receipt",
-		        "text": "Рецепты"
+		        "text": "Рецепты",
+		        "module" : "receipt"
 		    },
 		    {
 		        "id": "bill",

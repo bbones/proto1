@@ -1,55 +1,47 @@
-/*******************************************************************************
- * Copyright (c) 2015 Valentin Pogrebinsky
- * All rights reserved. 
- *******************************************************************************/
 /**
- * @author Valentin Pogrebinsky (pva@isd.com.ua)
- * 
+ * File salesorder.js
+ * Created 12/06/15
+ * @author Valentin Pogrebinsky
  */
 
-var BOMLib = (function(){
-	function initBOMGrid() {
-		$("#edgBOM").edatagrid({
-			url : "/protofront/service/boms/?languageId=" +
-				IndexLib.lang(),
-			method : 'GET',
-			onSelect : function(index, row) {
-				console.log(row);
-				$("#edgLines").edatagrid({
-					url : '/protofront/service/boms/' + row.bomId  + '/lines?languageId=' +  IndexLib.lang(), 
+define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commonlib"], 
+		function(ordermod, language, uomUtil, productUtil, orgUnitUtil, commonlib) {
 	
-				});
-			} // OnSelect edgProdOrder
+	function onLoad() {
+				 
+		$("#spa-cntr").on("orderSelected", function(event, orderId){
+			if (typeof orderId !== 'undefined') {
+				$("#bomf").form('load', '/protofront/service/boms/' + orderId + '?languageId=' +  language.id());
+			}
+		});
+		
+		$("#spa-cntr").on("savePressed", function(event) {
+			$("#bomf").form('submit', {url : "/protofront/service/boms/?languageId=" + language.id()});
+		});
+		$("#spa-cntr").on("addPressed", function(event) {
+			$("#bomf").form('clear');
+		});
+		$("#isdate").datebox({
+			
+			formatter:commonlib.dateFormatter,
+			
+			parser:commonlib.dateParser
+
+		});
+	}
+
+	function initSales () {
+		console.log("OrderMod loaded");
+		ordermod.init({
+			type : 'bom',
+			serviceUrl : '/protofront/service/boms/',
+			formUrl : '/protofront/forms/bom.html',
+			onLoad : onLoad
 		});
 	};
 	
-	function initPOLinesGrid() {
-		$("#edgLines").edatagrid({
-			method : 'GET',
-			onSelect : function(index, row) {
-				console.log(row);
-				$("#edgLineParameters").edatagrid({
-					url : '/protofront/service/boms/lines/' +  row.orderLineId 
-						+ '/lineparameters?languageId=' + IndexLib.lang()
-				});
-			} // OnSelect edgLines
-
-		});
-	}
-	
-	function initPOLineParam() {
-		$("#edgLineParameters").edatagrid({
-			method : 'GET'
-		});
-	}
-
-
 	return {
-		init : function() {
-			initBOMGrid();
-			initPOLinesGrid();
-			initPOLineParam();
-			console.log("BOMLib initialized");
-		}
+		init : initSales
 	};
-})();
+});
+

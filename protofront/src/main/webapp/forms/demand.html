@@ -39,16 +39,16 @@
 
 <div class="easyui-panel" style="padding: 5px;">
 	<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search',plain:true"
-		onclick="DemandLib.showDemand()">Show consolidated demand</a>
+		onclick="demand.showDemand()">Show consolidated demand</a>
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true"
-		onclick="DemandLib.createProductionOrder()">New Production Order</a> 
+		onclick="demand.createProductionOrder()">New Production Order</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true"
-		onclick="DemandLib.createPurchaseOrder()">New Purchase Order</a> 
+		onclick="demand.createPurchaseOrder()">New Purchase Order</a> 
 	<a href="javascript:void(0)" class="easyui-linkbutton"
 		data-options="iconCls:'icon-add',plain:true"
-		onclick="DemandLib.switchProductType()">Switch to HRP</a> 
+		onclick="demand.switchProductType()">Switch to HRP</a> 
 </div>
 
 <div title="Demands"
@@ -61,3 +61,7 @@
 	
 	
 </div>
+
+<script>
+	var demand = require('demand');
+</script>
