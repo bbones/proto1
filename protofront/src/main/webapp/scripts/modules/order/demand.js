@@ -3,11 +3,13 @@
  * All rights reserved. 
  *******************************************************************************/
 /**
- * @author Valentin Pogrebinsky (pva@isd.com.ua)
- * 
+/**
+ * File request.js
+ * Created 12/06/15
+ * @author Valentin Pogrebinsky
  */
 
-var DemandLib = (function(){
+define (["language", "ordermodel", "uomUtil"], function(language, ordermodel, uomUtil){
 	
 	var currentProduct = function() {
 		return $("#dgProducts").datagrid('getSelected').productId;
@@ -23,11 +25,11 @@ var DemandLib = (function(){
 	
 	var initProductSelector = function() {
 		$("#productType").combotree({
-			url : '/protofront/service/productTypes/parents/?languageId=' + IndexLib.lang(),
+			url : '/protofront/service/productTypes/parents/?languageId=' + language.id(),
 			method : 'GET',
 			onSelect : function(record) {
 				$("#dgProducts").datagrid({
-					url : '/protofront/service/products/types?productTypeId='+ record.id + '&languageId=' + IndexLib.lang()
+					url : '/protofront/service/products/types?productTypeId='+ record.id + '&languageId=' + language.id()
 				}); // edatagrid
 
 			}
@@ -38,7 +40,7 @@ var DemandLib = (function(){
 			onSelect : function(index, row) {
 				console.log(row);
 				$("#dgParameters").datagrid({
-					url : '/protofront/service/products/' + row.productId + '/parameters?languageId=' + IndexLib.lang()
+					url : '/protofront/service/products/' + row.productId + '/parameters?languageId=' + language.id()
 				});
 			} // OnSelect
 
@@ -60,7 +62,7 @@ var DemandLib = (function(){
 		console.log(paramList);
 		$.ajax({
 			dataType: 'json',
-			url:'/protofront/service/demand/getconsol/' + IndexLib.lang() + "&" + currentProduct(),
+			url:'/protofront/service/demand/getconsol/' + language.id() + "&" + currentProduct(),
 			data: JSON.stringify(paramList), // {paramList : JSON.stringify(paramList)},
 			type: 'post',
 			contentType: 'application/json',
@@ -78,11 +80,11 @@ var DemandLib = (function(){
 	
 	var collectData = function() {
 		debugger;
-		var order = new Order();
+		var order = new ordermodel.Order();
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
 		for (var key in selectedDemandRows) {
-			var orderLine = new OrderLine(
+			var orderLine = new ordermodel.OrderLine(
 				null,
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
@@ -91,7 +93,7 @@ var DemandLib = (function(){
 				order
 			);
 			for(var pk in selectedParams) {
-				var param = new OrderLineParameter(
+				var param = new ordermodel.OrderLineParameter(
 						null,
 						selectedParams[pk].productParameterId,
 						selectedDemandRows[key]['F' + selectedParams[pk].productParameterId],
@@ -128,9 +130,17 @@ var DemandLib = (function(){
 	
 	return {
 		init : function() {
-			$.getScript("/protofront/scripts/ordermodel.js");
-			initProductSelector();
-			initParameterGrid();
+			window.location.hash = "#demand/"; 
+			$("#spa-cntr").off();
+			$.when(uomUtil.init(), language.init()).done(function() {
+				$("#spa-cntr").panel({
+					href : '/protofront/forms/demand.html', 
+					onLoad : function() {
+						initProductSelector();
+						initParameterGrid();
+					}
+				});
+			});
 		},
 		showDemand : function() {
 			initDemandGrid();
@@ -138,12 +148,12 @@ var DemandLib = (function(){
 		switchProductType : function() { // TODO Debug backdoor!!!
 			$("#dgProducts").datagrid({
 				url : '/protofront/service/product/prodListByProdTypeIdByLanguageId/'
-								+ 5 + '&' + IndexLib.lang(),
+								+ 5 + '&' + language.id(),
 				onSelect : function(index, row) {
 					console.log(row);
 					$("#dgParameters").datagrid({
 						url : '/protofront/service/product/parameters/'
-									+ row.id + '&' + IndexLib.lang()
+									+ row.id + '&' + language.id()
 					});
 				} // OnSelect
 			}); // edatagrid
@@ -155,4 +165,4 @@ var DemandLib = (function(){
 			console.log($("#dgDemand").datagrid('getSelections').length);
 		}
 	}; 
-})();
+});

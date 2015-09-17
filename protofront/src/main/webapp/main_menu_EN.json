@@ -67,15 +67,19 @@
 			    	},
 			    	{
 		        		"id": "demand",
-		        		"text": "Demand Planning"
+		        		"text": "Demand Planning",
+		        		"module" : "demand"
+		        		
 		    		},
 		    		{
 		        		"id": "prodOrder",
-			        	"text": "Production Order"
+			        	"text": "Production Order",
+			        	"module" : "prodorder"
 			    	},
 			    	{
 			    		"id": "bom",
-			    		"text" : "Bill of materials"
+			    		"text" : "Bill of materials",
+			        	"module" : "bom"
 			    	},
 			    	{
 			    		"id": "request",
@@ -84,13 +88,16 @@
 			    	},
 			    	{
 			    		"id": "purchaseOrder",
-			    		"text" : "Purchase Order"
+			    		"text" : "Purchase Order",
+			        	"module" : "purchaseorder"
 			    	}
 		    	]
 		    },
 	    	{
 	       		"id": "receipt",
-		        "text": "Receipt"
+		        "text": "Receipt",
+		        "module" : "receipt"
+		        
 		    },
 		    {
 		        "id": "bill",

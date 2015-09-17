@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
+import org.proto1.dto.order.ProductionOrderDTO;
 import org.proto1.services.order.ProductionOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,11 @@ public class ProductionOrderController extends BaseOrderController<ProductionOrd
 	@RequestMapping(value = "/", method = RequestMethod.GET )
 	public @ResponseBody List<Map<String, Object>>  prodOrderListByLanguage(@RequestParam Long languageId) {
 		return baseOrderService.getOrderList(languageId);
+	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET )
+	public @ResponseBody ProductionOrderDTO get(@PathVariable Long id, @RequestParam Long languageId) {
+		return mapper.map(baseOrderService.get(id), ProductionOrderDTO.class);
 	}
 	
 	@RequestMapping(value = "{poId}/createOrderBOMs", method = RequestMethod.POST )
