@@ -5,6 +5,17 @@
 define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edatagrid, datagrid) {
 	var currentRailwayId = null;
 
+	//function saveToExcel(fileName) {
+		//console.log("call saveToExcel: "+ fileName);
+		//$.ajax({
+		//	url : options.serviceUrl + 'lines/' + currentOrderLineId + '/fillparameters',
+		//	method : "POST",
+		//	success : function() {
+		//		$("#edgLineParameters").edatagrid('reload');
+		//	}
+		//});
+	//}
+	
 	function initRailwayGrid() {
 		$("#edgRailways").edatagrid(
 				{
@@ -23,12 +34,16 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 						},
 						destroy : function() {
 							$("#edgRailways").edatagrid('destroyRow');
-						},
-						saveToExcel : function() {
-							$("#edgRailways").datagrid('toExcel', 'Railways');
-						}
+						}//,
+						//saveToExcel : function() {
+						//	$("#edgRailways").datagrid('toExcel', 'Railways');
+						//}
 
-					}),
+					}).concat([{iconCls: 'icon-save',
+				    	//handler: $("#edgRailways").datagrid('toExcel', 'Railways'),
+						//handler: saveToExcel,
+				    	plain : true,
+				    	text : 'Save to Excel'}]),
 					onSelect : function(index, row) {
 						//console.log("onSelectRailway");
 						//console.log(row);
