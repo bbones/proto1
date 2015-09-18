@@ -5,16 +5,13 @@
 define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edatagrid, datagrid) {
 	var currentRailwayId = null;
 
-	//function saveToExcel(fileName) {
-		//console.log("call saveToExcel: "+ fileName);
-		//$.ajax({
-		//	url : options.serviceUrl + 'lines/' + currentOrderLineId + '/fillparameters',
-		//	method : "POST",
-		//	success : function() {
-		//		$("#edgLineParameters").edatagrid('reload');
-		//	}
-		//});
-	//}
+	function saveRailwaysToExcel() {
+		$("#edgRailways").datagrid('toExcel', 'Railways');
+	}
+	
+	function saveRailwayNamesToExcel() {
+		$("#edgRailwayNames").datagrid('toExcel', 'RailwayNames');
+	}
 	
 	function initRailwayGrid() {
 		$("#edgRailways").edatagrid(
@@ -34,14 +31,9 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 						},
 						destroy : function() {
 							$("#edgRailways").edatagrid('destroyRow');
-						}//,
-						//saveToExcel : function() {
-						//	$("#edgRailways").datagrid('toExcel', 'Railways');
-						//}
-
+						}
 					}).concat([{iconCls: 'icon-save',
-				    	//handler: $("#edgRailways").datagrid('toExcel', 'Railways'),
-						//handler: saveToExcel,
+						handler: saveRailwaysToExcel,
 				    	plain : true,
 				    	text : 'Save to Excel'}]),
 					onSelect : function(index, row) {
@@ -53,7 +45,6 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 									{
 										url : '/protofront/service/railways/'
 												+ row.id + '/names',
-
 									});
 						}
 					},
@@ -63,10 +54,8 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 							method : "DELETE"
 						});
 					}
-
 				});
-	}
-	;
+	};
 
 	function initNameGrid() {
 		$("#edgRailwayNames").edatagrid({
@@ -91,15 +80,14 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 				},
 				destroy : function() {
 					$("#edgRailwayNames").edatagrid('destroyRow');
-				},
-				saveToExcel : function() {
-					$("#edgRailwayNames").datagrid('toExcel', 'RailwayNames');
 				}
-
-			})
+			}).concat([{iconCls: 'icon-save',
+				handler: saveRailwayNamesToExcel,
+		    	plain : true,
+		    	text : 'Save to Excel'}]),
 		});
-	}
-	;
+	};
+	
 	function init() {
 		window.location.hash = "#railway/";
 		$("#spa-cntr").off();
@@ -112,8 +100,8 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 				}
 			});
 		});
-	}
-	;
+	};
+	
 	return {
 		init : init
 	};
