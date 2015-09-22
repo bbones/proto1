@@ -25,11 +25,17 @@
 				<th field='nameId' width=40>UOM Name Id</th>
 				<th
 					data-options="field:'languageId',width:80,
-                    			formatter: ClientRepo.languageFormatter,
-                   				editor:ClientRepo.languageEditor()">Language</th>
+                    			formatter: language.languageFormatter,
+                   				editor:language.languageEditor()">Language</th>
 				<th field='shortName' width=100 editor="text">UOM short name</th>
 				<th field='fullName' width=250 editor="text">UOM full Name</th>
 			</tr>
 		</thead>
 	</table>
 </div>
+
+<script type="text/javascript">
+
+	var language=require('language');
+
+</script>
