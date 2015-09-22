@@ -79,7 +79,6 @@ define (["language", "ordermodel", "uomUtil"], function(language, ordermodel, uo
 	};
 	
 	var collectData = function() {
-		debugger;
 		var order = new ordermodel.Order();
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
 		var selectedDemandRows = $("#dgDemand").datagrid('getSelections');
@@ -97,7 +96,8 @@ define (["language", "ordermodel", "uomUtil"], function(language, ordermodel, uo
 						null,
 						selectedParams[pk].productParameterId,
 						selectedDemandRows[key]['F' + selectedParams[pk].productParameterId],
-						selectedDemandRows[key]['FUOM' + selectedParams[pk].productParameterId]
+						selectedDemandRows[key]['FUOM' + selectedParams[pk].productParameterId],
+						null
 					);
 				orderLine.parameterList.push(param);
 			}
