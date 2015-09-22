@@ -1,5 +1,7 @@
 package org.proto1.config;
 
+import java.util.Properties;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -51,11 +53,11 @@ public class PersistenceConfig
 		vendorAdapter.setGenerateDdl(Boolean.TRUE);
 		vendorAdapter.setDatabase(Database.POSTGRESQL);
 		factory.setJpaVendorAdapter(vendorAdapter);
- 
-	/*	Properties jpaProperties = new Properties();
-		jpaProperties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-		factory.setJpaProperties(jpaProperties);
-    */
+/* 
+		Properties jpaProperties = new Properties();
+		jpaProperties.put("hibernate.show_sql", Boolean.TRUE);
+		factory.setJpaProperties(jpaProperties);*/
+    
 		factory.afterPropertiesSet();
 		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
 		return factory;

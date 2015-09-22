@@ -10,6 +10,8 @@ public interface RailwayService {
 
 	Railway getRailway(Long id);
 	
+	Railway getByRailwayCode(Integer railwayCode);
+	
 	List<Map<String, Object>> getRailwayList();
 	
 	Railway save(Railway railway);

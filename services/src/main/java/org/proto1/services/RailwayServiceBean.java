@@ -4,6 +4,7 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
+
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.Railway;
@@ -20,6 +21,10 @@ public class RailwayServiceBean implements RailwayService {
 	
 	public Railway getRailway(Long id) {
 		return railwayRepository.findOne(id);
+	}
+	
+	public Railway getByRailwayCode(Integer railwayCode) {
+		return railwayRepository.findByRailwayCode(railwayCode);
 	}
 	
 	public List<Map<String, Object>> getRailwayList() {

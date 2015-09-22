@@ -7,6 +7,7 @@ import java.util.Map;
 import org.proto1.domain.Railway;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 public interface RailwayRepository extends CrudRepository<Railway, Long> {
 
@@ -15,5 +16,10 @@ public interface RailwayRepository extends CrudRepository<Railway, Long> {
 			"from Railway rw " +
 			"order by rw.railwayCode asc")
 	List<Map<String, Object>> getList();
+	
+	@Query("select rw " +
+			"from Railway rw " +
+			"where rw.railwayCode = :railway_code ")
+	Railway findByRailwayCode(@Param("railway_code") Integer railwayCode);
 
 }
