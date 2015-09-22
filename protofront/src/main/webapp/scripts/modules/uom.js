@@ -8,7 +8,7 @@
  * Created 04.05.15 
  */
 
-define(['commonlib'], function(commonlib){
+define(['commonlib', 'edatagrid'], function(commonlib, edatagrid){
 	
 	var currentUOMId = null; 
 	
@@ -77,7 +77,7 @@ define(['commonlib'], function(commonlib){
 	function init() {
 		window.location.hash = "#uom/"; 
 		$("#spa-cntr").off();
-		$.when(uomUtil.init(), language.init()).done(function() {
+		$.when(language.init()).done(function() {
 			$("#spa-cntr").panel({
 				href : '/protofront/forms/uom.html', 
 				onLoad : function() {
