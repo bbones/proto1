@@ -8,9 +8,12 @@ import org.junit.runner.RunWith;
 import org.proto1.config.AppConfig;
 import org.proto1.config.PersistenceConfig;
 import org.proto1.config.WebConfig;
+import org.proto1.domain.Language;
 import org.proto1.domain.Railway;
 import org.proto1.domain.RailwayName;
+import org.proto1.services.LanguageService;
 import org.proto1.services.RailwayService;
+import org.proto1.services.RailwayNameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
@@ -28,13 +31,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class, PersistenceConfig.class,  WebConfig.class })
 @WebAppConfiguration
-@TransactionConfiguration(defaultRollback = true)
+@TransactionConfiguration(defaultRollback = false)
 @Transactional
 public class EntityFromJsonGeneratorTest {
 	@Autowired
     private ApplicationContext context;	
 	@Autowired		
 	RailwayService railwayService;
+	@Autowired		
+	RailwayNameService railwayNameService;
+	@Autowired
+	LanguageService languageService;
 
 	public static Railway[] railwayToJavaObject(File baseFile)
 			throws IOException {
@@ -66,6 +73,7 @@ public class EntityFromJsonGeneratorTest {
 					for (int i = 0; i < railways.length; i++) {
 						System.out.println("RailwayCode: "
 								+ railways[i].getRailwayCode());
+						railwayService.save(railways[i]);
 					}
 					;
 					break;
@@ -73,16 +81,21 @@ public class EntityFromJsonGeneratorTest {
 					RailwayName[] railwayName = railwayNameToJavaObject(mappingFiles[k]
 							.getFile());
 					Railway railway;
+					Language language;
 					for (int i = 0; i < railwayName.length; i++) {
 						railway = railwayService
 								.getByRailwayCode(railwayName[i].getRailway()
 										.getRailwayCode());
+						language = languageService.get(railwayName[i].getLanguage().getId());
 						System.out.println(
 								"RailwayShortName: " + railwayName[i].getShortName()
-							  + " lang: " + railwayName[i].getLanguage().getName()
-							  + " RailwayCode: "+ railwayName[i].getRailway().getRailwayCode()
-							   + " RailwayId: " + railway.getId());
-								//+ railwayName[i].getRailway().getId());
+								+ " lang: " + language.getName()
+								+ " lang_version: " + language.getVersion()
+								+ " RailwayCode: " + railwayName[i].getRailway().getRailwayCode()
+								+ " RailwayId: " + railway.getId());
+						railwayName[i].setRailway(railway);
+						railwayName[i].setLanguage(language);
+						railwayNameService.save(railwayName[i]);
 					}
 					;
 					break;
