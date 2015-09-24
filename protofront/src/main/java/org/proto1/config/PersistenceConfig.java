@@ -53,11 +53,11 @@ public class PersistenceConfig
 		vendorAdapter.setGenerateDdl(Boolean.TRUE);
 		vendorAdapter.setDatabase(Database.POSTGRESQL);
 		factory.setJpaVendorAdapter(vendorAdapter);
-/* 
+/*
 		Properties jpaProperties = new Properties();
 		jpaProperties.put("hibernate.show_sql", Boolean.TRUE);
-		factory.setJpaProperties(jpaProperties);*/
-    
+		factory.setJpaProperties(jpaProperties);
+*/  
 		factory.afterPropertiesSet();
 		factory.setLoadTimeWeaver(new InstrumentationLoadTimeWeaver());
 		return factory;
