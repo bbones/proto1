@@ -80,7 +80,7 @@ define(['commonlib', 'language', 'edatagrid'], function(commonlib, language, eda
 	    		});
 			}
 		});
-	};
+	}
 	
 	function initNameGrid() {
 		$("#edgNames").edatagrid({
@@ -126,5 +126,5 @@ define(['commonlib', 'language', 'edatagrid'], function(commonlib, language, eda
 
 	return {
 		init : init
-	}
+	};
 });

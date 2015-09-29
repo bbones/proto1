@@ -25,8 +25,8 @@ define(["jquery", "commonlib", "language", "uomUtil", "edatagrid", "parameterUti
 	
 	function initProductGrid() {
 		$("#edgProducts").edatagrid({
-			saveUrl : '/protofront/service/products/?languageId=' + + language.id(),
-			updateUrl : '/protofront/service/products/?languageId=' + + language.id(),
+			saveUrl : '/protofront/service/products/?languageId=' +  language.id(),
+			updateUrl : '/protofront/service/products/?languageId=' +  language.id(),
 			method : "GET",
 			toolbar : commonlib.edgmenu({
 				add : function(){
@@ -43,7 +43,7 @@ define(["jquery", "commonlib", "language", "uomUtil", "edatagrid", "parameterUti
 
 			onSelect : function(index, row) {
 				console.log(row);
-				if (row.productId != null) {
+				if (row.productId !== null) {
 					$("#edgNames").edatagrid({
 						url : '/protofront/service/products/'
 									+ row.productId + '/names'
@@ -138,6 +138,6 @@ define(["jquery", "commonlib", "language", "uomUtil", "edatagrid", "parameterUti
 	
 	return {
 		init : init
-	}  //return
+	};  //return
 });
 

@@ -37,7 +37,7 @@ public class ActivitiEngineConfiguration {
 	  
 	  @Autowired
 	  protected EntityManagerFactory entityManagerFactory;
-	  
+	  @SuppressWarnings("unused")
 	  private final Logger log = LoggerFactory.getLogger(ActivitiEngineConfiguration.class);
 	  @Autowired
 	  private ResourcePatternResolver resourceResolver;

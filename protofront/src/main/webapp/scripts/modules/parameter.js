@@ -30,7 +30,7 @@ define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatag
 
 			onSelect : function(index, row) {
 				console.log(row);
-				if (row.parameterId != null) {
+				if (row.parameterId !== null) {
 					currentParameterId = row.parameterId;
 					$("#edgNames").edatagrid({
 						url : '/protofront/service/parameters/' + row.parameterId + '/names'
@@ -50,7 +50,7 @@ define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatag
 							} else {
 								$('#dlUOM').datagrid('uncheckRow', i);
 							}
-						};
+						}
 						initUOM = false;
 					});
 				}
@@ -64,7 +64,7 @@ define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatag
 
 		});
 		
-	};
+	}
 	
 	function initNamesGrid() {
 		$("#edgNames").edatagrid({
@@ -90,7 +90,7 @@ define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatag
 			}
 
 		});
-	};
+	}
 	
 	function initUOMS() {
 		$('#dlUOM').datalist({
@@ -101,7 +101,7 @@ define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatag
 		    		$.post('/protofront/service/parameters/' + par + '/uoms',{
 		    			'uomId' : row.id
 		    		});
-		    	};
+		    	}
 		    },
 		    onUncheck : function(index, row) {
 		    	if (!initUOM) {
@@ -110,11 +110,11 @@ define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatag
 		    			url : '/protofront/service/parameters/' + par + '/uoms' + row.id,
 		    			method : 'DELETE'
 		    		});
-		    	};
+		    	}
 		    }
 
 		});
-	};
+	}
 	
 	function init() {
 		window.location.hash = "#parameter/"; 

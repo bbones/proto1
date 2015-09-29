@@ -11,7 +11,7 @@
 define (['currencyUtil', 'commonlib', 'edatagrid'], 
 		function(currencyUtil, commonlib, edatagrid){
 
-	var roleMap = new Object();
+	var roleMap = {};
 	var currentContractId = {};
 	
 	function getRoleMap () {
@@ -51,7 +51,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 			}
 
 		});
-	};
+	}
 
 	function initSidesGrid(){
 		$("#spa-cntr").on("contractSelected", function(event, contractId){
@@ -84,7 +84,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 			method : 'GET'
 		});
 		
-	};
+	}
 
 	function initSupplementGrid(){
 		var supevent = jQuery.Event( "contractSupplementSelected" );
@@ -118,7 +118,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 						    		index : index,
 						    		row : JSON.parse(data)});
 						    } // Success
-						})
+						});
 					},
 					destroy : function(){$("#edgSupplement").edatagrid('destroyRow');}
 
@@ -137,17 +137,17 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 			}
 		});
 		
-	};
+	}
 
 	function initRoleListAndMap() {
 		$.ajax('/protofront/service/contracts/roles?languageId=' + language.id()).done(function(dataArray) {
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				roleMap[dataArray[i].srId] = dataArray[i].srName;
-			};
+			}
 			$("#edgSides").datagrid('getColumnOption', 'roleId').editor.options.data = dataArray;
 		});
-	};
+	}
 
 	function initContractForm() {
 		$("#spa-cntr").on("contractSelected", function(event, contractId){
@@ -176,7 +176,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 			parser:commonlib.dateParser
 
 		});
-	};
+	}
 	
 	function initContractSupplementForm() {
 		$("#spa-cntr").on("contractSupplementSelected", function(event, contractSupplementId){
@@ -205,7 +205,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
             ]],
             fitColumns: true
 		});
-	};
+	}
 	
 	return {
 		init : function() {
@@ -259,7 +259,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 	          		         {field:'partyName',title:'Name',width:400,sortable:true}
 	          		     ]]
 	           }
-			}
+			};
 		}
 	};
 });

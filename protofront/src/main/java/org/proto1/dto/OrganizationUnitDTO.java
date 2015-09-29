@@ -1,6 +1,8 @@
 package org.proto1.dto;
 
 public class OrganizationUnitDTO extends DTO {
+
+	private static final long serialVersionUID = -4257649746621979359L;
 	private Long id;
 	private Long enterpriseId;
 	private String name;

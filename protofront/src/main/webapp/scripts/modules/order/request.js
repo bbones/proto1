@@ -55,7 +55,7 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil"],
 			formUrl : '/protofront/forms/requestOrder.html',
 			onLoad : onLoad
 		});
-	};
+	}
 	
 	return {
 		init : initRequest

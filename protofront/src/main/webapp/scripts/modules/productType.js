@@ -15,7 +15,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 			onSelect :function(data) {
 				console.log(data);
 				$('#edg').edatagrid({
-					url : '/protofront/service/productTypes/' + data['id'] + '/names/',
+					url : '/protofront/service/productTypes/' + data.id + '/names/',
 				});
 			},
 			onDrop: function(targetNode, source, point){
@@ -32,7 +32,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
                 });
             }
 		});
-	};
+	}
 	
  
 	
@@ -66,7 +66,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 				}
 			}
 		});
-	};
+	}
 	
 	 
 	return {
@@ -88,8 +88,8 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 				url : '/protofront/service/productTypes/?languageId='+ language.id(),
 				success : function(respdata) {
 					var node = {
-						id : respdata['id'], 
-						text : respdata['localizedProductName']
+						id : respdata.id, 
+						text : respdata.localizedProductName
 					};
 					$('#productTypes').tree('append', {
 				         data : [node]
@@ -108,13 +108,13 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 					type : 'POST',
 					url : '/protofront/service/productTypes/',
 					data : {
-						parentId : parentnode['id'],
+						parentId : parentnode.id,
 						languageId : language.id()
 					},
 					success : function(respdata) {
 						var node = {
-							id : respdata['id'],
-							text : respdata['localizedProductName']
+							id : respdata.id,
+							text : respdata.localizedProductName
 						};
 						$('#productTypes').tree('append', {
 							parent : parentnode.target,
@@ -134,7 +134,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 			if (node) {
 				$.ajax({
 					type : 'DELETE',
-					url : '/protofront/service/productTypes/' + node['id'],
+					url : '/protofront/service/productTypes/' + node.id,
 					success : function() {
 						$('#productTypes').tree('remove', node.target);
 						$('#edg').datagrid('loadData', [ {} ]);

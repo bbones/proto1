@@ -19,7 +19,7 @@ public class LocalizedStringConstant implements Serializable {
 
 	@Id
 	private String key;
-	@Id
+//	@Id
 	@ManyToOne
 	@JoinColumn(name = "language_id")
 	private Language language;

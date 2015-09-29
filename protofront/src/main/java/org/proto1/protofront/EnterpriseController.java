@@ -4,7 +4,6 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,10 +15,8 @@ import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.dto.EnterpriseNameDTO;
 import org.proto1.dto.PagedDTO;
-import org.proto1.dtotools.DTOMapper;
 import org.proto1.services.LanguageService;
 import org.proto1.services.party.EnterpriseService;
-import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

@@ -6,7 +6,7 @@ define([ 'jquery' ], function($) {
 	console.log("Language module");
 
 	var languageList = [];
-	var languageMap = new Object();
+	var languageMap = {};
 	var currentLanguage = 3; // Russian
 	var d = $.Deferred();
 
@@ -19,7 +19,7 @@ define([ 'jquery' ], function($) {
 					for (var i = 0; i < length; i++) {
 						languageMap[dataArray[i].id] = dataArray[i].name;
 					}
-					;
+					
 					languageEditor = {
 						type : 'combobox',
 						options : {
@@ -34,12 +34,12 @@ define([ 'jquery' ], function($) {
 					d.resolve();
 				});
 	}
-	;
+	
 
 	function getLanguageList() {
 		return languageList;
 	}
-	;
+	
 
 	function getLanguageMap() {
 		return languageMap;
@@ -70,6 +70,6 @@ define([ 'jquery' ], function($) {
 			return languageEditor;
 		}
 
-	}
+	};
 
-})
+});

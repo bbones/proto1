@@ -20,7 +20,7 @@ import org.proto1.repository.order.OrderLineRepository;
 import org.proto1.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+@SuppressWarnings("unused")
 @Service
 public class DemandServiceBean implements DemandService {
 	protected final Log logger = LogFactory.getLog(getClass());

@@ -7,7 +7,7 @@
 
 define(['jquery'], function($){
 	var uomList = null;
-	var uomMap = new Object;
+	var uomMap = {};
 	var d = $.Deferred();
 	var uomEditor = null;
 	function loadUoms () {
@@ -16,7 +16,7 @@ define(['jquery'], function($){
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				uomMap[dataArray[i].id] = dataArray[i].shortName;
-			};
+			}
 			uomEditor = {
 		  			type:'combobox',
 		          	options:{
@@ -43,12 +43,12 @@ define(['jquery'], function($){
         },
 
 		getUomEditor : function() {
-			return uomEditor
+			return uomEditor;
 		},
 		
 		getUomMap : function() {
 			return uomMap;
 		}
-	}
+	};
 });
 

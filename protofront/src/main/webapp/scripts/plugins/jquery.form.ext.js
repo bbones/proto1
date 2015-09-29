@@ -4,7 +4,7 @@
 		var opts = $.data(target, 'form').options;
 		$.extend(opts, options || {});
 		var param = $.extend({}, opts.queryParams);
-		if (opts.onSubmit.call(target, param) == false) {
+		if (opts.onSubmit.call(target, param) === false) {
 			return;
 		}
 		$(target).find('.textbox-text:focus').blur();
@@ -28,7 +28,7 @@
 		}
 
 	}
-	;
+	
 
 	$.extend($.fn.form.defaults, {
 		onPostError : function(data) {

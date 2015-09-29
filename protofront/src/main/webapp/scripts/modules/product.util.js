@@ -6,7 +6,7 @@
 
 define(['jquery'], function($){
 	var productList = null;
-	var productMap = new Object;
+	var productMap = {};
 	var d = $.Deferred();
 	var productEditor = null;
 	function loadProducts () {
@@ -15,7 +15,7 @@ define(['jquery'], function($){
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				productMap[dataArray[i].productId] = dataArray[i].productName;
-			};
+			}
 			productEditor = {
 		  			type:'combobox',
 		          	options:{
@@ -42,7 +42,7 @@ define(['jquery'], function($){
         },
 
 		getProductEditor : function() {
-			return productEditor
+			return productEditor;
 		}
-	}
+	};
 });

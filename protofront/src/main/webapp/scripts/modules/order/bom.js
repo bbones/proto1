@@ -38,7 +38,7 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 			formUrl : '/protofront/forms/bom.html',
 			onLoad : onLoad
 		});
-	};
+	}
 	
 	return {
 		init : initSales

@@ -6,7 +6,7 @@
 
 define(['jquery'], function($){
 	var orgUnitList = null;
-	var orgUnitMap = new Object;
+	var orgUnitMap = {};
 	var d = $.Deferred();
 	var orgUnitEditor = null;
 	function loadOrgUnits () {
@@ -15,7 +15,7 @@ define(['jquery'], function($){
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				orgUnitMap[dataArray[i].id] = dataArray[i].name;
-			};
+			}
 			orgUnitEditor = {
 		  			type:'combobox',
 		          	options:{
@@ -42,10 +42,10 @@ define(['jquery'], function($){
         },
 
 		getOrgUnitEditor : function() {
-			return uomEditor
+			return uomEditor;
 		},
 		getOrgUnitList : function() {
 			return orgUnitList;
 		}
-	}
+	};
 });

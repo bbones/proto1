@@ -10,7 +10,7 @@
 
 define(function() {
 	var d = $.Deferred();
-	var currencyMap = new Object();
+	var currencyMap = {};
 	var currencyList = null;
 
 	
@@ -20,12 +20,12 @@ define(function() {
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				currencyMap[dataArray[i].numCode] = dataArray[i].charCode;
-			};
+			}
 			
 			d.resolve();
 		});
 
-	};
+	}
 
 	function getCurrencyList () {
 		return currencyList;
@@ -34,7 +34,7 @@ define(function() {
 	function init() {
 		loadCurrencies();
 		return d.promise();
-	};
+	}
 	
 	return {
 		init : init,
@@ -52,5 +52,5 @@ define(function() {
 		},
 		getCurrencyList : getCurrencyList
 
-	}
+	};
 });

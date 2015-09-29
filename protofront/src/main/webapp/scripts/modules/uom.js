@@ -32,7 +32,7 @@ define(['commonlib', 'edatagrid'], function(commonlib, edatagrid){
 			onSelect : function(index, row) {
 				console.log(row);
 				currentUOMId = row.id;
-				if (row.id != null) {
+				if (row.id !== null) {
 					$("#edgNames").edatagrid({
 						url : '/protofront/service/uoms/' + row.id + '/names',
 
@@ -47,7 +47,7 @@ define(['commonlib', 'edatagrid'], function(commonlib, edatagrid){
 			}
 
 		});	
-	};
+	}
 	
 	function initTranslationGrid(){
 		$("#edgNames").edatagrid({
@@ -72,7 +72,7 @@ define(['commonlib', 'edatagrid'], function(commonlib, edatagrid){
 
 			})
 		});		
-	};
+	}
 	
 	function init() {
 		window.location.hash = "#uom/"; 

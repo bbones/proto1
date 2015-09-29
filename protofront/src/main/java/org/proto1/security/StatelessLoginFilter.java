@@ -50,7 +50,7 @@ public class StatelessLoginFilter extends AbstractAuthenticationProcessingFilter
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
 			FilterChain chain, Authentication authentication) throws IOException, ServletException {
-		logger.debug("StatelessLoginFilter.successfulAuthentication");
+	//	logger.debug("StatelessLoginFilter.successfulAuthentication");
 	//	 super.successfulAuthentication(request, response, chain, authentication);
 
 	

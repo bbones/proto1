@@ -1,7 +1,5 @@
 package org.proto1.config;
 
-import java.util.Properties;
-
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -29,7 +27,7 @@ public class PersistenceConfig
 	@Autowired
 	private Environment env;
  
-	@SuppressWarnings("unused")
+	
 	private final Logger log = LoggerFactory.getLogger(PersistenceConfig.class);
 	
 	@Bean

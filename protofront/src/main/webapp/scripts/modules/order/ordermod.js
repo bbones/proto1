@@ -34,7 +34,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 
 			}),
 			onSelect : function(index, row) {
-				if (row.id != null) {
+				if (row.id !== null) {
 					currentOrderId  = row.id;
 					var event = jQuery.Event( 'orderSelected' );
 					$("#spa-cntr").trigger(event, row.id);
@@ -47,7 +47,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 				});
 			}
 		});
-	};
+	}
 	
 	function initLinesGrid() {
 		$("#spa-cntr").on('orderSelected', 
@@ -77,7 +77,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 
 			}),
 			onSelect : function(index, row) {
-				if (row.orderLineId != null) {
+				if (row.orderLineId !== null) {
 					currentOrderLineId = row.orderLineId;
 					var event = jQuery.Event( 'orderLineSelected' );
 					$("#spa-cntr").trigger(event, row.orderLineId);
@@ -91,7 +91,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 				});
 			}
 		});
-	};
+	}
 	
 	function fillParameterTemplate() {
 		console.log("Fill Parameter Template");
@@ -167,14 +167,14 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 			}
 
 		});
-	};
+	}
 
 	function initForm() {
 		$("#orderDetails").panel({
 			href: options.formUrl,
 			onLoad : options.onLoad
 		});
-	};
+	}
 	
 	function load() {
 		console.log('Order.load');
@@ -193,7 +193,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 				}
 			});
 		});
-	};
+	}
 
 	return {
 		init : function(opt) {

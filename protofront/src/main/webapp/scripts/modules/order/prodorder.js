@@ -45,7 +45,7 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 			formUrl : '/protofront/forms/prodOrder.html',
 			onLoad : onLoad
 		});
-	};
+	}
 	
 	function addBOMs() {
 		var poid = $("#edgProdOrder").edatagrid('getSelected').id;

@@ -50,13 +50,13 @@ define (["language", "ordermodel", "uomUtil"], function(language, ordermodel, uo
 	
 	var initDemandGrid = function() {
 		var selectedParams = $("#dgParameters").datagrid('getSelections');
-		var paramList = new Array();
-		var columnList = new Array();
+		var paramList = [];
+		var columnList = [];
 		columnList.push({field:'ck',checkbox:true,width:10});
 		for(var key in selectedParams) {
 			paramList.push(selectedParams[key].productParameterId);
 			columnList.push({field:'FVD'+selectedParams[key].productParameterId,title:selectedParams[key].parameterName,width:80});
-		};
+		}
 		columnList.push({field:'qnty',title:'Qnty',width:80});
 		columnList.push({field:'olUOMName',title:'Qnty UOM',width:40});
 		console.log(paramList);
@@ -88,7 +88,7 @@ define (["language", "ordermodel", "uomUtil"], function(language, ordermodel, uo
 				currentProduct(), // product
 				selectedDemandRows[key].qnty, // qnty, 
 				selectedDemandRows[key].olUOMId, // 
-				new Array(),
+				[],
 				order
 			);
 			for(var pk in selectedParams) {

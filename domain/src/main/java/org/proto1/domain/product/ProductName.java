@@ -18,7 +18,7 @@ import org.proto1.domain.Language;
 @Table(name="PRODUCT_NAME", uniqueConstraints=@UniqueConstraint(columnNames = {"PRODUCT_ID", "LANGUAGE_ID"})) 
 public class ProductName extends AbstractEntity {
 	
-	private static final long serialVersionUID = 2044881780858323509L;
+
 
 	@ManyToOne
 	@JoinColumn(name="PRODUCT_ID")

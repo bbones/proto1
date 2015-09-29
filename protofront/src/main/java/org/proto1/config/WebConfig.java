@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  * 
  */
 @Configuration
-@ComponentScan("org.proto1")
+//@ComponentScan("org.proto1")
 
 public class WebConfig extends WebMvcConfigurationSupport {
 

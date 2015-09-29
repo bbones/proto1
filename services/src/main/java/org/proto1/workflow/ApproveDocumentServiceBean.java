@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.activiti.engine.RuntimeService;
-import org.activiti.engine.runtime.ProcessInstance;
 import org.proto1.domain.Approve;
 import org.proto1.domain.Document;
 import org.proto1.domain.party.Person;
@@ -42,7 +41,8 @@ public class ApproveDocumentServiceBean implements ApproveDocumentService {
 		Map<String,Object> variables=new HashMap<String,Object>();
 		  variables.put("document",document);
 		  variables.put("initiator",currentPerson);
-		ProcessInstance processInstance = runtimeService
+	//	ProcessInstance processInstance = 
+		  runtimeService
 				.startProcessInstanceByKey(approve.getProcessDefinitionKey(), variables);
 		
 	}

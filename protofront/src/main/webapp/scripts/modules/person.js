@@ -20,7 +20,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 				});
 			} // OnSelect
 		});
-	};
+	}
 	
 	function initNameGrid() {
 		$("#edgNames").edatagrid({});
@@ -38,6 +38,6 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 				}
 			});
 		}
-	}
+	};
 });
 

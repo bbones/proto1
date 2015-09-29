@@ -5,7 +5,7 @@
 	function addColumnProperies(target, columnsoptions) {
 		var opts = $.data(target, 'datagrid').options;
 
-	};
+	}
 
 	$.extend($.fn.datagrid.methods, {
 		addColumnProperies : function(jq, columnsoptions) {

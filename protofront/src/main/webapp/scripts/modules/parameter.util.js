@@ -6,7 +6,7 @@
 
 define(['jquery'], function($){
 	var parameterList = null;
-	var parameterMap = new Object;
+	var parameterMap = {};
 	var d = $.Deferred();
 	var parameterEditor = null;
 	function loadParameters () {
@@ -15,7 +15,7 @@ define(['jquery'], function($){
 			var length = dataArray.length;
 			for(var i = 0; i < length; i++) {
 				parameterMap[dataArray[i].parameterId] = dataArray[i].parameterName;
-			};
+			}
 			parameterEditor = {
 		  			type:'combobox',
 		          	options:{
@@ -42,7 +42,7 @@ define(['jquery'], function($){
         },
 
 		getParameterEditor : function() {
-			return parameterEditor
+			return parameterEditor;
 		}
-	}
+	};
 });

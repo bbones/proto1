@@ -12,13 +12,13 @@ define(function(){
 	function Order() {
 		this.id = null;
 		this.documentNo = "NEW ORDER";
-		this.lines = new Array();
+		this.lines = [];
 		
 		this.addOrderLine = function(orderLine) {
 			orderLine.orderId = this.orderId;	
 			this.lines.push(orderLine);
 		};
-	};
+	}
 
 	function OrderLine(orderLineId, productId, qnty, uomId, parameterList, orderId) {
 		this.orderLineId = orderLineId;
@@ -31,7 +31,7 @@ define(function(){
 //			orderLineParameter.olId = this.orderLineId;
 //			this.parameterList.push(orderLineParameter);
 //		};
-	};
+	}
 
 	function OrderLineParameter(olpId, ppId, pValue, pUOM, olId, derivative) {
 		this.olpId = olpId;
@@ -40,12 +40,12 @@ define(function(){
 		this.uomId = pUOM;
 		this.olId = olId;
 		this.derivative = derivative;
-	};
+	}
 	
 	return {
 		Order : Order,
 		OrderLine : OrderLine,
 		OrderLineParameter : OrderLineParameter
-	}
+	};
 });
 

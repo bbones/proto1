@@ -34,7 +34,7 @@ define([ "jquery", "easyui", "require", "language", "commonlib" ], function($, e
 			url : 'main_menu_RU.json',
 			method : 'GET',
 			onClick : function(node) {
-				if (node.module != null) {
+				if (node.module !== null) {
 					console.log("module->" + node.module);
 					require([ node.module ], function(module) {
 						console.log(module);
@@ -97,5 +97,5 @@ define([ "jquery", "easyui", "require", "language", "commonlib" ], function($, e
 
 	return {
 		init : init,
-	}
+	};
 });

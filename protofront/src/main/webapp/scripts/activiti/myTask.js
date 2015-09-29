@@ -9,7 +9,7 @@ var MyTaskLib = (function() {
 				} else {
 					result = 'rejected';
 				}
-				;
+				
 				$.ajax({
 					url : '/protofront/service/activiti/tasks/' + row.id + '/'
 							+ result,
@@ -17,7 +17,7 @@ var MyTaskLib = (function() {
 				});
 				$.messager.alert('Info', "This task was " + result);
 			}
-			;
+			
 		}
 		var toolbar = [ {
 			text : 'Одобрить',
@@ -38,7 +38,7 @@ var MyTaskLib = (function() {
 			toolbar : toolbar
 		});
 	}
-	;
+	
 
 	return {
 		init : function() {
@@ -50,7 +50,7 @@ var MyTaskLib = (function() {
 				}
 			});
 		}
-	}
+	};
 })();
 
 MyTaskLib.init();

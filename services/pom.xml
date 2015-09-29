@@ -14,8 +14,11 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>        
-        <org.springframework.security.version>4.0.1.RELEASE</org.springframework.security.version>		
+		<org.springframework.version>4.2.1.RELEASE</org.springframework.version>        
+        <org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
+        <org.springframework.data.spring-data-jpa.version>1.9.0.RELEASE</org.springframework.data.spring-data-jpa.version>		
+        <org.springframework.data.spring-data-commons.version>1.11.0.RELEASE</org.springframework.data.spring-data-commons.version>
+        
         <org.activiti.version>5.17.0</org.activiti.version>          
 	</properties>
 
@@ -66,7 +69,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-commons</artifactId>
-			<version>1.9.1.RELEASE</version>
+			<version>${org.springframework.data.spring-data-commons.version}</version>
 		</dependency>
 	    <dependency>
 			<groupId>org.springframework.security</groupId>
@@ -76,7 +79,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>1.7.1.RELEASE</version>
+			<version>${org.springframework.data.spring-data-jpa.version}</version>
 		</dependency>
 
 		<dependency>
@@ -111,6 +114,7 @@
 </dependency>
 		
 	</dependencies>
+	<!-- 
 	<build>
 		<plugins>
 			<plugin>
@@ -131,4 +135,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	 -->
 </project>

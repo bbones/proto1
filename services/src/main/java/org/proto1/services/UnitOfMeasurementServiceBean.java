@@ -3,15 +3,13 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
+import org.activiti.engine.RuntimeService;
 import org.proto1.domain.UnitOfMeasurement;
 import org.proto1.domain.UnitOfMeasurementName;
 import org.proto1.repository.UnitOfMeasurementNameRepository;
 import org.proto1.repository.UnitOfMeasurementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.activiti.engine.RuntimeService;
-import org.activiti.engine.runtime.ProcessInstance;
 
 
 @Service

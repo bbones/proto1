@@ -12,15 +12,15 @@ import org.proto1.domain.Language;
 import org.proto1.domain.Railway;
 import org.proto1.domain.RailwayName;
 import org.proto1.services.LanguageService;
-import org.proto1.services.RailwayService;
 import org.proto1.services.RailwayNameService;
+import org.proto1.services.RailwayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,7 +31,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = { AppConfig.class, PersistenceConfig.class,  WebConfig.class })
 @WebAppConfiguration
-@TransactionConfiguration(defaultRollback = false)
+@Rollback(false)
+
 @Transactional
 public class EntityFromJsonGeneratorTest {
 	@Autowired

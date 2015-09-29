@@ -7,7 +7,7 @@ define(function(){
     function dateFormatter (value) {
     	var d = new Date(value);
     	return d.toLocaleDateString();
-    };
+    }
     
     function dateParser(s){
     	if (!isNaN(s))
@@ -22,7 +22,7 @@ define(function(){
         } else {
             return new Date();
         }
-    };
+    }
 
 	return {
 		dateFormatter : dateFormatter,
@@ -57,5 +57,5 @@ define(function(){
 			];
 		}
 
-	}
+	};
 });
