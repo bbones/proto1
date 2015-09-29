@@ -7,7 +7,7 @@
   <packaging>pom</packaging>
   <name>erp</name>
   <description>ERP Creator	</description>
-  <modules>
+  <modules> 
     <module>domain</module>
     <module>generator</module>
     <module>tools</module>

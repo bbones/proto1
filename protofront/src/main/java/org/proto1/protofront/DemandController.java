@@ -11,6 +11,8 @@ import java.util.Map;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.dozer.Mapper;
+import org.proto1.domain.order.OrderLine;
+import org.proto1.domain.order.OrderLineParameter;
 import org.proto1.domain.order.ProductionOrder;
 import org.proto1.dto.order.ProductionOrderDTO;
 import org.proto1.services.order.DemandService;
@@ -51,6 +53,12 @@ public class DemandController {
 	public Long createProdOrder(@RequestBody ProductionOrderDTO productionOrder) 
 			throws InstantiationException, IllegalAccessException, ParseException {
 		ProductionOrder po = mapper.map(productionOrder, ProductionOrder.class);
+		for (OrderLine ol : po.getLines()) {
+			ol.setOrder(po);
+			for (OrderLineParameter olp : ol.getOrderLineParameterList()) {
+				olp.setOrderLine(ol);
+			}
+		}
 		po = productioOrderService.save(po);
 		return po.getId();
 	}

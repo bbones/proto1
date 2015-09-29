@@ -11,15 +11,15 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 				 
 		$("#spa-cntr").on("orderSelected", function(event, orderId){
 			if (typeof orderId !== 'undefined') {
-				$("#sof").form('load', '/protofront/service/salesorders/' + orderId + '?languageId=' +  language.id());
+				$("#bomf").form('load', '/protofront/service/boms/' + orderId + '?languageId=' +  language.id());
 			}
 		});
 		
 		$("#spa-cntr").on("savePressed", function(event) {
-			$("#sof").form('submit', {url : "/protofront/service/salesorders/?languageId=" + language.id()});
+			$("#bomf").form('submit', {url : "/protofront/service/boms/?languageId=" + language.id()});
 		});
 		$("#spa-cntr").on("addPressed", function(event) {
-			$("#sof").form('clear');
+			$("#bomf").form('clear');
 		});
 		$("#isdate").datebox({
 			
@@ -33,9 +33,9 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 	function initSales () {
 		console.log("OrderMod loaded");
 		ordermod.init({
-			type : 'salesorder',
-			serviceUrl : '/protofront/service/salesorders/',
-			formUrl : '/protofront/forms/salesOrder.html',
+			type : 'bom',
+			serviceUrl : '/protofront/service/boms/',
+			formUrl : '/protofront/forms/bom.html',
 			onLoad : onLoad
 		});
 	};
@@ -44,6 +44,4 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 		init : initSales
 	};
 });
-
-
 

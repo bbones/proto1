@@ -22,11 +22,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
  */
 @Configuration
 @ComponentScan("org.proto1")
-/* @ImportResource({ "classpath:META-INF/applicationContext.xml" }) */
-// @EnableWebMvc
-public class WebConfig extends WebMvcConfigurationSupport {// extends
-															// WebMvcConfigurerAdapter
-															// {
+
+public class WebConfig extends WebMvcConfigurationSupport {
 
 	public WebConfig() {
 		super();

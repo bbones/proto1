@@ -1,7 +1,5 @@
 /**
- * File salesorder.js
- * Created 12/06/15
- * @author Valentin Pogrebinsky
+ * 
  */
 
 define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commonlib"], 
@@ -11,15 +9,15 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 				 
 		$("#spa-cntr").on("orderSelected", function(event, orderId){
 			if (typeof orderId !== 'undefined') {
-				$("#sof").form('load', '/protofront/service/salesorders/' + orderId + '?languageId=' +  language.id());
+				$("#purof").form('load', '/protofront/service/purchaseorders/' + orderId + '?languageId=' +  language.id());
 			}
 		});
 		
 		$("#spa-cntr").on("savePressed", function(event) {
-			$("#sof").form('submit', {url : "/protofront/service/salesorders/?languageId=" + language.id()});
+			$("#purof").form('submit', {url : "/protofront/service/purchaseorders/?languageId=" + language.id()});
 		});
 		$("#spa-cntr").on("addPressed", function(event) {
-			$("#sof").form('clear');
+			$("#purof").form('clear');
 		});
 		$("#isdate").datebox({
 			
@@ -33,9 +31,9 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 	function initSales () {
 		console.log("OrderMod loaded");
 		ordermod.init({
-			type : 'salesorder',
-			serviceUrl : '/protofront/service/salesorders/',
-			formUrl : '/protofront/forms/salesOrder.html',
+			type : 'purchaseorder',
+			serviceUrl : '/protofront/service/purchaseorders/',
+			formUrl : '/protofront/forms/purchaseOrder.html',
 			onLoad : onLoad
 		});
 	};
@@ -44,6 +42,4 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commo
 		init : initSales
 	};
 });
-
-
 

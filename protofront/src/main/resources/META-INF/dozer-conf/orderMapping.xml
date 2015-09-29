@@ -5,6 +5,11 @@
 	<mapping>
 		<class-a>org.proto1.domain.order.BaseOrder</class-a>
 		<class-b>org.proto1.dto.order.OrderDTO</class-b>
+		<!-- ignore lazy initialized  lines -->
+		<field-exclude type="one-way"> 
+			<a>lines</a>
+			<b>lines</b>
+		</field-exclude>
 	</mapping>
 
 	<mapping>
@@ -23,12 +28,12 @@
 			<b>qnty</b>
 		</field>
 		<field>
-			<a>qnty</a>
-			<b>qnty</b>
-		</field>
-		<field>
 			<a>unitOfMeasurement</a>
 			<b>uomId</b>
+		</field>
+		<field>
+			<a>orderLineParameterList</a>
+			<b>parameterList</b>
 		</field>
 	</mapping>
 

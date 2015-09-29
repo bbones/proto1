@@ -1,0 +1,379 @@
+[{
+  "shortName" : "\u041D\u0415\u0418\u0417\u0412\u0415\u0421\u0422\u041D\u041E",
+  "fullName" : "\u041D\u0415\u0418\u0417\u0412\u0415\u0421\u0422\u041D\u041E",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 0
+  }
+}, {
+  "shortName" : "\u041E\u041A\u0422",
+  "fullName" : "\u041E\u041A\u0422",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 1
+  }
+}, {
+  "shortName" : "\u042D\u0421\u0422\u041E\u041D",
+  "fullName" : "\u042D\u0421\u0422\u041E\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 8
+  }
+}, {
+  "shortName" : "\u041B\u0410\u0422\u0412\u0418",
+  "fullName" : "\u041B\u0410\u0422\u0412\u0418",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 9
+  }
+}, {
+  "shortName" : "\u041A\u041B \u041F/\u041E",
+  "fullName" : "\u041A\u041B \u041F/\u041E",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 10
+  }
+}, {
+  "shortName" : "\u041B\u0418\u0422\u041E\u0412",
+  "fullName" : "\u041B\u0418\u0422\u041E\u0412",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 12
+  }
+}, {
+  "shortName" : "\u0411\u0415\u041B\u0420",
+  "fullName" : "\u0411\u0415\u041B\u0420",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 13
+  }
+}, {
+  "shortName" : "\u041C\u041E\u0421\u041A",
+  "fullName" : "\u041C\u041E\u0421\u041A",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 17
+  }
+}, {
+  "shortName" : "\u0413\u041E\u0420\u041A",
+  "fullName" : "\u0413\u041E\u0420\u041A",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 24
+  }
+}, {
+  "shortName" : "\u0421\u0415\u0412",
+  "fullName" : "\u0421\u0415\u0412",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 28
+  }
+}, {
+  "shortName" : "\u042E\u0417\u0410\u041F",
+  "fullName" : "\u042E\u0417\u0410\u041F",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 32
+  }
+}, {
+  "shortName" : "\u041B\u042C\u0412",
+  "fullName" : "\u041B\u042C\u0412",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 35
+  }
+}, {
+  "shortName" : "\u041B\u042C\u0412",
+  "fullName" : "\u041B\u042C\u0412",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 36
+  }
+}, {
+  "shortName" : "\u041C\u041E\u041B\u0414",
+  "fullName" : "\u041C\u041E\u041B\u0414",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 39
+  }
+}, {
+  "shortName" : "\u041E\u0414\u0415\u0421",
+  "fullName" : "\u041E\u0414\u0415\u0421",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 40
+  }
+}, {
+  "shortName" : "\u042E\u0416\u041D",
+  "fullName" : "\u042E\u0416\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 43
+  }
+}, {
+  "shortName" : "\u041F\u0420\u0414\u041D",
+  "fullName" : "\u041F\u0420\u0414\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 45
+  }
+}, {
+  "shortName" : "\u0414\u041E\u041D",
+  "fullName" : "\u0414\u041E\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 48
+  }
+}, {
+  "shortName" : "\u0421\u041A\u0410\u0412",
+  "fullName" : "\u0421\u041A\u0410\u0412",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 51
+  }
+}, {
+  "shortName" : "\u0410\u0417\u0415\u0420",
+  "fullName" : "\u0410\u0417\u0415\u0420",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 55
+  }
+}, {
+  "shortName" : "\u0410\u0420\u041C\u042F\u041D\u0421",
+  "fullName" : "\u0410\u0420\u041C\u042F\u041D\u0421",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 56
+  }
+}, {
+  "shortName" : "\u0413\u0420\u0423\u0417\u0418\u041D",
+  "fullName" : "\u0413\u0420\u0423\u0417\u0418\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 57
+  }
+}, {
+  "shortName" : "\u042E\u0412\u041E\u0421",
+  "fullName" : "\u042E\u0412\u041E\u0421",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 58
+  }
+}, {
+  "shortName" : "\u041F\u0420\u0418\u0412",
+  "fullName" : "\u041F\u0420\u0418\u0412",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 61
+  }
+}, {
+  "shortName" : "\u041A\u0423\u0419\u0411",
+  "fullName" : "\u041A\u0423\u0419\u0411",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 63
+  }
+}, {
+  "shortName" : "\u0417\u041A\u0410\u0417",
+  "fullName" : "\u0417\u041A\u0410\u0417",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 67
+  }
+}, {
+  "shortName" : "\u0426\u0415\u041B",
+  "fullName" : "\u0426\u0415\u041B",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 68
+  }
+}, {
+  "shortName" : "\u041A\u042B\u0420\u0413\u042B\u0417",
+  "fullName" : "\u041A\u042B\u0420\u0413\u042B\u0417",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 70
+  }
+}, {
+  "shortName" : "\u0410\u041B\u041C-\u0410",
+  "fullName" : "\u0410\u041B\u041C-\u0410",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 71
+  }
+}, {
+  "shortName" : "\u0423\u0417\u0411\u041A",
+  "fullName" : "\u0423\u0417\u0411\u041A",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 73
+  }
+}, {
+  "shortName" : "\u0422\u0423\u0420\u041A\u041C\u041D",
+  "fullName" : "\u0422\u0423\u0420\u041A\u041C\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 75
+  }
+}, {
+  "shortName" : "\u0421\u0412\u0415\u0420\u0414",
+  "fullName" : "\u0421\u0412\u0415\u0420\u0414",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 76
+  }
+}, {
+  "shortName" : "\u042E-\u0423\u0420",
+  "fullName" : "\u042E-\u0423\u0420",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 80
+  }
+}, {
+  "shortName" : "\u0417\u0421\u0418\u0411",
+  "fullName" : "\u0417\u0421\u0418\u0411",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 83
+  }
+}, {
+  "shortName" : "\u041A\u0415\u041C\u0420",
+  "fullName" : "\u041A\u0415\u041C\u0420",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 86
+  }
+}, {
+  "shortName" : "\u041A\u0420\u0410\u0421\u041D",
+  "fullName" : "\u041A\u0420\u0410\u0421\u041D",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 88
+  }
+}, {
+  "shortName" : "\u0411\u0410\u041C",
+  "fullName" : "\u0411\u0410\u041C",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 90
+  }
+}, {
+  "shortName" : "\u0412\u0421\u0418\u0411",
+  "fullName" : "\u0412\u0421\u0418\u0411",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 92
+  }
+}, {
+  "shortName" : "\u0417\u0410\u0411\u041A",
+  "fullName" : "\u0417\u0410\u0411\u041A",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 94
+  }
+}, {
+  "shortName" : "\u0414\u0412\u041E\u0421\u0422",
+  "fullName" : "\u0414\u0412\u041E\u0421\u0422",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 96
+  }
+}, {
+  "shortName" : "\u0421\u0425 \u041F/\u041E",
+  "fullName" : "\u0421\u0425 \u041F/\u041E",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 99
+  }
+}, {
+  "shortName" : "\u041F\u041E\u041B\u042C\u0421\u041A",
+  "fullName" : "\u041F\u041E\u041B\u042C\u0421\u041A",
+  "language" : {
+    "id" : 3
+  },
+  "railway" : {
+    "railwayCode" : 100
+  }
+}]

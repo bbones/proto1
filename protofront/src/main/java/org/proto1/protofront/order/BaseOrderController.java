@@ -83,7 +83,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> extends BaseCont
 		return baseOrderService.getOrderLineParameters(lineId, languageId);
 	}
 
-	@RequestMapping(value = "/lines/lineparameters", method = RequestMethod.POST )
+	@RequestMapping(value = "/lines/parameters", method = RequestMethod.POST )
 	public @ResponseBody OrderLineParameterDTO  saveOrderLineParameter(@RequestParam Long languageId,
 			OrderLineParameterDTO orderLineParameterDTO) {
 		OrderLineParameter olp = mapper.map(orderLineParameterDTO, OrderLineParameter.class);
@@ -100,7 +100,7 @@ public class BaseOrderController<T extends BaseOrderService<?>> extends BaseCont
 
 	@RequestMapping(value = "/lines/parameters/{id}", method = RequestMethod.DELETE )
 	public void deleteOrderLineParameter(@PathVariable Long id) {
-		baseOrderService.deleteOrderLine(id);
+		baseOrderService.deleteOrderLineParameter(id);
 	}
 
 }

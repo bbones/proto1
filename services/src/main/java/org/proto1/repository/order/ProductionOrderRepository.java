@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface ProductionOrderRepository extends BaseOrderRepository<ProductionOrder> {
 
-	@Query("select new Map(po.id as poId, po.documentNo as poNo, po.issueDate as poIssueDate) "
+	@Query("select new Map(po.id as id, po.documentNo as documentNo, po.issueDate as issueDate) "
 			+ "from ProductionOrder po")
 	List<Map<String, Object>> getOrderList();
 

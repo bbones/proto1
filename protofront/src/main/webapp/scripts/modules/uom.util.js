@@ -44,6 +44,10 @@ define(['jquery'], function($){
 
 		getUomEditor : function() {
 			return uomEditor
+		},
+		
+		getUomMap : function() {
+			return uomMap;
 		}
 	}
 });

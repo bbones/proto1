@@ -21,7 +21,10 @@ public class LongOrderLineConverter extends DozerConverter<Long, OrderLine> {
 
 	@Override
 	public OrderLine convertTo(Long source, OrderLine destination) {
-		return orderLineService.get(source);
+		if (source != null)
+			return orderLineService.get(source);
+		else
+			return null;
 	}
 
 	@Override
