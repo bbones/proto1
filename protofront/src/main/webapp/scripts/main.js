@@ -24,7 +24,6 @@ requirejs.config({
 		'uom' : 'modules/uom',
 		'contract' : 'modules/contract',
 		'railway' : 'modules/railway',
-		'railwayWithSearch' : 'modules/railwayWithSearch',
 		'ordermodel' : 'modules/order/ordermodel',
 		'ordermod' : 'modules/order/ordermod',
 		'request' : 'modules/order/request',
