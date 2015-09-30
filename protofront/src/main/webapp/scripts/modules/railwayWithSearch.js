@@ -1,5 +1,5 @@
 /**
- * File railway.js Rsk 27.07.2015
+ * File railway.js Rsk 30.09.2015
  */
 
 define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edatagrid, datagrid) {
@@ -40,7 +40,7 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 						//console.log("onSelectRailway");
 						//console.log(row);
 						currentRailwayId = row.id;
-						if (row.id !== null) {
+						if (row.id != null) {
 							$("#edgRailwayNames").edatagrid(
 									{
 										url : '/protofront/service/railways/'
@@ -55,7 +55,8 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 						});
 					}
 				});
-	}
+	};
+
 	function initNameGrid() {
 		$("#edgRailwayNames").edatagrid({
 			onDestroy : function(index, row) {
@@ -85,21 +86,21 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 		    	plain : true,
 		    	text : 'Save to Excel'}]),
 		});
-	}
+	};
 	
 	function init() {
-		window.location.hash = "#railway/";
+		window.location.hash = "#railwayWithSearch/";
 		$("#spa-cntr").off();
 		$.when(language.init()).done(function() {
 			$("#spa-cntr").panel({
-				href : '/protofront/forms/railway.html',
+				href : '/protofront/forms/railwayWithSearch.html',
 				onLoad : function() {
 					initRailwayGrid();
 					initNameGrid();
 				}
 			});
 		});
-	}
+	};
 	
 	return {
 		init : init
