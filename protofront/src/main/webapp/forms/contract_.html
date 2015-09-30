@@ -1,0 +1,154 @@
+
+<div class="easyui-accordion" data-options="multiple:true">
+	<div title="Search contract" style="padding: 10px;"
+		data-options="iconCls:'icon-search'">
+		<div class="easyui-panel"
+			style="height: auto; padding: 10px; background: #fafafa;"
+			data-options="iconCls:'icon-save', collapsible:false">
+			<form id="searchForm">
+				<table>
+					<tr>
+						<td>Id:</td>
+						<td><input name="id" class="easyui-numberbox"></input></td>
+						<td><a href="#" id="btnSearch" class="easyui-linkbutton"
+							icon="icon-search">Find</a></td>
+					</tr>
+					<tr>
+						<td>Contract #:</td>
+						<td><input id="docno" name="documentNo"
+							class="easyui-textbox"></input></td>
+					</tr>
+					<tr>
+						<td>Issue date:</td>
+						<td><input id="isdate" name="issueDate"
+							class="easyui-datebox"></input></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<table id="dgSearchResult" title="Contract" singleSelect="true"
+			style="height: auto" data-options="idField : 'id'">
+			<thead>
+				<tr>
+					<th field='id' width=80>Contract Id</th>
+					<th field='documentNo' width=250>Contract #</th>
+					<th field='issueDate' width=80 formatter=commonlib.dateFormatter>Issue
+						date</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+	<div title="Contract" data-options="iconCls:'icon-ok'"
+		style="overflow: auto; padding: 10px;">
+		<div id="p" class="easyui-panel" title="Contract details"
+			style="height: auto; padding: 10px; background: #fafafa;"
+			data-options="iconCls:'icon-save', collapsible:false">
+			<form id="cf" method="post">
+				<table>
+					<tr>
+						<td>Id:</td>
+						<td><input name="id" class="easyui-numberbox"
+							editable="false"></input></td>
+					</tr>
+					<tr>
+						<td>Contract #:</td>
+						<td><input id="docno" name="documentNo"
+							class="easyui-textbox"></input></td>
+					</tr>
+					<tr>
+						<td>Issue date:</td>
+						<td><input id="isdate" name="issueDate"
+							class="easyui-datebox"></input></td>
+					</tr>
+					<tr>
+						<td>Version</td>
+						<td><input name="version" class="easyui-numberbox"
+							editable="false"></input></td>
+
+					</tr>
+				</table>
+			</form>
+
+		</div>
+	</div>
+	<div title="Contract sides" style="padding: 10px;">
+		<table id="edgSides" title="Contract sides" singleSelect="true"
+			style="height: auto"
+			data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'csId'">
+			<thead>
+				<tr>
+					<th field='csId' width=80>Contract Side Id</th>
+					<th
+						data-options="field:'roleId',width:80,
+	                    			formatter: contract_.roleFormatter,
+	                   				editor:contract_.roleEditor()">Role</th>
+					<th
+						data-options="field:'partyId', width:150,
+									formatter : contract_.partyFormatter ,
+									editor : contract_.partyEditor()">Name</th>
+				</tr>
+			</thead>
+		</table>
+	</div>
+
+	<div title="Contract supplements" style="padding: 10px;">
+		<div id="cs" class="easyui-panel" title="Contract supplements"
+			style="height: auto; padding: 10px; background: #fafafa;"
+			data-options="iconCls:'icon-save', collapsible:true">
+			<table id="edgSupplement" title="Contract supplements"
+				singleSelect="true" style="width: 600px; height: auto"
+				data-options="iconCls: 'icon-edit', toolbar: '#tbr', idField : 'id'">
+				<thead>
+					<tr>
+						<th field='id' width=80>Contract Supplement Id</th>
+						<th field='documentNo' width=250>Contract Supplement #</th>
+						<th field='numCode' width=80
+							formatter=currencyUtil.currencyFormatter>Currency</th>
+						<th field='issueDate' width=80 formatter=commonlib.dateFormatter>Issue
+							date</th>
+
+					</tr>
+				</thead>
+			</table>
+
+			<div title="Contract supplements" style="padding: 10px;">
+				<form id="consupform"
+					action="/protofront/service/contracts/supplements" method="post">
+					<table>
+						<tr>
+							<td>Id:</td>
+							<td><input name="id" class="easyui-numberbox"
+								editable="false"></input></td>
+						</tr>
+						<tr>
+							<td>Supplement #:</td>
+							<td><input id="supdocno" name="documentNo"
+								class="easyui-textbox"></input></td>
+						</tr>
+						<tr>
+							<td>Issue date:</td>
+							<td><input id="supisdate" name="issueDate"
+								class="easyui-datebox"></input></td>
+						</tr>
+						<tr>
+							<td>Currency:</td>
+							<td><select id="currencyId" name="currencyId"
+								class="easyui-combogrid" style="width: 250px"></select></td>
+						</tr>
+
+						<tr>
+							<td>Version</td>
+							<td><input name="version" class="easyui-numberbox"
+								editable="false"></input></td>
+						</tr>
+					</table>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+  var contract_ = require('contract_');
+  var currencyUtil = require('currencyUtil');
+  var commonlib = require('commonlib');
+</script>

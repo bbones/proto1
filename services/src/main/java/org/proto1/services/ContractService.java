@@ -16,12 +16,15 @@ import org.proto1.repository.ContractRepository;
 public interface ContractService {
 
 	List<Map<String, Object>> getContracts();
-	
+
 	void setContractRepository(ContractRepository crep);
 
 	Contract getContract(Long id);
 
 	Contract save(Contract contract);
+
+//	List<Map<String, Object>> findAll(Contract criteria);
+	List<Contract> findAll(Contract criteria);
 
 	void delete(Long id);
 
@@ -35,16 +38,16 @@ public interface ContractService {
 	 * @param contractId
 	 * @return
 	 */
-	List<Map<String, Object>> getSides(Long contractId,Long languageId);
+	List<Map<String, Object>> getSides(Long contractId, Long languageId);
 
 	/**
 	 * @param languageId
 	 * @return
 	 */
 	List<Map<String, Object>> getRoles(Long languageId);
-	
+
 	SideRole getRole(Long id);
-	
+
 	ContractSide saveSide(ContractSide contractSide);
 
 	void deleteSide(Long id);

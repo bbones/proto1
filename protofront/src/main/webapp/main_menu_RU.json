@@ -51,9 +51,9 @@
 	    "state": "closed",
 	    "children": [
 	    	{
-	        	"id": "contract",
+	        	"id": "contract_",
 		        "text": "Контракты",
-		        "module": "contract"
+		        "module": "contract_"
 	    	},
 	    	{
 		    	"id": "orders",

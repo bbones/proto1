@@ -15,8 +15,11 @@ import org.proto1.repository.ContractRepository;
 import org.proto1.repository.ContractSideRepository;
 import org.proto1.repository.ContractSupplementRepository;
 import org.proto1.repository.SideRoleRepository;
+import org.proto1.specifications.PlainSpecification;
+import org.proto1.specifications.SearchCriteria;
 import org.proto1.workflow.ApproveDocumentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Service;
 
@@ -118,4 +121,13 @@ public class ContractServiceBean implements ContractService {
 		contractSupplementRepository.delete(supplementId);
 	}
 
+	public List<Contract> findAll(Contract criteria) {
+	PlainSpecification<Contract> spec1 = 	
+		      new PlainSpecification<Contract>(new SearchCriteria("id", "=", criteria.getId()));
+	PlainSpecification<Contract> spec2 = 	
+		      new PlainSpecification<Contract>(new SearchCriteria("documentNo", "like", criteria.getDocumentNo()));
+	PlainSpecification<Contract> spec3 = 	
+		      new PlainSpecification<Contract>(new SearchCriteria("issueDate", "=", criteria.getIssueDate()));
+	return contractRepository.findAll(Specifications.where(spec1).and(spec2).and(spec3));
+	}
 }

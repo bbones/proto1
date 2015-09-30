@@ -22,7 +22,7 @@ requirejs.config({
 		'parameterUtil' : 'modules/parameter.util',
 		'orgunit' : 'modules/orgunit',
 		'uom' : 'modules/uom',
-		'contract' : 'modules/contract',
+		'contract_' : 'modules/contract_',
 		'railway' : 'modules/railway',
 		'ordermodel' : 'modules/order/ordermodel',
 		'ordermod' : 'modules/order/ordermod',

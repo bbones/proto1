@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -41,11 +42,19 @@ public class ContractController extends BaseController {
 		return contractService.getContracts();
 	}
 
+	@RequestMapping(value = "/findAll", method = RequestMethod.POST)
+	public @ResponseBody List<ContractDTO> findAll(Contract criteria) {
+		List<Contract> contractList = contractService.findAll(criteria);
+		List<ContractDTO> contractDTOList = new ArrayList<ContractDTO>();
+		for (Contract contract : contractList) {
+			contractDTOList.add((ContractDTO) mapper.map(contract,
+					ContractDTO.class));
+		}
+		return contractDTOList;
+	}
+
 	// EasyUI Form submit
 
-
-	// EasyUI Form submit
-	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody ContractDTO submit(ContractDTO contractDTO) {
 		Contract contract = mapper.map(contractDTO, Contract.class);
