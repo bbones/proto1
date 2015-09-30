@@ -41,6 +41,10 @@
 		        "id": "railway",
 		        "text": "Железные дороги",
 		        "module" : "railway"
+		    },{
+		        "id": "railwayWithSearch",
+		        "text": "Железные дороги с поиском",
+		        "module" : "railwayWithSearch"
 		    }
 		    
 		]

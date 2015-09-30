@@ -1,5 +1,5 @@
 /**
- * File railway.js Rsk 27.07.2015
+ * File railway.js Rsk 30.09.2015
  */
 
 define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edatagrid, datagrid) {
@@ -89,11 +89,11 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 	};
 	
 	function init() {
-		window.location.hash = "#railway/";
+		window.location.hash = "#railwayWithSearch/";
 		$("#spa-cntr").off();
 		$.when(language.init()).done(function() {
 			$("#spa-cntr").panel({
-				href : '/protofront/forms/railway.html',
+				href : '/protofront/forms/railwayWithSearch.html',
 				onLoad : function() {
 					initRailwayGrid();
 					initNameGrid();
