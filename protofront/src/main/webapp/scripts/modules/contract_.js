@@ -216,7 +216,7 @@ define(['currencyUtil', 'commonlib', 'edatagrid', 'easyui.form.ext'],
                 $("#spa-cntr").panel({
                   href: '/protofront/forms/contract_.html',
                   onLoad: function() {
-                    init()
+                    init();
                     initSearchForm();
                     initContractForm();
                     initSidesGrid();
