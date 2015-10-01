@@ -4,12 +4,20 @@
 
 <div id="railwayAccordion" class="easyui-accordion"
 	style="width: 700px; height: 400px;">
-	<div title="RailwayWS"
-		data-options="iconCls:'icon-reload',selected:true"
-		style="padding: 10px;">
-		<table id="edgRailways" title="RailwayWS" singleSelect="true"
-			style="width: 600px; height: 300px"
-			data-options="iconCls: 'icon-edit', toolbar: '#tbrw', idField : 'id', method : 'GET'">
+	<div title="Railway Search Form"
+		data-options="iconCls:'icon-search',selected:true"
+		style="padding: 3px;">
+		<div id="tb" style="padding: 3px">
+			<span>Railway ID:</span> <input id="railwayid"
+				style="line-height: 22px; width: 40px; border: 1px solid #ccc"> <span>Railway
+				Code:</span> <input id="railwaycode"
+				style="line-height: 22px; width: 40px; border: 1px solid #ccc"> <a
+				id="railwaySearchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search"
+				plain="true">Search</a>
+		</div>
+		<table id="edgRailways" title="Railways found" singleSelect="true"
+			style="width: 600px; height: 207px"
+			data-options="iconCls:'icon-ok', toolbar: '#tbrw', idField : 'id', method : 'GET'">
 			<thead>
 				<tr>
 					<th field='id' width=110>Railway Id</th>
@@ -19,9 +27,19 @@
 		</table>
 	</div>
 
-	<div title="Translations"
-		data-options="iconCls:'icon-save',selected:false"
-		style="overflow: auto; padding: 10px;">
+	<div title="Railway" data-options="iconCls:'icon-edit',selected:true"
+		style="padding: 10px;">
+		<!-- <table id="edgRailways" title="Railways" singleSelect="true"
+			style="width: 600px; height: 206px"
+			data-options="toolbar: '#tbrw', idField : 'id', method : 'GET'">
+			<thead>
+				<tr>
+					<th field='id' width=110>Railway Id</th>
+					<th field='railwayCode' width=100 editor='text'>Railway Code</th>
+				</tr>
+			</thead>
+		</table>
+		<div style="padding: 2px;"></div> -->
 		<table id="edgRailwayNames" title="Translations" singleSelect="true"
 			style="width: 600px; height: auto"
 			data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'id', method : 'GET'">
@@ -39,5 +57,5 @@
 			</thead>
 		</table>
 	</div>
-</div>
-<!-- Accordion -->
+
+</div> <!-- Accordion -->

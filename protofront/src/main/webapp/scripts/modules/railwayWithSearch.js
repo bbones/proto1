@@ -13,6 +13,10 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 		$("#edgRailwayNames").datagrid('toExcel', 'RailwayNames');
 	}
 	
+    function doSearch(){
+    	console.log("Railway ID: " + $('#railwayid').val() + " Railway Code: " + $('#railwaycode').val());
+    }
+	
 	function initRailwayGrid() {
 		$("#edgRailways").edatagrid(
 				{
@@ -40,7 +44,7 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 						//console.log("onSelectRailway");
 						//console.log(row);
 						currentRailwayId = row.id;
-						if (row.id != null) {
+						if (row.id !== null) {
 							$("#edgRailwayNames").edatagrid(
 									{
 										url : '/protofront/service/railways/'
@@ -55,7 +59,7 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 						});
 					}
 				});
-	};
+	}
 
 	function initNameGrid() {
 		$("#edgRailwayNames").edatagrid({
@@ -86,7 +90,7 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 		    	plain : true,
 		    	text : 'Save to Excel'}]),
 		});
-	};
+	}
 	
 	function init() {
 		window.location.hash = "#railwayWithSearch/";
@@ -97,10 +101,13 @@ define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edata
 				onLoad : function() {
 					initRailwayGrid();
 					initNameGrid();
+					$("#railwaySearchBtn").click(function() {
+						doSearch();
+					});
 				}
 			});
 		});
-	};
+	}
 	
 	return {
 		init : init
