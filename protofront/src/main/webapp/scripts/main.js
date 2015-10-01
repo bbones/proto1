@@ -7,6 +7,7 @@ requirejs.config({
 		'datagrid.excel' : '../easyui/jquery.datagrid.excel',
 		'easyui.form.ext' : 'plugins/jquery.form.ext',
 		'easyui.grid.ext' : 'plugins/jquery.grid.ext',
+		'searchcom' : 'plugins/jquery.searchcom',
 		'app' : 'app',
 		'language' : 'modules/language',
 		'uomUtil' : 'modules/uom.util',
@@ -22,6 +23,7 @@ requirejs.config({
 		'parameterUtil' : 'modules/parameter.util',
 		'orgunit' : 'modules/orgunit',
 		'uom' : 'modules/uom',
+		'contract' : 'modules/contract',
 		'contract_' : 'modules/contract_',
 		'railway' : 'modules/railway',
 		'railwayWithSearch' : 'modules/railwayWithSearch',
@@ -49,6 +51,10 @@ requirejs.config({
 			deps : [ 'jquery', 'easyui' ]
 		},
 		'easyui.form.ext' : {
+			exports : 'jquery',
+			deps : [ 'jquery', 'easyui' ]
+		},
+		'searchcom' : {
 			exports : 'jquery',
 			deps : [ 'jquery', 'easyui' ]
 		}

@@ -4,10 +4,21 @@
  * 
  */
 
-define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
+define(["commonlib", "language", "edatagrid", "searchcom"],function(commonlib, language, edatagrid){
 	function initEnterpriseGrid() {
 		var event = jQuery.Event( "contractSelected" );
 
+		$("#entSearch").searchcom({
+			url : 'forms/searchform/enterpriseSrch.html',
+			grid : {
+				columns:[[
+			                  {field:'code',title:'Code',width:100},
+			                  {field:'name',title:'Name',width:100},
+			                  {field:'price',title:'Price',width:100,align:'right'}
+			    ]]
+			}
+		});
+		
 		$("#edgEnterprise").edatagrid({
 			toolbar : commonlib.edgmenu({ 
 				add : function(){
