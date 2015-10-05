@@ -9,12 +9,12 @@ define(["commonlib", "language", "edatagrid", "searchcom"],function(commonlib, l
 		var event = jQuery.Event( "contractSelected" );
 
 		$("#entSearch").searchcom({
-			url : 'forms/searchform/enterpriseSrch.html',
+			frm : 'forms/searchform/enterpriseSrch.html',
+			url : '/protofront/service/masterdata/parties',
 			grid : {
 				columns:[[
-			                  {field:'code',title:'Code',width:100},
-			                  {field:'name',title:'Name',width:100},
-			                  {field:'price',title:'Price',width:100,align:'right'}
+			                  {field:'code',title:'Id#',width:100},
+			                  {field:'name',title:'Name',width:100}
 			    ]]
 			}
 		});

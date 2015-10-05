@@ -2,27 +2,34 @@
 	<div style="padding: 10px 30px 20px 30px">
 
 
-		<div id="p" class="easyui-panel" title="My Panel" 
-		        style="width:500px;height:150px;padding:10px;background:#fafafa;"
-		        data-options="iconCls:'icon-save',closable:false,
-		                collapsible:true,minimizable:false,maximizable:true">
-			<div id = "entSearch" class="easyui-searchcom" style="width:auto;height:auto">
-			</div>
-		</div>
+		<div id = "entSearch" class="easyui-searchcom" title="Search enterprise" 
+			style="width:500px;height:150px;padding:10px;background:#fafafa;"
+				data-options="iconCls:'icon-save',collapsible:true"></div>
 		
-		<table id="edgEnterprise" title="Enterprise" singleSelect="true"
-			style="width: 700px; height: 40%" data-options="iconCls: 'icon-edit', toolbar: '#tbe', idField : 'enterpriseId'">
-			<thead>
-				<tr>
-					<th field='id' width=80>Enterprise Id</th>
-					<th field='name' editor="text">Enterprise Name</th>
-				</tr>
-			</thead>
-		</table>
-
 		<div id="aa" class="easyui-accordion" style="width: 700px; height: 400px;">
+			<div title="Enterprise data"
+				data-options="iconCls:'icon-reload',selected:true"
+				style="padding: 10px;">
+				 <form id="cf" action="/protofront/service/enterprises/" method="post" >
+			        <table>
+			            <tr>
+			                <td>Id:</td>
+			                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
+			            </tr>
+			            <tr>
+			                <td>SO #:</td>
+			                <td><input id="name" name="name" class="easyui-textbox"></input></td>
+			            </tr>
+			            <tr>
+			                <td>Version</td>
+			                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
+			                
+			            </tr>
+			        </table>
+			    </form>
+			</div>
 			<div title="Translations"
-				data-options="iconCls:'icon-save',selected:true"
+				data-options="iconCls:'icon-save',selected:false"
 				style="overflow: auto; padding: 10px;" >
 				<table id="edgNames" title="Translations" singleSelect="true"
 					style="width: 600px; height: auto" 
@@ -49,31 +56,6 @@
 						</tr>
 					</thead>
 				</table>
-			</div>
-			<div title="Enterprise data"
-				data-options="iconCls:'icon-reload',selected:false"
-				style="padding: 10px;">
-				 <form id="cf" action="/protofront/service/enterprises/" method="post" >
-			        <table>
-			            <tr>
-			                <td>Id:</td>
-			                <td><input name="id" class="easyui-numberbox" editable="false"></input></td>
-			            </tr>
-			            <tr>
-			                <td>SO #:</td>
-			                <td><input id="docno" name="documentNo" class="easyui-textbox"></input></td>
-			            </tr>
-			            <tr>
-			                <td>Issue date:</td>
-			                <td><input id="isdate" name="issueDate" class="easyui-datebox"></input></td>
-			            </tr>
-			            <tr>
-			                <td>Version</td>
-			                <td><input name="version" class="easyui-numberbox" editable="false"></input></td>
-			                
-			            </tr>
-			        </table>
-			    </form>
 			</div>
 		</div> <!-- Accordion -->
 	</div>
