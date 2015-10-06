@@ -65,7 +65,7 @@ define(['commonlib', 'language', 'edatagrid'], function(commonlib, language, eda
 			method : 'GET',
 			onSelect : function(index, row) {
 				if (row.id) {
-					if (typeof row.id != 'undefined') {
+					if (typeof row.id !== 'undefined') {
 						currentOUId = row.id;
 						var event = jQuery.Event( "orgUnitSelected" );
 						$("#spa-cntr").trigger(event, row.id);

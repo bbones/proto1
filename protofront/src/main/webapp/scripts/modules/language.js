@@ -10,6 +10,7 @@ define([ 'jquery' ], function($) {
 
 	var languageList = [];
 	var languageMap = {};
+	var languageEditor = {};
 	var currentLanguage = 3; // Russian
 	var d = $.Deferred();
 

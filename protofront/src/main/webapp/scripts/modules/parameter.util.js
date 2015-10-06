@@ -4,7 +4,7 @@
  * @author Valentin Pogrebinsky
  */
 
-define(['jquery'], function($){
+define(['jquery', 'language'], function($, language){
 	'use strict';
 
 	var parameterList = null;

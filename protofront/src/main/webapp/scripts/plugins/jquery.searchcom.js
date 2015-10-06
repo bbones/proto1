@@ -30,9 +30,11 @@
 	
 	function search(target) {
 		var opts = $.data(target, 'searchcom').options;
-		console.log($("#srchform").serialize());
+		debugger;
+		var data = $("#srchform").serializeObject();
 		$("#srchGrid").datagrid({
-			url : opts.url + '&' + $("#srchform").serialize()
+			url : opts.url, // + '&' + $("#srchform").serialize()
+			queryParams : data
 		});
 	}
 	
