@@ -7,6 +7,8 @@
  */
 
 define([ "jquery", "easyui", "require", "language", "commonlib" ], function($, easyui, require, language, commonlib) {
+	'use strict';
+
 	function initLanguageList() {
 		$("body").on('languageInited', function() {
 			$('#langSelector').combobox({

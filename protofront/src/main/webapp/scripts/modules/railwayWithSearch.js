@@ -3,6 +3,8 @@
  */
 
 define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edatagrid, datagrid) {
+	'use strict';
+
 	var currentRailwayId = null;
 
 	function saveRailwaysToExcel() {

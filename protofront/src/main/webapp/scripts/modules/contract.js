@@ -11,6 +11,8 @@
 define (['currencyUtil', 'commonlib', 'edatagrid'], 
 		function(currencyUtil, commonlib, edatagrid){
 
+	'use strict';
+
 	var roleMap = {};
 	var currentContractId = {};
 	

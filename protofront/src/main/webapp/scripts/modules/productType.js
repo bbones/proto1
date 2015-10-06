@@ -5,6 +5,8 @@
  */
 
 define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
+	'use strict';
+
 	function initTree() {
 		$('#productTypes').tree({
 			url : '/protofront/service/productTypes/parents/?languageId='

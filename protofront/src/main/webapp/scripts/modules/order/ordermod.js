@@ -5,6 +5,8 @@
  */
 
 define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], function(language, commonlib, edatagrid, uomUtil, productUtil) {
+	'use strict';
+
 	var serviceURL = null;
 	var currentOrderId = null;
 	var currentOrderLineId = null;

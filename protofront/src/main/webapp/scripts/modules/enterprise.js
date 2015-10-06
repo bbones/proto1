@@ -5,17 +5,19 @@
  */
 
 define(["commonlib", "language", "edatagrid", "searchcom"],function(commonlib, language, edatagrid){
+	'use strict';
 	function initEnterpriseGrid() {
 		var event = jQuery.Event( "contractSelected" );
 
 		$("#entSearch").searchcom({
 			frm : 'forms/searchform/enterpriseSrch.html',
-			url : '/protofront/service/masterdata/parties',
+			url : '/protofront/service/masterdata/parties?languageId=' + language.id(),
 			grid : {
 				columns:[[
 			                  {field:'code',title:'Id#',width:100},
 			                  {field:'name',title:'Name',width:100}
-			    ]]
+			    ]],
+			    method : 'GET'
 			}
 		});
 		

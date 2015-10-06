@@ -9,6 +9,8 @@
  */
 
 define(function(){
+	'use strict';
+
 	function Order() {
 		this.id = null;
 		this.documentNo = "NEW ORDER";

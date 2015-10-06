@@ -1,5 +1,7 @@
 (function($){
 	
+	'use strict';
+
 	function init(target) {
 		console.log('init searchCom');
 		var opts = $.data(target, 'searchcom').options;
@@ -10,7 +12,7 @@
  				{
  					iconCls:'icon-search',
  					handler:function () {
- 						search(target)
+ 						search(target);
  					}
  				},{
  					iconCls:'icon-ok',
@@ -20,9 +22,7 @@
  					handler:clear
  				}
  				],
- 			content : "<form id='srchform'></form><table id='srchGrid'></table>",
- 			rownumbers : true,
- 			pagination : true
+ 			content : "<form id='srchform'></form><table id='srchGrid' rownumbers='true' pagination='true'></table>"
 		});
 		$("#srchGrid").datagrid(opts.grid);
 		$("#srchform").load(opts.frm);
@@ -32,7 +32,7 @@
 		var opts = $.data(target, 'searchcom').options;
 		console.log($("#srchform").serialize());
 		$("#srchGrid").datagrid({
-			url : opts.url + '?languageId=' + language.id() + '&' + $("#srchform").serialize()
+			url : opts.url + '&' + $("#srchform").serialize()
 		});
 	}
 	

@@ -12,6 +12,8 @@
 define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", "commonlib"], 
 		function(ordermod, language, uomUtil, productUtil, orgUnitUtil, commonlib) {
 	
+	'use strict';
+
 	var sales = null; 
 	
 	function onLoad() {

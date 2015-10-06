@@ -6,7 +6,8 @@
  * @author Valentin Pogrebinsky (pva@isd.com.ua)
  */
 
-define(['uomUtil', 'commonlib','edatagrid'], function(uomUtil, commonlib, edatagrid){
+define(['uomUtil', 'commonlib','edatagrid', 'language'], function(uomUtil, commonlib, edatagrid, language){
+	'use strict';
 	var initUOM = true;
 	var currentParameterId = null; 
 	

@@ -4,7 +4,9 @@
  * @author Valentin Pogrebinsky
  */
 
-define(['jquery'], function($){
+define(['jquery', 'language'], function($, language){
+	'use strict';
+
 	var productList = null;
 	var productMap = {};
 	var d = $.Deferred();

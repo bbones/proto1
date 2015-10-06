@@ -7,6 +7,8 @@
  */
 
 define(['commonlib', 'language', 'edatagrid'], function(commonlib, language, edatagrid) {
+	'use strict';
+
 	var currentPartyId = null;
 	var currentOUId = null;
 	

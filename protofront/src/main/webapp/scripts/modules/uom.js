@@ -8,8 +8,10 @@
  * Created 04.05.15 
  */
 
-define(['commonlib', 'edatagrid'], function(commonlib, edatagrid){
+define(['commonlib', 'edatagrid', 'language'], function(commonlib, edatagrid, language){
 	
+	'use strict';
+
 	var currentUOMId = null; 
 	
 	function initUOMGrid(){

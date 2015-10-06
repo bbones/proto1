@@ -5,6 +5,8 @@
  */
 
 define(['jquery'], function($){
+	'use strict';
+
 	var parameterList = null;
 	var parameterMap = {};
 	var d = $.Deferred();

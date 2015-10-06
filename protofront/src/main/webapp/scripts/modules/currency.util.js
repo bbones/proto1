@@ -8,7 +8,9 @@
  * Created 11.09.15 
  */
 
-define(function() {
+define(['language'], function(language) {
+	'use strict';
+
 	var d = $.Deferred();
 	var currencyMap = {};
 	var currencyList = null;
