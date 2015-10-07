@@ -11,6 +11,8 @@
 
 define (["language", "ordermodel", "uomUtil"], function(language, ordermodel, uomUtil){
 	
+	'use strict';
+
 	var currentProduct = function() {
 		return $("#dgProducts").datagrid('getSelected').productId;
 	};

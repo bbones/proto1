@@ -1,5 +1,7 @@
 (function($) {
 
+	'use strict';
+
 	function submitAjax(target, options) {
 		var opts = $.data(target, 'form').options;
 		$.extend(opts, options || {});

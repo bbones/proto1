@@ -10,7 +10,8 @@ define(["jquery", "commonlib", "language", "uomUtil", "edatagrid", "parameterUti
 		function($, commonlib, language, uomUtil, edatagrid, parameterUtil){
 
 	
-	
+	'use strict';
+
 	function initProductTypeTree() {
 		$("#productType").combotree({
 			onSelect : function(record) {

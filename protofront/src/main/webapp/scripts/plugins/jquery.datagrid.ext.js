@@ -2,6 +2,8 @@
 //                              'languageId').editor = getLangEditor();
 (function($) {
 
+	'use strict';
+
 	function addColumnProperies(target, columnsoptions) {
 		var opts = $.data(target, 'datagrid').options;
 

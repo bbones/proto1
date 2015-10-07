@@ -1,4 +1,6 @@
 var AuthLib = (function() {
+	'use strict';
+
 	var storageKey = 'auth_token', headerKey = 'X-AUTH-TOKEN';
 	function initialize() {
 		console.log("AuthLib initialized");

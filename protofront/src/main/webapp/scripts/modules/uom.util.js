@@ -6,6 +6,8 @@
  */
 
 define(['jquery'], function($){
+	'use strict';
+
 	var uomList = null;
 	var uomMap = {};
 	var d = $.Deferred();

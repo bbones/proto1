@@ -5,6 +5,8 @@
  */
 
 define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
+	'use strict';
+
 	function initTree() {
 		$('#productTypes').tree({
 			url : '/protofront/service/productTypes/parents/?languageId='
@@ -57,7 +59,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 
 			}),
 			onSave : function(index,row) {
-				if (row.languageId == IndexLib.lang()) {
+				if (row.languageId == language.id()) {
 					var node = $('#productTypes').tree('getSelected');
 					$('#productTypes').tree('update', {
 						target: node.target,

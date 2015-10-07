@@ -3,16 +3,17 @@
  */
 
 define(function(){
-	
+	'use strict';
     function dateFormatter (value) {
     	var d = new Date(value);
     	return d.toLocaleDateString();
     }
     
     function dateParser(s){
-    	if (!isNaN(s))
+    	if (!isNaN(s)) {
     		return new Date(s);
-        if (!s) return new Date();
+    	}
+        if (!s) { return new Date(); }
         var ss = (s.split('.'));
         var d = parseInt(ss[0],10);
         var m = parseInt(ss[1],10);

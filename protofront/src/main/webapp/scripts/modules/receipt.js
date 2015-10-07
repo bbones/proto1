@@ -8,6 +8,8 @@
  */
 
 define (["language", "edatagrid"], function(language, edatagrid) {
+	'use strict';
+
 	var initReceiptGrid = function() {
 		$("#edgReceipt").edatagrid({
 			url : "/protofront/service/receipts/?languageId="  + language.id(),

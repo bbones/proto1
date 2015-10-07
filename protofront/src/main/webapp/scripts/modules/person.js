@@ -8,6 +8,8 @@
 
 define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
 	
+	'use strict';
+
 	function initPersonGrid() {
 		$("#edgPerson").edatagrid({
 			url : "/protofront/service/persons/?languageId=" +	language.id(),

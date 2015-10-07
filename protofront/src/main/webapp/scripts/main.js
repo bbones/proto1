@@ -7,6 +7,7 @@ requirejs.config({
 		'datagrid.excel' : '../easyui/jquery.datagrid.excel',
 		'easyui.form.ext' : 'plugins/jquery.form.ext',
 		'easyui.grid.ext' : 'plugins/jquery.grid.ext',
+		'serializeObject' : 'plugins/jquery.serializeObject',
 		'searchcom' : 'plugins/jquery.searchcom',
 		'app' : 'app',
 		'language' : 'modules/language',
@@ -54,6 +55,10 @@ requirejs.config({
 			exports : 'jquery',
 			deps : [ 'jquery', 'easyui' ]
 		},
+		'serializeObject' : {
+			exports : 'jquery',
+			deps : ['jquery']
+		},
 		'searchcom' : {
 			exports : 'jquery',
 			deps : [ 'jquery', 'easyui' ]
@@ -62,5 +67,7 @@ requirejs.config({
 });
 
 var app = require([ 'app' ], function(app) {
+	'use strict';
+
 	app.init();
 });

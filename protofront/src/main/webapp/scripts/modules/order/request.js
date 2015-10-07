@@ -7,6 +7,8 @@
 define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil"], 
 		function(ordermod, language, uomUtil, productUtil, orgUnitUtil) {
 
+	'use strict';
+
 	function onLoad() {
 		 
 		$("#spa-cntr").on("orderSelected", function(event, orderId){

@@ -51,6 +51,16 @@ public class EnterpriseController {
 		return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, "%" + q + "%"), enterpriseService.getList(languageId, "%" + q + "%", p));
 	}
 
+	@RequestMapping(value = "srchbe", method = RequestMethod.POST)
+	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Long languageId, EnterpriseDTO example, 
+			@RequestParam int page, @RequestParam int rows) {
+		Pageable p = new PageRequest(page-1, rows);
+		Enterprise exmpl = mapper.map(example, Enterprise.class);
+		return null;
+		// return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, "%" + q + "%"), enterpriseService.getList(languageId, "%" + q + "%", p));
+	}
+
+
 	@RequestMapping(value = "/", method = RequestMethod.POST )
 	public @ResponseBody EnterpriseDTO save(@RequestParam Long languageId, EnterpriseDTO enterpriseDTO) {
 		Enterprise enterprise = mapper.map(enterpriseDTO, Enterprise.class);

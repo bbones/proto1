@@ -5,270 +5,338 @@
  * File contract.js Created 17.04.15
  */
 
-define(['currencyUtil', 'commonlib', 'edatagrid', 'easyui.form.ext'],
-        function(currencyUtil, commonlib, edatagrid, form) {
-          var roleMap = {};
-          var currentContractID = {};
-          var btnSearch = {};
-          var dgSearchResult = {};
-          var searchForm = {};
-          var edgSides = {};
-          var edgSupplement = {};
-          var cf = {};
-          function init() {
-            btnSearch = $("#btnSearch");
-            dgSearchResult = $("#dgSearchResult");
-            searchForm = $("#searchForm");
-            edgSides = $("#edgSides");
-            edgSupplement = $("#edgSupplement");
-            cf = $("#cf");
-          }
-          function getRoleMap() {
-            return roleMap;
-          }
+define(
+		[ 'currencyUtil', 'commonlib', 'edatagrid', 'easyui.form.ext' ],
+		function(currencyUtil, commonlib, edatagrid, form) {
 
-          function position(contractID) {
-            if ((typeof contractID) != 'undefined') {
-              currentContractID = contractID;
-              edgSides.edatagrid({
-                url: "/protofront/service/contracts/" + contractID + "/sides?languageId=" + language.id()
-              });
-              edgSupplement.edatagrid({
-                url: "/protofront/service/contracts/" + contractID + "/supplements"
-              });
-              cf.form('load', '/protofront/service/contracts/' + contractID);
-            }
-          }
+			'use strict';
 
-          function initSearchForm() {
+			var roleMap = {};
+			var currentContractID = {};
+			var btnSearch = {};
+			var dgSearchResult = {};
+			var searchForm = {};
+			var edgSides = {};
+			var edgSupplement = {};
+			var cf = {};
 
-            searchForm.form({
-              url: '/protofront/service/contracts/findAll',
-              ajax: true,
-              success: function(data) {
-                dgSearchResult.datagrid({
-                  data: data
-                });
-                // dgSearchResult.datagrid('load', data);
-              }
-            });
-            btnSearch.click(function() {
-              searchForm.form('submitAjax');
-            });
-            dgSearchResult.datagrid({
-              onSelect: function(index, row) {
-                position(row.id);
-              }
-            });
+			function init() {
+				btnSearch = $("#btnSearch");
+				dgSearchResult = $("#dgSearchResult");
+				searchForm = $("#searchForm");
+				edgSides = $("#edgSides");
+				edgSupplement = $("#edgSupplement");
+				cf = $("#cf");
+			}
 
-          }
-          function initSidesGrid() {
+			function getRoleMap() {
+				return roleMap;
+			}
 
-            initRoleListAndMap();
-            $("#edgSides").edatagrid({
-              saveUrl: "/protofront/service/contracts/sides?languageId=" + language.id(),
-              updateUrl: "/protofront/service/contracts/sides?languageId=" + language.id(),
-              toolbar: commonlib.edgmenu({
-                add: function() {
-                  $("#edgSides").edatagrid('addRow', {
-                    row: {
-                      contractId: currentContractID
-                    }
-                  });
-                },
-                save: function() {
-                  $("#edgSides").edatagrid('getSelected').contractId = currentContractID;
-                  $("#edgSides").edatagrid('saveRow');
-                },
-                destroy: function() {
-                  $("#edgSides").edatagrid('destroyRow');
-                }
-              }),
-              method: 'GET',
-              onDestroy: function(index, row) {
-                $.ajax({
-                  url: '/protofront/service/contracts/sides/' + row.csId,
-                  method: 'DELETE'
-                });
-              }
+			function position(contractID) {
+				if ((typeof contractID) != 'undefined') {
+					currentContractID = contractID;
+					edgSides.edatagrid({
+						url : "/protofront/service/contracts/" + contractID
+								+ "/sides?languageId=" + language.id()
+					});
+					edgSupplement.edatagrid({
+						url : "/protofront/service/contracts/" + contractID
+								+ "/supplements"
+					});
+					cf.form('load', '/protofront/service/contracts/'
+							+ contractID);
+				}
+			}
 
-            });
+			function initSearchForm() {
 
-          }
+				searchForm.form({
+					url : '/protofront/service/contracts/findAll',
+					ajax : true,
+					success : function(data) {
+						dgSearchResult.datagrid({
+							data : data
+						});
+						// dgSearchResult.datagrid('load', data);
+					}
+				});
+				btnSearch.click(function() {
+					searchForm.form('submitAjax');
+				});
+				dgSearchResult.datagrid({
+					onSelect : function(index, row) {
+						position(row.id);
+					}
+				});
 
-          function initSupplementGrid() {
-            var supevent = jQuery.Event("contractSupplementSelected");
+			}
+			function initSidesGrid() {
 
-            $("#edgSupplement").edatagrid({
-              toolbar: commonlib.edgmenu({
-                add: function() {
-                  $("#edgSupplement").edatagrid('addRow');
-                  $("#csf").form('clear');
-                },
-                save: function() {
-                  console.log('submit supplement');
-                  console.dir($("#consupform"));
-                  $("#consupform").form('submit', {
-                    onSubmit: function(param) {
-                      param.contractId = currentContractID;
-                    },
-                    success: function(data) {
-                      var row = $("#edgSupplement").edatagrid('getSelected');
-                      var index = $("#edgSupplement").edatagrid('getRowIndex', row);
+				initRoleListAndMap();
+				$("#edgSides")
+						.edatagrid(
+								{
+									saveUrl : "/protofront/service/contracts/sides?languageId="
+											+ language.id(),
+									updateUrl : "/protofront/service/contracts/sides?languageId="
+											+ language.id(),
+									toolbar : commonlib
+											.edgmenu({
+												add : function() {
+													$("#edgSides")
+															.edatagrid(
+																	'addRow',
+																	{
+																		row : {
+																			contractId : currentContractID
+																		}
+																	});
+												},
+												save : function() {
+													$("#edgSides").edatagrid(
+															'getSelected').contractId = currentContractID;
+													$("#edgSides").edatagrid(
+															'saveRow');
+												},
+												destroy : function() {
+													$("#edgSides").edatagrid(
+															'destroyRow');
+												}
+											}),
+									method : 'GET',
+									onDestroy : function(index, row) {
+										$
+												.ajax({
+													url : '/protofront/service/contracts/sides/'
+															+ row.csId,
+													method : 'DELETE'
+												});
+									}
 
-                      $("#consupform").form('load', JSON.parse(data));
-                      $("#edgSupplement").edatagrid('updateRow', {
-                        index: index,
-                        row: JSON.parse(data)
-                      });
-                    } // Success
-                  });
-                },
-                destroy: function() {
-                  $("#edgSupplement").edatagrid('destroyRow');
-                }
+								});
 
-              }),
-              method: 'GET',
-              onDestroy: function(index, row) {
-                $.ajax({
-                  url: '/protofront/service/contracts/supplements/' + row.id,
-                  method: 'DELETE'
-                });
-              },
-              onSelect: function(index, row) {
-                console.log(row);
-                $("#spa-cntr").trigger(supevent, row.id);
+			}
 
-              }
-            });
+			function initSupplementGrid() {
+				var supevent = jQuery.Event("contractSupplementSelected");
 
-          }
+				$("#edgSupplement")
+						.edatagrid(
+								{
+									toolbar : commonlib
+											.edgmenu({
+												add : function() {
+													$("#edgSupplement")
+															.edatagrid('addRow');
+													$("#csf").form('clear');
+												},
+												save : function() {
+													console
+															.log('submit supplement');
+													console
+															.dir($("#consupform"));
+													$("#consupform")
+															.form(
+																	'submit',
+																	{
+																		onSubmit : function(
+																				param) {
+																			param.contractId = currentContractID;
+																		},
+																		success : function(
+																				data) {
+																			var row = $(
+																					"#edgSupplement")
+																					.edatagrid(
+																							'getSelected');
+																			var index = $(
+																					"#edgSupplement")
+																					.edatagrid(
+																							'getRowIndex',
+																							row);
 
-          function initRoleListAndMap() {
-            $.ajax('/protofront/service/contracts/roles?languageId=' + language.id()).done(function(dataArray) {
-              var length = dataArray.length;
-              for (var i = 0; i < length; i++) {
-                roleMap[dataArray[i].srId] = dataArray[i].srName;
-              }
-              $("#edgSides").datagrid('getColumnOption', 'roleId').editor.options.data = dataArray;
-            });
-          }
+																			$(
+																					"#consupform")
+																					.form(
+																							'load',
+																							JSON
+																									.parse(data));
+																			$(
+																					"#edgSupplement")
+																					.edatagrid(
+																							'updateRow',
+																							{
+																								index : index,
+																								row : JSON
+																										.parse(data)
+																							});
+																		} // Success
+																	});
+												},
+												destroy : function() {
+													$("#edgSupplement")
+															.edatagrid(
+																	'destroyRow');
+												}
 
-          function initContractForm() {
+											}),
+									method : 'GET',
+									onDestroy : function(index, row) {
+										$
+												.ajax({
+													url : '/protofront/service/contracts/supplements/'
+															+ row.id,
+													method : 'DELETE'
+												});
+									},
+									onSelect : function(index, row) {
+										console.log(row);
+										$("#spa-cntr")
+												.trigger(supevent, row.id);
 
-            $("#cf").form({
-              url: '/protofront/service/contracts/',
-              ajax: true,
-              success: function(data) {
-                // ???
-              } // Success
-            });
+									}
+								});
 
-            $("#isdate").datebox({
-              formatter: commonlib.dateFormatter,
-              parser: commonlib.dateParser
-            });
-          }
+			}
 
-          function initContractSupplementForm() {
-            $("#spa-cntr").on("contractSupplementSelected", function(event, contractSupplementId) {
-              if (contractSupplementId) {
-                $("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
-              }
-            });
+			function initRoleListAndMap() {
+				$
+						.ajax(
+								'/protofront/service/contracts/roles?languageId='
+										+ language.id())
+						.done(
+								function(dataArray) {
+									var length = dataArray.length;
+									for (var i = 0; i < length; i++) {
+										roleMap[dataArray[i].srId] = dataArray[i].srName;
+									}
+									$("#edgSides").datagrid('getColumnOption',
+											'roleId').editor.options.data = dataArray;
+								});
+			}
 
-            $("#supisdate").datebox({
+			function initContractForm() {
 
-              formatter: commonlib.dateFormatter,
+				$("#cf").form({
+					url : '/protofront/service/contracts/',
+					ajax : true,
+					success : function(data) {
+						// ???
+					} // Success
+				});
 
-              parser: commonlib.dateParser
+				$("#isdate").datebox({
+					formatter : commonlib.dateFormatter,
+					parser : commonlib.dateParser
+				});
+			}
 
-            });
-            $("#currencyId").combogrid({
-              panelWidth: 500,
-              idField: 'numCode',
-              textField: 'charCode',
-              data: currencyUtil.getCurrencyList(),
-              columns: [[{
-                field: 'numCode',
-                title: 'Code',
-                width: 80
-              }, {
-                field: 'charCode',
-                title: 'Char code',
-                width: 120
-              }, {
-                field: 'sign',
-                title: 'Sign',
-                width: 80,
-                align: 'right'
-              }]],
-              fitColumns: true
-            });
-          }
+			function initContractSupplementForm() {
+				$("#spa-cntr").on(
+						"contractSupplementSelected",
+						function(event, contractSupplementId) {
+							if (contractSupplementId) {
+								$("#csf").form(
+										'load',
+										'/protofront/service/contracts/supplements/'
+												+ contractSupplementId);
+							}
+						});
 
-          return {
-            init: function() {
-              window.location.hash = "#contract_/";
-              $("#spa-cntr").off();
-              $.when(currencyUtil.init(), language.init()).done(function() {
-                $("#spa-cntr").panel({
-                  href: '/protofront/forms/contract_.html',
-                  onLoad: function() {
-                    init();
-                    initSearchForm();
-                    initContractForm();
-                    initSidesGrid();
-                    initSupplementGrid();
-                    initContractSupplementForm();
-                  }
-                });
-              });
-            },
-            roleFormatter: function(value, row, index) {
-              return roleMap[value];
-            },
-            roleEditor: function() {
-              return {
-                type: 'combobox',
-                options: {
-                  valueField: 'srId',
-                  textField: 'srName',
-                  required: true
-                }
-              };
-            },
-            partyFormatter: function(value, row, index) {
-              return row.partyName;
-            },
-            partyEditor: function() {
-              return {
-                type: 'combogrid',
-                options: {
-                  url: '/protofront/service/masterdata/parties?languageId=' + language.id(),
-                  idField: 'partyId',
-                  // valueField:'partyId',
-                  textField: 'partyName',
-                  method: 'GET',
-                  required: true,
-                  panelWidth: 450,
-                  delay: 500,
-                  mode: 'remote',
-                  pagination: true,
-                  columns: [[{
-                    field: 'partyId',
-                    title: 'Code',
-                    width: 120,
-                    sortable: true
-                  }, {
-                    field: 'partyName',
-                    title: 'Name',
-                    width: 400,
-                    sortable: true
-                  }]]
-                }
-              };
-            }
-          };
-        });
+				$("#supisdate").datebox({
+
+					formatter : commonlib.dateFormatter,
+
+					parser : commonlib.dateParser
+
+				});
+				$("#currencyId").combogrid({
+					panelWidth : 500,
+					idField : 'numCode',
+					textField : 'charCode',
+					data : currencyUtil.getCurrencyList(),
+					columns : [ [ {
+						field : 'numCode',
+						title : 'Code',
+						width : 80
+					}, {
+						field : 'charCode',
+						title : 'Char code',
+						width : 120
+					}, {
+						field : 'sign',
+						title : 'Sign',
+						width : 80,
+						align : 'right'
+					} ] ],
+					fitColumns : true
+				});
+			}
+
+			return {
+				init : function() {
+					window.location.hash = "#contract_/";
+					$("#spa-cntr").off();
+					$.when(currencyUtil.init(), language.init()).done(
+							function() {
+								$("#spa-cntr").panel({
+									href : '/protofront/forms/contract_.html',
+									onLoad : function() {
+										init();
+										initSearchForm();
+										initContractForm();
+										initSidesGrid();
+										initSupplementGrid();
+										initContractSupplementForm();
+									}
+								});
+							});
+				},
+				roleFormatter : function(value, row, index) {
+					return roleMap[value];
+				},
+				roleEditor : function() {
+					return {
+						type : 'combobox',
+						options : {
+							valueField : 'srId',
+							textField : 'srName',
+							required : true
+						}
+					};
+				},
+				partyFormatter : function(value, row, index) {
+					return row.partyName;
+				},
+				partyEditor : function() {
+					return {
+						type : 'combogrid',
+						options : {
+							url : '/protofront/service/masterdata/parties?languageId='
+									+ language.id(),
+							idField : 'partyId',
+							// valueField:'partyId',
+							textField : 'partyName',
+							method : 'GET',
+							required : true,
+							panelWidth : 450,
+							delay : 500,
+							mode : 'remote',
+							pagination : true,
+							columns : [ [ {
+								field : 'partyId',
+								title : 'Code',
+								width : 120,
+								sortable : true
+							}, {
+								field : 'partyName',
+								title : 'Name',
+								width : 400,
+								sortable : true
+							} ] ]
+						}
+					};
+				}
+			};
+		});

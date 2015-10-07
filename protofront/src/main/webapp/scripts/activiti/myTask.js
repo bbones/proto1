@@ -1,5 +1,7 @@
 var MyTaskLib = (function() {
 
+	'use strict';
+
 	function initTaskGrid() {
 		function setAcceptedtoTask(accepted) {
 			var row = $('#edgTask').datagrid('getSelected');

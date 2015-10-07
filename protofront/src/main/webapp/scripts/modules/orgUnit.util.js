@@ -4,7 +4,9 @@
  * @author Valentin Pogrebinsky
  */
 
-define(['jquery'], function($){
+define(['jquery', 'language'], function($, language){
+	'use strict';
+
 	var orgUnitList = null;
 	var orgUnitMap = {};
 	var d = $.Deferred();
