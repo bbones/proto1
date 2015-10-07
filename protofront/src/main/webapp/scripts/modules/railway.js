@@ -2,7 +2,7 @@
  * File railway.js Rsk 27.07.2015
  */
 
-define([ 'commonlib', 'edatagrid', 'datagrid.excel' ], function(commonlib, edatagrid, datagrid) {
+define([ 'commonlib', 'edatagrid', 'datagrid.excel','language' ], function(commonlib, edatagrid, datagrid, language) {
 	'use strict';
 
 	var currentRailwayId = null;

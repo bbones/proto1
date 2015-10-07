@@ -47,7 +47,7 @@
 	}
 
 	$.fn.searchcom = function(options, param){
-		if (typeof options == 'string'){
+		if (typeof options === 'string'){
 			return $.fn.searchcom.methods[options](this, param);
 		}
 		
@@ -70,7 +70,7 @@
 		options: function(jq){
 			return $.data(jq[0], 'searchcom').options;
 		}
-	}
+	};
 	
 	$.fn.searchcom.parseOptions = function(target){
 		return $.extend({}, $.parser.parseOptions(target, ['width','height','url']));

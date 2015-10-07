@@ -5,6 +5,7 @@ var MyTaskLib = (function() {
 	function initTaskGrid() {
 		function setAcceptedtoTask(accepted) {
 			var row = $('#edgTask').datagrid('getSelected');
+			var result='';
 			if (row) {
 				if (accepted) {
 					result = 'accepted';

@@ -58,7 +58,7 @@ define([ 'jquery' ], function($) {
 		$("body").on("LanguageChanged", function(event) {
 			currentLanguage = event.id;
 		});
-		window.language = this;
+		//window.language = this;
 		return d;
 
 	}

@@ -40,11 +40,11 @@ define(['jquery', 'language'], function($, language){
 		},
 
 		orgUnitFormatter : function(value, row) {
-        	return uomMap[value];
+        	return orgUnitMap[value];
         },
 
 		getOrgUnitEditor : function() {
-			return uomEditor;
+			return orgUnitEditor;
 		},
 		getOrgUnitList : function() {
 			return orgUnitList;

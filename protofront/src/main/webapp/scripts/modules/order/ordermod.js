@@ -189,7 +189,7 @@ define (['language', 'commonlib', 'edatagrid', 'uomUtil', 'productUtil'], functi
 					initLinesGrid();
 					initLineParam();
 					initForm();
-					if (typeof options.onLoad != 'undefined') {
+					if (typeof options.onLoad !== 'undefined') {
 						options.onLoad();
 					}
 				}

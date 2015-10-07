@@ -6,8 +6,8 @@
  */
 
 define(
-		[ 'currencyUtil', 'commonlib', 'edatagrid', 'easyui.form.ext' ],
-		function(currencyUtil, commonlib, edatagrid, form) {
+		[ 'currencyUtil', 'commonlib', 'edatagrid', 'easyui.form.ext', 'language' ],
+		function(currencyUtil, commonlib, edatagrid, form, language) {
 
 			'use strict';
 
@@ -24,7 +24,7 @@ define(
 				btnSearch = $("#btnSearch");
 				dgSearchResult = $("#dgSearchResult");
 				searchForm = $("#searchForm");
-				edgSides = $("#edgSides");
+				edgSides =  $("#edgSides");
 				edgSupplement = $("#edgSupplement");
 				cf = $("#cf");
 			}
@@ -34,7 +34,7 @@ define(
 			}
 
 			function position(contractID) {
-				if ((typeof contractID) != 'undefined') {
+				if ((typeof contractID) !== 'undefined') {
 					currentContractID = contractID;
 					edgSides.edatagrid({
 						url : "/protofront/service/contracts/" + contractID
@@ -74,7 +74,7 @@ define(
 			function initSidesGrid() {
 
 				initRoleListAndMap();
-				$("#edgSides")
+				edgSides
 						.edatagrid(
 								{
 									saveUrl : "/protofront/service/contracts/sides?languageId="
@@ -84,7 +84,7 @@ define(
 									toolbar : commonlib
 											.edgmenu({
 												add : function() {
-													$("#edgSides")
+													edgSides
 															.edatagrid(
 																	'addRow',
 																	{
@@ -94,13 +94,13 @@ define(
 																	});
 												},
 												save : function() {
-													$("#edgSides").edatagrid(
+													edgSides.edatagrid(
 															'getSelected').contractId = currentContractID;
-													$("#edgSides").edatagrid(
+													edgSides.edatagrid(
 															'saveRow');
 												},
 												destroy : function() {
-													$("#edgSides").edatagrid(
+													edgSides.edatagrid(
 															'destroyRow');
 												}
 											}),
@@ -211,7 +211,7 @@ define(
 									for (var i = 0; i < length; i++) {
 										roleMap[dataArray[i].srId] = dataArray[i].srName;
 									}
-									$("#edgSides").datagrid('getColumnOption',
+									edgSides.datagrid('getColumnOption',
 											'roleId').editor.options.data = dataArray;
 								});
 			}
@@ -226,7 +226,7 @@ define(
 					} // Success
 				});
 
-				$("#isdate").datebox({
+				$("#cfIsDate").datebox({
 					formatter : commonlib.dateFormatter,
 					parser : commonlib.dateParser
 				});

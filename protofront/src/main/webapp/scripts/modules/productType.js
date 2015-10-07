@@ -59,7 +59,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 
 			}),
 			onSave : function(index,row) {
-				if (row.languageId == language.id()) {
+				if (row.languageId === language.id()) {
 					var node = $('#productTypes').tree('getSelected');
 					$('#productTypes').tree('update', {
 						target: node.target,
