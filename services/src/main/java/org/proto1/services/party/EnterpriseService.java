@@ -31,5 +31,10 @@ public interface EnterpriseService {
 
 	void deleteName(Long id);
 
+	Long getEnterpriseListCounter(Long languageId, Enterprise exmpl);
+
+	List<Map<String, Object>> getList(Long languageId, Enterprise exmpl,
+			Pageable p);
+
 
 }

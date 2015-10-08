@@ -16,10 +16,8 @@ public class BaseController {
 
 	@InitBinder
 	public void binder(WebDataBinder binder) {
-    	log.debug("Custom date editor init");
 		binder.registerCustomEditor(Date.class, new PropertyEditorSupport() {
 		    public void setAsText(String value) {
-		    	log.debug("Custom date editor");
 		        try {
 		            setValue(new SimpleDateFormat("dd.MM.yyyy").parse(value));
 		        } catch(ParseException e) {
