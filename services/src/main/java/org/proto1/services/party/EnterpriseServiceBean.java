@@ -67,13 +67,13 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	}
 
 	public Long getEnterpriseListCounter(Long languageId, Enterprise exmpl) {
-		return enterpriseRepository.countById(exmpl);
+		return null; // enterpriseRepository.countById(exmpl);
 	}
 
 	public List<Map<String, Object>> getList(Long languageId, Enterprise exmpl,
 			Pageable p) {
 		// TODO Auto-generated method stub
-		return enterpriseRepository.findAll(exmpl);
+		return null; // enterpriseRepository.findAll(exmpl);
 	}
 
 }
