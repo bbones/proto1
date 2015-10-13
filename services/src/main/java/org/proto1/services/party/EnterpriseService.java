@@ -36,5 +36,7 @@ public interface EnterpriseService {
 	List<Map<String, Object>> getList(Long languageId, Enterprise exmpl,
 			Pageable p);
 
+	List<EnterpriseName> getList(Long languageId, Map<String, Object> example, Pageable p);
+
 
 }

@@ -14,7 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.proto1.domain.party.Enterprise;
 
-public interface EnterpriseRepository extends CrudRepository<Enterprise, Long>, JpaSpecificationExecutor {
+public interface EnterpriseRepository extends CrudRepository<Enterprise, Long>, JpaSpecificationExecutor<Enterprise> {
 
 	@Query("select new Map(e.id as id, en.name as name) " + 
 			"from Enterprise e left outer join e.enterpriseNames en  " + 

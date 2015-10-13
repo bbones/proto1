@@ -7,16 +7,29 @@ package org.proto1.services.party;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.transaction.TransactionScoped;
+import javax.transaction.Transactional;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.repository.party.EnterpriseNameRepository;
 import org.proto1.repository.party.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
 @Service
 public class EnterpriseServiceBean implements EnterpriseService {
+	protected final Log logger = LogFactory.getLog(getClass());
 	
 	@Autowired
 	EnterpriseRepository enterpriseRepository;
@@ -74,6 +87,34 @@ public class EnterpriseServiceBean implements EnterpriseService {
 			Pageable p) {
 		// TODO Auto-generated method stub
 		return null; // enterpriseRepository.findAll(exmpl);
+	}
+
+	@Transactional
+	public List<EnterpriseName> getList(Long languageId, Map<String, Object> example, Pageable p) {
+		Specifications<EnterpriseName> qbe = null;
+		for(final Map.Entry<String, Object> entry : example.entrySet()) {
+			final String path[] = entry.getKey().split("\\.");
+			Specification<EnterpriseName> spec = new Specification <EnterpriseName>() {
+
+				public Predicate toPredicate(Root<EnterpriseName> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+					if (path.length > 1) {
+						root.fetch(path[0]);
+						Join<EnterpriseName, Enterprise> ent = root.join(path[0]);
+						return cb.equal(ent.get(path[1]), entry.getValue());
+					} else {
+						return cb.equal(root.get(path[0]), entry.getValue());
+					}
+					
+				}
+				
+			};
+			if (qbe == null) {
+				qbe = Specifications.where(spec);
+			} else {
+				qbe.and(spec);
+			}
+		}
+		return enterpriseNameRepository.findAll(qbe);
 	}
 
 }
