@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
@@ -89,20 +90,26 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		return null; // enterpriseRepository.findAll(exmpl);
 	}
 
-	@Transactional
+	
 	public List<EnterpriseName> getList(Long languageId, Map<String, Object> example, Pageable p) {
+		
 		Specifications<EnterpriseName> qbe = null;
+		
 		for(final Map.Entry<String, Object> entry : example.entrySet()) {
 			final String path[] = entry.getKey().split("\\.");
+		
 			Specification<EnterpriseName> spec = new Specification <EnterpriseName>() {
 
 				public Predicate toPredicate(Root<EnterpriseName> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+					logger.debug(entry.getValue().getClass().getName());
 					if (path.length > 1) {
-						root.fetch(path[0]);
 						Join<EnterpriseName, Enterprise> ent = root.join(path[0]);
 						return cb.equal(ent.get(path[1]), entry.getValue());
 					} else {
-						return cb.equal(root.get(path[0]), entry.getValue());
+						if (entry.getValue().getClass().getName().equals("java.lang.String"))
+							return cb.like(root.<String>get(path[0]), (Expression<String>) entry.getValue());
+						else
+							return cb.equal(root.get(path[0]), entry.getValue());
 					}
 					
 				}

@@ -41,7 +41,7 @@ public class SearchServiceTest extends AbstractJUnit4SpringContextTests {
 	@Test
 	public void testDirect() {
 		Map<String,Object> example = new HashMap<String, Object>();
-		example.put("id", 47L);
+		example.put("name", "%ИСД%");
 		for(EnterpriseName entn : searchController.getList(1L, example, 1, 10)) {
 			logger.debug(entn.getName() + " " + entn.getEnterprise().getId());
 		}
