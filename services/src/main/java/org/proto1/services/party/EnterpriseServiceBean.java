@@ -4,6 +4,7 @@
  *******************************************************************************/
 package org.proto1.services.party;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -120,6 +121,9 @@ public class EnterpriseServiceBean implements EnterpriseService {
 			} else {
 				qbe.and(spec);
 			}
+		}
+		if (qbe == null) {
+			return new ArrayList<EnterpriseName>();
 		}
 		return enterpriseNameRepository.findAll(qbe);
 	}
