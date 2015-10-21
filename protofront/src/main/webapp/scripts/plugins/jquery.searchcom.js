@@ -30,7 +30,6 @@
 	
 	function search(target) {
 		var opts = $.data(target, 'searchcom').options;
-		debugger;
 		var data = $("#srchform").serializeObject();
 		$("#srchGrid").datagrid({
 			url : opts.url, // + '&' + $("#srchform").serialize()

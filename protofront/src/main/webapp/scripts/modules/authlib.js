@@ -1,4 +1,4 @@
-var AuthLib = (function() {
+define([ "jquery" ], function($) {
 	'use strict';
 
 	var storageKey = 'auth_token', headerKey = 'X-AUTH-TOKEN';
@@ -57,8 +57,8 @@ var AuthLib = (function() {
 	}
 
 	function showForm() {
-		$("#test").off();
-		$("#test").panel({
+		$("#spa-cntr").off();
+		$("#spa-cntr").panel({
 			href : '/protofront/forms/loginForm.html',
 			onLoad : function() {
 				$('#loginForm').window('open');
@@ -89,5 +89,4 @@ var AuthLib = (function() {
 			logout();
 		}
 	};
-})();
-AuthLib.init();
+});

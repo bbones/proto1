@@ -116,7 +116,7 @@
 	    "children": [{
 	        "id": "myOpenTask",
 	        "text": "Open tasks",
-	        "module": "activiti/myTask.js"
+	        "module": "myTask"
 	    	}]
 	}	
 ]

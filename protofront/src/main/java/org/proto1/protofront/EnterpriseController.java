@@ -56,8 +56,13 @@ public class EnterpriseController {
 			@RequestParam int page, @RequestParam int rows) {
 		Pageable p = new PageRequest(page-1, rows);
 		Enterprise exmpl = mapper.map(example, Enterprise.class);
-		return null;
-		// return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, "%" + q + "%"), enterpriseService.getList(languageId, "%" + q + "%", p));
+		EnterpriseName en = new EnterpriseName();
+		en.setEnterprise(exmpl);
+		en.setLanguage(mapper.map(languageId, Language.class));
+		en.setName(example.getName());
+		exmpl.setEnterpriseNames(new ArrayList<EnterpriseName>());
+		exmpl.getEnterpriseNames().add(en);
+		return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, exmpl), enterpriseService.getList(languageId, exmpl, p));
 	}
 
 

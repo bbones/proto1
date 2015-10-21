@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
-  <process id="newHelloworldProcess" name="My process" isExecutable="true">
+  <process id="anotherHelloworldProcess" name="My process 2" isExecutable="true">
     <startEvent id="startevent1" name="Start"></startEvent>
     <serviceTask id="aprooveMailTask" name="Сообщим инициатору, что документ одобрен" activiti:type="mail">
       <extensionElements>
         <activiti:field name="subject">
-          <activiti:expression><![CDATA[Your order ${document.documentNo} has been approved]]></activiti:expression>
+          <activiti:expression><![CDATA[Your order ${document.documentNo} has been approved!]]></activiti:expression>
         </activiti:field>
         <activiti:field name="from">
           <activiti:string><![CDATA[admin@isd.com.ua]]></activiti:string>
@@ -29,7 +29,7 @@
           <activiti:string><![CDATA[admin@isd.com.ua]]></activiti:string>
         </activiti:field>
         <activiti:field name="subject">
-          <activiti:expression><![CDATA[Your order ${document.documentNo} hasn't been approved]]></activiti:expression>
+          <activiti:expression><![CDATA[Your order ${document.documentNo} hasn't been approved!]]></activiti:expression>
         </activiti:field>
         <activiti:field name="html">
           <activiti:expression><![CDATA[Все плохо, ${initiator.getPassportNo()}]]></activiti:expression>
@@ -50,12 +50,20 @@
     <sequenceFlow id="flow13" sourceRef="notAprooveMailTask" targetRef="exclusivegateway2"></sequenceFlow>
     <sequenceFlow id="flow14" sourceRef="aprooveMailTask" targetRef="exclusivegateway2"></sequenceFlow>
     <sequenceFlow id="flow15" sourceRef="exclusivegateway2" targetRef="endevent1"></sequenceFlow>
-    <userTask id="managerUserTask" name="Начальник отдела должен подтвердить" activiti:candidateGroups="${approveService.findManagerForEmployee(initiator)}"></userTask>
-    <sequenceFlow id="flow16" sourceRef="startevent1" targetRef="managerUserTask"></sequenceFlow>
+    <userTask id="managerUserTask" name="Начальник отдела должен подтвердить" activiti:candidateGroups="${approveService.findManagerForEmployee(initiator)}">
+      <extensionElements>
+        <activiti:field name="url">
+          <activiti:expression>contract/${document.id}/managerUserTask</activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow16" sourceRef="startevent1" targetRef="getDocumentServiceTask"></sequenceFlow>
     <sequenceFlow id="flow17" sourceRef="managerUserTask" targetRef="exclusivegateway1"></sequenceFlow>
+    <serviceTask id="getDocumentServiceTask" name="Подтягиваем документ в переменные" activiti:expression="${contractServiceBean.getContract(contractID)}" activiti:resultVariableName="document"></serviceTask>
+    <sequenceFlow id="flow18" sourceRef="getDocumentServiceTask" targetRef="managerUserTask"></sequenceFlow>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_newHelloworldProcess">
-    <bpmndi:BPMNPlane bpmnElement="newHelloworldProcess" id="BPMNPlane_newHelloworldProcess">
+  <bpmndi:BPMNDiagram id="BPMNDiagram_anotherHelloworldProcess">
+    <bpmndi:BPMNPlane bpmnElement="anotherHelloworldProcess" id="BPMNPlane_anotherHelloworldProcess">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="140.0" y="167.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
@@ -82,6 +90,9 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="managerUserTask" id="BPMNShape_managerUserTask">
         <omgdc:Bounds height="95.0" width="105.0" x="320.0" y="135.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="getDocumentServiceTask" id="BPMNShape_getDocumentServiceTask">
+        <omgdc:Bounds height="91.0" width="105.0" x="250.0" y="260.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flowApprove" id="BPMNEdge_flowApprove">
         <omgdi:waypoint x="570.0" y="184.0"></omgdi:waypoint>
@@ -119,12 +130,16 @@
         <omgdi:waypoint x="1060.0" y="177.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow16" id="BPMNEdge_flow16">
-        <omgdi:waypoint x="175.0" y="184.0"></omgdi:waypoint>
-        <omgdi:waypoint x="320.0" y="182.0"></omgdi:waypoint>
+        <omgdi:waypoint x="157.0" y="202.0"></omgdi:waypoint>
+        <omgdi:waypoint x="302.0" y="260.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow17" id="BPMNEdge_flow17">
         <omgdi:waypoint x="425.0" y="182.0"></omgdi:waypoint>
         <omgdi:waypoint x="530.0" y="184.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow18" id="BPMNEdge_flow18">
+        <omgdi:waypoint x="302.0" y="260.0"></omgdi:waypoint>
+        <omgdi:waypoint x="372.0" y="230.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

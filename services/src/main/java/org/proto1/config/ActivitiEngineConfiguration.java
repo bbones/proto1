@@ -70,7 +70,10 @@ public class ActivitiEngineConfiguration {
 	  	processEngineConfiguration.setAsyncExecutorEnabled(true);
 	  	processEngineConfiguration.setAsyncExecutorActivate(false);
 	  	processEngineConfiguration.setJpaEntityManagerFactory(entityManagerFactory);
-	  	processEngineConfiguration.setJpaHandleTransaction(false);
+	  	processEngineConfiguration.setJpaHandleTransaction(true);
+	 	processEngineConfiguration.setJpaCloseEntityManager(true);
+
+
 	  	processEngineConfiguration.setHistoryLevel(HistoryLevel.FULL);	  
 	    processEngineConfiguration.setDeploymentResources(processResources());  	
 	    //processEngineConfiguration.setMailServerHost("");

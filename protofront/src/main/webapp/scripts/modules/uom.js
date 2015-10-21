@@ -1,99 +1,101 @@
 /*******************************************************************************
- * Copyright (c) 2015 Valentin Pogrebinsky
- * All rights reserved. 
- *******************************************************************************/
+ * Copyright (c) 2015 Valentin Pogrebinsky All rights reserved.
+ ******************************************************************************/
 /**
- * File uom.js
- * author Pogrebinsky Valentyn
- * Created 04.05.15 
+ * File uom.js author Pogrebinsky Valentyn Created 04.05.15
  */
 
-define(['commonlib', 'edatagrid', 'language'], function(commonlib, edatagrid, language){
-	
-	'use strict';
+define(['commonlib', 'edatagrid', 'language'], function(commonlib, edatagrid, language) {
 
-	var currentUOMId = null; 
-	
-	function initUOMGrid(){
-		$("#edgUOMs").edatagrid({
-			url : '/protofront/service/uoms/?languageId=' + language.id(),
-			saveUrl : '/protofront/service/uoms/?languageId=' + language.id(),
-			updateUrl : '/protofront/service/uoms/?languageId=' + language.id(),
-			toolbar : commonlib.edgmenu({
-				add : function(){
-					$("#edgUOMs").edatagrid('addRow');
-				},
-				save : function(){
-					$("#edgUOMs").edatagrid('saveRow');
-				},
-				destroy : function(){
-					$("#edgUOMs").edatagrid('destroyRow');
-				}
+  'use strict';
 
-			}),
-			onSelect : function(index, row) {
-				console.log(row);
-				currentUOMId = row.id;
-				if (row.id !== null) {
-					$("#edgNames").edatagrid({
-						url : '/protofront/service/uoms/' + row.id + '/names',
+  var currentUOMId = null;
 
-					});
-				}
-			},
-			onDestroy : function(index,row){
-				$.ajax({
-					url : '/protofront/service/uoms/' + row.id,
-					method : "DELETE"
-				});
-			}
+  function initUOMGrid() {
+    $("#edgUOMs").edatagrid({
+      url: '/protofront/service/uoms/?languageId=' + language.id(),
+      saveUrl: '/protofront/service/uoms/?languageId=' + language.id(),
+      updateUrl: '/protofront/service/uoms/?languageId=' + language.id(),
+//      autoSave: true,
+      toolbar: commonlib.edgmenu({
+        add: function() {
+          $("#edgUOMs").edatagrid('addRow');
+        },
+        save: function() {
+          $("#edgUOMs").edatagrid('saveRow');
+        },
+        destroy: function() {
+          $("#edgUOMs").edatagrid('destroyRow');
+        }
 
-		});	
-	}
-	
-	function initTranslationGrid(){
-		$("#edgNames").edatagrid({
-			onDestroy : function(index,row){
-				$.ajax({
-					url : '/protofront/service/uoms/names/' + row.nameId,
-					method : "DELETE"
-				});
-			},
-			saveUrl : '/protofront/service/uoms/names',
-			updateUrl :'/protofront/service/uoms/names',
-			toolbar : commonlib.edgmenu({
-				add : function(){
-					$("#edgNames").edatagrid('addRow', {row : {uomId : currentUOMId}});
-				},
-				save : function(){
-					$("#edgNames").edatagrid('saveRow');
-				},
-				destroy : function(){
-					$("#edgNames").edatagrid('destroyRow');
-				}
+      }),
+      onSelect: function(index, row) {
+        console.log(row);
+        currentUOMId = row.id;
+        if (row.id !== null) {
+          $("#edgNames").edatagrid({
+            url: '/protofront/service/uoms/' + row.id + '/names',
 
-			})
-		});		
-	}
-	
-	function init() {
-		window.location.hash = "#uom/"; 
-		$("#spa-cntr").off();
-		$.when(language.init()).done(function() {
-			$("#spa-cntr").panel({
-				href : '/protofront/forms/uom.html', 
-				onLoad : function() {
-					initUOMGrid();
-					initTranslationGrid();
-				}
-			});
-		});
-	}
-	
-	return {
-		init : init
-	};	
+          });
+        }
+      },
+      onDestroy: function(index, row) {
+        $.ajax({
+          url: '/protofront/service/uoms/' + row.id,
+          method: "DELETE"
+        });
+      }
+
+    });
+  }
+
+  function initTranslationGrid() {
+    $("#edgNames").edatagrid({
+      onDestroy: function(index, row) {
+        $.ajax({
+          url: '/protofront/service/uoms/names/' + row.nameId,
+          method: "DELETE"
+        });
+      },
+      saveUrl: '/protofront/service/uoms/names',
+      updateUrl: '/protofront/service/uoms/names',
+ //     autoSave: true,
+      toolbar: commonlib.edgmenu({
+        add: function() {
+          $("#edgNames").edatagrid('addRow', {
+            row: {
+              uomId: currentUOMId
+            }
+          });
+        },
+        save: function() {
+          $("#edgNames").edatagrid('saveRow');
+        },
+        destroy: function() {
+          $("#edgNames").edatagrid('destroyRow');
+        },
+        cancel: function() {
+          $("#edgNames").edatagrid('cancelRow');
+        }
+      })
+    });
+  }
+
+  function init() {
+    window.location.hash = "#uom/";
+    $("#spa-cntr").off();
+    $.when(language.init()).done(function() {
+      $("#spa-cntr").panel({
+        href: '/protofront/forms/uom.html',
+        onLoad: function() {
+          initUOMGrid();
+          initTranslationGrid();
+        }
+      });
+    });
+  }
+
+  return {
+    init: init
+  };
 });
-
-
-

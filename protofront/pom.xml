@@ -14,8 +14,9 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<org.springframework.version>4.2.1.RELEASE</org.springframework.version>
-		<org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>		
+		<org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
 		<com.fasterxml.jackson.core>2.6.1</com.fasterxml.jackson.core>
+		<org.activiti.version>5.18.0</org.activiti.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -98,13 +99,8 @@
 			<version>${org.springframework.security.version}</version>
 		</dependency>
 
-<!-- 
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${org.codehaus.jackson}</version>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+			<version>${org.codehaus.jackson}</version> </dependency> -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -145,6 +141,12 @@
 			<version>9.4-1201-jdbc41</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.activiti</groupId>
+			  <artifactId>activiti-rest</artifactId>
+			<!-- <classifier>classes</classifier> -->
+			<version>${org.activiti.version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>

@@ -39,7 +39,7 @@ public class ApproveDocumentServiceBean implements ApproveDocumentService {
 		Person currentPerson = personRepository.findOne(curentUserID);
 		log.debug(currentPerson.getPassportNo());
 		Map<String,Object> variables=new HashMap<String,Object>();
-		  variables.put("document",document);
+		  variables.put("contractID",documentID);
 		  variables.put("initiator",currentPerson);
 	//	ProcessInstance processInstance = 
 		  runtimeService
