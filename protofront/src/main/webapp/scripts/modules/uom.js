@@ -16,7 +16,7 @@ define(['commonlib', 'edatagrid', 'language'], function(commonlib, edatagrid, la
       url: '/protofront/service/uoms/?languageId=' + language.id(),
       saveUrl: '/protofront/service/uoms/?languageId=' + language.id(),
       updateUrl: '/protofront/service/uoms/?languageId=' + language.id(),
-//      autoSave: true,
+      // autoSave: true,
       toolbar: commonlib.edgmenu({
         add: function() {
           $("#edgUOMs").edatagrid('addRow');
@@ -33,10 +33,11 @@ define(['commonlib', 'edatagrid', 'language'], function(commonlib, edatagrid, la
         console.log(row);
         currentUOMId = row.id;
         if (row.id !== null) {
-          $("#edgNames").edatagrid({
-            url: '/protofront/service/uoms/' + row.id + '/names',
-
-          });
+          var optsDG = $("#edgNames").datagrid('options');
+          optsDG.url = '/protofront/service/uoms/' + row.id + '/names';
+          var optsEDG = $("#edgNames").edatagrid('options');
+          optsEDG.url = '/protofront/service/uoms/' + row.id + '/names';
+          $("#edgNames").edatagrid('reload');
         }
       },
       onDestroy: function(index, row) {
@@ -51,15 +52,18 @@ define(['commonlib', 'edatagrid', 'language'], function(commonlib, edatagrid, la
 
   function initTranslationGrid() {
     $("#edgNames").edatagrid({
-      onDestroy: function(index, row) {
-        $.ajax({
-          url: '/protofront/service/uoms/names/' + row.nameId,
-          method: "DELETE"
-        });
-      },
+      idField : 'nameId',
+      url: '',
       saveUrl: '/protofront/service/uoms/names',
       updateUrl: '/protofront/service/uoms/names',
- //     autoSave: true,
+/*      onSelect: function(index, row) {
+        var opts = $("#edgNames").edatagrid('options');
+        var idValue = row[opts.idField||'id'];
+        if (idValue !== null) {         
+          opts.destroyUrl = opts.updateUrl+'/' + idValue;
+        }
+      },*/
+      // autoSave: true,
       toolbar: commonlib.edgmenu({
         add: function() {
           $("#edgNames").edatagrid('addRow', {
