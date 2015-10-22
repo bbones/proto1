@@ -3,43 +3,66 @@
 </head>
 
 <div id="railwayAccordion" class="easyui-accordion"
-	style="width: 700px; height: 400px;">
+	data-options="multiple:true"
+	style="width: 700px;">
 	<div title="Railway Search Form"
 		data-options="iconCls:'icon-search',selected:true"
-		style="padding: 3px;">
-		<div id="tb" style="padding: 3px">
-			<span>Railway ID:</span> <input id="railwayid"
-				style="line-height: 22px; width: 40px; border: 1px solid #ccc"> <span>Railway
-				Code:</span> <input id="railwaycode"
-				style="line-height: 22px; width: 40px; border: 1px solid #ccc"> <a
-				id="railwaySearchBtn" href="#" class="easyui-linkbutton" iconCls="icon-search"
-				plain="true">Search</a>
-		</div>
-		<table id="edgRailways" title="Railways found" singleSelect="true"
-			style="width: 600px; height: 207px"
+		style="padding: 2px;">
+		<form id="fRailwaySearch" method="post">
+			<table style="padding: 2px;">
+				<tr>
+					<td>Railway ID:</td>
+					<td><input class="easyui-numberbox" type="text" id="railwayid"
+						name="id" style="width: 40px; height: 24px;"></td>
+					<td>Railway Code:</td>
+					<td><input class="easyui-numberbox" type="text"
+						id="railwaycode" name="railwayCode"
+						style="width: 40px; height: 24px;"></td>
+					<td><a id="btnRailwaySearch" href="#"
+						class="easyui-linkbutton" iconCls="icon-search" plain="true">Search</a></td>
+				</tr>
+			</table>
+		</form>
+		<table id="edgRailwaysFound" title="Railways found" singleSelect="true"
+			style="width: 600px; height: 178px"
 			data-options="iconCls:'icon-ok', toolbar: '#tbrw', idField : 'id', method : 'GET'">
 			<thead>
 				<tr>
 					<th field='id' width=110>Railway Id</th>
-					<th field='railwayCode' width=100 editor='text'>Railway Code</th>
+					<th field='railwayCode' width=100 editor='empty'>Railway Code</th>
 				</tr>
 			</thead>
 		</table>
 	</div>
 
 	<div title="Railway" data-options="iconCls:'icon-edit',selected:true"
-		style="padding: 10px;">
-		<!-- <table id="edgRailways" title="Railways" singleSelect="true"
-			style="width: 600px; height: 206px"
-			data-options="toolbar: '#tbrw', idField : 'id', method : 'GET'">
-			<thead>
-				<tr>
-					<th field='id' width=110>Railway Id</th>
-					<th field='railwayCode' width=100 editor='text'>Railway Code</th>
-				</tr>
-			</thead>
-		</table>
-		<div style="padding: 2px;"></div> -->
+		style="padding: 3px;">
+		<!-- <div class="easyui-panel" style="width: 600px"> -->
+		<div
+			style="background: #fafafa; width: 600px; border: 1px solid #ccc">
+			<a id="btnRailwayNew" href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true">New</a>
+			<a id="btnRailwaySave" href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true">Save</a>
+			<a id="btnRailwayDelete"href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true">Delete</a>
+			<a id="btnRailwayCancel"href="#" class="easyui-linkbutton" iconCls="icon-cancel" plain="true">Cancel</a>
+		</div>
+		<form id="fRailway" method="post">
+            <table>
+                <tr>
+                    <td>Railway ID:</td>
+                    <td><input class="easyui-numberbox" type="text" name="id" editable="false"></input></td>
+                </tr>
+                <tr>
+                    <td>Railway Code:</td>
+                    <td><input class="easyui-numberbox" type="text" name="railwayCode" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td>Version:</td>
+                    <td><input class="easyui-numberbox" type="text" name="version" editable="false"></input></td>
+                </tr>
+            </table>
+		</form>
+        <!-- </div> -->
+		<!-- <div style="padding: 2px;"></div> -->
 		<table id="edgRailwayNames" title="Translations" singleSelect="true"
 			style="width: 600px; height: auto"
 			data-options="iconCls: 'icon-edit', toolbar: '#tbn', idField : 'id', method : 'GET'">
@@ -59,3 +82,8 @@
 	</div>
 
 </div> <!-- Accordion -->
+
+<script>
+	var language=require('language');
+	var commonlib=require('commonlib');
+</script>

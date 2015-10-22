@@ -2,6 +2,7 @@ package org.proto1.protofront;
 
 import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
@@ -37,7 +38,7 @@ public class RailwayController {
 	public @ResponseBody List<Map<String, Object>> getRailwayList() {
 		return railwayService.getRailwayList();
 	}
-
+	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody RailwayDTO save(RailwayDTO railwayDTO) {
 		Railway railway = mapper.map(railwayDTO, Railway.class);
@@ -50,7 +51,26 @@ public class RailwayController {
 	public void delete(@PathVariable Long id) {
 		railwayService.delete(id);
 	}
+	
+	/** ---------- methods for Railway Search Form ---------- */
+	@RequestMapping(value = "/findAll", method = RequestMethod.POST)
+	public @ResponseBody List<RailwayDTO> findAll(Railway criteria) {
+		List<Railway> railwayList = railwayService.findAll(criteria);
+		List<RailwayDTO> railwayDTOList = new ArrayList<RailwayDTO>();
+		for (Railway railway : railwayList) {
+			railwayDTOList.add((RailwayDTO) mapper.map(railway,
+					RailwayDTO.class));
+		}
+		return railwayDTOList;
+	}
 
+	/** ---------- methods for Railway Form ---------- */
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public @ResponseBody RailwayDTO get(@PathVariable Long id) {
+		Railway railway = railwayService.getRailway(new Long(id));
+		return mapper.map(railway, RailwayDTO.class);
+	}
+	
 	/** ---------- methods for RailwayNames ---------- */
 	@RequestMapping(value = "{railwayId}/names", method = RequestMethod.GET)
 	public @ResponseBody List<Map<String, Object>> getRailwayNameList(@PathVariable Long railwayId) {

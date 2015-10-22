@@ -3,7 +3,6 @@ package org.proto1.services;
 
 import java.util.List;
 import java.util.Map;
-
 import org.proto1.domain.Railway;
 
 public interface RailwayService {
@@ -17,5 +16,7 @@ public interface RailwayService {
 	Railway save(Railway railway);
 	
 	void delete(Long id);
+	
+	List<Railway> findAll(Railway criteria);
 
 }
