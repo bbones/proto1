@@ -7,6 +7,8 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.Contract;
 import org.proto1.domain.ContractSide;
 import org.proto1.domain.ContractSupplement;
@@ -38,7 +40,7 @@ public class ContractServiceBean implements ContractService {
 	SideRoleRepository sideRoleRepository;
 	@Autowired 
 	ApproveDocumentService approveDocumentServiceBean;
-
+	protected final Log logger = LogFactory.getLog(getClass());
 	public void setContractRepository(ContractRepository contractRepository) {
 		this.contractRepository = contractRepository;
 
@@ -51,7 +53,7 @@ public class ContractServiceBean implements ContractService {
 	public Contract save(Contract contract) {
 		Contract result = contractRepository.save(contract);
 		// TODO: Пример запуска workFlow. Продумать, где передавать тип approve
-		approveDocumentServiceBean.startApprove(result.getId(), 256l);
+		approveDocumentServiceBean.startApproveByName(result.getId(), "Утверждение договора");
 		return result;
 	}
 
@@ -97,6 +99,9 @@ public class ContractServiceBean implements ContractService {
 	}
 
 	public ContractSide saveSide(ContractSide contractSide) {
+		Contract result = contractSide.getContract();
+		// TODO: Пример запуска workFlow. Продумать, где передавать тип approve
+		approveDocumentServiceBean.startApproveByName(result.getId(), "Утверждение договора");
 		return contractSideRepository.save(contractSide);
 	}
 
@@ -114,9 +119,7 @@ public class ContractServiceBean implements ContractService {
 	}
 
 	public ContractSupplement saveSupplement(ContractSupplement cs) {
-		Contract result = cs.getContract();
-		// TODO: Пример запуска workFlow. Продумать, где передавать тип approve
-		approveDocumentServiceBean.startApprove(result.getId(), 256l);
+
 		return contractSupplementRepository.save(cs);
 	}
 

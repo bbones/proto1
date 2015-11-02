@@ -52,6 +52,10 @@
     <sequenceFlow id="flow15" sourceRef="exclusivegateway2" targetRef="endevent1"></sequenceFlow>
     <userTask id="managerUserTask" name="Начальник отдела должен подтвердить" activiti:candidateGroups="${approveService.findManagerForEmployee(initiator)}">
       <extensionElements>
+        <activiti:formProperty id="id" name="id" type="long" expression="${document.id} " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="no" name="no" type="string" expression="${document.documentNo} " writable="false"></activiti:formProperty>
+        <activiti:formProperty id="accepted" name="accepted" type="boolean" variable="managerUserTaskAccepted" required="true"></activiti:formProperty>
+        <activiti:formProperty id="caseID" name="caseName" type="enum"></activiti:formProperty>
         <activiti:field name="url">
           <activiti:expression>contract/${document.id}/managerUserTask</activiti:expression>
         </activiti:field>

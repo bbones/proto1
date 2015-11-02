@@ -4,7 +4,8 @@ import org.dozer.DozerConverter;
 import org.proto1.domain.SideRole;
 import org.proto1.services.ContractService;
 import org.springframework.beans.factory.annotation.Autowired;
-
+import org.springframework.stereotype.Component;
+@Component
 public class LongSideRoleConverter extends DozerConverter<Long, SideRole> {
 	
 	@Autowired

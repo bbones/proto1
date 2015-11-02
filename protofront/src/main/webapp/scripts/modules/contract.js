@@ -61,13 +61,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid', 'language'],
 				$("#edgSides").edatagrid({
 					url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + language.id(),
 					saveUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),
-					updateUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),
-					onDestroy : function(index, row) {
-			    		$.ajax({
-			    			url : '/protofront/service/contracts/sides/' + row.csId,
-			    			method : 'DELETE'
-			    		});
-					}
+					updateUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),					
 				});
 			}
 		});

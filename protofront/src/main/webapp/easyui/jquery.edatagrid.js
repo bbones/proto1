@@ -443,19 +443,15 @@
           } else {
             // redfox 
             //auto create destroyURL
-            // change the "$.post" on "$.ajax(type:'delete'")
-            // $.post(opts.destroyUrl, {id:idValue}, function(data){
-            if (!opts.destroyUrl) {
-              var idValue = row[opts.idField || 'id'];
-              opts.destroyUrl = opts.updateUrl + '/' + idValue;
-            }
+
             if (opts.destroyUrl) {
               // redfox send 'delete'
               // $.post(opts.destroyUrl, {id:idValue}, function(data){
               var idValue = row[opts.idField || 'id'];
+
               $.ajax({
                 type: "DELETE",
-                url: opts.destroyUrl,
+                url: opts.destroyUrl+ '/' + idValue,
                 data: {
                   id: idValue
                 },

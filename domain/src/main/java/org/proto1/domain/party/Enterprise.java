@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -15,7 +16,7 @@ import org.proto1.domain.Language;
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
 public class Enterprise extends Party {
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise", fetch = FetchType.EAGER)
 	private List<EnterpriseName> enterpriseNames;
 	
 	private Long eskId;
