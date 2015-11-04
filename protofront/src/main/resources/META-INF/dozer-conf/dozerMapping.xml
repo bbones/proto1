@@ -189,6 +189,30 @@
 	</mapping>
 
 	<mapping>
+		<class-a>org.proto1.domain.party.EnterpriseName</class-a>
+		<class-b>org.proto1.dto.EnterpriseSearchDTO</class-b>
+		<field>
+			<a>id</a>
+			<b>nameId</b>
+		</field>
+
+		<field>
+			<a>enterprise.id</a>
+			<b>enterpriseId</b>
+		</field>
+		
+		<field>
+			<a>enterprise.eskId</a>
+			<b>eskId</b>
+		</field>
+
+		<field>
+			<a>name</a>
+			<b>name</b>
+		</field>
+	</mapping>
+
+	<mapping>
 		<class-a>org.proto1.domain.party.PersonName</class-a>
 		<class-b>org.proto1.dto.PersonNameDTO</class-b>
 		<field>

@@ -14,6 +14,7 @@ import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.dto.EnterpriseDTO;
 import org.proto1.dto.EnterpriseNameDTO;
+import org.proto1.dto.EnterpriseSearchDTO;
 import org.proto1.dto.PagedDTO;
 import org.proto1.services.LanguageService;
 import org.proto1.services.party.EnterpriseService;
@@ -52,17 +53,17 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "srchbe", method = RequestMethod.POST)
-	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Long languageId, EnterpriseDTO example, 
+	public @ResponseBody PagedDTO<EnterpriseSearchDTO> getListBE(@RequestParam Long languageId, 
+			Map<String, Object> example, 
 			@RequestParam int page, @RequestParam int rows) {
 		Pageable p = new PageRequest(page-1, rows);
-		Enterprise exmpl = mapper.map(example, Enterprise.class);
-		EnterpriseName en = new EnterpriseName();
-		en.setEnterprise(exmpl);
-		en.setLanguage(mapper.map(languageId, Language.class));
-		en.setName(example.getName());
-		exmpl.setEnterpriseNames(new ArrayList<EnterpriseName>());
-		exmpl.getEnterpriseNames().add(en);
-		return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, exmpl), enterpriseService.getList(languageId, exmpl, p));
+
+		List<EnterpriseName> enList = enterpriseService.getList(languageId, example, p);
+		List<EnterpriseSearchDTO> ensList = new ArrayList<EnterpriseSearchDTO>();
+		mapper.map(enList, ensList);
+		return new PagedDTO<EnterpriseSearchDTO>(
+				enterpriseService.getEnterpriseListCounter(languageId, example), 
+				ensList);
 	}
 
 
