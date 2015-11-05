@@ -12,10 +12,13 @@ import javax.persistence.PrimaryKeyJoinColumn;
 
 import org.proto1.domain.Language;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
 public class Enterprise extends Party {
 	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise")
+	@JsonIgnore
 	private List<EnterpriseName> enterpriseNames;
 	
 	private Long eskId;

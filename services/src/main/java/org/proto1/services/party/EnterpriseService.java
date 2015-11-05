@@ -25,18 +25,17 @@ public interface EnterpriseService {
 
 	Long getEnterpriseListCounter(Long languageId, String string);
 
-	List<Map<String, Object>> getList(Long languageId, String string, Pageable p);
-
 	EnterpriseName saveName(EnterpriseName enterpriseName);
 
 	void deleteName(Long id);
 
 	Long getEnterpriseListCounter(Long languageId, Enterprise exmpl);
 
-	List<Map<String, Object>> getList(Long languageId, Enterprise exmpl,
-			Pageable p);
-
 	List<EnterpriseName> getList(Long languageId, Map<String, Object> example, Pageable p);
+
+	List<Map<String, Object>> getList(Long languageId, String string, Pageable p);
+
+	Long getEnterpriseListCounter(Long languageId, Map<String, Object> example);
 
 
 }

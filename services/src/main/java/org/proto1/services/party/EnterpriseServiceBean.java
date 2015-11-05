@@ -14,9 +14,6 @@ import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Join;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-import javax.transaction.TransactionScoped;
-import javax.transaction.Transactional;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.party.Enterprise;
@@ -84,13 +81,6 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	public Long getEnterpriseListCounter(Long languageId, Enterprise exmpl) {
 		return null; // enterpriseRepository.countById(exmpl);
 	}
-
-	public List<Map<String, Object>> getList(Long languageId, Enterprise exmpl,
-			Pageable p) {
-		// TODO Auto-generated method stub
-		return null; // enterpriseRepository.findAll(exmpl);
-	}
-
 	
 	public List<EnterpriseName> getList(Long languageId, Map<String, Object> example, Pageable p) {
 		
@@ -126,6 +116,11 @@ public class EnterpriseServiceBean implements EnterpriseService {
 			return new ArrayList<EnterpriseName>();
 		}
 		return enterpriseNameRepository.findAll(qbe);
+	}
+
+	public Long getEnterpriseListCounter(Long languageId, Map<String, Object> example) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
