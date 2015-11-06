@@ -15,14 +15,8 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *******************************************************************************/
-/**
- * File contract.js
- * Created 17.04.15
- * 
- */
-
-define (['currencyUtil', 'commonlib', 'edatagrid'], 
-		function(currencyUtil, commonlib, edatagrid){
+define (['currencyUtil', 'commonlib', 'edatagrid', 'language'], 
+		function(currencyUtil, commonlib, edatagrid, language){
 
 	'use strict';
 
@@ -70,17 +64,11 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 
 	function initSidesGrid(){
 		$("#spa-cntr").on("contractSelected", function(event, contractId){
-			if ((typeof contractId) != 'undefined') {
+			if ((typeof contractId) !== 'undefined') {
 				$("#edgSides").edatagrid({
 					url : "/protofront/service/contracts/" + contractId + "/sides?languageId=" + language.id(),
 					saveUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),
-					updateUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),
-					onDestroy : function(index, row) {
-			    		$.ajax({
-			    			url : '/protofront/service/contracts/sides/' + row.csId,
-			    			method : 'DELETE'
-			    		});
-					}
+					updateUrl : "/protofront/service/contracts/sides?languageId=" + language.id(),					
 				});
 			}
 		});
@@ -105,7 +93,7 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 		var supevent = jQuery.Event( "contractSupplementSelected" );
 
 		$("#spa-cntr").on("contractSelected", function(event, contractId){
-			if ((typeof contractId) != 'undefined') {
+			if ((typeof contractId) !== 'undefined') {
 				$("#edgSupplement").edatagrid({
 					url : "/protofront/service/contracts/" + contractId + "/supplements"
 				});
@@ -195,7 +183,6 @@ define (['currencyUtil', 'commonlib', 'edatagrid'],
 	
 	function initContractSupplementForm() {
 		$("#spa-cntr").on("contractSupplementSelected", function(event, contractSupplementId){
-			debugger;
 			if (contractSupplementId) {
 				$("#csf").form('load', '/protofront/service/contracts/supplements/' + contractSupplementId);
 			}

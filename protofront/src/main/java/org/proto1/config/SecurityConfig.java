@@ -19,7 +19,6 @@ package org.proto1.config;
 
 import javax.annotation.Priority;
 
-import org.proto1.security.ActiveDirectoryGrantedAuthoritiesMapper;
 import org.proto1.security.StatelessAuthenticationFilter;
 import org.proto1.security.StatelessLoginFilter;
 import org.proto1.security.TokenAuthenticationService;
@@ -34,9 +33,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.AuthenticationEntryPoint;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
@@ -45,14 +41,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(securedEnabled = true, proxyTargetClass = true)
 @Priority(1)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private AuthenticationSuccessHandler restAuthenticationSuccessHandler;
-	@Autowired
-	AuthenticationEntryPoint restAuthenticationEntryPoint;
-	@Autowired
-	private AuthenticationFailureHandler restAuthenticationFailureHandler;
-	@Autowired
-	private ActiveDirectoryGrantedAuthoritiesMapper activeDirectoryGrantedAuthoritiesMapper;
 	@Autowired
 	private TokenAuthenticationService tokenAuthenticationService;
 
@@ -69,28 +57,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		 * .failureHandler(restAuthenticationFailureHandler);
 		 */
 
-		http.headers()
-				.frameOptions()
-				.sameOrigin()
-				.and()
-				.sessionManagement()
-				.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.anonymous()
-				.and()
-				.authorizeRequests()
-				.anyRequest()
-				.permitAll()
-				.and()
-				.csrf()
-				.disable()
+		http.headers().frameOptions().sameOrigin().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().anonymous().and().authorizeRequests()
+				.anyRequest().permitAll().and().csrf().disable()
 				// token header upon authentication
-				.addFilterBefore(statelessLoginFilter(),
-						UsernamePasswordAuthenticationFilter.class)
+				.addFilterBefore(statelessLoginFilter(), UsernamePasswordAuthenticationFilter.class)
 				// custom Token based authentication based on the header
 				// previously given to the client
-				.addFilterBefore(statelessAuthenticationFilter(),
-						UsernamePasswordAuthenticationFilter.class)
+				.addFilterBefore(statelessAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class)
 				.servletApi().and().headers().cacheControl();
 
 	}
@@ -102,8 +76,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	private StatelessLoginFilter statelessLoginFilter() throws Exception {
-		return new StatelessLoginFilter("/login", tokenAuthenticationService,
-				userDetailsService(), authenticationManager());
+		return new StatelessLoginFilter("/login", tokenAuthenticationService, userDetailsService(),
+				authenticationManager());
 
 	}
 
@@ -129,12 +103,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * return provider; }
 	 */
 	@Autowired
-	public void configureGlobal(AuthenticationManagerBuilder auth)
-			throws Exception {
-		auth.inMemoryAuthentication().withUser("user1").password("111")
-				.roles("USER").and().withUser("user2").password("222")
-				.roles("USER", "SUPERUSER").and().withUser("admin")
-				.password("000").roles("USER", "SUPERUSER", "ADMIN");
+	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("user1").password("111").roles("USER").and().withUser("user2")
+				.password("222").roles("USER", "SUPERUSER").and().withUser("admin").password("000")
+				.roles("USER", "SUPERUSER", "ADMIN");
 
 		;
 	}

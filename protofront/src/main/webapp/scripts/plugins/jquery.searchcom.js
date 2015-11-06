@@ -47,7 +47,6 @@
 	
 	function search(target) {
 		var opts = $.data(target, 'searchcom').options;
-		debugger;
 		var data = $("#srchform").serializeObject();
 		$("#srchGrid").datagrid({
 			url : opts.url, // + '&' + $("#srchform").serialize()
@@ -64,7 +63,7 @@
 	}
 
 	$.fn.searchcom = function(options, param){
-		if (typeof options == 'string'){
+		if (typeof options === 'string'){
 			return $.fn.searchcom.methods[options](this, param);
 		}
 		
@@ -87,7 +86,7 @@
 		options: function(jq){
 			return $.data(jq[0], 'searchcom').options;
 		}
-	}
+	};
 	
 	$.fn.searchcom.parseOptions = function(target){
 		return $.extend({}, $.parser.parseOptions(target, ['width','height','url']));

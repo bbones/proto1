@@ -142,7 +142,7 @@ public class ContractController extends BaseController {
 		return contractSupplementDTO;
 	}
 
-	@RequestMapping(value = "/supplements/{supplementId}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/supplements/{id}", method = RequestMethod.DELETE)
 	public void deleteSupplement(@PathVariable Long supplementId) {
 		contractService.deleteSupplement(supplementId);
 	}

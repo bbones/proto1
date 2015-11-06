@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (C) 2015  Valentin Pogrebinsky
+ * Copyright (C) 2015  Boris Efimenko
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -20,4 +20,5 @@ package org.proto1.workflow;
 
 public interface ApproveDocumentService {
 	void startApprove(Long documentID, Long approveTypeID);
+	void startApproveByName(Long documentID, String approveTypeName);
 }

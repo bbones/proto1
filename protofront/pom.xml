@@ -16,7 +16,6 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  -->
-
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -32,8 +31,9 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<org.springframework.version>4.2.1.RELEASE</org.springframework.version>
-		<org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>		
+		<org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
 		<com.fasterxml.jackson.core>2.6.1</com.fasterxml.jackson.core>
+		<org.activiti.version>5.18.0</org.activiti.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -116,13 +116,8 @@
 			<version>${org.springframework.security.version}</version>
 		</dependency>
 
-<!-- 
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>${org.codehaus.jackson}</version>
-		</dependency>
- -->
+		<!-- <dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+			<version>${org.codehaus.jackson}</version> </dependency> -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -162,7 +157,12 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1201-jdbc41</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.activiti</groupId>
+			  <artifactId>activiti-rest</artifactId>
+			<!-- <classifier>classes</classifier> -->
+			<version>${org.activiti.version}</version>
+		</dependency>
 
 	</dependencies>
 	<build>
@@ -172,11 +172,12 @@
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 		</plugins>
 
 	</build>
 </project>
+ 

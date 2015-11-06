@@ -52,7 +52,8 @@ requirejs.config({
 		'demand' : 'modules/order/demand',
 		'prodorder' : 'modules/order/prodorder',
 		'purchaseorder' : 'modules/order/purchaseorder',
-		'bom' : 'modules/order/bom'
+		'bom' : 'modules/order/bom',
+	    'myTask': 'modules/activiti/myTask'
 
 	},
 	shim : {

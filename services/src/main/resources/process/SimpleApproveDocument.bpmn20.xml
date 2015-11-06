@@ -23,7 +23,7 @@
     <serviceTask id="aprooveMailTask" name="Сообщим инициатору, что документ одобрен" activiti:type="mail">
       <extensionElements>
         <activiti:field name="subject">
-          <activiti:expression>Your order ${document.documentNo} has been approved</activiti:expression>
+          <activiti:expression><![CDATA[Your order ${document.documentNo} has been approved]]></activiti:expression>
         </activiti:field>
         <activiti:field name="from">
           <activiti:string><![CDATA[admin@isd.com.ua]]></activiti:string>
@@ -32,7 +32,7 @@
           <activiti:string><![CDATA[redfox@isd.com.ua]]></activiti:string>
         </activiti:field>
         <activiti:field name="html">
-          <activiti:expression>Все хорошо, ${initiator.getPassportNo()}</activiti:expression>
+          <activiti:expression><![CDATA[Все хорошо, ${initiator.getPassportNo()}]]></activiti:expression>
         </activiti:field>
       </extensionElements>
     </serviceTask>
@@ -47,10 +47,10 @@
           <activiti:string><![CDATA[admin@isd.com.ua]]></activiti:string>
         </activiti:field>
         <activiti:field name="subject">
-          <activiti:expression>Your order ${document.documentNo} hasn't been approved</activiti:expression>
+          <activiti:expression><![CDATA[Your order ${document.documentNo} hasn't been approved]]></activiti:expression>
         </activiti:field>
         <activiti:field name="html">
-          <activiti:expression>Все плохо, ${initiator.getPassportNo()}</activiti:expression>
+          <activiti:expression><![CDATA[Все плохо, ${initiator.getPassportNo()}]]></activiti:expression>
         </activiti:field>
       </extensionElements>
     </serviceTask>
@@ -61,7 +61,7 @@
     <sequenceFlow id="flow9" sourceRef="afterApproveServiceTask" targetRef="aprooveMailTask"></sequenceFlow>
     <serviceTask id="afterNotApproveServiceTask" name="Отметим где-нибудь, что все прошло плохо" activiti:expression="${sayHelloService.printMessageB(execution)}"></serviceTask>
     <sequenceFlow id="flowNotApprove" name="Отправил на доработку" sourceRef="exclusivegateway1" targetRef="afterNotApproveServiceTask">
-      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!managerUserTaskAccepted} ]]></conditionExpression>
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${!managerUserTaskAccepted}]]></conditionExpression>
     </sequenceFlow>
     <sequenceFlow id="flow12" sourceRef="afterNotApproveServiceTask" targetRef="notAprooveMailTask"></sequenceFlow>
     <exclusiveGateway id="exclusivegateway2" name="Exclusive Gateway"></exclusiveGateway>
@@ -105,7 +105,7 @@
         <omgdi:waypoint x="570.0" y="184.0"></omgdi:waypoint>
         <omgdi:waypoint x="669.0" y="185.0"></omgdi:waypoint>
         <bpmndi:BPMNLabel>
-          <omgdc:Bounds height="14.0" width="100.0" x="580.0" y="184.0"></omgdc:Bounds>
+          <omgdc:Bounds height="14.0" width="62.0" x="580.0" y="184.0"></omgdc:Bounds>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">

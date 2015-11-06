@@ -37,7 +37,7 @@
         <org.springframework.data.spring-data-jpa.version>1.9.0.RELEASE</org.springframework.data.spring-data-jpa.version>		
         <org.springframework.data.spring-data-commons.version>1.11.0.RELEASE</org.springframework.data.spring-data-commons.version>
         
-        <org.activiti.version>5.17.0</org.activiti.version>          
+        <org.activiti.version>5.18.0</org.activiti.version>          
 	</properties>
 
 	<dependencies>
@@ -154,4 +154,17 @@
 		</plugins>
 	</build>
 	 -->
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+
+	</build>
+
 </project>

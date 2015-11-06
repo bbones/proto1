@@ -15,12 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *******************************************************************************/
-/**
- * File orgUnit.util.js
- * Created 15.09.15
- * @author Valentin Pogrebinsky
- */
-
 define(['jquery', 'language'], function($, language){
 	'use strict';
 
@@ -57,11 +51,11 @@ define(['jquery', 'language'], function($, language){
 		},
 
 		orgUnitFormatter : function(value, row) {
-        	return uomMap[value];
+        	return orgUnitMap[value];
         },
 
 		getOrgUnitEditor : function() {
-			return uomEditor;
+			return orgUnitEditor;
 		},
 		getOrgUnitList : function() {
 			return orgUnitList;

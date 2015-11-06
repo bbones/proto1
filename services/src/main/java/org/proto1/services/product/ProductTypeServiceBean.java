@@ -22,7 +22,6 @@ import java.util.Map;
 
 import org.proto1.domain.product.ProductType;
 import org.proto1.domain.product.ProductTypeName;
-import org.proto1.repository.LanguageRepository;
 import org.proto1.repository.product.ProductTypeNameRepository;
 import org.proto1.repository.product.ProductTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +35,6 @@ public class ProductTypeServiceBean implements ProductTypeService {
 	
 	@Autowired
 	private ProductTypeNameRepository productTypeNameRepository;
-
-	@Autowired
-	private LanguageRepository languageRepository;
 
 	public ProductType get(Long id) {
 		return productTypeRepository.findOne(id);

@@ -21,12 +21,14 @@ package org.proto1.services;
 import java.util.List;
 import java.util.Map;
 
-
 //import org.apache.commons.logging.Log;
 //import org.apache.commons.logging.LogFactory;
 import org.proto1.domain.Railway;
 import org.proto1.repository.RailwayRepository;
+import org.proto1.specifications.PlainSpecification;
+import org.proto1.specifications.SearchCriteria;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specifications;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -57,6 +59,15 @@ public class RailwayServiceBean implements RailwayService {
 	
 	public void delete(Long id) {
 		railwayRepository.delete(id);
+	}
+	
+	public List<Railway> findAll(Railway criteria) {
+		PlainSpecification<Railway> spec1 = new PlainSpecification<Railway>(
+				new SearchCriteria("id", "=", criteria.getId()));
+		PlainSpecification<Railway> spec2 = new PlainSpecification<Railway>(
+				new SearchCriteria("railwayCode", "like",
+						criteria.getRailwayCode()));
+		return railwayRepository.findAll(Specifications.where(spec1).and(spec2));
 	}
 
 }

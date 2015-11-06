@@ -26,7 +26,7 @@ var AuthLib = (function() {
 	}
 	function addHeader() {
 		$(document).ajaxSend(function(event, jqXHR, ajaxOptions) {
-			if (ajaxOptions.url.indexOf("/service/") != -1) {
+			if (ajaxOptions.url.indexOf("/service/") !== -1) {
 				var token = localStorage.getItem(storageKey);
 				if (token) {
 					jqXHR.setRequestHeader(headerKey, token);

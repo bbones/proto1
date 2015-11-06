@@ -27,15 +27,16 @@
 			return;
 		}
 		$(target).find('.textbox-text:focus').blur();
-
-		_submit(param);
-		function _submit(param) {
+		var postData = opts.onBeforePost.call(target, $(target));
+		function _submit(postData) {
 			var form = $(target);
+			var url = opts.postUrl ? opts.postUrl : opts.url;
 			$.ajax({
-				type : 'POST',
-				url : opts.url,
-				data : form.serialize(),
+				type : opts.method,
+				url : url,
+				data : postData,
 				dataType : opts.datatype,
+				contentType:opts.contentType,
 				success : function(data) {
 					opts.success(data);
 				},
@@ -43,16 +44,20 @@
 					opts.onPostError.apply(target, arguments);
 				}
 			});
-
 		}
-
+		_submit(postData);
 	}
-	
 
 	$.extend($.fn.form.defaults, {
 		onPostError : function(data) {
 		},
-		dataType: 'json'
+		onBeforePost : function(formData) {
+			return formData.serialize();
+		},
+		datatype : 'json',
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		postUrl : null,
+		method : 'POST'
 	});
 
 	$.extend($.fn.form.methods, {

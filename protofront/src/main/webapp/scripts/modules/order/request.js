@@ -21,8 +21,9 @@
  * @author Valentin Pogrebinsky
  */
 
-define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil"], 
-		function(ordermod, language, uomUtil, productUtil, orgUnitUtil) {
+
+define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil", 'commonlib'], 
+		function(ordermod, language, uomUtil, productUtil, orgUnitUtil, commonlib) {
 
 	'use strict';
 
@@ -80,6 +81,7 @@ define (["ordermod", "language", "uomUtil", "productUtil", "orgUnitUtil"],
 		init : initRequest
 	};
 });
+
 
 
 

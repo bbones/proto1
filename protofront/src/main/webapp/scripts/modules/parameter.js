@@ -59,7 +59,7 @@ define(['uomUtil', 'commonlib','edatagrid', 'language'], function(uomUtil, commo
 						initUOM = true;
 						for ( var i=0; i<l; i++ ) {
 							var indx = data.indexOf(d[i].id);
-							if (indx != -1) {
+							if (indx !== -1) {
 								$('#dlUOM').datagrid('checkRow', i);
 							} else {
 								$('#dlUOM').datagrid('uncheckRow', i);

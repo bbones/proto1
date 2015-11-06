@@ -15,7 +15,6 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *******************************************************************************/
-
 define(["commonlib", "language", "edatagrid"],function(commonlib, language, edatagrid){
 	'use strict';
 
@@ -71,7 +70,7 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 
 			}),
 			onSave : function(index,row) {
-				if (row.languageId == language.id()) {
+				if (row.languageId === language.id()) {
 					var node = $('#productTypes').tree('getSelected');
 					$('#productTypes').tree('update', {
 						target: node.target,
@@ -162,6 +161,4 @@ define(["commonlib", "language", "edatagrid"],function(commonlib, language, edat
 		}
 	};
 });
-
-
 

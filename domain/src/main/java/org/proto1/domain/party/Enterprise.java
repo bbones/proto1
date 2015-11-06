@@ -20,6 +20,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -30,10 +31,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @PrimaryKeyJoinColumn(name="ENTERPRISE_ID")
 public class Enterprise extends Party {
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise")
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="enterprise", fetch = FetchType.EAGER)
 	@JsonIgnore
 	private List<EnterpriseName> enterpriseNames;
-	
+		
 	private Long eskId;
 
 	public List<EnterpriseName> getEnterpriseNames() {

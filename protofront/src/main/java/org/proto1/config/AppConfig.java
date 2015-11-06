@@ -29,7 +29,8 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
 @Configuration
-@ComponentScan("org.proto1")
+@ComponentScan({"org.proto1"})
+
 public class AppConfig {
 	@Autowired
 	private ApplicationContext context;
