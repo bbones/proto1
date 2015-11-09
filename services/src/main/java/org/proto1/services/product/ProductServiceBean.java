@@ -12,7 +12,6 @@ import org.proto1.domain.product.Product;
 import org.proto1.domain.product.ProductName;
 import org.proto1.domain.product.ProductParameter;
 import org.proto1.repository.LanguageRepository;
-import org.proto1.repository.ParameterRepository;
 import org.proto1.repository.product.ProductNameRepository;
 import org.proto1.repository.product.ProductParameterRepository;
 import org.proto1.repository.product.ProductRepository;
@@ -30,8 +29,6 @@ public class ProductServiceBean implements ProductService {
 	@Autowired
 	private ProductNameRepository productNameRepository;
 	
-	@Autowired
-	private ParameterRepository parameterRepository;
 	
 	@Autowired
 	private ProductParameterRepository productParameterRepository;
