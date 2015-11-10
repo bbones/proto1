@@ -16,6 +16,7 @@
  *
  * GNU v2 license text in root directory of project
  *******************************************************************************/
+
 define([ 'jquery', 'easyui.form.ext' ], function($, form) {
 
 	'use strict';

@@ -17,6 +17,7 @@
  * GNU v2 license text in root directory of project
  *******************************************************************************/
 
+
 define([ 'currencyUtil', 'commonlib', 'edatagrid', 'easyui.form.ext', 'language' ], function(currencyUtil, commonlib,
 		edatagrid, form, language) {
 

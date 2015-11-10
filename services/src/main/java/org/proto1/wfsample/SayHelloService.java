@@ -16,6 +16,7 @@
  *
  * GNU v2 license text in root directory of project
  *******************************************************************************/
+
 package org.proto1.wfsample;
 
 import org.activiti.engine.impl.pvm.delegate.ActivityExecution;

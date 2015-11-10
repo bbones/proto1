@@ -16,6 +16,7 @@
  *
  * GNU v2 license text in root directory of project
  *******************************************************************************/
+
 define([ 'language' ], function(language) {
 
 	'use strict';
