@@ -1,8 +1,8 @@
 /*******************************************************************************
- * Copyright (C) 2015   Valentin Pogrebinsky 
+ * Copyright (C) 2015   Boris Efimenko
  *
- * mail:pva@isd.com.ua
- * https://github.com/bbones
+ * mail:Boris.Efimenko@isd.com.ua
+ * https://github.com/BorisEfimenko
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -16,6 +16,7 @@
  *
  * GNU v2 license text in root directory of project
  *******************************************************************************/
+
 package org.proto1.workflow;
 
 

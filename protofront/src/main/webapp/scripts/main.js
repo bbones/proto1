@@ -21,8 +21,8 @@ requirejs.config({
   'paths': {
     'jquery': '../lib/jquery-2.1.4',
     'easyui': '../easyui/jquery.easyui.min',
-    'edatagrid': '../easyui/jquery.edatagrid',
-    'datagrid.excel': '../easyui/jquery.datagrid.excel',
+    'edatagrid': 'plugins/jjquery.edatagrid.fix',
+    'datagrid.excel': 'plugins/jquery.datagrid.excel',
     'easyui.form.ext': 'plugins/jquery.form.ext',
     'easyui.grid.ext': 'plugins/jquery.grid.ext',
     'serializeObject': 'plugins/jquery.serializeObject',

@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (C) 2015   Valentin Pogrebinsky 
+ * Copyright (C) 2015   Serhiy Romaniuk 
  *
- * mail:pva@isd.com.ua
- * https://github.com/bbones
+ * mail:rsk@isd.com.ua
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -16,7 +15,6 @@
  *
  * GNU v2 license text in root directory of project
  *******************************************************************************/
-/** Rsk 09.07.2015 */
 package org.proto1.repository;
 
 import java.util.List;

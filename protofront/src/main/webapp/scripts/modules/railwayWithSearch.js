@@ -1,8 +1,7 @@
 /*******************************************************************************
- * Copyright (C) 2015   Valentin Pogrebinsky 
+ * Copyright (C) 2015   Serhiy Romaniuk 
  *
- * mail:pva@isd.com.ua
- * https://github.com/bbones
+ * mail:rsk@isd.com.ua
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -16,9 +15,6 @@
  *
  * GNU v2 license text in root directory of project
  *******************************************************************************/
-/**
- * File railway.js Rsk 30.09.2015
- */
 
 define(	[ 'commonlib', 'edatagrid', 'datagrid.excel', 'easyui.form.ext', 'language' ],
 	function(commonlib, edatagrid, datagrid, form, language) {
@@ -95,6 +91,7 @@ define(	[ 'commonlib', 'edatagrid', 'datagrid.excel', 'easyui.form.ext', 'langua
 
 		function initRailwayNameGrid() {
 			$("#edgRailwayNames").edatagrid({
+				columns: columns[1].formatter = language.languageFormatter,
 				onDestroy : function(index, row) {
 					$.ajax({
 						url : '/protofront/service/railways/names/'	+ row.id,
