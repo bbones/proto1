@@ -143,9 +143,20 @@
 
 		<dependency>
 			<groupId>org.activiti</groupId>
-			  <artifactId>activiti-rest</artifactId>
+			<artifactId>activiti-rest</artifactId>
 			<!-- <classifier>classes</classifier> -->
 			<version>${org.activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.2</version>
 		</dependency>
 
 	</dependencies>
