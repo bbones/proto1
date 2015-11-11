@@ -21,6 +21,7 @@ Prototyping framework
 ##Технологический стек
 * Tomcat
 * Spring Framework
+* Dozer
 * Spring Data
 * Spring Security
 * PostgreSQL
