@@ -34,6 +34,7 @@ import org.proto1.services.party.EnterpriseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -66,14 +67,13 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "srchbe", method = RequestMethod.POST)
-	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Long languageId, EnterpriseDTO example, 
-			@RequestParam int page, @RequestParam int rows) {
+	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Integer page, @RequestParam Integer rows, @RequestParam Long languageId, @RequestParam MultiValueMap<String, Object> requestMap) {
 		Pageable p = new PageRequest(page-1, rows);
-		Enterprise exmpl = mapper.map(example, Enterprise.class);
+		Enterprise exmpl = mapper.map(requestMap, Enterprise.class);
 		EnterpriseName en = new EnterpriseName();
 		en.setEnterprise(exmpl);
 		en.setLanguage(mapper.map(languageId, Language.class));
-		en.setName(example.getName());
+		// en.setName(example.getName());
 		exmpl.setEnterpriseNames(new ArrayList<EnterpriseName>());
 		exmpl.getEnterpriseNames().add(en);
 		return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, exmpl), enterpriseService.getList(languageId, exmpl, p));
