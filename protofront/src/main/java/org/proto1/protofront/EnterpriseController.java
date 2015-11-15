@@ -67,7 +67,12 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "srchbe", method = RequestMethod.POST)
-	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Integer page, @RequestParam Integer rows, @RequestParam Long languageId, @RequestParam MultiValueMap<String, Object> requestMap) {
+	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Integer page, @RequestParam Integer rows, @RequestParam Long languageId, 
+				@RequestParam MultiValueMap<String, Object> requestMap) {
+		
+		// http://stackoverflow.com/questions/8138400/spring-mvc-reflection-invoke-pojo-setters
+		// http://stackoverflow.com/questions/13395865/dozer-how-to-map-from-java-util-map-to-complex-type
+
 		Pageable p = new PageRequest(page-1, rows);
 		Enterprise exmpl = mapper.map(requestMap, Enterprise.class);
 		EnterpriseName en = new EnterpriseName();
