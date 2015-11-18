@@ -1,22 +1,12 @@
 <?xml version="1.0"?>
-<!--
-    Copyright (C) 2015   Valentin Pogrebinsky 
-   
-    mail:pva@isd.com.ua
-    https://github.com/bbones
-   
-    This program is free software; you can redistribute it and/or
-    modify it under the terms of the GNU General Public License
-    as published by the Free Software Foundation; either version 2
-    of the License, or (at your option) any later version.
-   
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
-   
-    GNU v2 license text in root directory of project
- -->
+<!-- Copyright (C) 2015 Valentin Pogrebinsky mail:pva@isd.com.ua https://github.com/bbones 
+	This program is free software; you can redistribute it and/or modify it under 
+	the terms of the GNU General Public License as published by the Free Software 
+	Foundation; either version 2 of the License, or (at your option) any later 
+	version. This program is distributed in the hope that it will be useful, 
+	but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY 
+	or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for 
+	more details. GNU v2 license text in root directory of project -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -33,12 +23,12 @@
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<org.springframework.version>4.2.1.RELEASE</org.springframework.version>        
-        <org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
-        <org.springframework.data.spring-data-jpa.version>1.9.0.RELEASE</org.springframework.data.spring-data-jpa.version>		
-        <org.springframework.data.spring-data-commons.version>1.11.0.RELEASE</org.springframework.data.spring-data-commons.version>
-        
-        <org.activiti.version>5.18.0</org.activiti.version>          
+		<org.springframework.version>4.2.1.RELEASE</org.springframework.version>
+		<org.springframework.security.version>4.0.2.RELEASE</org.springframework.security.version>
+		<org.springframework.data.spring-data-jpa.version>1.9.0.RELEASE</org.springframework.data.spring-data-jpa.version>
+		<org.springframework.data.spring-data-commons.version>1.11.0.RELEASE</org.springframework.data.spring-data-commons.version>
+
+		<org.activiti.version>5.18.0</org.activiti.version>
 	</properties>
 
 	<dependencies>
@@ -90,7 +80,7 @@
 			<artifactId>spring-data-commons</artifactId>
 			<version>${org.springframework.data.spring-data-commons.version}</version>
 		</dependency>
-	    <dependency>
+		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${org.springframework.security.version}</version>
@@ -119,43 +109,64 @@
 			<artifactId>postgresql</artifactId>
 			<version>9.4-1201-jdbc41</version>
 		</dependency>
-		
-<!-- Activity -->
-<dependency>
-        <groupId>org.activiti</groupId>
-        <artifactId>activiti-engine</artifactId>
-        <version>${org.activiti.version}</version>
-</dependency>
-<dependency>
-        <groupId>org.activiti</groupId>
-        <artifactId>activiti-spring</artifactId>
-        <version>${org.activiti.version}</version>
-</dependency>
-		
+
+		<!-- Activity -->
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-engine</artifactId>
+			<version>${org.activiti.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.activiti</groupId>
+			<artifactId>activiti-spring</artifactId>
+			<version>${org.activiti.version}</version>
+		</dependency>
+
+		<!-- Elasticsearch -->
+		<dependency>
+			<groupId>org.elasticsearch</groupId>
+			<artifactId>elasticsearch</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-core</artifactId>
+			<version>5.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.lucene</groupId>
+			<artifactId>lucene-expressions</artifactId>
+			<version>5.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.codehaus.groovy</groupId>
+			<artifactId>groovy-all</artifactId>
+			<version>2.3.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.spullara.mustache.java</groupId>
+			<artifactId>compiler</artifactId>
+			<version>0.9.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.jna</groupId>
+			<artifactId>jna</artifactId>
+			<version>3.0.9</version>
+		</dependency>
+
 	</dependencies>
-	<!-- 
+	<!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
+		<artifactId>maven-remote-resources-plugin</artifactId> <configuration> <resourceBundles> 
+		<resourceBundle>com.proto1.domain:domain:${project.version}</resourceBundle> 
+		</resourceBundles> </configuration> <executions> <execution> <goals> <goal>process</goal> 
+		</goals> </execution> </executions> </plugin> </plugins> </build> -->
 	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-remote-resources-plugin</artifactId>
-				<configuration>
-					<resourceBundles>
-						<resourceBundle>com.proto1.domain:domain:${project.version}</resourceBundle>
-					</resourceBundles>
-				</configuration>
-				<executions>
-					<execution>
-						<goals>
-							<goal>process</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
-	 -->
-	 <build>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

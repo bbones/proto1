@@ -36,6 +36,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -67,21 +68,13 @@ public class EnterpriseController {
 	}
 
 	@RequestMapping(value = "srchbe", method = RequestMethod.POST)
-	public @ResponseBody PagedDTO<Map<String, Object>> getListBE(@RequestParam Integer page, @RequestParam Integer rows, @RequestParam Long languageId, 
-				@RequestParam MultiValueMap<String, Object> requestMap) {
+	public @ResponseBody PagedDTO<EnterpriseDTO> getListBE(@RequestParam Integer page, @RequestParam Integer rows, @RequestParam Long languageId, 
+				MultiValueMap<String, Object> example) {
 		
-		// http://stackoverflow.com/questions/8138400/spring-mvc-reflection-invoke-pojo-setters
-		// http://stackoverflow.com/questions/13395865/dozer-how-to-map-from-java-util-map-to-complex-type
-
 		Pageable p = new PageRequest(page-1, rows);
-		Enterprise exmpl = mapper.map(requestMap, Enterprise.class);
-		EnterpriseName en = new EnterpriseName();
-		en.setEnterprise(exmpl);
-		en.setLanguage(mapper.map(languageId, Language.class));
-		// en.setName(example.getName());
-		exmpl.setEnterpriseNames(new ArrayList<EnterpriseName>());
-		exmpl.getEnterpriseNames().add(en);
-		return new PagedDTO<Map<String, Object>>(enterpriseService.getEnterpriseListCounter(languageId, exmpl), enterpriseService.getList(languageId, exmpl, p));
+		return null;
+		// new PagedDTO<EnterpriseDTO>(enterpriseService.getEnterpriseListCounter(languageId, example), 
+		//		enterpriseService.getList(languageId, example, p));
 	}
 
 

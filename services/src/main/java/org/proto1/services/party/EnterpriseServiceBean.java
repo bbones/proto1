@@ -80,14 +80,4 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		
 	}
 
-	public Long getEnterpriseListCounter(Long languageId, Enterprise exmpl) {
-		return null; // enterpriseRepository.countById(exmpl);
-	}
-
-	public List<Map<String, Object>> getList(Long languageId, Enterprise exmpl,
-			Pageable p) {
-		// TODO Auto-generated method stub
-		return null; // enterpriseRepository.findAll(exmpl);
-	}
-
 }
