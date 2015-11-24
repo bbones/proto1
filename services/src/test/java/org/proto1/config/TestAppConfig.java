@@ -19,6 +19,11 @@ package org.proto1.config;
  *******************************************************************************/
 
 
+import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
+
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.node.Node;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -26,5 +31,14 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan({"org.proto1"})
 
 public class TestAppConfig {
+	@Bean
+	public Node node() {
+		Node node = nodeBuilder().clusterName("elasticsearch")
+		        .settings(Settings.settingsBuilder()
+		        		.put("path.home", "e:/es"))
+		        .client(true)
+		        .node();
+		return node;
+	}
 
 }

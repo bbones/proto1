@@ -18,9 +18,13 @@
  *******************************************************************************/
 package org.proto1.config;
 
+import static org.elasticsearch.node.NodeBuilder.*;
+
 import java.io.IOException;
 
 import org.dozer.spring.DozerBeanMapperFactoryBean;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -45,4 +49,13 @@ public class AppConfig {
 		return mapper;
 	}
 
+	@Bean
+	public Node node() {
+		Node node = nodeBuilder().clusterName("elasticsearch")
+		        .settings(Settings.settingsBuilder()
+		        		.put("path.home", "e:/es"))
+		        .client(true)
+		        .node();
+		return node;
+	}
 }
