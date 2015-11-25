@@ -120,5 +120,15 @@
 	        "text": "Незавершенные задачи",
 	        "module": "myTask"
 	    	}]
+	},
+	{
+		"id" : "service",
+		"text" : "Сервис",
+		"state" : "closed",
+		"children" : [{
+				"id" : "esindex",
+				"text" : "Elasticsearch индекс",
+				"module" : "esindex"
+			}]
 	}	
 ]

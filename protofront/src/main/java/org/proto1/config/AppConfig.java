@@ -23,6 +23,7 @@ import static org.elasticsearch.node.NodeBuilder.*;
 import java.io.IOException;
 
 import org.dozer.spring.DozerBeanMapperFactoryBean;
+import org.elasticsearch.client.Client;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,4 +59,10 @@ public class AppConfig {
 		        .node();
 		return node;
 	}
+	
+	@Bean
+	public Client esclient() {
+		return node().client();
+	}
+
 }

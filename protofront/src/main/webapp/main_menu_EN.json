@@ -118,5 +118,17 @@
 	        "text": "Open tasks",
 	        "module": "myTask"
 	    	}]
+	},
+	{
+		"id" : "service",
+		"text" : "Service",
+		"state" : "closed",
+		"children" : [
+			{
+				"id" : "esindex",
+				"text" : "Elasticsearch index",
+				"module" : "esindex"
+			}
+		]
 	}	
 ]

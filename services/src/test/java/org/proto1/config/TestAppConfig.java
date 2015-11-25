@@ -21,6 +21,7 @@ package org.proto1.config;
 
 import static org.elasticsearch.node.NodeBuilder.nodeBuilder;
 
+import org.elasticsearch.client.Client;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.node.Node;
 import org.springframework.context.annotation.Bean;
@@ -41,4 +42,8 @@ public class TestAppConfig {
 		return node;
 	}
 
+	@Bean
+	public Client esclient() {
+		return node().client();
+	}
 }
