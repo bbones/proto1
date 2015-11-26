@@ -18,9 +18,15 @@
  *******************************************************************************/
 package org.proto1.services.party;
 
+import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
+
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.client.Client;
+import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.repository.party.EnterpriseNameRepository;
@@ -28,6 +34,7 @@ import org.proto1.repository.party.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import static org.elasticsearch.common.xcontent.XContentFactory.*;
 
 @Service
 public class EnterpriseServiceBean implements EnterpriseService {
@@ -37,6 +44,9 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	
 	@Autowired
 	EnterpriseNameRepository enterpriseNameRepository;
+	
+	@Autowired
+	Client esclient;
 	
 	public Enterprise get(Long id) {
 		return enterpriseRepository.findOne(id);
@@ -78,6 +88,30 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	public void deleteName(Long id) {
 		enterpriseNameRepository.delete(id);
 		
+	}
+
+	@Override
+	public String esindex() throws IOException {
+		for(Enterprise ent : enterpriseRepository.findAll()) {
+			XContentBuilder source = jsonBuilder()
+	            .startObject()
+		        .field("id", ent.getId())
+		        .field("eskid", ent.getEskId());
+	
+	        source.field("names").startArray();
+	        for (EnterpriseName en : ent.getEnterpriseNames()) {
+	        	source
+	        		.startObject()
+	        			.field("language", en.getLanguage().getName())
+	        			.field("name", en.getName())
+	        			.endObject();
+	        }
+	        source.endArray().endObject();
+			IndexResponse response = esclient.prepareIndex("proto1", "enterprise", ent.getId().toString()).setSource(source).get();
+			if (!response.isCreated())
+				return response.toString();
+		}
+		return "Done";
 	}
 
 }

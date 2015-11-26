@@ -54,7 +54,8 @@ requirejs.config({
     'prodorder': 'modules/order/prodorder',
     'purchaseorder': 'modules/order/purchaseorder',
     'bom': 'modules/order/bom',
-    'myTask': 'modules/activiti/myTask'
+    'myTask': 'modules/activiti/myTask',
+    'esindex': 'modules/esindex'
   },
   shim: {
     'easyui': {

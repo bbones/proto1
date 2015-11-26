@@ -18,6 +18,7 @@
  *******************************************************************************/
 package org.proto1.services.party;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -45,5 +46,7 @@ public interface EnterpriseService {
 	EnterpriseName saveName(EnterpriseName enterpriseName);
 
 	void deleteName(Long id);
+
+	String esindex() throws IOException;
 
 }

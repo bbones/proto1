@@ -18,6 +18,7 @@
  *******************************************************************************/
 package org.proto1.protofront;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -126,5 +127,8 @@ public class EnterpriseController {
 		enterpriseService.deleteName(id);
 	}
 
-
+	@RequestMapping(value = "esindex", method = RequestMethod.GET)
+	public String indexEnterprises() throws IOException {
+		return enterpriseService.esindex();
+	}
 }
