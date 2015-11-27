@@ -20,6 +20,15 @@
 define(['commonlib', 'language'], function(commonlib, language) {
 	'use strict';
 
+	function initIndex(url) {
+    	$.ajax({
+    		url: url,
+    		method : 'POST'
+    	}).done(function(data) {
+    		alert(data);
+    	});
+	}
+
 	function init() {
 		window.location.hash = "#esindex/"; 
 		$("#spa-cntr").off();
@@ -30,14 +39,14 @@ define(['commonlib', 'language'], function(commonlib, language) {
 				onLoad : function() {
 					$('#esEnterprise').linkbutton({
 					    onClick: function() {
-					    	$.ajax("/protofront/service/persons/esindex");
+					    	initIndex("/protofront/service/enterprises/esindex");
 					    }
 					});
 				}
 			});
 		});
 	}
-
+	
 	return {
 		init : init
 	};

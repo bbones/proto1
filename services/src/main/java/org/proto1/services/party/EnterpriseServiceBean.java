@@ -90,7 +90,6 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		
 	}
 
-	@Override
 	public String esindex() throws IOException {
 		for(Enterprise ent : enterpriseRepository.findAll()) {
 			XContentBuilder source = jsonBuilder()
