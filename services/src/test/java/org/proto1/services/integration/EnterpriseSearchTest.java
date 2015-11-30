@@ -1,7 +1,11 @@
 package org.proto1.services.integration;
 
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.proto1.config.TestAppConfig;
@@ -21,8 +25,8 @@ public class EnterpriseSearchTest {
 	@Autowired
 	Client esclient;
 
-	@Test
-	public void test() throws IOException {
+	@Before
+	public void setUp() throws IOException {
 		// on startup
 
 		log.debug("Client started");
@@ -50,4 +54,19 @@ public class EnterpriseSearchTest {
 
 		
 	}
+	
+	@Test
+	public void testMatchQuery() {
+		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
+				.setQuery(QueryBuilders.matchQuery("names.name", "Duferco")).get();
+		log.debug(response.toString());
+	}
+	
+	@Test
+	public void testQuery() {
+		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
+				.setQuery(QueryBuilders.queryStringQuery("Duferco")).get();
+		log.debug(response.toString());
+	}
+
 }
