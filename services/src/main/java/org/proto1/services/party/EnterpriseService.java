@@ -48,5 +48,7 @@ public interface EnterpriseService {
 	void deleteName(Long id);
 
 	String esindex() throws IOException;
+	
+	List<Map<String, Object>> search(Long languageId, String string, Pageable p);
 
 }

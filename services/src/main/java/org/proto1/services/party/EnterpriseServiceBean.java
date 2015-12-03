@@ -48,48 +48,54 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	@Autowired
 	Client esclient;
 	
+	@Override
 	public Enterprise get(Long id) {
 		return enterpriseRepository.findOne(id);
 	}
 
-	public void setEnterpriseRepository(EnterpriseRepository erep) {
-		enterpriseRepository = erep;
-	}
-
+	@Override
 	public Enterprise save(Enterprise enterprise) {
 		return enterpriseRepository.save(enterprise);
 	}
 
+	@Override
 	public void delete(Long id) {
 		enterpriseRepository.delete(id);
 	}
 
+	@Override
 	public List<Map<String, Object>> getEnterpriseList(Long languageId) {
 		return enterpriseRepository.getListByLanguageId(languageId);
 	}
 
+	@Override
 	public List<EnterpriseName> getNamesList(Long enterpriseId) {
 		return enterpriseNameRepository.getByEnterpriseId(enterpriseId);
 	}
 
+	@Override
 	public Long getEnterpriseListCounter(Long languageId, String searchStr) {
 		return enterpriseRepository.getEnterpriseCounter(languageId, searchStr);
 	}
 
+	@Override
 	public List<Map<String, Object>> getList(Long languageId, String searchStr,
 			Pageable p) {
 		return enterpriseRepository.partyList(languageId, searchStr, p);
 	}
 
+	@Override
 	public EnterpriseName saveName(EnterpriseName enterpriseName) {
 		return enterpriseNameRepository.save(enterpriseName);
 	}
 
+	@Override
 	public void deleteName(Long id) {
 		enterpriseNameRepository.delete(id);
 		
 	}
 
+	@Override
 	public String esindex() throws IOException {
 		for(Enterprise ent : enterpriseRepository.findAll()) {
 			XContentBuilder source = jsonBuilder()
@@ -111,6 +117,12 @@ public class EnterpriseServiceBean implements EnterpriseService {
 				return response.toString();
 		}
 		return "Done";
+	}
+
+	@Override
+	public List<Map<String, Object>> search(Long languageId, String string, Pageable p) {
+		
+		return null;
 	}
 
 }

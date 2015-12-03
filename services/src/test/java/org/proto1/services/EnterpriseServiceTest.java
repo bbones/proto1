@@ -20,6 +20,7 @@ package org.proto1.services;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.repository.party.EnterpriseRepository;
@@ -27,6 +28,7 @@ import org.proto1.services.party.EnterpriseServiceBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.easymock.EasyMock.*;
 
@@ -34,34 +36,32 @@ import static org.easymock.EasyMock.*;
 public class EnterpriseServiceTest extends AbstractJUnit4SpringContextTests {
 	
 	EnterpriseServiceBean enterpriseService = new EnterpriseServiceBean();
+	EnterpriseRepository erep = createMock(EnterpriseRepository.class);
 	
 	@Autowired
 	private Enterprise isd;
 
+	@Before
+	public void setUp() {
+		ReflectionTestUtils.setField( enterpriseService, "enterpriseRepository", erep );
+		expect(erep.findOne(1L)).andReturn(isd);
+		expect(erep.save(isd)).andReturn(isd);
+		erep.delete(isd.getId());
+		replay(erep);
+	}
+	
 	@Test
 	public void testGetEnterpriseById() {
-		EnterpriseRepository erep = createMock(EnterpriseRepository.class);
-		expect(erep.findOne(1L)).andReturn(isd);
-		replay(erep);
-		enterpriseService.setEnterpriseRepository(erep);
 		assertEquals(isd, enterpriseService.get(1L));
 	}
 	
 	@Test
 	public void testSave() {
-		EnterpriseRepository erep = createMock(EnterpriseRepository.class);
-		expect(erep.save(isd)).andReturn(isd);
-		replay(erep);
-		enterpriseService.setEnterpriseRepository(erep);
 		assertEquals(isd, enterpriseService.save(isd));
 	}
 	
 	@Test
 	public void testDelete() {
-		EnterpriseRepository erep = createMock(EnterpriseRepository.class);
-		erep.delete(isd.getId());
-		replay(erep);
-		enterpriseService.setEnterpriseRepository(erep);
 		enterpriseService.delete(isd.getId());
 		
 	}

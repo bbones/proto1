@@ -5,7 +5,10 @@ import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.proto1.config.TestAppConfig;
@@ -16,6 +19,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.IOException;
+import java.util.Map;
+
 import static org.elasticsearch.common.xcontent.XContentFactory.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -26,11 +31,10 @@ public class EnterpriseSearchTest {
 	Client esclient;
 
 	@Before
+	@Ignore
 	public void setUp() throws IOException {
 		// on startup
 
-		log.debug("Client started");
-		
 		IndexResponse response = esclient.prepareIndex("proto1", "enterprise", "1")
 		        .setSource(jsonBuilder()
 		                    .startObject()
@@ -56,6 +60,7 @@ public class EnterpriseSearchTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testMatchQuery() {
 		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
 				.setQuery(QueryBuilders.matchQuery("names.name", "Duferco")).get();
@@ -63,10 +68,28 @@ public class EnterpriseSearchTest {
 	}
 	
 	@Test
+	public void testBoolQuery() {
+		QueryBuilder qb = QueryBuilders.boolQuery()
+				.must(QueryBuilders.matchQuery("POST_INDEX", "83"))
+				.must(QueryBuilders.matchQuery("OKPO", "34225325"));
+		log.debug(qb.toString());
+		SearchResponse response = esclient.prepareSearch("test").setTypes("enterprise")
+				.setQuery(qb).get();
+		log.debug(response.toString());
+	}
+	
+
+	@Test
+	@Ignore
 	public void testQuery() {
 		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
 				.setQuery(QueryBuilders.queryStringQuery("Duferco")).get();
-		log.debug(response.toString());
+		log.debug("+++++ FOUND +++++++   " + response.getHits().getTotalHits());
+		for (SearchHit sh : response.getHits().getHits()) {
+			Map<String,Object> searchHitSource=sh.getSource();
+			log.debug(searchHitSource.toString());
+		}
+			
 	}
 
 }

@@ -24,6 +24,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.dozer.Mapper;
+import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.proto1.domain.Language;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
@@ -139,5 +141,13 @@ public class EnterpriseController {
 		}
 		return "Done";
 		
+	}
+	
+	@RequestMapping(value = "esindex", method = RequestMethod.POST)
+	public @ResponseBody PagedDTO<Map<String, Object>> search(@RequestParam Integer page, @RequestParam Integer rows, 
+			@RequestParam Long languageId, 	MultiValueMap<String, Object> example) {
+//		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
+//				.setQuery(QueryBuilders.queryStringQuery("Duferco")).get();
+		return null;
 	}
 }
