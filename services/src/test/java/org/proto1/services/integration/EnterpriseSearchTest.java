@@ -70,7 +70,7 @@ public class EnterpriseSearchTest {
 	@Test
 	public void testBoolQuery() {
 		QueryBuilder qb = QueryBuilders.boolQuery()
-				.must(QueryBuilders.matchQuery("POST_INDEX", "83"))
+				.must(QueryBuilders.wildcardQuery("POST_INDEX", "83*"))
 				.must(QueryBuilders.matchQuery("OKPO", "34225325"));
 		log.debug(qb.toString());
 		SearchResponse response = esclient.prepareSearch("test").setTypes("enterprise")
