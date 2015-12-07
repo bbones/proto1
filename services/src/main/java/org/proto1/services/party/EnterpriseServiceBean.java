@@ -32,6 +32,7 @@ import org.proto1.domain.party.EnterpriseName;
 import org.proto1.repository.party.EnterpriseNameRepository;
 import org.proto1.repository.party.EnterpriseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import static org.elasticsearch.common.xcontent.XContentFactory.*;
@@ -120,7 +121,7 @@ public class EnterpriseServiceBean implements EnterpriseService {
 	}
 
 	@Override
-	public List<Map<String, Object>> search(Long languageId, String string, Pageable p) {
+	public Page<Map<String, Object>> search(Long languageId, String string, Pageable p) {
 		
 		return null;
 	}
