@@ -26,6 +26,7 @@ import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.util.MultiValueMap;
 
 public interface EnterpriseService {
 
@@ -49,6 +50,6 @@ public interface EnterpriseService {
 
 	String esindex() throws IOException;
 	
-	Page<Map<String, Object>> search(Long languageId, String string, Pageable p);
+	Page<Map<String, Object>> search(Long languageId, Map<String, String> example, Pageable p);
 
 }

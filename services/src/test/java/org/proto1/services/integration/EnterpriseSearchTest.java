@@ -1,5 +1,6 @@
 package org.proto1.services.integration;
 
+import org.apache.lucene.queryparser.xml.FilterBuilder;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
@@ -56,7 +57,6 @@ public class EnterpriseSearchTest {
 		log.debug(response.toString());
 		// on shutdown
 
-		
 	}
 	
 	@Test

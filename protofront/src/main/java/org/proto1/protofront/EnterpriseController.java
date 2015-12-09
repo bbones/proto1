@@ -37,10 +37,12 @@ import org.proto1.services.party.EnterpriseService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,7 +77,7 @@ public class EnterpriseController {
 
 	@RequestMapping(value = "srchbe", method = RequestMethod.POST)
 	public @ResponseBody PagedDTO<EnterpriseDTO> getListBE(@RequestParam Integer page, @RequestParam Integer rows, @RequestParam Long languageId, 
-				MultiValueMap<String, Object> example) {
+				@RequestBody MultiValueMap<String, String> example) {
 		
 		Pageable p = new PageRequest(page-1, rows);
 		return null;
@@ -143,11 +145,11 @@ public class EnterpriseController {
 		
 	}
 	
-	@RequestMapping(value = "esindex", method = RequestMethod.POST)
-	public @ResponseBody PagedDTO<Map<String, Object>> search(@RequestParam Integer page, @RequestParam Integer rows, 
-			@RequestParam Long languageId, 	MultiValueMap<String, Object> example) {
-//		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
-//				.setQuery(QueryBuilders.queryStringQuery("Duferco")).get();
-		return null;
+	@RequestMapping(value = "esearch", method = RequestMethod.POST)
+	public @ResponseBody Page<Map<String, Object>> search(@RequestParam Integer page, @RequestParam Integer rows, 
+			@RequestParam Long languageId, @RequestBody MultiValueMap<String, String> example) {
+		Pageable p = new PageRequest(page-1, rows);
+
+		return enterpriseService.search(languageId, example.toSingleValueMap(), p);
 	}
 }

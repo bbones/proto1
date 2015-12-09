@@ -136,7 +136,7 @@
 		<dependency>
 			<groupId>org.elasticsearch</groupId>
 			<artifactId>elasticsearch</artifactId>
-			<version>2.0.0</version>
+			<version>2.1.0</version>
 		</dependency>
 
 		<dependency>
@@ -172,11 +172,6 @@
 
 
 	</dependencies>
-	<!-- <build> <plugins> <plugin> <groupId>org.apache.maven.plugins</groupId> 
-		<artifactId>maven-remote-resources-plugin</artifactId> <configuration> <resourceBundles> 
-		<resourceBundle>com.proto1.domain:domain:${project.version}</resourceBundle> 
-		</resourceBundles> </configuration> <executions> <execution> <goals> <goal>process</goal> 
-		</goals> </execution> </executions> </plugin> </plugins> </build> -->
 	<build>
 		<plugins>
 			<plugin>
