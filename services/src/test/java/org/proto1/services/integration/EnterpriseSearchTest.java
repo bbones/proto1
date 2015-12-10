@@ -31,47 +31,45 @@ public class EnterpriseSearchTest {
 	@Autowired
 	Client esclient;
 
-	@Before
-	@Ignore
-	public void setUp() throws IOException {
-		// on startup
-
-		IndexResponse response = esclient.prepareIndex("proto1", "enterprise", "1")
-		        .setSource(jsonBuilder()
-		                    .startObject()
-					        .field("id", "1")
-					        .field("names")
-					        		.startArray()
-					        			.startObject()
-					        			.field("language", "English")
-					        			.field("name", "AMK")
-					        			.endObject()
-					        			.startObject()
-					        			.field("language", "Russian")
-					        			.field("name", "ПАО АМК")
-					        			.endObject()
-					        		.endArray()
-		                    .endObject()
-		                  )
-		        .get();
-		log.debug(response.toString());
-		// on shutdown
-
-	}
+//	@Before
+//	public void setUp() throws IOException {
+//		// on startup
+//
+//		IndexResponse response = esclient.prepareIndex("proto1", "enterprise", "1")
+//		        .setSource(jsonBuilder()
+//		                    .startObject()
+//					        .field("id", "1")
+//					        .field("names")
+//					        		.startArray()
+//					        			.startObject()
+//					        			.field("language", "English")
+//					        			.field("name", "AMK")
+//					        			.endObject()
+//					        			.startObject()
+//					        			.field("language", "Russian")
+//					        			.field("name", "ПАО АМК")
+//					        			.endObject()
+//					        		.endArray()
+//		                    .endObject()
+//		                  )
+//		        .get();
+//		log.debug(response.toString());
+//		// on shutdown
+//
+//	}
 	
 	@Test
-	@Ignore
 	public void testMatchQuery() {
-		SearchResponse response = esclient.prepareSearch("proto1").setTypes("enterprise")
-				.setQuery(QueryBuilders.matchQuery("names.name", "Duferco")).get();
+		SearchResponse response = esclient.prepareSearch("test").setTypes("enterprise")
+				.setQuery(QueryBuilders.matchQuery("OKPO", "24068988")).get();
 		log.debug(response.toString());
 	}
 	
 	@Test
 	public void testBoolQuery() {
 		QueryBuilder qb = QueryBuilders.boolQuery()
-				.must(QueryBuilders.wildcardQuery("POST_INDEX", "83*"))
-				.must(QueryBuilders.matchQuery("OKPO", "34225325"));
+				.must(QueryBuilders.wildcardQuery("ORG_NAME", "Корпо*"))
+				.must(QueryBuilders.termQuery("OKPO", "24068988"));
 		log.debug(qb.toString());
 		SearchResponse response = esclient.prepareSearch("test").setTypes("enterprise")
 				.setQuery(qb).get();

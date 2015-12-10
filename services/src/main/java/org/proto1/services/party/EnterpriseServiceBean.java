@@ -22,6 +22,7 @@ import static org.elasticsearch.common.xcontent.XContentFactory.jsonBuilder;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
 import org.proto1.domain.party.Enterprise;
 import org.proto1.domain.party.EnterpriseName;
 import org.proto1.repository.party.EnterpriseNameRepository;
@@ -137,10 +139,12 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		for (Map.Entry<String, String> e : example.entrySet()) {
 			log.debug(e.getKey() + "-->" + e.getValue());
 			if (!e.getValue().isEmpty()) {
-				if (e.getValue().contains("*")) {
-					qbl.add(QueryBuilders.wildcardQuery(e.getKey(), e.getValue()));
-				} else {
-					qbl.add(QueryBuilders.matchQuery(e.getKey(), e.getValue()));
+				for (String srch : e.getValue().split(" ")) {
+					if (e.getValue().contains("*")) {
+						qbl.add(QueryBuilders.wildcardQuery(e.getKey(), srch.toLowerCase()));
+					} else {
+						qbl.add(QueryBuilders.matchQuery(e.getKey(), srch));
+					}
 				}
 			}
 		} // End for
@@ -158,10 +162,21 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		}
 		log.debug(qb.toString());
 		SearchResponse response = esclient.prepareSearch("test").setTypes("enterprise")
-				.setQuery(qb).get();
-		log.debug(response.toString());
-		// Page<Map<String, Object>> pm = new PageImpl<Map<String, Object>>(content, pageable, total)
-		return null;
+				.setQuery(qb).setSize(p.getPageSize()).setFrom(p.getPageNumber()*p.getPageSize()).get();
+		List<Map<String, Object>> reslist = new ArrayList<Map<String, Object>>();
+		for (SearchHit sh : response.getHits().getHits()) {
+			Map<String,Object> searchHitSource=sh.getSource();
+			// log.debug(searchHitSource.toString());
+			Map<String, Object> entry = new HashMap<String, Object>();
+			for (Map.Entry<String, String> e : example.entrySet()) {
+				log.debug(searchHitSource.get(e.getKey()).toString());
+				entry.put(e.getKey(), searchHitSource.get(e.getKey()));
+			}
+			reslist.add(entry);
+		}
+
+		Page<Map<String, Object>> pm = new PageImpl<Map<String, Object>>(reslist, p, response.getHits().getTotalHits());
+		return pm;
 	}
 
 	private void cleanExample(Map<String, String> example) {
