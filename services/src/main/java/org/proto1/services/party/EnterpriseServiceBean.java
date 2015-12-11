@@ -137,7 +137,6 @@ public class EnterpriseServiceBean implements EnterpriseService {
 		cleanExample(example);
 		List<QueryBuilder> qbl = new ArrayList<QueryBuilder>();
 		for (Map.Entry<String, String> e : example.entrySet()) {
-			log.debug(e.getKey() + "-->" + e.getValue());
 			if (!e.getValue().isEmpty()) {
 				for (String srch : e.getValue().split(" ")) {
 					if (e.getValue().contains("*")) {
@@ -160,16 +159,13 @@ public class EnterpriseServiceBean implements EnterpriseService {
 				((BoolQueryBuilder)qb).must(q);
 			}
 		}
-		log.debug(qb.toString());
 		SearchResponse response = esclient.prepareSearch("test").setTypes("enterprise")
 				.setQuery(qb).setSize(p.getPageSize()).setFrom(p.getPageNumber()*p.getPageSize()).get();
 		List<Map<String, Object>> reslist = new ArrayList<Map<String, Object>>();
 		for (SearchHit sh : response.getHits().getHits()) {
 			Map<String,Object> searchHitSource=sh.getSource();
-			// log.debug(searchHitSource.toString());
 			Map<String, Object> entry = new HashMap<String, Object>();
 			for (Map.Entry<String, String> e : example.entrySet()) {
-				log.debug(searchHitSource.get(e.getKey()).toString());
 				entry.put(e.getKey(), searchHitSource.get(e.getKey()));
 			}
 			reslist.add(entry);

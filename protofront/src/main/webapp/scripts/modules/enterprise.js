@@ -29,12 +29,12 @@ define(["commonlib", "language", "edatagrid", "searchcom","serializeObject"],fun
 
 		$("#entSearch").searchcom({
 			frm : 'forms/searchform/enterpriseSrch.html',
-			url : '/protofront/service/enterprises/srchbe?languageId=' + language.id(),
+			url : '/protofront/service/enterprises/esearch?languageId=' + language.id(),
 			grid : {
 				columns:[[
-			                  {field:'id',title:'Id#',width:100},
-			                  {field:'name',title:'Name',width:100},
-			                  {field:'eskId',title:'ESK Id',width:100}
+			                  {field:'ORG_ID',title:'Id#',width:100},
+			                  {field:'ORG_NAME',title:'Name',width:100},
+			                  {field:'OKPO',title:'ESK Id',width:100}
 			    ]],
 			    method : 'POST'
 			}

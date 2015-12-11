@@ -49,6 +49,7 @@
 	function search(target) {
 		var opts = $.data(target, 'searchcom').options;
 		var data = $("#srchform").serializeObject();
+		debugger;
 		$("#srchGrid").datagrid({
 			url : opts.url, // + '&' + $("#srchform").serialize()
 			queryParams : data

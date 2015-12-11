@@ -146,10 +146,12 @@ public class EnterpriseController {
 	}
 	
 	@RequestMapping(value = "esearch", method = RequestMethod.POST)
-	public @ResponseBody Page<Map<String, Object>> search(@RequestParam Integer page, @RequestParam Integer rows, 
+	public @ResponseBody PagedDTO<Map<String, Object>> search(@RequestParam Integer page, @RequestParam Integer rows, 
 			@RequestParam Long languageId, @RequestBody MultiValueMap<String, String> example) {
 		Pageable p = new PageRequest(page-1, rows);
-
-		return enterpriseService.search(languageId, example.toSingleValueMap(), p);
+		Page<Map<String, Object>> src = enterpriseService.search(languageId, example.toSingleValueMap(), p);
+		PagedDTO<Map<String, Object>> result = new PagedDTO<Map<String, Object>>(src.getTotalElements(), src.getContent());
+		
+		return result;
 	}
 }
