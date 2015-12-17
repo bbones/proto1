@@ -32,8 +32,8 @@ Prototyping framework
 * Activiti
 
 ##Среда разработки
-Eclipse
-Maven
+* Eclipse
+* Maven
 
 ##Контроль версий
 GIT
